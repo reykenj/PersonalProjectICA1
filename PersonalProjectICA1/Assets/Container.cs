@@ -55,7 +55,7 @@ public class Container : MonoBehaviour
             blockPos = kvp.Key;
             block = kvp.Value;
 
-            voxelColor = WorldManager.Instance.WorldColors[block.ID - 1];
+            voxelColor = WorldManager.Instance.regions[block.ID - 1].colour;
             voxelColorAlpha = voxelColor.color;
             voxelColorAlpha.a = 1;
             voxelSmoothness = new Vector2(voxelColor.metallic, voxelColor.smoothness);

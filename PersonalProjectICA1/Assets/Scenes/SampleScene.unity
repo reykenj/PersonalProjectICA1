@@ -458,12 +458,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   worldMaterial: {fileID: 2100000, guid: b976c8b65cdb6504789a569c7e047657, type: 2}
-  WorldColors:
-  - color: {r: 0.7261443, g: 1, b: 0.4660377, a: 0}
-    metallic: 0
-    smoothness: 0
-  xSize: 32
-  zSize: 32
+  ChunkSize: 5
+  xSize: 16
+  zSize: 16
   noiseScale: 50
   noiseIntensity: 20
   meshHeightCurve:
@@ -551,29 +548,53 @@ MonoBehaviour:
   offset: {x: 0, y: 0}
   regions:
   - name: Deep Water
-    height: 0
-    colour: {r: 0.16836596, g: 0.19633959, b: 0.83396226, a: 0}
+    height: -1
+    colour:
+      color: {r: 0.33773577, g: 0.5749965, b: 1, a: 1}
+      metallic: 0
+      smoothness: 0
   - name: Water Shallow
-    height: 0.27
-    colour: {r: 0.22908504, g: 0.7012282, b: 0.8490566, a: 0}
-  - name: Sand
-    height: 0.35
-    colour: {r: 0.7584905, g: 0.75202954, b: 0.21609825, a: 0}
-  - name: Grass
-    height: 0.37
-    colour: {r: 0.46518812, g: 0.6603774, b: 0.18814526, a: 0}
-  - name: Grass 2
-    height: 0.7
-    colour: {r: 0.26816297, g: 0.3886792, b: 0.09606976, a: 0}
-  - name: Rock
-    height: 0.8
-    colour: {r: 0.5698112, g: 0.5698112, b: 0.5698112, a: 0}
-  - name: Rock 2
-    height: 0.87
-    colour: {r: 0.23773581, g: 0.23773581, b: 0.23773581, a: 0}
-  - name: Snow
     height: 1
-    colour: {r: 1, g: 1, b: 1, a: 0}
+    colour:
+      color: {r: 0.2384834, g: 0.6144742, b: 0.6226415, a: 1}
+      metallic: 0
+      smoothness: 0
+  - name: Sand
+    height: 2
+    colour:
+      color: {r: 0.6829839, g: 0.7056604, b: 0.4566821, a: 1}
+      metallic: 0
+      smoothness: 0
+  - name: Grass
+    height: 3
+    colour:
+      color: {r: 0.25263795, g: 0.5169811, b: 0.3374034, a: 1}
+      metallic: 0
+      smoothness: 0
+  - name: Grass 2
+    height: 4
+    colour:
+      color: {r: 0.14637946, g: 0.335849, b: 0.18815893, a: 1}
+      metallic: 0
+      smoothness: 0
+  - name: Rock
+    height: 5
+    colour:
+      color: {r: 0.4339623, g: 0.41840515, b: 0.41840515, a: 0}
+      metallic: 0
+      smoothness: 0
+  - name: Rock 2
+    height: 6
+    colour:
+      color: {r: 0.2754717, g: 0.2754717, b: 0.2754717, a: 0}
+      metallic: 0
+      smoothness: 0
+  - name: Snow
+    height: 7
+    colour:
+      color: {r: 0.9547169, g: 0.92769665, b: 0.92769665, a: 0}
+      metallic: 0
+      smoothness: 0
   UseFalloff: 1
   heightThreshold: 4
   treesPrefab: {fileID: 0}
