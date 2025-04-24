@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class WorldManager : MonoBehaviour
 {
+    [SerializeField] bool GreedyMeshing;
     public Material worldMaterial;
     private Container container;
     int[] triangles;
@@ -83,7 +84,7 @@ public class WorldManager : MonoBehaviour
                 cont.transform.position = new Vector3(chunkX * xSize, 0, chunkZ * zSize);
 
                 Container container = cont.AddComponent<Container>();
-                container.Initialize(worldMaterial, cont.transform.position);
+                container.Initialize(worldMaterial, cont.transform.position, xSize);
 
                 // Fill chunk with voxels
                 for (int z = 0; z < xSize; z++)
@@ -114,7 +115,14 @@ public class WorldManager : MonoBehaviour
                     }
                 }
 
-                container.GenerateMesh();
+                if (!GreedyMeshing)
+                {
+                    container.GenerateMesh();
+                }
+                else
+                {
+                    container.GreedyMeshing();
+                }
                 container.UploadMesh();
             }
         }

@@ -1,7 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Unity.Mathematics;
+using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 
 
 [RequireComponent(typeof(MeshFilter))]
@@ -18,12 +22,15 @@ public class Container : MonoBehaviour
     private MeshFilter meshFilter;
     private MeshCollider meshCollider;
 
-    public void Initialize(Material mat, Vector3 position)
+    private int ChunkVoxelMaxAmtXZ;
+
+    public void Initialize(Material mat, Vector3 position, int ChunkVoxelMaxAmt)
     {
         ConfigureComponents();
         data = new Dictionary<Vector3, Voxel>();
         meshRenderer.sharedMaterial = mat;
         containerPosition = position;
+        ChunkVoxelMaxAmtXZ = ChunkVoxelMaxAmt;
     }
 
     public void ClearData()
@@ -45,7 +52,6 @@ public class Container : MonoBehaviour
         VoxelColor voxelColor;
         Color voxelColorAlpha;
         Vector2 voxelSmoothness;
-
         foreach (KeyValuePair<Vector3, Voxel> kvp in data)
         {
             //Only check on solid blocks
@@ -89,6 +95,149 @@ public class Container : MonoBehaviour
 
         }
     }
+
+    public void GreedyMeshing()
+    {
+        meshData.ClearData();
+
+        Vector3 blockPos;
+        Voxel block;
+
+        int counter = 0;
+        Vector3[] faceVertices = new Vector3[4];
+        Vector2[] faceUVs = new Vector2[4];
+        VoxelColor voxelColor;
+        Color voxelColorAlpha;
+        Vector2 voxelSmoothness;
+
+
+        List<GreedyMesh> greedyMeshes;
+        foreach (Vector3 direction in voxelFaceChecks)
+        {
+            bool[,,] visited = new bool[ChunkVoxelMaxAmtXZ, ChunkVoxelMaxAmtXZ, ChunkVoxelMaxAmtXZ];
+            for (int x = 0; x < ChunkVoxelMaxAmtXZ; x++)
+            {
+                for (int y = 0; y < ChunkVoxelMaxAmtXZ; y++)
+                {
+                    for (int z = 0; z < ChunkVoxelMaxAmtXZ; z++)
+                    {
+                        blockPos = new Vector3(x, y, z);
+                        block = this[blockPos];
+                        //Only check on solid blocks
+                        if (!block.isSolid || visited[x, y, z])
+                            continue;
+                        AxisInfo axisInfo = directionToAxis[direction];
+                        GreedyMesh greedyMesh = new GreedyMesh();
+                        greedyMesh.Direction = direction;
+                        greedyMesh.StartPosition = blockPos;
+                        greedyMesh.HeightWidth[axisInfo.u] = 1;
+                        greedyMesh.HeightWidth[axisInfo.v] = 1;
+                        bool widthdone = false;
+                        bool heightdone = false;
+                        Vector3 CurrentCheck = greedyMesh.StartPosition + greedyMesh.HeightWidth;
+                        while (true)
+                        {
+                            // TO DO THIS SHIT INCOMPLETE CURRENT CHECK MAY NOT BE PERFECTLY IN THE RIGHT DIRECTION,
+                            // EVERYTHING IN THIS WHILE LOOP MAY NOT BE IN THE RIGHT DIRECTION
+                            if (!widthdone)
+                            {
+                                //CurrentCheck[axisInfo.v] = 0; add tbese when enabling widht done or height done
+                                CurrentCheck[axisInfo.u]++;
+                            }
+                            else if (!heightdone)
+                            {
+                                //CurrentCheck[axisInfo.u] = 0;
+                                CurrentCheck[axisInfo.v]++;
+                            }
+
+
+                            if (this[CurrentCheck].isSolid &&
+                                !visited[(int)CurrentCheck.x, (int)CurrentCheck.y, (int)CurrentCheck.z] &&
+                                this[CurrentCheck + direction].isSolid)
+                            {
+                            }
+
+                            //for (greedyX < greedyMesh.HeightWidth[axisInfo.u] * 2; greedyX++)
+                            //{
+                            //}
+                            //Vector3 CurrentCheck = greedyMesh.StartPosition + (Vector3)greedyMesh.HeightWidth;
+                            //if (this[CurrentCheck].isSolid && 
+                            //    !visited[(int)CurrentCheck.x, (int)CurrentCheck.y, (int)CurrentCheck.z] &&
+                            //    this[CurrentCheck + direction].isSolid)
+                            //{
+                            //    if (widthdone)
+                            //    {
+                            //        greedyMesh.HeightWidth[axisInfo.u]++;
+                            //    }
+                            //    else
+                            //    {
+                            //        greedyMesh.HeightWidth[axisInfo.v]++;
+                            //    }
+                            //}
+                            //else if(!widthdone)
+                            //{
+                            //    widthdone = true;
+                            //}
+                            //else if (!heightdone)
+                            //{
+                            //    break;
+                            //}
+
+
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+    struct AxisInfo
+    {
+        public int u; // First 2D axis index
+        public int v; // Second 2D axis index
+        public int w; // Fixed axis index
+
+        public AxisInfo(int u, int v, int w)
+        {
+            this.u = u;
+            this.v = v;
+            this.w = w;
+        }
+    }
+
+
+    //voxelColor = WorldManager.Instance.regions[block.ID - 1].colour;
+    //voxelColorAlpha = voxelColor.color;
+    //voxelColorAlpha.a = 1;
+    //voxelSmoothness = new Vector2(voxelColor.metallic, voxelColor.smoothness);
+    ////Iterate over each face direction
+    //for (int i = 0; i < 6; i++)
+    //{
+    //    //Check if there's a solid block against this face
+    //    if (this[blockPos + voxelFaceChecks[i]].isSolid)
+    //        continue;
+
+    //    //Draw this face
+
+    //    //Collect the appropriate vertices from the default vertices and add the block position
+    //    for (int j = 0; j < 4; j++)
+    //    {
+    //        faceVertices[j] = voxelVertices[voxelVertexIndex[i, j]] + blockPos;
+    //        faceUVs[j] = voxelUVs[j];
+    //    }
+
+    //    for (int j = 0; j < 6; j++)
+    //    {
+    //        meshData.vertices.Add(faceVertices[voxelTris[i, j]]);
+    //        meshData.UVs.Add(faceUVs[voxelTris[i, j]]);
+    //        meshData.colors.Add(voxelColorAlpha);
+    //        meshData.UVs2.Add(voxelSmoothness);
+
+    //        meshData.triangles.Add(counter++);
+
+    //    }
+    //}
 
 
 
@@ -134,6 +283,12 @@ public class Container : MonoBehaviour
 
     #region Mesh Data
 
+    public struct GreedyMesh
+    {
+        public Vector3 StartPosition;
+        public Vector3 HeightWidth;
+        public Vector3 Direction;
+    }
     public struct MeshData
     {
         public Mesh mesh;
@@ -239,6 +394,18 @@ public class Container : MonoBehaviour
             {0,1,2,1,3,2},
             {0,2,3,0,3,1},
     };
+
+
+    // Map direction to its 2D mask axes
+    static readonly Dictionary<Vector3, AxisInfo> directionToAxis = new Dictionary<Vector3, AxisInfo>
+{
+    { new Vector3(0, 0, 1), new AxisInfo(0, 1, 2) }, // Front
+    { new Vector3(0, 0, -1), new AxisInfo(0, 1, 2) }, // Back
+    { new Vector3(-1, 0, 0), new AxisInfo(2, 1, 0) }, // Left
+    { new Vector3(1, 0, 0), new AxisInfo(2, 1, 0) }, // Right
+    { new Vector3(0, 1, 0), new AxisInfo(0, 2, 1) }, // Top
+    { new Vector3(0, -1, 0), new AxisInfo(0, 2, 1) }, // Bottom
+};
     #endregion
 }
 

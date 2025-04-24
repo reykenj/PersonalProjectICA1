@@ -457,6 +457,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b256174cb2884e94892dceb15b54f174, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GreedyMeshing: 1
   worldMaterial: {fileID: 2100000, guid: b976c8b65cdb6504789a569c7e047657, type: 2}
   ChunkSize: 5
   xSize: 16
