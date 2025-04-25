@@ -687,6 +687,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8ac5698991e4334ca368d01452258ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  voxelDebrisPrefab: {fileID: 2695812196601672060, guid: edca2b42bc0431442a92075198a1546b, type: 3}
   chunks: []
   playerCamera: {fileID: 330585545}
   maxInteractionDistance: 10
@@ -698,6 +699,13 @@ MonoBehaviour:
   hitPointRadius: 0.2
   showRaycast: 1
   raycastColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  explosionForce: 100
+  explosionRadius: 4.5
+  upwardModifier: 0.5
+  forceMode: 1
+  physicsLayerMask:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
