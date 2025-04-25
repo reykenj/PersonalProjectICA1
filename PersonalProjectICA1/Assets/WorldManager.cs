@@ -6,6 +6,7 @@ using UnityEngine;
 public class WorldManager : MonoBehaviour
 {
     [SerializeField] bool GreedyMeshing;
+    [SerializeField] ChunkManager chunkManager;
     public Material worldMaterial;
     private Container container;
     int[] triangles;
@@ -124,18 +125,9 @@ public class WorldManager : MonoBehaviour
                     container.GreedyMeshing();
                 }
                 container.UploadMesh();
+                chunkManager.chunks.Add(container);
             }
         }
-    }
-
-    // Helper method to check if a voxel exists at (x,y,z)
-    private bool IsVoxelSolid(int x, int y, int z, float[,] noiseMap)
-    {
-        if (x < 0 || x > xSize || z < 0 || z > zSize || y < 0)
-            return false; // Out of bounds = air
-
-        float surfaceY = Mathf.RoundToInt(meshHeightCurve.Evaluate(noiseMap[x, z]) * noiseIntensity);
-        return y <= surfaceY; // Solid if below/equal to surface
     }
 
 

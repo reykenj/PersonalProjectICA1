@@ -24,11 +24,12 @@ public class Container : MonoBehaviour
     private MeshFilter meshFilter;
     private MeshCollider meshCollider;
 
-    private int ChunkVoxelMaxAmtXZ;
+    public int ChunkVoxelMaxAmtXZ;
 
     public void Initialize(Material mat, Vector3 position, int ChunkVoxelMaxAmt)
     {
         ConfigureComponents();
+        gameObject.layer = 6;
         data = new Dictionary<Vector3, Voxel>();
         meshRenderer.sharedMaterial = mat;
         containerPosition = position;
