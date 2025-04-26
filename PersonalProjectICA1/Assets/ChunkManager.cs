@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting.Antlr3.Runtime.Collections;
@@ -214,10 +215,17 @@ public class ChunkManager : MonoBehaviour
 
                 if (voxelID > 0 && voxelID <= WorldManager.Instance.regions.Length)
                 {
-                    SpawnVoxelDebris(position, WorldManager.Instance.regions[voxelID - 1].colour);
+                    /*VoxelDebris VBScript = */SpawnVoxelDebris(position, WorldManager.Instance.regions[voxelID - 1].colour);
+                    //VBScript._rb.AddExplosionForce(
+                    //explosionForce,
+                    //hit.point,
+                    //explosionRadius,
+                    //upwardModifier,
+                    //forceMode);
                 }
             }
-            ApplyExplosionForce(hit.point);
+
+            StartCoroutine(ApplyExplosionForceWithDelay(hit.point));
         }
         else
         {
@@ -225,52 +233,70 @@ public class ChunkManager : MonoBehaviour
         }
     }
 
+    //private void ApplyExplosionForce(Vector3 explosionCenter)
+    //{
+    //    // The only things that would be affected here would be voxel debris so just do the thing
+    //    Collider[] colliders = Physics.OverlapSphere(explosionCenter, explosionRadius, physicsLayerMask);
 
-    private void ApplyExplosionForce(Vector3 explosionCenter)
+    //    foreach (Collider hit in colliders)
+    //    {
+    //        if (VoxelDebris.TryGetVoxelDebris(hit.gameObject, out VoxelDebris VBscript))
+    //        {
+
+    //            VBscript._rb.AddExplosionForce(
+    //                        explosionForce,
+    //                        explosionCenter,
+    //                        explosionRadius,
+    //                        upwardModifier,
+    //                        forceMode);
+
+    //            Debug.Log("Found a voxel debirs");
+
+    //        }
+    //    }
+    //}
+
+
+    public VoxelDebris SpawnVoxelDebris(Vector3 position, VoxelColor voxelColor, float AngularVelocity = 5f)
     {
-        Collider[] colliders = Physics.OverlapSphere(explosionCenter, explosionRadius, physicsLayerMask);
+        if (voxelDebrisPrefab == null) return null;
+        GameObject debris = ObjectPool.GetObj(voxelDebrisPrefab.name);
+        debris.transform.position = position;
+        debris.transform.rotation = Quaternion.identity;
+        debris.layer = 7;
 
+        if (VoxelDebris.TryGetVoxelDebris(debris, out VoxelDebris VBscript))
+        {
+            VBscript._renderer.material.color = voxelColor.color;
+            VBscript._renderer.material.SetFloat("_Metallic", voxelColor.metallic);
+            VBscript._renderer.material.SetFloat("_Glossiness", voxelColor.smoothness);
+            VBscript._rb.angularVelocity = new Vector3(
+            Random.Range(-AngularVelocity, AngularVelocity),
+            Random.Range(-AngularVelocity, AngularVelocity),
+            Random.Range(-AngularVelocity, AngularVelocity));
+        }
+        return VBscript;
+    }
+
+
+    public IEnumerator ApplyExplosionForceWithDelay(Vector3 explosionCenter, float delay = 0.05f)
+    {
+        yield return new WaitForSeconds(delay);
+        Collider[] colliders = Physics.OverlapSphere(explosionCenter, explosionRadius, physicsLayerMask);
         foreach (Collider hit in colliders)
         {
-            Rigidbody rb = hit.GetComponent<Rigidbody>();
-            if (rb != null)
+            if (VoxelDebris.TryGetVoxelDebris(hit.gameObject, out VoxelDebris VBscript))
             {
-                rb.AddExplosionForce(
+                VBscript._rb.AddExplosionForce(
                     explosionForce,
                     explosionCenter,
                     explosionRadius,
                     upwardModifier,
                     forceMode);
+                Debug.Log("Affected debris");
             }
+            //Debug.Log("Affected debris");
         }
-    }
-
-
-    private void SpawnVoxelDebris(Vector3 position, VoxelColor voxelColor, float AngularVelocity = 5f)
-    {
-        if (voxelDebrisPrefab == null) return;
-
-        GameObject debris = Instantiate(voxelDebrisPrefab, position, Quaternion.identity);
-        debris.layer = 7;
-        Renderer renderer = debris.GetComponent<Renderer>();
-        if (renderer != null)
-        {
-            renderer.material.color = voxelColor.color;
-            renderer.material.SetFloat("_Metallic", voxelColor.metallic);
-            renderer.material.SetFloat("_Glossiness", voxelColor.smoothness);
-        }
-
-        // Add some physics randomness
-        Rigidbody rb = debris.GetComponent<Rigidbody>();
-        if (rb != null)
-        {
-            rb.angularVelocity = new Vector3(
-                Random.Range(-AngularVelocity, AngularVelocity),
-                Random.Range(-AngularVelocity, AngularVelocity),
-                Random.Range(-AngularVelocity, AngularVelocity));
-        }
-
-        Destroy(debris, 5f);
     }
 
 
