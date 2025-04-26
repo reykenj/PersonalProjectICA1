@@ -8,7 +8,7 @@ public class WorldManager : MonoBehaviour
     [SerializeField] bool GreedyMeshing;
     [SerializeField] ChunkManager chunkManager;
     public Material worldMaterial;
-    private Container container;
+    //private Container container;
     int[] triangles;
     Color[] colourMap;
     public int ChunkSize = 16;
@@ -61,7 +61,7 @@ public class WorldManager : MonoBehaviour
     {
         transform.position = new Vector3(-xSize * 0.5f, 0, -zSize * 0.5f);
         falloffmap = FalloffGenerator.GenerateFallOfMap(xSize + 1, zSize + 1);
-        StorePreviousValues();
+        //StorePreviousValues();
         GenerateMesh();
 
     }
@@ -116,6 +116,8 @@ public class WorldManager : MonoBehaviour
                     }
                 }
 
+                TryPlaceHouseInChunk(container);
+
                 if (!GreedyMeshing)
                 {
                     container.GenerateMesh();
@@ -158,26 +160,150 @@ public class WorldManager : MonoBehaviour
         //}
     }
 
-    private void StorePreviousValues()
+    private bool TryPlaceHouseInChunk(Container chunk)
     {
-        lastNoiseScale = noiseScale;
-        lastOctaves = octaves;
-        lastPersistance = persistance;
-        lastLacunarity = lacunarity;
-        lastSeed = seed;
-        lastOffset = offset;
+        
+        int houseWidth = Random.Range(5, 10);
+        int houseDepth = Random.Range(5, 10);
+        int houseHeight = Random.Range(4, 6);
+        byte woodBlockID = 4;
+
+        
+        for (int attempt = 0; attempt < 5; attempt++)
+        {
+            
+            int x = Random.Range(2, xSize - houseWidth - 2);
+            int z = Random.Range(2, zSize - houseDepth - 2);
+
+            
+            int surfaceY = GetSurfaceHeight(chunk, x, z);
+            Vector3 houseBase = new Vector3(x, surfaceY + 1, z);
+
+            
+            if (IsAreaFlat(chunk, houseBase, houseWidth, houseDepth))
+            {
+                GenerateSimpleHouse(chunk, houseBase, houseWidth, houseHeight, houseDepth, woodBlockID);
+                return true;
+            }
+        }
+        return false;
     }
 
-    private bool HasSettingsChanged()
+    private int GetSurfaceHeight(Container chunk, int x, int z)
     {
-        return Mathf.Abs(noiseScale - lastNoiseScale) > Mathf.Epsilon ||
-               octaves != lastOctaves ||
-               Mathf.Abs(persistance - lastPersistance) > Mathf.Epsilon ||
-               Mathf.Abs(lacunarity - lastLacunarity) > Mathf.Epsilon ||
-               seed != lastSeed ||
-               offset != lastOffset;
+        for (int y = chunk.ChunkVoxelMaxAmtXZ - 1; y >= 0; y--)
+        {
+            if (chunk[new Vector3(x, y, z)].ID != 0) 
+            {
+                return y;
+            }
+        }
+        return 0;
     }
 
+    private bool IsAreaFlat(Container chunk, Vector3 center, int width, int depth)
+    {
+        int firstY = (int)center.y;
+
+        for (int x = 0; x < width; x++)
+        {
+            for (int z = 0; z < depth; z++)
+            {
+                Vector3 checkPos = center + new Vector3(x, 0, z);
+                int surfaceY = GetSurfaceHeight(chunk, (int)checkPos.x, (int)checkPos.z);
+
+                if (Mathf.Abs(surfaceY - (firstY - 1)) > 1) 
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+private void GenerateSimpleHouse(Container chunk, Vector3 basePos, int width, int height, int depth, byte wallBlockID)
+{
+    
+    
+    int minX = Mathf.Max(1, Mathf.FloorToInt(basePos.x - width/2));
+    int maxX = Mathf.Min(chunk.ChunkVoxelMaxAmtXZ - 2, Mathf.CeilToInt(basePos.x + width/2));
+    int minZ = Mathf.Max(1, Mathf.FloorToInt(basePos.z - depth/2));
+    int maxZ = Mathf.Min(chunk.ChunkVoxelMaxAmtXZ - 2, Mathf.CeilToInt(basePos.z + depth/2));
+    
+    
+    width = maxX - minX;
+    depth = maxZ - minZ;
+    Vector3 adjustedCenter = new Vector3(
+        minX + width/2f,
+        basePos.y-1,
+        minZ + depth/2f
+    );
+
+    
+    FillBox(chunk, adjustedCenter, width, height, depth, wallBlockID, hollow: true);
+
+    
+    int doorX = Mathf.Clamp(
+        (int)adjustedCenter.x,
+        minX + 1,
+        maxX - 1
+    );
+    int doorZ = minZ;
+    chunk[new Vector3(doorX, adjustedCenter.y + 1, doorZ)] = new Voxel() { ID = 0 };
+    chunk[new Vector3(doorX, adjustedCenter.y + 2, doorZ)] = new Voxel() { ID = 0 };
+
+    
+    int roofOverhang = 1;
+    for (int x = minX - roofOverhang; x <= maxX + roofOverhang; x++)
+    {
+        for (int z = minZ - roofOverhang; z <= maxZ + roofOverhang; z++)
+        {
+            
+            if (x >= 0 && x < chunk.ChunkVoxelMaxAmtXZ && 
+                z >= 0 && z < chunk.ChunkVoxelMaxAmtXZ)
+            {
+                chunk[new Vector3(x, adjustedCenter.y + height, z)] = 
+                    new Voxel() { ID = wallBlockID };
+            }
+        }
+    }
+}
+
+void FillBox(Container chunk, Vector3 center, int width, int height, int depth, byte blockID, bool hollow = false)
+{
+    int minX = Mathf.FloorToInt(center.x - width/2f);
+    int maxX = Mathf.CeilToInt(center.x + width/2f);
+    int minZ = Mathf.FloorToInt(center.z - depth/2f);
+    int maxZ = Mathf.CeilToInt(center.z + depth/2f);
+
+    for (int x = minX; x < maxX; x++)
+    {
+        for (int y = (int)center.y; y < (int)center.y + height; y++)
+        {
+            for (int z = minZ; z < maxZ; z++)
+            {
+                
+                if (x >= 0 && x < chunk.ChunkVoxelMaxAmtXZ && 
+                    y >= 0 && y < chunk.ChunkVoxelMaxAmtXZ && 
+                    z >= 0 && z < chunk.ChunkVoxelMaxAmtXZ)
+                {
+                    bool isWall = x == minX || x == maxX - 1 || 
+                                 y == (int)center.y || y == (int)center.y + height - 1 || 
+                                 z == minZ || z == maxZ - 1;
+
+                    if (!hollow || isWall)
+                    {
+                        chunk[new Vector3(x, y, z)] = new Voxel() { ID = blockID };
+                    }
+                    else
+                    {
+                        chunk[new Vector3(x, y, z)] = new Voxel() { ID = 0 };
+                    }
+                }
+            }
+        }
+    }
+}
 
 
     private static WorldManager _instance;
