@@ -40,7 +40,14 @@ public class Humanoid : MonoBehaviour
         Vector3 finalVel = Vector3.zero;
         if (Gravity)
         {
-            GravityVel.y += gravity * Time.deltaTime;
+            if (!IsGrounded())
+            {
+                GravityVel.y += gravity * Time.deltaTime;
+            }
+            //else
+            //{
+            //    GravityVel.y = -2;
+            //}
             finalVel += GravityVel;
         }
         if (HP > 0)

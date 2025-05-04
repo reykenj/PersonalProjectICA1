@@ -589,10 +589,10 @@ MonoBehaviour:
   humanoid: {fileID: 574463013}
   _playerInput: {fileID: 574463009}
   _animator: {fileID: 574463006}
-  isBusy: 0
+  isBusyTimer: 0
+  isBusyMaxTimer: 1
   maxDistance: 2
   maxAngle: 90
-  M1Click: -1
   characterController: {fileID: 574463010}
 --- !u!114 &574463013
 MonoBehaviour:

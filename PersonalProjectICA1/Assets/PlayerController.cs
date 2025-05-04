@@ -14,17 +14,13 @@ public class PlayerController : MonoBehaviour
         Skill3,
         Skill4,
         M1Attack,
+        M2Attack,
         Block,
         DefaultAttackingStance,
         HitLeft
     }
 
-    private static readonly string[] M1AttackStateHashArray = {
-            "Standing 1H Magic Attack 01",
-            "Standing 2H Magic Area Attack 01",
-            "Standing 2H Magic Attack 05",
-            "Standing 2H Magic Attack 02"
-        };
+    private static readonly string Punch = "Punching";
 
     private static readonly string Skill1 = "ConsumeCards";
     private static readonly string Skill2 = "GamblerSkill2";
@@ -35,7 +31,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Humanoid humanoid;
     [SerializeField] private PlayerInput _playerInput;
     [SerializeField] private Animator _animator;
-    [SerializeField] bool isBusy = false;
+    [SerializeField] float isBusyTimer;
+    [SerializeField] float isBusyMaxTimer;
     //[SerializeField] Transform bodyTarget;
     [SerializeField] float maxDistance = 0.1f;
     [SerializeField] float maxAngle = 90f;
@@ -43,7 +40,8 @@ public class PlayerController : MonoBehaviour
     private State _currState;
     private int upperBodyLayerIndex;
     private int HitBodyLayerIndex;
-    public int M1Click = -1;
+
+
     [SerializeField] private CharacterController characterController;
     Camera mainCamera;
 
@@ -152,7 +150,18 @@ public class PlayerController : MonoBehaviour
         _animator.IsInTransition(upperBodyLayerIndex))
         {
             ChangeState(State.M1Attack, upperBodyLayerIndex);
-            isBusy = true;
+            isBusyTimer = isBusyMaxTimer;
+        }
+        else if (_inputActions["M2"].IsPressed() && !
+        _animator.IsInTransition(upperBodyLayerIndex))
+        {
+            ChangeState(State.M2Attack, upperBodyLayerIndex);
+            isBusyTimer = isBusyMaxTimer;
+        }
+        else if(isBusyTimer > 0)
+        {
+            isBusyTimer -= Time.deltaTime;
+            _animator.SetLayerWeight(upperBodyLayerIndex, isBusyTimer);
         }
 
         if (_inputActions["Jump"].IsPressed() && CanTransition(0) && humanoid.IsGrounded())
@@ -185,81 +194,43 @@ public class PlayerController : MonoBehaviour
         }
         else if (LayerIndex == upperBodyLayerIndex)
         {
-            if (currentState.shortNameHash == Animator.StringToHash(M1AttackStateHashArray[0]))
+            for (int letter = 0; letter < 2; letter++)
             {
-                bool Result = currentState.normalizedTime >= 0.8f && !
-                _animator.IsInTransition(upperBodyLayerIndex);
-
-                if (Result)
+                for (int number = 0; number < 2; number++)
                 {
-                    isBusy = true;
+                    char Letter;
+                    if (letter == 0)
+                    {
+                        Letter = 'L';
+                    }
+                    else
+                    {
+                        Letter = 'R';
+                    }
+                    if (currentState.shortNameHash == Animator.StringToHash(Letter + Punch + number.ToString()))
+                    {
+                        bool Result = currentState.normalizedTime >= 1.0f && !
+                        _animator.IsInTransition(upperBodyLayerIndex);
+                        return Result;
+                    }
                 }
-                return Result;
             }
-            else if (currentState.shortNameHash == Animator.StringToHash(M1AttackStateHashArray[1]))
-            {
-                bool Result = currentState.normalizedTime >= 0.8f && !
-                _animator.IsInTransition(upperBodyLayerIndex);
-
-                if (Result)
-                {
-                    isBusy = true;
-                }
-                return Result;
-            }
-            else if (currentState.shortNameHash == Animator.StringToHash(M1AttackStateHashArray[2]))
-            {
-                bool Result = currentState.normalizedTime >= 0.8f && !
-                _animator.IsInTransition(upperBodyLayerIndex);
-
-                if (Result)
-                {
-                    isBusy = true;
-                }
-                return Result;
-            }
-            else if (currentState.shortNameHash == Animator.StringToHash(M1AttackStateHashArray[3]))
-            {
-                bool Result = currentState.normalizedTime >= 0.5f && !
-                _animator.IsInTransition(upperBodyLayerIndex);
-
-                if (Result)
-                {
-                    isBusy = true;
-                }
-                return Result;
-            }
-            else if (currentState.shortNameHash == Animator.StringToHash(Skill1))
+            if (currentState.shortNameHash == Animator.StringToHash(Skill1))
             {
                 bool Result = currentState.normalizedTime >= 1.0f && !
                 _animator.IsInTransition(upperBodyLayerIndex);
-
-                if (Result)
-                {
-                    isBusy = true;
-                }
                 return Result;
             }
             else if (currentState.shortNameHash == Animator.StringToHash(Skill2))
             {
                 bool Result = currentState.normalizedTime >= 1.0f && !
                 _animator.IsInTransition(upperBodyLayerIndex);
-
-                if (Result)
-                {
-                    isBusy = true;
-                }
                 return Result;
             }
             else if (currentState.shortNameHash == Animator.StringToHash(Skill3))
             {
                 bool Result = currentState.normalizedTime >= 1.0f && !
                 _animator.IsInTransition(upperBodyLayerIndex);
-
-                if (Result)
-                {
-                    isBusy = true;
-                }
                 return Result;
             }
             else
@@ -287,17 +258,12 @@ public class PlayerController : MonoBehaviour
         switch (nextState)
         {
             case State.M1Attack:
-                if (M1Click >= M1AttackStateHashArray.Length - 1)
-                {
-                    M1Click = -1;
-                }
-                M1Click++;
-
-                //CombatTimer = 5.0f;
-                //ChangeCameraState(CameraStates.Combat);
-                //UpperBodyLayerWeight.Value = 1;
                 _animator.SetLayerWeight(upperBodyLayerIndex, 1);
-                _animator.CrossFadeInFixedTime(M1AttackStateHashArray[M1Click], 0.2f, upperBodyLayerIndex);
+                _animator.CrossFadeInFixedTime("L" + Punch + Random.Range(0,2).ToString(), 0.2f, upperBodyLayerIndex);
+                break;
+            case State.M2Attack:
+                _animator.SetLayerWeight(upperBodyLayerIndex, 1);
+                _animator.CrossFadeInFixedTime("R" + Punch + Random.Range(0, 2).ToString(), 0.2f, upperBodyLayerIndex);
                 break;
             case State.HitLeft:
                 _animator.CrossFadeInFixedTime("Hit Left", 0.2f, HitBodyLayerIndex);
