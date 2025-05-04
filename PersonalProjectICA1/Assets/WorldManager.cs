@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.AI.Navigation;
+using Unity.Collections;
 using UnityEngine;
 
 public class WorldManager : MonoBehaviour
@@ -221,89 +222,91 @@ public class WorldManager : MonoBehaviour
         return true;
     }
 
-private void GenerateSimpleHouse(Container chunk, Vector3 basePos, int width, int height, int depth, byte wallBlockID)
-{
-    
-    
-    int minX = Mathf.Max(1, Mathf.FloorToInt(basePos.x - width/2));
-    int maxX = Mathf.Min(chunk.ChunkVoxelMaxAmtXZ - 2, Mathf.CeilToInt(basePos.x + width/2));
-    int minZ = Mathf.Max(1, Mathf.FloorToInt(basePos.z - depth/2));
-    int maxZ = Mathf.Min(chunk.ChunkVoxelMaxAmtXZ - 2, Mathf.CeilToInt(basePos.z + depth/2));
-    
-    
-    width = maxX - minX;
-    depth = maxZ - minZ;
-    Vector3 adjustedCenter = new Vector3(
-        minX + width/2f,
-        basePos.y-1,
-        minZ + depth/2f
-    );
-
-    
-    FillBox(chunk, adjustedCenter, width, height, depth, wallBlockID, hollow: true);
-
-    
-    int doorX = Mathf.Clamp(
-        (int)adjustedCenter.x,
-        minX + 1,
-        maxX - 1
-    );
-    int doorZ = minZ;
-    chunk[new Vector3(doorX, adjustedCenter.y + 1, doorZ)] = new Voxel() { ID = 0 };
-    chunk[new Vector3(doorX, adjustedCenter.y + 2, doorZ)] = new Voxel() { ID = 0 };
-
-    
-    int roofOverhang = 1;
-    for (int x = minX - roofOverhang; x <= maxX + roofOverhang; x++)
+    private void GenerateSimpleHouse(Container chunk, Vector3 basePos, int width, int height, int depth, byte wallBlockID)
     {
-        for (int z = minZ - roofOverhang; z <= maxZ + roofOverhang; z++)
-        {
-            
-            if (x >= 0 && x < chunk.ChunkVoxelMaxAmtXZ && 
-                z >= 0 && z < chunk.ChunkVoxelMaxAmtXZ)
-            {
-                chunk[new Vector3(x, adjustedCenter.y + height, z)] = 
-                    new Voxel() { ID = wallBlockID };
-            }
-        }
-    }
-}
 
-void FillBox(Container chunk, Vector3 center, int width, int height, int depth, byte blockID, bool hollow = false)
-{
-    int minX = Mathf.FloorToInt(center.x - width/2f);
-    int maxX = Mathf.CeilToInt(center.x + width/2f);
-    int minZ = Mathf.FloorToInt(center.z - depth/2f);
-    int maxZ = Mathf.CeilToInt(center.z + depth/2f);
 
-    for (int x = minX; x < maxX; x++)
-    {
-        for (int y = (int)center.y; y < (int)center.y + height; y++)
+        int minX = Mathf.Max(1, Mathf.FloorToInt(basePos.x - width / 2));
+        int maxX = Mathf.Min(chunk.ChunkVoxelMaxAmtXZ - 2, Mathf.CeilToInt(basePos.x + width / 2));
+        int minZ = Mathf.Max(1, Mathf.FloorToInt(basePos.z - depth / 2));
+        int maxZ = Mathf.Min(chunk.ChunkVoxelMaxAmtXZ - 2, Mathf.CeilToInt(basePos.z + depth / 2));
+
+
+        width = maxX - minX;
+        depth = maxZ - minZ;
+        Vector3 adjustedCenter = new Vector3(
+            minX + width / 2f,
+            basePos.y - 1,
+            minZ + depth / 2f
+        );
+
+
+        FillBox(chunk, adjustedCenter, width, height, depth, wallBlockID, hollow: true);
+
+
+        int doorX = Mathf.Clamp(
+            (int)adjustedCenter.x,
+            minX + 1,
+            maxX - 1
+        );
+        int doorZ = minZ;
+        chunk[new Vector3(doorX, adjustedCenter.y + 1, doorZ)] = new Voxel() { ID = 0 };
+        chunk[new Vector3(doorX, adjustedCenter.y + 2, doorZ)] = new Voxel() { ID = 0 };
+
+
+        //int roofOverhang = 1;
+        for (int i = 0; i < 4; i++)
         {
-            for (int z = minZ; z < maxZ; z++)
+            for (int x = minX + i; x < maxX - i; x++)
             {
-                
-                if (x >= 0 && x < chunk.ChunkVoxelMaxAmtXZ && 
-                    y >= 0 && y < chunk.ChunkVoxelMaxAmtXZ && 
-                    z >= 0 && z < chunk.ChunkVoxelMaxAmtXZ)
+                for (int z = minZ + i; z < maxZ - i; z++)
                 {
-                    bool isWall = x == minX || x == maxX - 1 || 
-                                 y == (int)center.y || y == (int)center.y + height - 1 || 
-                                 z == minZ || z == maxZ - 1;
-
-                    if (!hollow || isWall)
+                    if (x >= 0 && x < chunk.ChunkVoxelMaxAmtXZ &&
+                        z >= 0 && z < chunk.ChunkVoxelMaxAmtXZ)
                     {
-                        chunk[new Vector3(x, y, z)] = new Voxel() { ID = blockID };
-                    }
-                    else
-                    {
-                        chunk[new Vector3(x, y, z)] = new Voxel() { ID = 0 };
+                        chunk[new Vector3(x, adjustedCenter.y + height + i, z)] =
+                            new Voxel() { ID = wallBlockID };
                     }
                 }
             }
         }
     }
-}
+
+    void FillBox(Container chunk, Vector3 center, int width, int height, int depth, byte blockID, bool hollow = false)
+    {
+        int minX = Mathf.FloorToInt(center.x - width / 2f);
+        int maxX = Mathf.CeilToInt(center.x + width / 2f);
+        int minZ = Mathf.FloorToInt(center.z - depth / 2f);
+        int maxZ = Mathf.CeilToInt(center.z + depth / 2f);
+
+        for (int x = minX; x < maxX; x++)
+        {
+            for (int y = (int)center.y; y < (int)center.y + height; y++)
+            {
+                for (int z = minZ; z < maxZ; z++)
+                {
+
+                    if (x >= 0 && x < chunk.ChunkVoxelMaxAmtXZ &&
+                        y >= 0 && y < chunk.ChunkVoxelMaxAmtXZ &&
+                        z >= 0 && z < chunk.ChunkVoxelMaxAmtXZ)
+                    {
+                        bool isWall = x == minX || x == maxX - 1 ||
+                                     y == (int)center.y || y == (int)center.y + height - 1 ||
+                                     z == minZ || z == maxZ - 1;
+
+                        if (!hollow || isWall)
+                        {
+                            chunk[new Vector3(x, y, z)] = new Voxel() { ID = blockID };
+                        }
+                        else
+                        {
+                            chunk[new Vector3(x, y, z)] = new Voxel() { ID = 0 };
+                        }
+                    }
+                }
+            }
+        }
+    }
 
 
     private static WorldManager _instance;
