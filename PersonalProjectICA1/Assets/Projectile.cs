@@ -1,25 +1,31 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class Projectile : MonoBehaviour
 {
-    [SerializeField] ProjectileInformation ProjInfo;
-    private Rigidbody _rb;
+    [SerializeField] private ProjectileInformation ProjInfo;
+    [SerializeField] private MeshCollider _collider;
+    [SerializeField] private Rigidbody _rb;
+    [SerializeField] private MeshRenderer _meshRenderer;
+    [SerializeField] private MeshFilter _meshFilter;
     public float duration = 1.0f;
     public Transform TargetTransform;
+    public GameObject CollisionEffectPrefab;
+    //public GameObject SpawnEffectPrefab;
     private Vector3 _currentRotation;
     private Vector3 _lastDirection;
+    private Coroutine lifetimecoroutine;
+    public System.Action<Projectile> OnDespawn;
 
-    void Start()
+    private void ProjInit()
     {
-        _rb = GetComponent<Rigidbody>();
-        _currentRotation = ProjInfo.StartingRotation;
-        ProjInfo._initialPosition = transform.position;
-    }
-
-    private void OnEnable()
-    {
+        _meshFilter.mesh = ProjInfo.mesh;
+        _collider.sharedMesh = ProjInfo.mesh;
+        _meshRenderer.enabled = ProjInfo.Render;
+        SetPhysics(ProjInfo.Physics);
+        ChangeLifetime(ProjInfo.lifetime);
         ProjInfo.timer = 0;
         if (ProjInfo.movementT == ProjectileInformation.MovementType.BeamExtendForward)
         {
@@ -27,9 +33,117 @@ public class Projectile : MonoBehaviour
         }
     }
 
+    public void SetProjInfo(ProjectileInformation projInfo)
+    {
+        ProjInfo = projInfo;
+        ProjInit();
+    }
+    void Start()
+    {
+        if (_rb == null)
+        {
+            _rb = GetComponent<Rigidbody>();
+        }
+        _currentRotation = ProjInfo.StartingRotation;
+        ProjInfo._initialPosition = transform.position;
+    }
+
+    private void OnEnable()
+    {
+        ProjInit();
+    }
+
     private void OnDisable()
     {
         _rb.isKinematic = true;
+
+        if (lifetimecoroutine != null)
+        {
+            StopCoroutine(lifetimecoroutine);
+            lifetimecoroutine = null;
+        }
+        if (OnDespawn != null)
+        {
+            OnDespawn = null;
+        }
+    }
+    public void ChangeLifetime(float newLifetime)
+    {
+        if (lifetimecoroutine != null)
+        {
+            StopCoroutine(lifetimecoroutine);
+            lifetimecoroutine = null;
+        }
+        ProjInfo.lifetime = newLifetime;
+        lifetimecoroutine = StartCoroutine(DisableWhenLifetimeEnds());
+    }
+    private IEnumerator DisableWhenLifetimeEnds()
+    {
+        yield return new WaitForSeconds(ProjInfo.lifetime);
+
+        if (OnDespawn != null)
+        {
+            OnDespawn.Invoke(this);
+            OnDespawn = null;
+        }
+
+        ObjectPool.ReturnObj(this.gameObject);
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other == null) return;
+        Humanoid hurtcontroller = other.gameObject?.GetComponent<Humanoid>();
+        if (hurtcontroller == null) return;
+
+        if (CollisionEffectPrefab != null)
+        {
+            GameObject CollisionSpawn = ObjectPool.GetObj(CollisionEffectPrefab.name);
+            CollisionSpawn.transform.position = transform.position;
+        }
+        Debug.Log("Hurting!");
+        hurtcontroller.Hurt(ProjInfo.Damage);
+        if (ProjInfo.ReturnOnCollision)
+        {
+
+            if (OnDespawn != null)
+            {
+                OnDespawn.Invoke(this);
+                OnDespawn = null;
+            }
+
+
+            ObjectPool.ReturnObj(this.gameObject);
+        }
+        else
+        {
+            StartCoroutine(WaitForHurtTimer());
+        }
+    }
+
+
+
+    IEnumerator WaitForHurtTimer()
+    {
+        _collider.enabled = false;
+        yield return new WaitForSeconds(ProjInfo.HurtTimer);
+        if (gameObject.activeSelf)
+        {
+            _collider.enabled = true;
+        }
+    }
+
+    private void SetPhysics(bool NewPhysics)
+    {
+        ProjInfo.Physics = NewPhysics;
+        if (!ProjInfo.Physics)
+        {
+            _rb.isKinematic = true;
+        }
+        else
+        {
+            _rb.isKinematic = false;
+        }
     }
 
     void FixedUpdate()
@@ -42,6 +156,8 @@ public class Projectile : MonoBehaviour
     {
         ProjInfo.timer += Time.deltaTime;
         float t = ProjInfo.timer / duration;
+
+        transform.localScale = new Vector3(ProjInfo.ScaleCurveX.Evaluate(t), ProjInfo.ScaleCurveY.Evaluate(t), ProjInfo.ScaleCurveZ.Evaluate(t));
 
         UpdateVisualRotation(t);
 
@@ -110,11 +226,6 @@ public class Projectile : MonoBehaviour
     {
         switch (ProjInfo.rotationT)
         {
-            case ProjectileInformation.RotationType.ZAxisCurve:
-                float curveAngleZ = ProjInfo.RotationCurveZ.Evaluate(t);
-                _currentRotation.z = ProjInfo.StartingRotation.z + curveAngleZ;
-                transform.rotation = Quaternion.Euler(_currentRotation);
-                break;
 
             case ProjectileInformation.RotationType.XYZAxisCurve:
                 _currentRotation.x = ProjInfo.StartingRotation.x + ProjInfo.RotationCurveX.Evaluate(t);
@@ -126,7 +237,6 @@ public class Projectile : MonoBehaviour
             case ProjectileInformation.RotationType.None:
                 if (ProjInfo.movementT == ProjectileInformation.MovementType.BeamExtendForward)
                 {
-                    // Ensure beam maintains its rotation smoothly
                     transform.rotation = Quaternion.Euler(_currentRotation);
                 }
                 break;
@@ -153,33 +263,44 @@ public struct ProjectileInformation
         AimToMovement,// haven't been made
         AimToTarget, // haven't been made
         SideSway, // haven't been made
-        ZAxisCurve,
-        XYZAxisCurve // New option for 3D rotation
+        XYZAxisCurve
     }
 
     [Header("Movement")]
-    public AnimationCurve speedCurve; // Controls the movement speed over time
-    public AnimationCurve MoveYCurve; // Controls the vertical movement over time
-    public AnimationCurve MoveXCurve; // New curve for 3D movement
+    public AnimationCurve speedCurve;
+    public AnimationCurve MoveYCurve;
+    public AnimationCurve MoveXCurve; 
     public MovementType movementT;
     public Vector3 _initialPosition;
     public Vector3 Direction;
 
     [Header("Rotation")]
-    public AnimationCurve RotationCurveX; // Separate curves for each axis
+    public AnimationCurve RotationCurveX;
     public AnimationCurve RotationCurveY;
     public AnimationCurve RotationCurveZ;
     public Vector3 StartingRotation;
     public RotationType rotationT;
     public float rotationSpeed;
 
+    [Header("Scale")]
+    public AnimationCurve ScaleCurveX;
+    public AnimationCurve ScaleCurveY;
+    public AnimationCurve ScaleCurveZ;
+
     [Header("Collision Effects")]
     public float Damage;
+    public float HurtTimer;
     public float DestructionRadius;
+    public bool ReturnOnCollision;
+    public bool CreateDebrisOnDestruction;
+    public bool Physics;
 
     [Header("Others")]
-    public Transform TargetTransform;
     public float timer;
+    public float lifetime;
+    public bool Render;
+    public Mesh mesh;
+
 
 
 }

@@ -44,6 +44,7 @@ public class Humanoid : MonoBehaviour
             {
                 GravityVel.y += gravity * Time.deltaTime;
             }
+            else if (GravityVel.y < -1) GravityVel.y = -1;
             //else
             //{
             //    GravityVel.y = -2;
@@ -64,9 +65,12 @@ public class Humanoid : MonoBehaviour
     }
     IEnumerator SetRagdolled(float Timer)
     {
-        Ragdolled = true;
-        yield return new WaitForSeconds(Timer);
-        Ragdolled = false;
+        if (Shield > 0)
+        {
+            Ragdolled = true;
+            yield return new WaitForSeconds(Timer);
+            Ragdolled = false;
+        }
     }
     public bool IsDead()
     {
@@ -80,10 +84,19 @@ public class Humanoid : MonoBehaviour
     {
         return Ragdolled;
     }
-
-
     public void Jump()
     {
         GravityVel.y = Mathf.Sqrt(-2 * gravity * JumpHeight);
+    }
+    public void Hurt(float Damage)
+    {
+        if (Shield > 0)
+        {
+            Shield = Mathf.Clamp(Shield - Damage, 0, MaxShield);
+        }
+        else
+        {
+            HP = Mathf.Clamp(HP - Damage, 0, MaxHP);
+        }
     }
 }
