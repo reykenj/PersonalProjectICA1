@@ -1148,7 +1148,7 @@ MonoBehaviour:
   showRaycast: 1
   raycastColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   explosionForce: 100
-  explosionRadius: 4.5
+  explosionRadius: 10
   upwardModifier: 0.5
   forceMode: 1
   physicsLayerMask:
@@ -1501,6 +1501,10 @@ PrefabInstance:
       objectReference: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
     - target: {fileID: 178216632817608422, guid: 9f1215f4198e5354ea3cca9af06dfa5e, type: 3}
       propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 178216632817608422, guid: 9f1215f4198e5354ea3cca9af06dfa5e, type: 3}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 178216632817608422, guid: 9f1215f4198e5354ea3cca9af06dfa5e, type: 3}

@@ -4,7 +4,7 @@ using System.Linq;
 using Unity.VisualScripting.Antlr3.Runtime.Collections;
 using UnityEngine;
 
-public class ChunkManager : MonoBehaviour
+public class ChunkManager : Singleton<ChunkManager>
 {
     public GameObject voxelDebrisPrefab; 
     public List<Container> chunks;
@@ -205,26 +205,7 @@ public class ChunkManager : MonoBehaviour
                 Mathf.Floor(hitPoint.y),
                 Mathf.Floor(hitPoint.z));
             lastHitPoint = voxelPos;
-
-            List<Vector4> affectedVoxels = RemoveVoxelsInArea(voxelPos + new Vector3(0.5f, 0.5f, 0.5f), 3.5f);
-
-            foreach (Vector4 voxelData in affectedVoxels)
-            {
-                Vector3 position = new Vector3(voxelData.x, voxelData.y, voxelData.z);
-                int voxelID = (int)voxelData.w;
-
-                if (voxelID > 0 && voxelID <= WorldManager.Instance.regions.Length)
-                {
-                    /*VoxelDebris VBScript = */SpawnVoxelDebris(position, WorldManager.Instance.regions[voxelID - 1].colour);
-                    //VBScript._rb.AddExplosionForce(
-                    //explosionForce,
-                    //hit.point,
-                    //explosionRadius,
-                    //upwardModifier,
-                    //forceMode);
-                }
-            }
-
+            StartCoroutine(SpawnVoxelDebrisInArray(RemoveVoxelsInArea(voxelPos + new Vector3(0.5f, 0.5f, 0.5f), explosionRadius)));
             StartCoroutine(ApplyExplosionForceWithDelay(hit.point));
         }
         else
@@ -233,6 +214,27 @@ public class ChunkManager : MonoBehaviour
         }
     }
 
+
+    public IEnumerator SpawnVoxelDebrisInArray(List<Vector4> affectedVoxels)
+    {
+        int VoxelCount = 0;
+        foreach (Vector4 voxelData in affectedVoxels)
+        {
+            VoxelCount++;
+            Vector3 position = new Vector3(voxelData.x, voxelData.y, voxelData.z);
+            int voxelID = (int)voxelData.w;
+
+            if (voxelID > 0 && voxelID <= WorldManager.Instance.regions.Length)
+            {
+                SpawnVoxelDebris(position, WorldManager.Instance.regions[voxelID - 1].colour);
+            }
+            if (VoxelCount > 32)
+            {
+                VoxelCount = 0;
+                yield return null;
+            }
+        }
+    }
     //private void ApplyExplosionForce(Vector3 explosionCenter)
     //{
     //    // The only things that would be affected here would be voxel debris so just do the thing
@@ -279,10 +281,10 @@ public class ChunkManager : MonoBehaviour
     }
 
 
-    public IEnumerator ApplyExplosionForceWithDelay(Vector3 explosionCenter, float delay = 0.05f)
+    public IEnumerator ApplyExplosionForceWithDelay(Vector3 explosionCenter, float delay = 0.05f, float explosionradius = 3.5f)
     {
         yield return new WaitForSeconds(delay);
-        Collider[] colliders = Physics.OverlapSphere(explosionCenter, explosionRadius, physicsLayerMask);
+        Collider[] colliders = Physics.OverlapSphere(explosionCenter, explosionradius, physicsLayerMask);
         foreach (Collider hit in colliders)
         {
             if (VoxelDebris.TryGetVoxelDebris(hit.gameObject, out VoxelDebris VBscript))
@@ -290,7 +292,7 @@ public class ChunkManager : MonoBehaviour
                 VBscript._rb.AddExplosionForce(
                     explosionForce,
                     explosionCenter,
-                    explosionRadius,
+                    explosionradius,
                     upwardModifier,
                     forceMode);
                 Debug.Log("Affected debris");

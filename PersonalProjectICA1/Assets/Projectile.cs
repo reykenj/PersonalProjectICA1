@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using static UnityEditor.Experimental.GraphView.GraphView;
 
@@ -47,12 +48,10 @@ public class Projectile : MonoBehaviour
         _currentRotation = ProjInfo.StartingRotation;
         ProjInfo._initialPosition = transform.position;
     }
-
     private void OnEnable()
     {
         ProjInit();
     }
-
     private void OnDisable()
     {
         _rb.isKinematic = true;
@@ -89,13 +88,20 @@ public class Projectile : MonoBehaviour
 
         ObjectPool.ReturnObj(this.gameObject);
     }
-
     private void OnTriggerStay(Collider other)
     {
         if (other == null) return;
+        if (ProjInfo.DestructionRadius > 0)
+        {
+            List<Vector4> affectedVoxels = ChunkManager.Instance.RemoveVoxelsInArea(transform.position + new Vector3(0.5f, 0.5f, 0.5f), ProjInfo.DestructionRadius);
+
+            if (ProjInfo.CreateDebrisOnDestruction)
+            {
+                StartCoroutine(ChunkManager.Instance.SpawnVoxelDebrisInArray(affectedVoxels));
+            }
+        }
         Humanoid hurtcontroller = other.gameObject?.GetComponent<Humanoid>();
         if (hurtcontroller == null) return;
-
         if (CollisionEffectPrefab != null)
         {
             GameObject CollisionSpawn = ObjectPool.GetObj(CollisionEffectPrefab.name);
@@ -120,9 +126,6 @@ public class Projectile : MonoBehaviour
             StartCoroutine(WaitForHurtTimer());
         }
     }
-
-
-
     IEnumerator WaitForHurtTimer()
     {
         _collider.enabled = false;
