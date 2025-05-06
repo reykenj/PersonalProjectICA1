@@ -33,10 +33,10 @@ public class ChunkManager : Singleton<ChunkManager>
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            RemoveVoxelAreaAtCameraLook();
-        }
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    RemoveVoxelAreaAtCameraLook();
+        //}
     }
 
     void OnDrawGizmos()

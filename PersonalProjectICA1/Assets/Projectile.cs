@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEditor.Experimental.GraphView.GraphView;
 
@@ -18,8 +19,19 @@ public class Projectile : MonoBehaviour
     private Vector3 _currentRotation;
     private Vector3 _lastDirection;
     private Coroutine lifetimecoroutine;
+    public GameObject Owner;
     public System.Action<Projectile> OnDespawn;
+    
 
+    private static Dictionary<GameObject, Projectile> cache = new Dictionary<GameObject, Projectile>();
+    private void Awake()
+    {
+        cache[gameObject] = this;
+    }
+    private void OnDestroy()
+    {
+        cache.Remove(gameObject);
+    }
     private void ProjInit()
     {
         _meshFilter.mesh = ProjInfo.mesh;
@@ -90,7 +102,10 @@ public class Projectile : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
+        Debug.Log("Colliing with! " + other.gameObject.name);
         if (other == null) return;
+        if (other.gameObject == Owner) return;
+
         if (ProjInfo.DestructionRadius > 0)
         {
             List<Vector4> affectedVoxels = ChunkManager.Instance.RemoveVoxelsInArea(transform.position + new Vector3(0.5f, 0.5f, 0.5f), ProjInfo.DestructionRadius);
@@ -107,7 +122,7 @@ public class Projectile : MonoBehaviour
             GameObject CollisionSpawn = ObjectPool.GetObj(CollisionEffectPrefab.name);
             CollisionSpawn.transform.position = transform.position;
         }
-        Debug.Log("Hurting!");
+        Debug.Log("Hurting! " + other.gameObject.name);
         hurtcontroller.Hurt(ProjInfo.Damage);
         if (ProjInfo.ReturnOnCollision)
         {
@@ -244,6 +259,11 @@ public class Projectile : MonoBehaviour
                 }
                 break;
         }
+    }
+
+    public static bool TryGetProj(GameObject obj, out Projectile projectile)
+    {
+        return cache.TryGetValue(obj, out projectile);
     }
 }
 

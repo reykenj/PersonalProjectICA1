@@ -6,7 +6,7 @@ using UnityEngine;
 public class AttackHandler : MonoBehaviour
 {
     [SerializeField] List<Spell> SpellArray;
-    public float CastTime = 0.25f;
+    public float CastTime = 0.25f; // might turn this into a animation speed multiplier for the punches instead
     public float timer;
     public int Turn;
 
@@ -17,7 +17,7 @@ public class AttackHandler : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        ResetSpells();
+        ResetSpells(0, SpellArray.Count);
     }
 
     // Update is called once per frame
@@ -30,6 +30,7 @@ public class AttackHandler : MonoBehaviour
     }
     public void Cast()
     {
+        //Debug.Log("Cast");
         if (!isMainHandler) return;
 
         for (int i = Turn; i < SpellArray.Count; i++)
@@ -51,6 +52,7 @@ public class AttackHandler : MonoBehaviour
                 }
             }
         }
+        isMainHandler = false;
     }
 
     private void ResetSpells(int Start, int End)

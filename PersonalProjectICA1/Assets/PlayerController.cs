@@ -36,6 +36,9 @@ public class PlayerController : MonoBehaviour
     //[SerializeField] Transform bodyTarget;
     [SerializeField] float maxDistance = 0.1f;
     [SerializeField] float maxAngle = 90f;
+
+    [SerializeField] AttackHandler LeftAttackHandler;
+    [SerializeField] AttackHandler RightAttackHandler;
     Vector3 moveDirect = Vector3.zero;
     private State _currState;
     private int upperBodyLayerIndex;
@@ -297,6 +300,20 @@ public class PlayerController : MonoBehaviour
         float animationMoveDistance = animationDelta.magnitude;
         Vector3 moveDirection = moveDirect.normalized * animationMoveDistance;
         characterController.Move(moveDirection);
+    }
+
+
+    public void CastLeftFist()
+    {
+        //Debug.Log("Cast Left Fist");
+        LeftAttackHandler.isMainHandler = true;
+        LeftAttackHandler.Cast();
+    }
+
+    public void CastRightFist()
+    {
+        RightAttackHandler.isMainHandler = true;
+        RightAttackHandler.Cast();
     }
 
 }
