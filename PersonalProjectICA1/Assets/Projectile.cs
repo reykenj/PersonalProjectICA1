@@ -103,7 +103,7 @@ public class Projectile : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        Debug.Log("Colliing with! " + other.gameObject.name);
+        //Debug.Log("Colliing with! " + other.gameObject.name);
         if (other == null) return;
         if (other.gameObject == Owner) return;
         if (ProjInfo.DestructionRadius > 0)

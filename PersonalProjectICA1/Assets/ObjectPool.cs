@@ -21,7 +21,7 @@ public class ObjectPool : MonoBehaviour
         {
             if (pf.gameObject.name == name)
             {
-                Debug.Log("SetActive");
+                //Debug.Log("SetActive");
                 pf.gameObject.SetActive(true);
                 pf.SetParent(null);
                 return pf.gameObject;
@@ -36,7 +36,7 @@ public class ObjectPool : MonoBehaviour
                 return newObj;
             }
         }
-        Debug.Log("OBJECT NO EXIST!!!!!!");
+        //Debug.Log("OBJECT NO EXIST!!!!!!");
         return null;
     }
     //public static AudioSource GetAudio(AudioClip clip)
@@ -70,7 +70,7 @@ public class ObjectPool : MonoBehaviour
     //}
     public static void ReturnObj(GameObject obj)
     {
-        Debug.Log("returnobj");
+        //Debug.Log("returnobj");
         obj.transform.SetParent(poolParent);
         obj.transform.localPosition = Vector3.zero;
         obj.transform.localRotation = Quaternion.identity;

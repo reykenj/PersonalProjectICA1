@@ -131,11 +131,11 @@ MonoBehaviour:
     HurtTimer: 0.1
     DestructionRadius: 2
     ReturnOnCollision: 1
-    CreateDebrisOnDestruction: 1
+    CreateDebrisOnDestruction: 0
     Physics: 0
     timer: 0
     lifetime: 0.1
-    Render: 1
+    Render: 0
     mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
   TempProjectileInformation:
     speedCurve:
@@ -256,11 +256,11 @@ MonoBehaviour:
     HurtTimer: 0.1
     DestructionRadius: 2
     ReturnOnCollision: 1
-    CreateDebrisOnDestruction: 1
+    CreateDebrisOnDestruction: 0
     Physics: 0
     timer: 0
     lifetime: 0.1
-    Render: 1
+    Render: 0
     mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
   SpellName: Punch
   RuneIcon: {fileID: 0}
