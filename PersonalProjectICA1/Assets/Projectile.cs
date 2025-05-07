@@ -62,6 +62,7 @@ public class Projectile : MonoBehaviour
     }
     private void OnEnable()
     {
+        _collider.enabled = true;
         ProjInit();
     }
     private void OnDisable()
@@ -105,14 +106,13 @@ public class Projectile : MonoBehaviour
         Debug.Log("Colliing with! " + other.gameObject.name);
         if (other == null) return;
         if (other.gameObject == Owner) return;
-
         if (ProjInfo.DestructionRadius > 0)
         {
-            List<Vector4> affectedVoxels = ChunkManager.Instance.RemoveVoxelsInArea(transform.position + new Vector3(0.5f, 0.5f, 0.5f), ProjInfo.DestructionRadius);
+            List<Vector4> affectedVoxels = ChunkManager.Instance.RemoveVoxelsInArea(transform.position, ProjInfo.DestructionRadius);
 
             if (ProjInfo.CreateDebrisOnDestruction)
             {
-                StartCoroutine(ChunkManager.Instance.SpawnVoxelDebrisInArray(affectedVoxels));
+                StartCoroutine(ChunkManager.Instance.SpawnPhysicsVoxelDebrisInArray(affectedVoxels));
             }
         }
         Humanoid hurtcontroller = other.gameObject?.GetComponent<Humanoid>();

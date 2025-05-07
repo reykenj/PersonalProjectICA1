@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting.Antlr3.Runtime.Collections;
 using UnityEngine;
+using UnityEngine.UIElements;
+using static UnityEngine.ParticleSystem;
 
 public class ChunkManager : Singleton<ChunkManager>
 {
@@ -11,7 +13,8 @@ public class ChunkManager : Singleton<ChunkManager>
     public Camera playerCamera;
     public float maxInteractionDistance = 10f;
     public LayerMask voxelLayerMask;
-
+    public ParticleSystem particleSystem;
+    public List<ParticleSystem.Particle> particles = new List<ParticleSystem.Particle>();
 
     [Header("Debug Visualization")]
     public bool showHitPoint = true;
@@ -172,6 +175,8 @@ public class ChunkManager : Singleton<ChunkManager>
                                 Results.Add(TruePos);
                                 chunk[localPos] = Container.emptyVoxel;
                                 chunkModified = true;
+                                //Vector3 debrisDirection = (voxelPos - center).normalized + impactNormal;
+                                EmitDebrisAt(TruePos, WorldManager.Instance.regions[(int)TruePos.w - 1].colour.color);
                             }
                         }
                     }
@@ -205,7 +210,7 @@ public class ChunkManager : Singleton<ChunkManager>
                 Mathf.Floor(hitPoint.y),
                 Mathf.Floor(hitPoint.z));
             lastHitPoint = voxelPos;
-            StartCoroutine(SpawnVoxelDebrisInArray(RemoveVoxelsInArea(voxelPos + new Vector3(0.5f, 0.5f, 0.5f), explosionRadius)));
+            StartCoroutine(SpawnPhysicsVoxelDebrisInArray(RemoveVoxelsInArea(voxelPos + new Vector3(0.5f, 0.5f, 0.5f), explosionRadius)));
             StartCoroutine(ApplyExplosionForceWithDelay(hit.point));
         }
         else
@@ -214,8 +219,20 @@ public class ChunkManager : Singleton<ChunkManager>
         }
     }
 
+    public void EmitDebrisAt(Vector3 position, Color color)
+    {
+        var emitParams = new ParticleSystem.EmitParams
+        {
+            position = position,
+            velocity = Random.insideUnitSphere * 5f,
+            startLifetime = Random.Range(0.8f, 1.5f),
+            startSize = Random.Range(0.8f, 1.2f),
+            startColor = color
+        };
 
-    public IEnumerator SpawnVoxelDebrisInArray(List<Vector4> affectedVoxels)
+        particleSystem.Emit(emitParams, Random.Range(3, 6)); // emit 3-6 particles at this position
+    }
+    public IEnumerator SpawnPhysicsVoxelDebrisInArray(List<Vector4> affectedVoxels)
     {
         int VoxelCount = 0;
         foreach (Vector4 voxelData in affectedVoxels)
