@@ -1,21 +1,17 @@
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Spell", menuName = "Spells/New Spell")]
 public class Spell : ScriptableObject
 {
     public ProjectileInformation OGProjectileInformation;
-    public ProjectileInformation TempProjectileInformation;
     public string SpellName;
     public Sprite RuneIcon;
 
     // for when the user goes through all of the spells in the loop and is recharging, basically
     // reset all modified values here
-    public virtual void SpellReset()
-    {
-        TempProjectileInformation = OGProjectileInformation;
-    }
-    public virtual void Apply(Spell NextSpell, AttackHandler attackHandler, out bool UseTurn)
+    public virtual void Apply(int Index, AttackHandler attackHandler, out bool UseTurn)
     {
         UseTurn = false;    
     }

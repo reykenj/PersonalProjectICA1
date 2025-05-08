@@ -92,7 +92,7 @@ public class ChunkManager : Singleton<ChunkManager>
             hasHit = false;
         }
     }
-    private Container FindChunkContainingVoxelOptimized(Vector3 voxelPosition)
+    public Container FindChunkContainingVoxelOptimized(Vector3 voxelPosition)
     {
         int chunkSize = chunks[0].ChunkVoxelMaxAmtXZ;
         Vector3 chunkCoord = new Vector3(

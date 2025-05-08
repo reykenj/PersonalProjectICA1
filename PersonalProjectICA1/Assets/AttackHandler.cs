@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class AttackHandler : MonoBehaviour
 {
-    [SerializeField] List<Spell> SpellArray;
+    public List<SpellContainer> SpellArray; // PROBLEM: WHAT HAPPENS WHEN ITS THE SAME MODIFIER SPELL MULTIPLE TIMES?
     public float CastTime = 0.25f; // might turn this into a animation speed multiplier for the punches instead
     public float timer;
     public int Turn;
@@ -35,21 +35,17 @@ public class AttackHandler : MonoBehaviour
 
         for (int i = Turn; i < SpellArray.Count; i++)
         {
-            Spell spell = SpellArray[i];
-            if (spell != null)
+            Turn++;
+            SpellArray[i].spell.Apply(i, this, out bool UseTurn);
+            if (UseTurn)
             {
-                Turn++;
-                spell.Apply(SpellArray[Mathf.Clamp(i + 1, 0, SpellArray.Count - 1)], this, out bool UseTurn);
-                if (UseTurn)
+                timer += CastTime;
+                if (Turn >= SpellArray.Count)
                 {
-                    timer += CastTime;
-                    if (Turn >= SpellArray.Count)
-                    {
-                        Turn = 0;
-                    }
-                    ResetSpells(Turn, SpellArray.Count); // may need to change later if we gonna back spell wrapping (rune at end going to start cuz multicast)
-                    break;
+                    Turn = 0;
                 }
+                ResetSpells(0, Turn); // may need to change later if we gonna back spell wrapping (rune at end going to start cuz multicast)
+                break;
             }
         }
         isMainHandler = false;
@@ -59,8 +55,9 @@ public class AttackHandler : MonoBehaviour
     {
         for (int i = Start; i < End; i++)
         {
-            Spell spell = SpellArray[i];
-            spell.SpellReset();
+            SpellContainer container = SpellArray[i];
+            container.TempProjInfo = container.spell.OGProjectileInformation;
+            SpellArray[i] = container;
         }
     }
 }

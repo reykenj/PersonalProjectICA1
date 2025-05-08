@@ -368,7 +368,7 @@ public class Container : MonoBehaviour
             new Vector3(1,1,1),//7
     };
 
-    static readonly Vector3[] voxelFaceChecks = new Vector3[6]
+    public static readonly Vector3[] voxelFaceChecks = new Vector3[6]
     {
             new Vector3(0,0,-1),//back
             new Vector3(0,0,1),//front
