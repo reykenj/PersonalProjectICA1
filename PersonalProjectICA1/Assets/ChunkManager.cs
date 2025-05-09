@@ -94,11 +94,16 @@ public class ChunkManager : Singleton<ChunkManager>
     }
     public Container FindChunkContainingVoxelOptimized(Vector3 voxelPosition)
     {
-        int chunkSize = chunks[0].ChunkVoxelMaxAmtXZ;
+        int chunkSize = Container.ChunkVoxelMaxAmtXZ;
         Vector3 chunkCoord = new Vector3(
             Mathf.Floor(voxelPosition.x / chunkSize) * chunkSize,
             Mathf.Floor(voxelPosition.y / chunkSize) * chunkSize,
             Mathf.Floor(voxelPosition.z / chunkSize) * chunkSize);
+
+        if( chunkCoord.x < 0 || chunkCoord.z < 0 || chunkCoord.x > Container.ChunkVoxelMaxAmtXZ * Container.ChunkSize || chunkCoord.z > Container.ChunkVoxelMaxAmtXZ * Container.ChunkSize)
+        {
+            return null;
+        }
         foreach (Container chunk in chunks)
         {
             if (chunk.containerPosition == chunkCoord)
@@ -150,9 +155,9 @@ public class ChunkManager : Singleton<ChunkManager>
 
             Vector3 chunkMin = chunk.containerPosition;
             Vector3 chunkMax = chunkMin + new Vector3(
-                chunk.ChunkVoxelMaxAmtXZ,
-                chunk.ChunkVoxelMaxAmtXZ,
-                chunk.ChunkVoxelMaxAmtXZ);
+                Container.ChunkVoxelMaxAmtXZ,
+                Container.ChunkVoxelMaxAmtXZ,
+                Container.ChunkVoxelMaxAmtXZ);
 
 
             for (float x = Mathf.Max(min.x, chunkMin.x); x <= Mathf.Min(max.x, chunkMax.x - 1); x++)

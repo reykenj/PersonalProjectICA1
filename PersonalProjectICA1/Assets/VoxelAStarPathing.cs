@@ -1,5 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
+using Unity.Burst;
+using Unity.Collections;
+using Unity.Jobs;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -8,7 +12,18 @@ public class VoxelAStarPathing : MonoBehaviour
 
     [SerializeField] ChunkManager chunkManager;
     [SerializeField] Transform Target;
-    private List<Vector3> debugPath = new List<Vector3>();
+    public List<Vector3> PathFound = new List<Vector3>();
+
+    private bool waitingForPath = false;
+
+    public void Pathfind()
+    {
+        if (!waitingForPath)
+        {
+            waitingForPath = true;
+            PathfindManager.Instance.RequestPath(this);
+        }
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -18,121 +33,109 @@ public class VoxelAStarPathing : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            debugPath.Clear();
-            debugPath = VoxelPathing(transform.position, Target.position);
-        }
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    PathFound.Clear();
+        //    PathFound = VoxelPathfinding(transform.position, Target.position);
+        //}
     }
 
+    //public void Pathfind()
+    //{
+    //    if (!waitingForPath)
+    //    {
+    //        PathFound.Clear();
+    //        PathFound = VoxelPathfinding(transform.position, Target.position);
+    //    }
+    //}
 
-    public List<Vector3> VoxelPathing(Vector3 currentPos, Vector3 TargetPos)
+    public void PathfindNow()
     {
-        //Vector3 groundCurrent = GetGroundVoxelPosition(currentPos);
-        //Vector3 groundTarget = GetGroundVoxelPosition(TargetPos);
+        waitingForPath = false;
+        PathFound.Clear();
+        PathFound = VoxelPathfinding(transform.position, Target.position);
+    }
+
+    // Move towards first node and once the ai reaches it, calculate pathfinding again
+    public List<Vector3> VoxelPathfinding(Vector3 currentPos, Vector3 TargetPos)
+    {
         Vector3 groundCurrent = GetVoxelPosition(currentPos);
         Vector3 groundTarget = GetVoxelPosition(TargetPos);
 
-        //groundCurrent.y++;
-        //groundTarget.y++;
-        List<VoxelPathNode> OpenNodes = new List<VoxelPathNode>();
-        List<VoxelPathNode> ClosedNodes = new List<VoxelPathNode>();
+        PriorityQueue<VoxelPathNode> OpenNodes = new PriorityQueue<VoxelPathNode>();
+        HashSet<Vector3> ClosedNodes = new HashSet<Vector3>();
+        Dictionary<Vector3, VoxelPathNode> OpenDict = new Dictionary<Vector3, VoxelPathNode>();
+
+        Dictionary<Vector3, VoxelPathNode> TotalDict = new Dictionary<Vector3, VoxelPathNode>();
         VoxelPathNode StartNode = new VoxelPathNode().PathInit(groundCurrent, groundCurrent, groundTarget);
-        StartNode.parentNode = null;
-        OpenNodes.Add(StartNode);
-        int CurrentNodeIndex = 0;
-        const int maxIterations = 10000;
-        int iterations = 0;
-        while (true)
+        OpenNodes.Enqueue(StartNode, StartNode.FCost);
+        OpenDict.Add(groundCurrent, StartNode);
+        TotalDict.Add(groundCurrent, StartNode);
+
+        const int maxNodesToExplore = 5000;
+        int nodesExplored = 0;
+
+        while (OpenNodes.Count > 0 && nodesExplored++ < maxNodesToExplore)
         {
-            if (OpenNodes.Count == 0 || iterations++ > maxIterations)
+            VoxelPathNode currentNode = OpenNodes.Dequeue();
+            OpenDict.Remove(currentNode.pos);
+
+            if (currentNode.pos == groundTarget)
             {
-                return new List<Vector3>();
+                return ReconstructPath(currentNode, groundCurrent, TotalDict);
             }
 
-            int LowestFCost = int.MaxValue;
-            for (int i = 0; i < OpenNodes.Count; i++)
-            {
-                if (OpenNodes[i].FCost < LowestFCost)
-                {
-                    LowestFCost = OpenNodes[i].FCost;
-                    CurrentNodeIndex = i;
-                }
-            }
-
-            if (OpenNodes[CurrentNodeIndex].pos == groundTarget)
-            {
-                VoxelPathNode currPath = OpenNodes[CurrentNodeIndex];
-                List<Vector3> finalPath = new List<Vector3>();
-                while (currPath.parentNode != null)
-                {
-                    finalPath.Add(currPath.pos);
-                    currPath = currPath.parentNode;
-                }
-
-                finalPath.Reverse();
-                return finalPath;
-            }
             foreach (Vector3 neighborDir in Container.voxelFaceChecks)
             {
-                //bool InClosed = false;
-                //bool InOpen = false;
-                Vector3 NeighborPos = OpenNodes[CurrentNodeIndex].pos + neighborDir;
-                bool InClosed = ClosedNodes.Any(n => n.pos == NeighborPos);
-                //for (int i = 0; i < ClosedNodes.Count; i++) {
-                //    if(NeighborPos == ClosedNodes[i].pos)
-                //    {
-                //        InClosed = true;
-                //    }
-                //}
+                Vector3 NeighborPos = currentNode.pos + neighborDir;
+
+                if (ClosedNodes.Contains(NeighborPos)) continue;
+
                 Container container = chunkManager.FindChunkContainingVoxelOptimized(NeighborPos);
-                if (container == null)
-                {
-                    Debug.Log("Container is null");
-                }
-                if (container == null || InClosed || container[NeighborPos - container.containerPosition].isSolid)
+                if (container == null || container[NeighborPos - container.containerPosition].isSolid)
                 {
                     continue;
                 }
 
-                int newGCost = OpenNodes[CurrentNodeIndex].GCost + 1;
-                int existingIndex = OpenNodes.FindIndex(n => n.pos == NeighborPos);
-                //for (int i = 0; i < OpenNodes.Count; i++)
-                //{
-                //    if (NeighborPos == OpenNodes[i].pos)
-                //    {
-                //        InOpen = true;
-                //    }
-                //}
+                int newGCost = currentNode.GCost + 1;
 
-
-                if (existingIndex == -1)
+                if (OpenDict.TryGetValue(NeighborPos, out VoxelPathNode existingNode))
+                {
+                    if (newGCost < existingNode.GCost)
+                    {
+                        existingNode.GCost = newGCost;
+                        existingNode.parentNodePos = currentNode.pos;
+                        OpenNodes.Enqueue(existingNode, existingNode.FCost);
+                    }
+                }
+                else
                 {
                     VoxelPathNode newNode = new VoxelPathNode().PathInit(NeighborPos, groundCurrent, groundTarget);
-                    newNode.parentNode = OpenNodes[CurrentNodeIndex];
-                    OpenNodes.Add(newNode);
-                }
-                else if (newGCost < OpenNodes[existingIndex].GCost)
-                {
-                    VoxelPathNode updatedNode = OpenNodes[existingIndex];
-                    //updatedNode = updatedNode.PathInit(NeighborPos, groundCurrent, groundTarget);
-                    updatedNode.parentNode = OpenNodes[CurrentNodeIndex];
-                    updatedNode.GCost = newGCost;
-                    OpenNodes[existingIndex] = updatedNode;
+                    newNode.parentNodePos = currentNode.pos;
+                    OpenNodes.Enqueue(newNode, newNode.FCost);
+                    OpenDict.Add(NeighborPos, newNode);
+                    TotalDict.Add(NeighborPos, newNode);
                 }
             }
-            ClosedNodes.Add(OpenNodes[CurrentNodeIndex]);
-            OpenNodes.Remove(OpenNodes[CurrentNodeIndex]);
+
+            ClosedNodes.Add(currentNode.pos);
         }
 
-        //Container affectedChunk = FindChunkContainingVoxelOptimized(voxelPos);
+        return new List<Vector3>();
+    }
 
-        //if (affectedChunk != null)
-        //{
-        //    affectedChunk[voxelPos - affectedChunk.containerPosition] = Container.emptyVoxel;
-        //    affectedChunk.GreedyMeshing();
-        //    affectedChunk.UploadMesh();
-        //}
+    private List<Vector3> ReconstructPath(VoxelPathNode endNode, Vector3 groundCurrent, Dictionary<Vector3, VoxelPathNode> TotalDict)
+    {
+        List<Vector3> path = new List<Vector3>();
+        VoxelPathNode current = endNode;
+        while (current.pos != groundCurrent)
+        {
+            path.Add(current.pos);
+            TotalDict.TryGetValue(current.parentNodePos, out VoxelPathNode existingNode);
+            current = existingNode;
+        }
+        path.Reverse();
+        return path;
     }
 
     private Vector3 GetGroundVoxelPosition(Vector3 startPos)
@@ -165,28 +168,28 @@ public class VoxelAStarPathing : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        if (debugPath == null || debugPath.Count == 0) return;
+        if (PathFound == null || PathFound.Count == 0) return;
 
         Gizmos.color = Color.cyan;
-        for (int i = 0; i < debugPath.Count; i++)
+        for (int i = 0; i < PathFound.Count; i++)
         {
-            Gizmos.DrawSphere(debugPath[i] + new Vector3(0.5f, 0.5f, 0.5f), 0.2f);
+            Gizmos.DrawSphere(PathFound[i] + new Vector3(0.5f, 0.5f, 0.5f), 0.2f);
 
-            if (i < debugPath.Count - 1)
+            if (i < PathFound.Count - 1)
             {
-                Gizmos.DrawLine(debugPath[i] + new Vector3(0.5f, 0.5f, 0.5f), debugPath[i + 1] + new Vector3(0.5f, 0.5f, 0.5f));
+                Gizmos.DrawLine(PathFound[i] + new Vector3(0.5f, 0.5f, 0.5f), PathFound[i + 1] + new Vector3(0.5f, 0.5f, 0.5f));
             }
         }
     }
 }
 
-public class VoxelPathNode
+public struct VoxelPathNode
 {
     public Vector3 pos;
     public int GCost;
     public int HCost;
     public int FCost => GCost + HCost;
-    public VoxelPathNode parentNode;
+    public Vector3 parentNodePos;
 
     public VoxelPathNode PathInit(Vector3 VoxelPos, Vector3 StartPos, Vector3 EndPos)
     {
@@ -201,3 +204,32 @@ public class VoxelPathNode
         return pos == other.pos && GCost == other.GCost && HCost == other.HCost;
     }
 }
+public class PriorityQueue<T>
+{
+    private List<(T item, int priority)> elements = new List<(T, int)>();
+
+    public int Count => elements.Count;
+
+    public void Enqueue(T item, int priority)
+    {
+        elements.Add((item, priority));
+    }
+
+    public T Dequeue()
+    {
+        int bestIndex = 0;
+        for (int i = 0; i < elements.Count; i++)
+        {
+            if (elements[i].priority < elements[bestIndex].priority)
+            {
+                bestIndex = i;
+            }
+        }
+
+        T bestItem = elements[bestIndex].item;
+        elements.RemoveAt(bestIndex);
+        return bestItem;
+    }
+}
+
+

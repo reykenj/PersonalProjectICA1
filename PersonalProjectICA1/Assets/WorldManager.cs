@@ -86,7 +86,7 @@ public class WorldManager : MonoBehaviour
                 cont.transform.position = new Vector3(chunkX * xSize, 0, chunkZ * zSize);
 
                 Container container = cont.AddComponent<Container>();
-                container.Initialize(worldMaterial, cont.transform.position, xSize);
+                container.Initialize(worldMaterial, cont.transform.position, xSize, ChunkSize);
 
                 // Fill chunk with voxels
                 for (int z = 0; z < xSize; z++)
@@ -192,7 +192,7 @@ public class WorldManager : MonoBehaviour
 
     private int GetSurfaceHeight(Container chunk, int x, int z)
     {
-        for (int y = chunk.ChunkVoxelMaxAmtXZ - 1; y >= 0; y--)
+        for (int y = Container.ChunkVoxelMaxAmtXZ - 1; y >= 0; y--)
         {
             if (chunk[new Vector3(x, y, z)].ID != 0) 
             {
@@ -227,9 +227,9 @@ public class WorldManager : MonoBehaviour
 
 
         int minX = Mathf.Max(1, Mathf.FloorToInt(basePos.x - width / 2));
-        int maxX = Mathf.Min(chunk.ChunkVoxelMaxAmtXZ - 2, Mathf.CeilToInt(basePos.x + width / 2));
+        int maxX = Mathf.Min(Container.ChunkVoxelMaxAmtXZ - 2, Mathf.CeilToInt(basePos.x + width / 2));
         int minZ = Mathf.Max(1, Mathf.FloorToInt(basePos.z - depth / 2));
-        int maxZ = Mathf.Min(chunk.ChunkVoxelMaxAmtXZ - 2, Mathf.CeilToInt(basePos.z + depth / 2));
+        int maxZ = Mathf.Min(Container.ChunkVoxelMaxAmtXZ - 2, Mathf.CeilToInt(basePos.z + depth / 2));
 
 
         width = maxX - minX;
@@ -261,8 +261,8 @@ public class WorldManager : MonoBehaviour
             {
                 for (int z = minZ + i; z < maxZ - i; z++)
                 {
-                    if (x >= 0 && x < chunk.ChunkVoxelMaxAmtXZ &&
-                        z >= 0 && z < chunk.ChunkVoxelMaxAmtXZ)
+                    if (x >= 0 && x < Container.ChunkVoxelMaxAmtXZ &&
+                        z >= 0 && z < Container.ChunkVoxelMaxAmtXZ)
                     {
                         chunk[new Vector3(x, adjustedCenter.y + height + i, z)] =
                             new Voxel() { ID = wallBlockID };
@@ -286,9 +286,9 @@ public class WorldManager : MonoBehaviour
                 for (int z = minZ; z < maxZ; z++)
                 {
 
-                    if (x >= 0 && x < chunk.ChunkVoxelMaxAmtXZ &&
-                        y >= 0 && y < chunk.ChunkVoxelMaxAmtXZ &&
-                        z >= 0 && z < chunk.ChunkVoxelMaxAmtXZ)
+                    if (x >= 0 && x < Container.ChunkVoxelMaxAmtXZ &&
+                        y >= 0 && y < Container.ChunkVoxelMaxAmtXZ &&
+                        z >= 0 && z < Container.ChunkVoxelMaxAmtXZ)
                     {
                         bool isWall = x == minX || x == maxX - 1 ||
                                      y == (int)center.y || y == (int)center.y + height - 1 ||

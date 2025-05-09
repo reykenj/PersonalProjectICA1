@@ -24,16 +24,21 @@ public class Container : MonoBehaviour
     private MeshFilter meshFilter;
     private MeshCollider meshCollider;
 
-    public int ChunkVoxelMaxAmtXZ;
+    public static int ChunkVoxelMaxAmtXZ; // move to diff class later
+    public static int ChunkSize; // move to diff class later
 
-    public void Initialize(Material mat, Vector3 position, int ChunkVoxelMaxAmt)
+    public void Initialize(Material mat, Vector3 position, int ChunkVoxelMaxAmt, int chunksize)
     {
         ConfigureComponents();
         gameObject.layer = 6;
         data = new Dictionary<Vector3, Voxel>();
         meshRenderer.sharedMaterial = mat;
         containerPosition = position;
-        ChunkVoxelMaxAmtXZ = ChunkVoxelMaxAmt;
+        if(ChunkVoxelMaxAmtXZ != ChunkVoxelMaxAmt)
+            ChunkVoxelMaxAmtXZ = ChunkVoxelMaxAmt;
+        if (ChunkSize != chunksize)
+            ChunkSize = chunksize;
+
     }
 
     public void ClearData()
