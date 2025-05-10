@@ -166,7 +166,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   VoxelAStarPathing: {fileID: 92145825}
   Movespeed: 10
-  SearchTimer: 1
   MaxSearchTimer: 1
 --- !u!114 &92145825
 MonoBehaviour:
@@ -180,7 +179,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 320d5fa347d5ecc4bb37df1ba79ceee8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chunkManager: {fileID: 1412361743}
   Target: {fileID: 574463007}
   PathFound: []
 --- !u!143 &92145826
@@ -389,7 +387,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   VoxelAStarPathing: {fileID: 185748564}
   Movespeed: 10
-  SearchTimer: 1
   MaxSearchTimer: 1
 --- !u!114 &185748564
 MonoBehaviour:
@@ -403,7 +400,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 320d5fa347d5ecc4bb37df1ba79ceee8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chunkManager: {fileID: 1412361743}
   Target: {fileID: 574463007}
   PathFound: []
 --- !u!143 &185748565
@@ -581,7 +577,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   VoxelAStarPathing: {fileID: 199267969}
   Movespeed: 10
-  SearchTimer: 1
   MaxSearchTimer: 1
 --- !u!114 &199267969
 MonoBehaviour:
@@ -595,7 +590,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 320d5fa347d5ecc4bb37df1ba79ceee8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chunkManager: {fileID: 1412361743}
   Target: {fileID: 574463007}
   PathFound: []
 --- !u!143 &199267970
@@ -773,7 +767,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   VoxelAStarPathing: {fileID: 257383672}
   Movespeed: 10
-  SearchTimer: 1
   MaxSearchTimer: 1
 --- !u!114 &257383672
 MonoBehaviour:
@@ -787,7 +780,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 320d5fa347d5ecc4bb37df1ba79ceee8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chunkManager: {fileID: 1412361743}
   Target: {fileID: 574463007}
   PathFound: []
 --- !u!143 &257383673
@@ -965,7 +957,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   VoxelAStarPathing: {fileID: 269811967}
   Movespeed: 10
-  SearchTimer: 1
   MaxSearchTimer: 1
 --- !u!114 &269811967
 MonoBehaviour:
@@ -979,7 +970,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 320d5fa347d5ecc4bb37df1ba79ceee8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chunkManager: {fileID: 1412361743}
   Target: {fileID: 574463007}
   PathFound: []
 --- !u!143 &269811968
@@ -1240,7 +1230,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 24.42479, y: 19.32, z: 6.1633644}
+  m_LocalPosition: {x: 24.42479, y: 19.32, z: 35.72}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1382,7 +1372,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   VoxelAStarPathing: {fileID: 396324421}
   Movespeed: 10
-  SearchTimer: 1
   MaxSearchTimer: 1
 --- !u!114 &396324421
 MonoBehaviour:
@@ -1396,7 +1385,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 320d5fa347d5ecc4bb37df1ba79ceee8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chunkManager: {fileID: 1412361743}
   Target: {fileID: 574463007}
   PathFound: []
 --- !u!143 &396324422
@@ -1695,7 +1683,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   VoxelAStarPathing: {fileID: 564375060}
   Movespeed: 10
-  SearchTimer: 1
   MaxSearchTimer: 1
 --- !u!114 &564375060
 MonoBehaviour:
@@ -1709,7 +1696,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 320d5fa347d5ecc4bb37df1ba79ceee8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chunkManager: {fileID: 1412361743}
   Target: {fileID: 574463007}
   PathFound: []
 --- !u!143 &564375061
@@ -2294,7 +2280,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   VoxelAStarPathing: {fileID: 580531724}
   Movespeed: 10
-  SearchTimer: 1
   MaxSearchTimer: 1
 --- !u!114 &580531724
 MonoBehaviour:
@@ -2308,7 +2293,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 320d5fa347d5ecc4bb37df1ba79ceee8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chunkManager: {fileID: 1412361743}
   Target: {fileID: 574463007}
   PathFound: []
 --- !u!143 &580531725
@@ -2449,6 +2433,183 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &642763979 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 08eb59ee7a956be4fa8667675fbb4159, type: 3}
+  m_PrefabInstance: {fileID: 1378369963}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &642763980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 642763979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 320d5fa347d5ecc4bb37df1ba79ceee8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Target: {fileID: 747485356}
+  PathFound: []
+--- !u!114 &642763981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 642763979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a208b8d795c93f344a397a3ea69e6006, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackHandler: {fileID: 642763982}
+  humanoid: {fileID: 642763984}
+  characterController: {fileID: 642763985}
+  CurrState: 0
+  AttackRange: 5
+  AttackCooldown: 1
+  TargetTransform: {fileID: 747485356}
+  VoxelAStarPathing: {fileID: 642763980}
+  MaxSearchTimer: 1
+  MaxSearchCount: 5
+  PathfindingAccuracy: 0.1
+--- !u!114 &642763982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 642763979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80510ecc7b19c6441ac7fcdb204bfac3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SpellArray: []
+  CastTime: 0.25
+  timer: 0
+  Turn: 0
+  isMainHandler: 0
+  AttackStartPoint: {fileID: 0}
+--- !u!54 &642763983
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 642763979}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 896
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
+--- !u!114 &642763984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 642763979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9989db249df88f5498e9abc5a4803acc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _charController: {fileID: 642763985}
+  HP: 0
+  MaxHP: 100
+  Shield: 0
+  MaxShield: 20
+  speed: 10
+  SpeedMultiplier: 10
+  Gravity: 0
+  Grounded: 0
+  Ragdolled: 0
+  gravity: -9.81
+  JumpHeight: 1
+--- !u!143 &642763985
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 642763979}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 896
+  m_LayerOverridePriority: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 1
+  m_Radius: 3
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &642763988 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 08eb59ee7a956be4fa8667675fbb4159, type: 3}
+  m_PrefabInstance: {fileID: 1378369963}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &642763989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 642763979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e63d694b8962d34f8fab6f2f5222c01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destructionRadius: 1
+  showGizmos: 1
+  gizmoColor: {r: 1, g: 0, b: 0, a: 1}
+--- !u!135 &642763990
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 642763979}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 2.430383
+  m_Center: {x: 0.19026516, y: -0.45036313, z: 5.9605064e-24}
 --- !u!1 &718598386
 GameObject:
   m_ObjectHideFlags: 0
@@ -7340,6 +7501,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1793153611}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!1 &747485355
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 747485356}
+  m_Layer: 0
+  m_Name: TargetPathfind
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &747485356
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 747485355}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 642763988}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &770936965
 GameObject:
   m_ObjectHideFlags: 0
@@ -7513,7 +7705,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 320d5fa347d5ecc4bb37df1ba79ceee8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chunkManager: {fileID: 1412361743}
   Target: {fileID: 574463007}
   PathFound: []
 --- !u!114 &770936973
@@ -7530,7 +7721,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   VoxelAStarPathing: {fileID: 770936972}
   Movespeed: 10
-  SearchTimer: 1
   MaxSearchTimer: 1
 --- !u!1 &832575517
 GameObject:
@@ -7618,7 +7808,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   VoxelAStarPathing: {fileID: 861531219}
   Movespeed: 10
-  SearchTimer: 1
   MaxSearchTimer: 1
 --- !u!114 &861531219
 MonoBehaviour:
@@ -7632,7 +7821,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 320d5fa347d5ecc4bb37df1ba79ceee8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chunkManager: {fileID: 1412361743}
   Target: {fileID: 574463007}
   PathFound: []
 --- !u!143 &861531220
@@ -7810,7 +7998,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   VoxelAStarPathing: {fileID: 867741746}
   Movespeed: 10
-  SearchTimer: 1
   MaxSearchTimer: 1
 --- !u!114 &867741746
 MonoBehaviour:
@@ -7824,7 +8011,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 320d5fa347d5ecc4bb37df1ba79ceee8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chunkManager: {fileID: 1412361743}
   Target: {fileID: 574463007}
   PathFound: []
 --- !u!143 &867741747
@@ -8002,7 +8188,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   VoxelAStarPathing: {fileID: 1015400237}
   Movespeed: 10
-  SearchTimer: 1
   MaxSearchTimer: 1
 --- !u!114 &1015400237
 MonoBehaviour:
@@ -8016,7 +8201,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 320d5fa347d5ecc4bb37df1ba79ceee8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chunkManager: {fileID: 1412361743}
   Target: {fileID: 574463007}
   PathFound: []
 --- !u!143 &1015400238
@@ -8194,7 +8378,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   VoxelAStarPathing: {fileID: 1064487538}
   Movespeed: 10
-  SearchTimer: 1
   MaxSearchTimer: 1
 --- !u!114 &1064487538
 MonoBehaviour:
@@ -8208,7 +8391,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 320d5fa347d5ecc4bb37df1ba79ceee8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chunkManager: {fileID: 1412361743}
   Target: {fileID: 574463007}
   PathFound: []
 --- !u!143 &1064487539
@@ -8505,6 +8687,106 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1378369963
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 08eb59ee7a956be4fa8667675fbb4159, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 08eb59ee7a956be4fa8667675fbb4159, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 08eb59ee7a956be4fa8667675fbb4159, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 08eb59ee7a956be4fa8667675fbb4159, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 15.1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 08eb59ee7a956be4fa8667675fbb4159, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 12.21
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 08eb59ee7a956be4fa8667675fbb4159, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 10.03
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 08eb59ee7a956be4fa8667675fbb4159, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 08eb59ee7a956be4fa8667675fbb4159, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 4.32978e-17
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 08eb59ee7a956be4fa8667675fbb4159, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.70710677
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 08eb59ee7a956be4fa8667675fbb4159, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 4.3297796e-17
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 08eb59ee7a956be4fa8667675fbb4159, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 08eb59ee7a956be4fa8667675fbb4159, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 08eb59ee7a956be4fa8667675fbb4159, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 08eb59ee7a956be4fa8667675fbb4159, type: 3}
+      propertyPath: m_Name
+      value: Skull1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 08eb59ee7a956be4fa8667675fbb4159, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 08eb59ee7a956be4fa8667675fbb4159, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 747485356}
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 08eb59ee7a956be4fa8667675fbb4159, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 642763985}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 08eb59ee7a956be4fa8667675fbb4159, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 642763984}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 08eb59ee7a956be4fa8667675fbb4159, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 642763983}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 08eb59ee7a956be4fa8667675fbb4159, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 642763982}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 08eb59ee7a956be4fa8667675fbb4159, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 642763981}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 08eb59ee7a956be4fa8667675fbb4159, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 642763980}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 08eb59ee7a956be4fa8667675fbb4159, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 642763989}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 08eb59ee7a956be4fa8667675fbb4159, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 642763990}
+  m_SourcePrefab: {fileID: 100100000, guid: 08eb59ee7a956be4fa8667675fbb4159, type: 3}
 --- !u!1 &1412361738
 GameObject:
   m_ObjectHideFlags: 0
@@ -8795,7 +9077,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 220fc8cf8b26e114e966c3561d1955c8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 8.163364
+      value: 37.72
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 220fc8cf8b26e114e966c3561d1955c8, type: 3}
       propertyPath: m_LocalRotation.w
@@ -8908,7 +9190,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   VoxelAStarPathing: {fileID: 1632662962}
   Movespeed: 10
-  SearchTimer: 1
   MaxSearchTimer: 1
 --- !u!114 &1632662962
 MonoBehaviour:
@@ -8922,7 +9203,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 320d5fa347d5ecc4bb37df1ba79ceee8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chunkManager: {fileID: 1412361743}
   Target: {fileID: 574463007}
   PathFound: []
 --- !u!143 &1632662963
@@ -9345,7 +9625,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   VoxelAStarPathing: {fileID: 1734417464}
   Movespeed: 10
-  SearchTimer: 1
   MaxSearchTimer: 1
 --- !u!114 &1734417464
 MonoBehaviour:
@@ -9359,7 +9638,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 320d5fa347d5ecc4bb37df1ba79ceee8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chunkManager: {fileID: 1412361743}
   Target: {fileID: 574463007}
   PathFound: []
 --- !u!143 &1734417465
@@ -14429,7 +14707,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   VoxelAStarPathing: {fileID: 2017056022}
   Movespeed: 10
-  SearchTimer: 1
   MaxSearchTimer: 1
 --- !u!114 &2017056022
 MonoBehaviour:
@@ -14443,7 +14720,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 320d5fa347d5ecc4bb37df1ba79ceee8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chunkManager: {fileID: 1412361743}
   Target: {fileID: 574463007}
   PathFound: []
 --- !u!143 &2017056023
@@ -14765,3 +15041,4 @@ SceneRoots:
   - {fileID: 269811973}
   - {fileID: 564375066}
   - {fileID: 1144299234}
+  - {fileID: 1378369963}
