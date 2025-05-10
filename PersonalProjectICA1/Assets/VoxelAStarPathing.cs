@@ -10,7 +10,6 @@ using UnityEngine.UIElements;
 public class VoxelAStarPathing : MonoBehaviour
 {
 
-    [SerializeField] ChunkManager chunkManager;
     [SerializeField] Transform Target;
     public List<Vector3> PathFound = new List<Vector3>();
 
@@ -59,8 +58,40 @@ public class VoxelAStarPathing : MonoBehaviour
     // Move towards first node and once the ai reaches it, calculate pathfinding again
     public List<Vector3> VoxelPathfinding(Vector3 currentPos, Vector3 TargetPos)
     {
+        if (Vector3.Distance(currentPos, TargetPos) < 0.5f)
+        {
+            return new List<Vector3>();
+        }
+
         Vector3 groundCurrent = GetVoxelPosition(currentPos);
         Vector3 groundTarget = GetVoxelPosition(TargetPos);
+
+        // Early rejection: Target is blocked or isolated
+        Container targetContainer = ChunkManager.Instance.FindChunkContainingVoxelOptimized(groundTarget);
+        if (targetContainer == null || targetContainer[groundTarget - targetContainer.containerPosition].isSolid)
+        {
+            return new List<Vector3>(); // Target voxel is solid or missing
+        }
+
+        // Optional: check if target is surrounded by solids (no neighbors to path into)
+        bool hasWalkableNeighbor = false;
+        foreach (Vector3 dir in Container.voxelFaceChecks)
+        {
+            Vector3 neighborPos = groundTarget + dir;
+            Container neighborContainer = ChunkManager.Instance.FindChunkContainingVoxelOptimized(neighborPos);
+            if (neighborContainer == null) continue;
+
+            if (!neighborContainer[neighborPos - neighborContainer.containerPosition].isSolid)
+            {
+                hasWalkableNeighbor = true;
+                break;
+            }
+        }
+
+        if (!hasWalkableNeighbor)
+        {
+            return new List<Vector3>(); // Target is fully enclosed by solid voxels
+        }
 
         PriorityQueue<VoxelPathNode> OpenNodes = new PriorityQueue<VoxelPathNode>();
         HashSet<Vector3> ClosedNodes = new HashSet<Vector3>();
@@ -91,7 +122,7 @@ public class VoxelAStarPathing : MonoBehaviour
 
                 if (ClosedNodes.Contains(NeighborPos)) continue;
 
-                Container container = chunkManager.FindChunkContainingVoxelOptimized(NeighborPos);
+                Container container = ChunkManager.Instance.FindChunkContainingVoxelOptimized(NeighborPos);
                 if (container == null || container[NeighborPos - container.containerPosition].isSolid)
                 {
                     continue;
@@ -164,6 +195,52 @@ public class VoxelAStarPathing : MonoBehaviour
         Mathf.Floor(startPos.y),
         Mathf.Floor(startPos.z));
         return voxelPos;
+    }
+
+
+    public Vector3 PickRandomVoxelPos(Vector3 startPos, bool Grounded, int AreaAround)
+    {
+        List<Vector3> Candidates = new List<Vector3>();
+
+        for (int x = -AreaAround; x <= AreaAround; x++)
+        {
+            for (int z = -AreaAround; z <= AreaAround; z++)
+            {
+                for (int y = -1; y <= 1; y++)
+                {
+                    Vector3 candidatePos = new Vector3(
+                        Mathf.Floor(startPos.x + x),
+                        Mathf.Floor(startPos.y + y),
+                        Mathf.Floor(startPos.z + z)
+                    );
+                    Container container = ChunkManager.Instance.FindChunkContainingVoxelOptimized(candidatePos);
+                    if (container == null) continue;
+                    Vector3 local = candidatePos - container.containerPosition;
+                    if (Grounded)
+                    {
+                        Vector3 belowPos = candidatePos + Vector3.down;
+                        Vector3 belowLocal = belowPos - container.containerPosition;
+                        if (!container[local].isSolid && container[belowLocal].isSolid)
+                        {
+                            Candidates.Add(candidatePos);
+                        }
+                    }
+                    else
+                    {
+                        if (!container[local].isSolid)
+                        {
+                            Candidates.Add(candidatePos);
+                        }
+                    }
+                }
+            }
+        }
+
+        if (Candidates.Count > 0)
+        {
+            return Candidates[UnityEngine.Random.Range(0, Candidates.Count)];
+        }
+        return GetGroundVoxelPosition(startPos);
     }
 
     private void OnDrawGizmos()
