@@ -1,5 +1,7 @@
 using System.Collections;
+using System.Drawing;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class FloatingHeadController : MonoBehaviour
 {
@@ -17,6 +19,7 @@ public class FloatingHeadController : MonoBehaviour
     [SerializeField] float AttackCooldown;
     [SerializeField] Transform PlayerTransform;
     [SerializeField] AttackHandler projectileAttackHandler;
+    [SerializeField] ParticleSystem FireVFX;
     // PATHFINDING
     [SerializeField] Transform TargetTransform;
     [SerializeField] VoxelAStarPathing VoxelAStarPathing;
@@ -145,6 +148,16 @@ public class FloatingHeadController : MonoBehaviour
         {
             projectileAttackHandler.isMainHandler = true;
             projectileAttackHandler.Cast();
+
+            var emitParams = new ParticleSystem.EmitParams
+            {
+                position = projectileAttackHandler.AttackStartPoint.localPosition,
+                startLifetime = Random.Range(0.8f, 1.5f),
+                startSize = Random.Range(2, 4.5f),
+                //startColor = color
+            };
+
+            FireVFX.Emit(emitParams, 10); // emit 3-6 particles at this position
             yield return new WaitForSeconds(0.25f);
         }
         yield return new WaitForSeconds(AttackCooldown);
