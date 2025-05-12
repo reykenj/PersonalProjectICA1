@@ -147,7 +147,7 @@ MonoBehaviour:
       m_RotationOrder: 4
     Damage: 10
     HurtTimer: 0.1
-    DestructionRadius: 2
+    DestructionRadius: 1
     ReturnOnCollision: 1
     CreateDebrisOnDestruction: 0
     Physics: 1

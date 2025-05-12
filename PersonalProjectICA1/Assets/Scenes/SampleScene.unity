@@ -2789,7 +2789,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpellArray:
-  - spell: {fileID: 11400000, guid: 8b9913b655a6af045b42a8b404a0c0e6, type: 2}
+  - spell: {fileID: 11400000, guid: fb669da024bc3e34f8cc7fb58c7af081, type: 2}
     TempProjInfo:
       speedCurve:
         serializedVersion: 2
