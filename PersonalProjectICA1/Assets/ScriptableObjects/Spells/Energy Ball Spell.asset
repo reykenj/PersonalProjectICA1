@@ -9,13 +9,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8ea05d258eae0546a71beeef3ed68b3, type: 3}
-  m_Name: Punch Spell
+  m_Script: {fileID: 11500000, guid: 313df3096451db64db5a2a2583670403, type: 3}
+  m_Name: Energy Ball Spell
   m_EditorClassIdentifier: 
   OGProjectileInformation:
     speedCurve:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 10
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 10
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -31,7 +49,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    movementT: 0
+    movementT: 2
     _initialPosition: {x: 0, y: 0, z: 0}
     Direction: {x: 0, y: 0, z: 0}
     RotationCurveX:
@@ -60,19 +78,19 @@ MonoBehaviour:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1
+        value: 0.25
         inSlope: 0
         outSlope: 0
-        tangentMode: 34
+        tangentMode: 0
         weightedMode: 0
         inWeight: 0
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 1
+        time: 0.5
         value: 1
         inSlope: 0
         outSlope: 0
-        tangentMode: 34
+        tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0
@@ -84,19 +102,19 @@ MonoBehaviour:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1.75
+        value: 0.25
         inSlope: 0
         outSlope: 0
-        tangentMode: 34
+        tangentMode: 0
         weightedMode: 0
         inWeight: 0
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 1
-        value: 1.75
+        time: 0.5
+        value: 1
         inSlope: 0
         outSlope: 0
-        tangentMode: 34
+        tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0
@@ -108,19 +126,19 @@ MonoBehaviour:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 2
+        value: 0.25
         inSlope: 0
         outSlope: 0
-        tangentMode: 34
+        tangentMode: 0
         weightedMode: 0
         inWeight: 0
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 1
-        value: 2
+        time: 0.5
+        value: 1
         inSlope: 0
         outSlope: 0
-        tangentMode: 34
+        tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0
@@ -132,11 +150,11 @@ MonoBehaviour:
     DestructionRadius: 2
     ReturnOnCollision: 1
     CreateDebrisOnDestruction: 0
-    Physics: 0
+    Physics: 1
     timer: 0
-    lifetime: 0.1
+    lifetime: 5
     Render: 1
-    mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
-  SpellName: Punch
+    mesh: {fileID: 289301614986012343, guid: e95056eb6d47d244caa08cdb3767a7e4, type: 3}
+  SpellName: Energy Ball
   RuneIcon: {fileID: 0}
-  AttackPrefab: {fileID: 0}
+  AttackPrefab: {fileID: 7065334555887556334, guid: 9f1215f4198e5354ea3cca9af06dfa5e, type: 3}

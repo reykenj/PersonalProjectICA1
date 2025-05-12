@@ -18,7 +18,7 @@ public class Projectile : MonoBehaviour
     //public GameObject SpawnEffectPrefab;
     private Vector3 _currentRotation;
     private Vector3 _lastDirection;
-    private Coroutine lifetimecoroutine;
+    //private Coroutine lifetimecoroutine;
     public GameObject Owner;
     public System.Action<Projectile> OnDespawn;
     
@@ -38,7 +38,7 @@ public class Projectile : MonoBehaviour
         _collider.sharedMesh = ProjInfo.mesh;
         _meshRenderer.enabled = ProjInfo.Render;
         SetPhysics(ProjInfo.Physics);
-        ChangeLifetime(ProjInfo.lifetime);
+        //ChangeLifetime(ProjInfo.lifetime);
         ProjInfo.timer = 0;
         if (ProjInfo.movementT == ProjectileInformation.MovementType.BeamExtendForward)
         {
@@ -69,38 +69,38 @@ public class Projectile : MonoBehaviour
     {
         _rb.isKinematic = true;
 
-        if (lifetimecoroutine != null)
-        {
-            StopCoroutine(lifetimecoroutine);
-            lifetimecoroutine = null;
-        }
+        //if (lifetimecoroutine != null)
+        //{
+        //    StopCoroutine(lifetimecoroutine);
+        //    lifetimecoroutine = null;
+        //}
         if (OnDespawn != null)
         {
             OnDespawn = null;
         }
     }
-    public void ChangeLifetime(float newLifetime)
-    {
-        if (lifetimecoroutine != null)
-        {
-            StopCoroutine(lifetimecoroutine);
-            lifetimecoroutine = null;
-        }
-        ProjInfo.lifetime = newLifetime;
-        lifetimecoroutine = StartCoroutine(DisableWhenLifetimeEnds());
-    }
-    private IEnumerator DisableWhenLifetimeEnds()
-    {
-        yield return new WaitForSeconds(ProjInfo.lifetime);
+    //public void ChangeLifetime(float newLifetime)
+    //{
+    //    if (lifetimecoroutine != null)
+    //    {
+    //        StopCoroutine(lifetimecoroutine);
+    //        lifetimecoroutine = null;
+    //    }
+    //    ProjInfo.lifetime = newLifetime;
+    //    lifetimecoroutine = StartCoroutine(DisableWhenLifetimeEnds());
+    //}
+    //private IEnumerator DisableWhenLifetimeEnds()
+    //{
+    //    yield return new WaitForSeconds(ProjInfo.lifetime);
 
-        if (OnDespawn != null)
-        {
-            OnDespawn.Invoke(this);
-            OnDespawn = null;
-        }
+    //    if (OnDespawn != null)
+    //    {
+    //        OnDespawn.Invoke(this);
+    //        OnDespawn = null;
+    //    }
 
-        ObjectPool.ReturnObj(this.gameObject);
-    }
+    //    ObjectPool.ReturnObj(this.gameObject);
+    //}
     private void OnTriggerStay(Collider other)
     {
         //Debug.Log("Colliing with! " + other.gameObject.name);
@@ -115,6 +115,18 @@ public class Projectile : MonoBehaviour
                 StartCoroutine(ChunkManager.Instance.SpawnPhysicsVoxelDebrisInArray(affectedVoxels));
             }
         }
+
+        if (ProjInfo.ReturnOnCollision)
+        {
+            if (OnDespawn != null)
+            {
+                OnDespawn.Invoke(this);
+                OnDespawn = null;
+            }
+            ObjectPool.ReturnObj(this.gameObject);
+            return;
+        }
+
         Humanoid hurtcontroller = other.gameObject?.GetComponent<Humanoid>();
         if (hurtcontroller == null) return;
         if (CollisionEffectPrefab != null)
@@ -124,22 +136,7 @@ public class Projectile : MonoBehaviour
         }
         Debug.Log("Hurting! " + other.gameObject.name);
         hurtcontroller.Hurt(ProjInfo.Damage);
-        if (ProjInfo.ReturnOnCollision)
-        {
-
-            if (OnDespawn != null)
-            {
-                OnDespawn.Invoke(this);
-                OnDespawn = null;
-            }
-
-
-            ObjectPool.ReturnObj(this.gameObject);
-        }
-        else
-        {
-            StartCoroutine(WaitForHurtTimer());
-        }
+        StartCoroutine(WaitForHurtTimer());
     }
     IEnumerator WaitForHurtTimer()
     {
@@ -174,6 +171,16 @@ public class Projectile : MonoBehaviour
     {
         ProjInfo.timer += Time.deltaTime;
         float t = ProjInfo.timer / duration;
+        if (ProjInfo.timer >= ProjInfo.lifetime)
+        {
+            if (OnDespawn != null)
+            {
+                OnDespawn.Invoke(this);
+                OnDespawn = null;
+            }
+            ObjectPool.ReturnObj(gameObject);
+            return;
+        }
 
         transform.localScale = new Vector3(ProjInfo.ScaleCurveX.Evaluate(t), ProjInfo.ScaleCurveY.Evaluate(t), ProjInfo.ScaleCurveZ.Evaluate(t));
 
