@@ -116,7 +116,7 @@ public class Projectile : MonoBehaviour
             }
         }
 
-        Humanoid hurtcontroller = other.gameObject?.GetComponent<Humanoid>();
+        Humanoid.TryGetHumanoid(other.gameObject, out Humanoid hurtcontroller);
         if (CollisionEffectPrefab != null)
         {
             GameObject CollisionSpawn = ObjectPool.GetObj(CollisionEffectPrefab.name);
@@ -247,7 +247,7 @@ public class Projectile : MonoBehaviour
 
     private void UpdateBeamPosition()
     {
-        float beamLength = transform.localScale.x;
+        float beamLength = transform.localScale.z;
         transform.position = ProjInfo._initialPosition + (transform.forward * beamLength * 0.5f);
     }
 

@@ -9,8 +9,6 @@ public class AttackHandler : MonoBehaviour
     public float CastTime = 0.25f; // might turn this into a animation speed multiplier for the punches instead
     public float timer;
     public int Turn;
-
-    public bool isMainHandler = false;
     public Transform AttackStartPoint;
 
 
@@ -30,8 +28,6 @@ public class AttackHandler : MonoBehaviour
     }
     public void Cast()
     {
-        //Debug.Log("Cast");
-        if (!isMainHandler) return;
 
         for (int i = Turn; i < SpellArray.Count; i++)
         {
@@ -48,7 +44,6 @@ public class AttackHandler : MonoBehaviour
                 break;
             }
         }
-        isMainHandler = false;
     }
 
     private void ResetSpells(int Start, int End)

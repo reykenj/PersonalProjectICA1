@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using System.Drawing;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -18,7 +19,7 @@ public class FloatingHeadController : MonoBehaviour
     [SerializeField] float AttackRange;
     [SerializeField] float AttackCooldown;
     [SerializeField] Transform PlayerTransform;
-    [SerializeField] AttackHandler projectileAttackHandler;
+    [SerializeField] List<AttackHandler> AttackHandlers;
     [SerializeField] ParticleSystem FireVFX;
     // PATHFINDING
     [SerializeField] Transform TargetTransform;
@@ -34,9 +35,12 @@ public class FloatingHeadController : MonoBehaviour
     Coroutine SeePlayer;
     Coroutine SendOutAttack;
 
+    bool Tracking = true;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void OnEnable()
     {
+        Tracking = true;
         Wander();
         VoxelAStarPathing.Pathfind();
 
@@ -95,11 +99,21 @@ public class FloatingHeadController : MonoBehaviour
     }
     private void Attacking()
     {
-        transform.LookAt(PlayerTransform.position + Vector3.up);
-        projectileAttackHandler.AttackStartPoint.LookAt(PlayerTransform.position + Vector3.up);
+        if (Tracking)
+        {
+            transform.LookAt(PlayerTransform.position + Vector3.up);
+            AttackHandlers[0].AttackStartPoint.LookAt(PlayerTransform.position + Vector3.up);
+        }
         if (SendOutAttack == null)
         {
-            SendOutAttack = StartCoroutine(ProjectileAttack());
+            if (Random.Range(0, 2) == 0)
+            {
+                SendOutAttack = StartCoroutine(ProjectileAttack());
+            }
+            else
+            {
+                SendOutAttack = StartCoroutine(BeamAttack());
+            }
         }
     }
 
@@ -122,9 +136,14 @@ public class FloatingHeadController : MonoBehaviour
     {
         while (true)
         {
-            if (Physics.Raycast(transform.position, (PlayerTransform.position + Vector3.up - transform.position).normalized, out RaycastHit hit, AttackRange, LayerMask.GetMask("Player")))
+            if (CurrState != BehaviourState.Attacking && 
+                Physics.Raycast(transform.position, 
+                (PlayerTransform.position + Vector3.up - transform.position).normalized,
+                out RaycastHit hit, 
+                AttackRange, 
+                LayerMask.GetMask("Player")))
             {
-                if(TargetTransform.parent != hit.collider.transform) TargetTransform.SetParent(hit.collider.transform);
+                if (TargetTransform.parent != hit.collider.transform) TargetTransform.SetParent(hit.collider.transform);
                 TargetTransform.localPosition = Vector3.up * (AttackRange - 1);
                 if (Physics.Raycast(PlayerTransform.position, Vector3.up, out RaycastHit hit2, AttackRange - 2, LayerMask.GetMask("Voxel")))
                     TargetTransform.localPosition = Vector3.up * hit2.distance;
@@ -135,10 +154,6 @@ public class FloatingHeadController : MonoBehaviour
                 // TO DO: ADD MINIMUM RANGE, IF THE SKULL IS TOO CLOSE TO THE PLAYER OR BELOW THE PLAYER, PATHFIND FIRST TO THE TOP
                 CurrState = BehaviourState.Attacking;
             }
-            else
-            {
-                CurrState = BehaviourState.Pathing;
-            }
             yield return new WaitForSeconds(MaxSearchTimer + Random.Range(-0.25f, 0.25f));
         }
     }
@@ -146,21 +161,56 @@ public class FloatingHeadController : MonoBehaviour
     {
         for (int i = 0; i < 4; i++)
         {
-            projectileAttackHandler.isMainHandler = true;
-            projectileAttackHandler.Cast();
+            AttackHandlers[0].Cast();
 
             var emitParams = new ParticleSystem.EmitParams
             {
-                position = projectileAttackHandler.AttackStartPoint.localPosition,
+                position = AttackHandlers[0].AttackStartPoint.localPosition,
                 startLifetime = Random.Range(0.8f, 1.5f),
                 startSize = Random.Range(2, 4.5f),
                 //startColor = color
             };
 
-            FireVFX.Emit(emitParams, 10); // emit 3-6 particles at this position
+            FireVFX.Emit(emitParams, 1); // emit 3-6 particles at this position
             yield return new WaitForSeconds(0.25f);
         }
         yield return new WaitForSeconds(AttackCooldown);
+        if (!(Physics.Raycast(transform.position,
+        (PlayerTransform.position + Vector3.up - transform.position).normalized,
+        out RaycastHit hit,
+        AttackRange,
+        LayerMask.GetMask("Player"))))
+        {
+            CurrState = BehaviourState.Pathing;
+        }
         SendOutAttack = null;
+    }
+    IEnumerator BeamAttack()
+    {
+        var emitParams = new ParticleSystem.EmitParams
+        {
+            position = AttackHandlers[1].AttackStartPoint.localPosition,
+            startLifetime = AttackCooldown * 2,
+            startSize = Random.Range(3, 5),
+            startColor = UnityEngine.Color.yellow
+        };
+        FireVFX.Emit(emitParams, 1); // emit 3-6 particles at this position
+        yield return new WaitForSeconds(AttackCooldown * 1.8f);
+        Tracking = false;
+        yield return new WaitForSeconds(AttackCooldown * 0.2f);
+        AttackHandlers[1].Cast();
+        yield return new WaitForSeconds(AttackHandlers[1].SpellArray[0].TempProjInfo.lifetime);
+        Tracking = true;
+        yield return new WaitForSeconds(AttackCooldown);
+        SendOutAttack = null;
+
+        if (!(Physics.Raycast(transform.position,
+        (PlayerTransform.position + Vector3.up - transform.position).normalized,
+        out RaycastHit hit,
+        AttackRange,
+        LayerMask.GetMask("Player"))))
+        {
+            CurrState = BehaviourState.Pathing;
+        }
     }
 }

@@ -305,14 +305,11 @@ public class PlayerController : MonoBehaviour
 
     public void CastLeftFist()
     {
-        //Debug.Log("Cast Left Fist");
-        LeftAttackHandler.isMainHandler = true;
         LeftAttackHandler.Cast();
     }
 
     public void CastRightFist()
     {
-        RightAttackHandler.isMainHandler = true;
         RightAttackHandler.Cast();
     }
 

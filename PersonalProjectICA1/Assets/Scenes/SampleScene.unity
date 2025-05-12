@@ -2234,7 +2234,6 @@ MonoBehaviour:
   CastTime: 0.25
   timer: 0
   Turn: 0
-  isMainHandler: 0
   AttackStartPoint: {fileID: 92876169}
 --- !u!114 &574463015
 MonoBehaviour:
@@ -2324,7 +2323,6 @@ MonoBehaviour:
   CastTime: 0.25
   timer: 0
   Turn: 0
-  isMainHandler: 0
   AttackStartPoint: {fileID: 92876169}
 --- !u!1 &580531722
 GameObject:
@@ -2558,7 +2556,9 @@ MonoBehaviour:
   AttackRange: 10
   AttackCooldown: 1
   PlayerTransform: {fileID: 574463007}
-  projectileAttackHandler: {fileID: 642763982}
+  AttackHandlers:
+  - {fileID: 642763982}
+  - {fileID: 642763991}
   FireVFX: {fileID: 1111158069}
   TargetTransform: {fileID: 747485356}
   VoxelAStarPathing: {fileID: 642763980}
@@ -2653,7 +2653,6 @@ MonoBehaviour:
   CastTime: 0.25
   timer: 0
   Turn: 0
-  isMainHandler: 0
   AttackStartPoint: {fileID: 409647425}
 --- !u!54 &642763983
 Rigidbody:
@@ -2694,7 +2693,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9989db249df88f5498e9abc5a4803acc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 0}
+  meshRenderer: {fileID: 2094853106}
   SkinnedmeshRenderers: []
   _charController: {fileID: 642763985}
   HP: 0
@@ -2777,6 +2776,95 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 2.430383
   m_Center: {x: 0.19026516, y: -0.45036313, z: 5.9605064e-24}
+--- !u!114 &642763991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 642763979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80510ecc7b19c6441ac7fcdb204bfac3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SpellArray:
+  - spell: {fileID: 11400000, guid: 8b9913b655a6af045b42a8b404a0c0e6, type: 2}
+    TempProjInfo:
+      speedCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 0
+      MoveYCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 0
+      MoveXCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 0
+      movementT: 0
+      _initialPosition: {x: 0, y: 0, z: 0}
+      Direction: {x: 0, y: 0, z: 0}
+      RotationCurveX:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 0
+      RotationCurveY:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 0
+      RotationCurveZ:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 0
+      StartingRotation: {x: 0, y: 0, z: 0}
+      rotationT: 0
+      rotationSpeed: 0
+      ScaleCurveX:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 0
+      ScaleCurveY:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 0
+      ScaleCurveZ:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 0
+      Damage: 0
+      HurtTimer: 0
+      DestructionRadius: 0
+      ReturnOnCollision: 0
+      CreateDebrisOnDestruction: 0
+      Physics: 0
+      timer: 0
+      lifetime: 0
+      Render: 0
+      mesh: {fileID: 0}
+  CastTime: 0.25
+  timer: 0
+  Turn: 0
+  AttackStartPoint: {fileID: 409647425}
 --- !u!1 &718598386
 GameObject:
   m_ObjectHideFlags: 0
@@ -13890,6 +13978,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 08eb59ee7a956be4fa8667675fbb4159, type: 3}
       insertIndex: -1
       addedObject: {fileID: 642763990}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 08eb59ee7a956be4fa8667675fbb4159, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 642763991}
   m_SourcePrefab: {fileID: 100100000, guid: 08eb59ee7a956be4fa8667675fbb4159, type: 3}
 --- !u!1 &1412361738
 GameObject:
@@ -20078,6 +20169,11 @@ Transform:
 --- !u!4 &2094853105 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 08eb59ee7a956be4fa8667675fbb4159, type: 3}
+  m_PrefabInstance: {fileID: 1929291603}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &2094853106 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 08eb59ee7a956be4fa8667675fbb4159, type: 3}
   m_PrefabInstance: {fileID: 1929291603}
   m_PrefabAsset: {fileID: 0}
 --- !u!137 &2101745306 stripped

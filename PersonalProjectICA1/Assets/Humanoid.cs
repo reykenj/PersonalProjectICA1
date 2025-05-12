@@ -39,6 +39,20 @@ public class Humanoid : MonoBehaviour
     private Coroutine FlashCoroutine;
 
     private List<Color> originalColors = new List<Color>();
+    private static Dictionary<GameObject, Humanoid> cache = new Dictionary<GameObject, Humanoid>();
+
+    public static bool TryGetHumanoid(GameObject obj, out Humanoid humanoid)
+    {
+        return cache.TryGetValue(obj, out humanoid);
+    }
+    private void Awake()
+    {
+        cache[gameObject] = this;
+    }
+    private void OnDestroy()
+    {
+        cache.Remove(gameObject);
+    }
 
     private void Start()
     {
