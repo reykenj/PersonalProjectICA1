@@ -116,6 +116,17 @@ public class Projectile : MonoBehaviour
             }
         }
 
+        Humanoid hurtcontroller = other.gameObject?.GetComponent<Humanoid>();
+        if (CollisionEffectPrefab != null)
+        {
+            GameObject CollisionSpawn = ObjectPool.GetObj(CollisionEffectPrefab.name);
+            CollisionSpawn.transform.position = transform.position;
+        }
+        if (hurtcontroller != null)
+        {
+            Debug.Log("Hurting! " + other.gameObject.name);
+            hurtcontroller.Hurt(ProjInfo.Damage);
+        }
         if (ProjInfo.ReturnOnCollision)
         {
             if (OnDespawn != null)
@@ -126,17 +137,10 @@ public class Projectile : MonoBehaviour
             ObjectPool.ReturnObj(this.gameObject);
             return;
         }
-
-        Humanoid hurtcontroller = other.gameObject?.GetComponent<Humanoid>();
-        if (hurtcontroller == null) return;
-        if (CollisionEffectPrefab != null)
+        else
         {
-            GameObject CollisionSpawn = ObjectPool.GetObj(CollisionEffectPrefab.name);
-            CollisionSpawn.transform.position = transform.position;
+            StartCoroutine(WaitForHurtTimer());
         }
-        Debug.Log("Hurting! " + other.gameObject.name);
-        hurtcontroller.Hurt(ProjInfo.Damage);
-        StartCoroutine(WaitForHurtTimer());
     }
     IEnumerator WaitForHurtTimer()
     {
