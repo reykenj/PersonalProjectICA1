@@ -172,7 +172,7 @@ public class VoxelAStarPathing : MonoBehaviour
     private Vector3 GetGroundVoxelPosition(Vector3 startPos)
     {
         RaycastHit hit;
-        if (Physics.Raycast(startPos + Vector3.up * 10f, Vector3.down, out hit, 100f))
+        if (Physics.Raycast(startPos + Vector3.up * 0.25f, Vector3.down, out hit, 100f))
         {
             Vector3 hitPoint = hit.point - hit.normal * 0.01f;
             Vector3 voxelPos = new Vector3(
