@@ -6,7 +6,7 @@ using UnityEngine.Rendering;
 
 public class Humanoid : MonoBehaviour
 {
-    [SerializeField] private MeshRenderer meshRenderer;
+    [SerializeField] private List<MeshRenderer> meshRenderers;
     [SerializeField] private List<SkinnedMeshRenderer> SkinnedmeshRenderers;
     [SerializeField] private CharacterController _charController;
     [SerializeField] float HP;
@@ -124,7 +124,7 @@ public class Humanoid : MonoBehaviour
             HP = Mathf.Clamp(HP - Damage, 0, MaxHP);
         }
 
-        if (meshRenderer != null || SkinnedmeshRenderers.Count > 0)
+        if (meshRenderers.Count > 0 || SkinnedmeshRenderers.Count > 0)
         {
             flashTimer = 0.25f;
             if (FlashCoroutine == null)
@@ -141,9 +141,12 @@ public class Humanoid : MonoBehaviour
             float t = timer / flashDuration;
             Color flashColor = Color.white * t * flashIntensity;
 
-            if (meshRenderer != null)
+            if (meshRenderers.Count > 0)
             {
-                meshRenderer.material.color = flashColor;
+                for (int i = 0; i < meshRenderers.Count; i++)
+                {
+                    meshRenderers[i].material.color = flashColor;
+                }
             }
             else
             {
@@ -156,9 +159,12 @@ public class Humanoid : MonoBehaviour
             timer -= Time.deltaTime;
             yield return null;
         }
-        if (meshRenderer != null)
+        if (meshRenderers.Count > 0)
         {
-            meshRenderer.material.color = originalColors[0];
+            for (int i = 0; i < meshRenderers.Count; i++)
+            {
+                meshRenderers[i].material.color = originalColors[i];
+            }
         }
         else
         {
@@ -178,9 +184,12 @@ public class Humanoid : MonoBehaviour
             originalColors.Clear();
         }
         // Store original colors
-        if (meshRenderer != null)
+        if (meshRenderers.Count > 0)
         {
-            originalColors.Add(meshRenderer.material.color);
+            foreach (var mr in meshRenderers)
+            {
+                originalColors.Add(mr.material.color);
+            }
         }
         else if (SkinnedmeshRenderers.Count > 0)
         {
