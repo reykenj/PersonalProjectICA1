@@ -134,7 +134,7 @@ MonoBehaviour:
     CreateDebrisOnDestruction: 0
     Physics: 0
     timer: 0
-    lifetime: 0.1
+    lifetime: 100
     Render: 1
     mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
   SpellName: Punch

@@ -60,7 +60,7 @@ public class Humanoid : MonoBehaviour
         HP = MaxHP;
         Shield = MaxShield;
     }
-    void Update()
+    void FixedUpdate()
     {
         Vector3 finalVel = Vector3.zero;
         if (Gravity)

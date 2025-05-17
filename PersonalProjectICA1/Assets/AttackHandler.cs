@@ -7,7 +7,6 @@ public class AttackHandler : MonoBehaviour
 {
     public List<SpellContainer> SpellArray; // PROBLEM: WHAT HAPPENS WHEN ITS THE SAME MODIFIER SPELL MULTIPLE TIMES?
     public float CastTime = 0.25f; // might turn this into a animation speed multiplier for the punches instead
-    public float timer;
     public int Turn;
     public Transform AttackStartPoint;
 
@@ -21,10 +20,6 @@ public class AttackHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(timer > 0)
-        {
-            timer -= Time.deltaTime;
-        }
     }
     public void Cast()
     {
@@ -35,7 +30,6 @@ public class AttackHandler : MonoBehaviour
             SpellArray[i].spell.Apply(i, this, out bool UseTurn);
             if (UseTurn)
             {
-                timer += CastTime;
                 if (Turn >= SpellArray.Count)
                 {
                     Turn = 0;

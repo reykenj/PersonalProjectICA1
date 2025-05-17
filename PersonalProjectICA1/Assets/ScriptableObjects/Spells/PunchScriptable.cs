@@ -11,11 +11,19 @@ public class PunchSpell : Spell
         GameObject fist = ObjectPool.GetObj("AttackPrefab");
         if(Projectile.TryGetProj(fist, out Projectile fistProj))
         {
+
             fistProj.SetProjInfo(attackHandler.SpellArray[Index].TempProjInfo);
-            fistProj.transform.position = attackHandler.AttackStartPoint.position;
+            fistProj.transform.position = attackHandler.AttackStartPoint.position; // for some reason spawns at the bottom sometimes????
+
+            //fistProj.transform.SetParent(attackHandler.AttackStartPoint.parent);
+            //fistProj.transform.localPosition = attackHandler.AttackStartPoint.localPosition;
+
             fistProj.transform.rotation = attackHandler.AttackStartPoint.rotation;
             fistProj.Owner = attackHandler.gameObject;
         }
+        Debug.Log("FIST POS: " + fist.transform.position);
+        Debug.Log("TARGET POS: " + attackHandler.AttackStartPoint.position);
+        Debug.Log("PARENT POS: " + attackHandler.AttackStartPoint.parent.position);
         //int EditIndex = Index + 1;
         //if (EditIndex >= attackHandler.SpellArray.Count) return;
         //SpellContainer EditedProj = attackHandler.SpellArray[EditIndex];

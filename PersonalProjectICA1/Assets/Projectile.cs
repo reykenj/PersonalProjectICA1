@@ -103,13 +103,11 @@ public class Projectile : MonoBehaviour
     //}
     private void OnTriggerStay(Collider other)
     {
-        //Debug.Log("Colliing with! " + other.gameObject.name);
         if (other == null) return;
         if (other.gameObject == Owner) return;
         if (ProjInfo.DestructionRadius > 0)
         {
-            List<Vector4> affectedVoxels = ChunkManager.Instance.RemoveVoxelsInArea(transform.position, ProjInfo.DestructionRadius);
-
+            List<Vector4> affectedVoxels = ChunkManager.Instance.RemoveVoxelsInArea(transform.position, ProjInfo.DestructionRadius); // Something wrong with this if we make it a child
             if (ProjInfo.CreateDebrisOnDestruction)
             {
                 StartCoroutine(ChunkManager.Instance.SpawnPhysicsVoxelDebrisInArray(affectedVoxels));
@@ -173,8 +171,6 @@ public class Projectile : MonoBehaviour
 
     void Update()
     {
-        ProjInfo.timer += Time.deltaTime;
-        float t = ProjInfo.timer / duration;
         if (ProjInfo.timer >= ProjInfo.lifetime)
         {
             if (OnDespawn != null)
@@ -185,6 +181,8 @@ public class Projectile : MonoBehaviour
             ObjectPool.ReturnObj(gameObject);
             return;
         }
+        ProjInfo.timer += Time.deltaTime;
+        float t = ProjInfo.timer / duration;
 
         transform.localScale = new Vector3(ProjInfo.ScaleCurveX.Evaluate(t), ProjInfo.ScaleCurveY.Evaluate(t), ProjInfo.ScaleCurveZ.Evaluate(t));
 
