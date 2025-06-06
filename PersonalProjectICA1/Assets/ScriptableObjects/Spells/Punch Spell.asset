@@ -139,4 +139,5 @@ MonoBehaviour:
     mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
   SpellName: Punch
   RuneIcon: {fileID: 0}
+  UseTurn: 1
   AttackPrefab: {fileID: 0}

@@ -21,7 +21,8 @@ public class Projectile : MonoBehaviour
     //private Coroutine lifetimecoroutine;
     public GameObject Owner;
     public System.Action<Projectile> OnDespawn;
-    
+    public System.Action<Projectile> OnCollision;
+
 
     private static Dictionary<GameObject, Projectile> cache = new Dictionary<GameObject, Projectile>();
     private void Awake()
@@ -38,6 +39,7 @@ public class Projectile : MonoBehaviour
         _collider.sharedMesh = ProjInfo.mesh;
         _meshRenderer.enabled = ProjInfo.Render;
         SetPhysics(ProjInfo.Physics);
+        transform.localScale = new Vector3(ProjInfo.ScaleCurveX.Evaluate(0), ProjInfo.ScaleCurveY.Evaluate(0), ProjInfo.ScaleCurveZ.Evaluate(0));
         //ChangeLifetime(ProjInfo.lifetime);
         ProjInfo.timer = 0;
         if (ProjInfo.movementT == ProjectileInformation.MovementType.BeamExtendForward)
@@ -77,6 +79,10 @@ public class Projectile : MonoBehaviour
         if (OnDespawn != null)
         {
             OnDespawn = null;
+        }
+        if (OnCollision != null)
+        {
+            OnCollision = null;
         }
     }
     //public void ChangeLifetime(float newLifetime)
@@ -137,6 +143,10 @@ public class Projectile : MonoBehaviour
         }
         else
         {
+            if (OnCollision != null)
+            {
+                OnCollision.Invoke(this);
+            }
             StartCoroutine(WaitForHurtTimer());
         }
     }

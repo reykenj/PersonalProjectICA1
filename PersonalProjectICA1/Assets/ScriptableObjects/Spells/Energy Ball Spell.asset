@@ -147,7 +147,7 @@ MonoBehaviour:
       m_RotationOrder: 4
     Damage: 10
     HurtTimer: 0.1
-    DestructionRadius: 1
+    DestructionRadius: 2
     ReturnOnCollision: 1
     CreateDebrisOnDestruction: 0
     Physics: 1
@@ -157,4 +157,5 @@ MonoBehaviour:
     mesh: {fileID: 289301614986012343, guid: e95056eb6d47d244caa08cdb3767a7e4, type: 3}
   SpellName: Energy Ball
   RuneIcon: {fileID: 0}
+  UseTurn: 1
   AttackPrefab: {fileID: 7065334555887556334, guid: 9f1215f4198e5354ea3cca9af06dfa5e, type: 3}

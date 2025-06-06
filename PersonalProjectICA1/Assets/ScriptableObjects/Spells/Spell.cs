@@ -8,12 +8,13 @@ public class Spell : ScriptableObject
     public ProjectileInformation OGProjectileInformation;
     public string SpellName;
     public Sprite RuneIcon;
+    public bool UseTurn;
 
     // for when the user goes through all of the spells in the loop and is recharging, basically
     // reset all modified values here
     public virtual void Apply(int Index, AttackHandler attackHandler, out bool UseTurn)
     {
-        UseTurn = false;    
+        UseTurn = this.UseTurn;    
     }
 
     public virtual void OnHit(Projectile projectile)

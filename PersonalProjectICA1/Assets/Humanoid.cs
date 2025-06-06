@@ -36,6 +36,7 @@ public class Humanoid : MonoBehaviour
     public System.Action OnHurt;
     public System.Action OnDeath;
 
+    [SerializeField] bool OneMeshMultipleMat;
     private Coroutine FlashCoroutine;
 
     private List<Color> originalColors = new List<Color>();
@@ -115,6 +116,7 @@ public class Humanoid : MonoBehaviour
     }
     public void Hurt(float Damage)
     {
+        if(IsDead()) return;
         if (Shield > 0)
         {
             Shield = Mathf.Clamp(Shield - Damage, 0, MaxShield);
@@ -143,9 +145,19 @@ public class Humanoid : MonoBehaviour
 
             if (meshRenderers.Count > 0)
             {
-                for (int i = 0; i < meshRenderers.Count; i++)
+                if (!OneMeshMultipleMat)
                 {
-                    meshRenderers[i].material.color = flashColor;
+                    for (int i = 0; i < meshRenderers.Count; i++)
+                    {
+                        meshRenderers[i].material.color = flashColor;
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < originalColors.Count; i++)
+                    {
+                        meshRenderers[0].materials[i].color = flashColor;
+                    }
                 }
             }
             else
@@ -161,9 +173,19 @@ public class Humanoid : MonoBehaviour
         }
         if (meshRenderers.Count > 0)
         {
-            for (int i = 0; i < meshRenderers.Count; i++)
+            if (!OneMeshMultipleMat)
             {
-                meshRenderers[i].material.color = originalColors[i];
+                for (int i = 0; i < meshRenderers.Count; i++)
+                {
+                    meshRenderers[i].material.color = originalColors[i];
+                }
+            }
+            else
+            {
+                for (int i = 0; i < originalColors.Count; i++)
+                {
+                    meshRenderers[0].materials[i].color = originalColors[i];
+                }
             }
         }
         else
@@ -186,9 +208,19 @@ public class Humanoid : MonoBehaviour
         // Store original colors
         if (meshRenderers.Count > 0)
         {
-            foreach (var mr in meshRenderers)
+            if (!OneMeshMultipleMat)
             {
-                originalColors.Add(mr.material.color);
+                foreach (var mr in meshRenderers)
+                {
+                    originalColors.Add(mr.material.color);
+                }
+            }
+            else // may change this later
+            {
+                foreach (var material in meshRenderers[0].materials)
+                {
+                    originalColors.Add(material.color);
+                }
             }
         }
         else if (SkinnedmeshRenderers.Count > 0)

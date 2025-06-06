@@ -49,4 +49,25 @@ public class AttackHandler : MonoBehaviour
             SpellArray[i] = container;
         }
     }
+
+    public int FindNextTurnSpellIndexWrappedOnce(int currentIndex)
+    {
+        int count = SpellArray.Count;
+        if (count == 0)
+            return -1;
+        int nextIndex = (currentIndex + 1) % count;
+
+        while (nextIndex != currentIndex)
+        {
+            if (SpellArray[nextIndex].spell.UseTurn)
+            {
+                return nextIndex;
+            }
+            nextIndex = (nextIndex + 1) % count;
+        }
+
+        return -1;
+    }
+
+
 }

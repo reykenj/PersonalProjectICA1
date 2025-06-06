@@ -7,7 +7,7 @@ public class PunchSpell : Spell
     [SerializeField] GameObject AttackPrefab;
     public override void Apply(int Index, AttackHandler attackHandler, out bool UseTurn)
     {
-        UseTurn = true;
+        UseTurn = this.UseTurn;
         GameObject fist = ObjectPool.GetObj("AttackPrefab");
         if(Projectile.TryGetProj(fist, out Projectile fistProj))
         {

@@ -10,7 +10,7 @@ public class ExplosiveRaySpelll : Spell
     private float BeamRange = 50.0f;
     public override void Apply(int Index, AttackHandler attackHandler, out bool UseTurn)
     {
-        UseTurn = true;
+        UseTurn = this.UseTurn;
         GameObject beam = ObjectPool.GetObj("AttackPrefab");
 
         if (Projectile.TryGetProj(beam, out Projectile beamProj))
