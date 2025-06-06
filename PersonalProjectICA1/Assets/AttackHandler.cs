@@ -6,6 +6,7 @@ using UnityEngine;
 public class AttackHandler : MonoBehaviour
 {
     public List<SpellContainer> SpellArray; // PROBLEM: WHAT HAPPENS WHEN ITS THE SAME MODIFIER SPELL MULTIPLE TIMES?
+    public HashSet<int> DontCast;
     public float CastTime = 0.25f; // might turn this into a animation speed multiplier for the punches instead
     public int Turn;
     public Transform AttackStartPoint;
@@ -14,6 +15,7 @@ public class AttackHandler : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        DontCast = new HashSet<int>();
         ResetSpells(0, SpellArray.Count);
     }
 
@@ -27,19 +29,32 @@ public class AttackHandler : MonoBehaviour
         for (int i = Turn; i < SpellArray.Count; i++)
         {
             Turn++;
-            SpellArray[i].spell.Apply(i, this, out bool UseTurn);
+
+            if (DontCast.Contains(i)) {
+                DontCast.Remove(i);
+                Debug.Log("Removed index: " + i);
+                return;
+            }
+            Debug.Log("trying to cast " + SpellArray[i].spell.name);
+            SpellArray[i].spell.Apply(i, this, out bool UseTurn, AttackStartPoint.position, AttackStartPoint.rotation);
             if (UseTurn)
             {
-                if (Turn >= SpellArray.Count)
+                if (Turn >= SpellArray.Count || DontCast.Contains(Turn) && (Turn + 1 >= SpellArray.Count))
                 {
                     Turn = 0;
                 }
+                
                 ResetSpells(0, Turn); // may need to change later if we gonna back spell wrapping (rune at end going to start cuz multicast)
                 break;
             }
         }
     }
 
+    public void BasicCast(int Index, Vector3 position, Quaternion rotation)
+    {
+        SpellArray[Index].spell.Apply(Index, this, out bool UseTurn, position, rotation);
+        ResetSpells(Index, Index+1);
+    }
     private void ResetSpells(int Start, int End)
     {
         for (int i = Start; i < End; i++)

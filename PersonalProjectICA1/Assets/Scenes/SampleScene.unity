@@ -235,6 +235,7 @@ MonoBehaviour:
   flashTimer: 0
   flashDuration: 0.25
   flashIntensity: 5
+  OneMeshMultipleMat: 0
 --- !u!65 &92145828
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -461,6 +462,7 @@ MonoBehaviour:
   flashTimer: 0
   flashDuration: 0.25
   flashIntensity: 5
+  OneMeshMultipleMat: 0
 --- !u!65 &185748567
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -656,6 +658,7 @@ MonoBehaviour:
   flashTimer: 0
   flashDuration: 0.25
   flashIntensity: 5
+  OneMeshMultipleMat: 0
 --- !u!65 &199267972
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -851,6 +854,7 @@ MonoBehaviour:
   flashTimer: 0
   flashDuration: 0.25
   flashIntensity: 5
+  OneMeshMultipleMat: 0
 --- !u!65 &257383675
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1046,6 +1050,7 @@ MonoBehaviour:
   flashTimer: 0
   flashDuration: 0.25
   flashIntensity: 5
+  OneMeshMultipleMat: 0
 --- !u!65 &269811970
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1466,6 +1471,7 @@ MonoBehaviour:
   flashTimer: 0
   flashDuration: 0.25
   flashIntensity: 5
+  OneMeshMultipleMat: 0
 --- !u!65 &396324424
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1875,6 +1881,7 @@ MonoBehaviour:
   flashTimer: 0
   flashDuration: 0.25
   flashIntensity: 5
+  OneMeshMultipleMat: 0
 --- !u!65 &564375063
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2131,6 +2138,7 @@ MonoBehaviour:
   flashTimer: 0
   flashDuration: 0.25
   flashIntensity: 5
+  OneMeshMultipleMat: 0
 --- !u!114 &574463014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2144,6 +2152,79 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpellArray:
+  - spell: {fileID: 11400000, guid: 945118d7e645ecb4dbaaa65778d0da2d, type: 2}
+    TempProjInfo:
+      speedCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      MoveYCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      MoveXCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      movementT: 0
+      _initialPosition: {x: 0, y: 0, z: 0}
+      Direction: {x: 0, y: 0, z: 0}
+      RotationCurveX:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      RotationCurveY:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      RotationCurveZ:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      StartingRotation: {x: 0, y: 0, z: 0}
+      rotationT: 0
+      rotationSpeed: 0
+      ScaleCurveX:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      ScaleCurveY:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      ScaleCurveZ:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      Damage: 0
+      HurtTimer: 0
+      DestructionRadius: 0
+      ReturnOnCollision: 0
+      CreateDebrisOnDestruction: 0
+      Physics: 0
+      timer: 0
+      lifetime: 0
+      Render: 0
+      mesh: {fileID: 0}
+    NumList: 
   - spell: {fileID: 11400000, guid: 8b9913b655a6af045b42a8b404a0c0e6, type: 2}
     TempProjInfo:
       speedCurve:
@@ -2216,6 +2297,7 @@ MonoBehaviour:
       lifetime: 0
       Render: 0
       mesh: {fileID: 0}
+    NumList: 
   - spell: {fileID: 11400000, guid: 6f6fb3457fb5ca04f9b80a0bff10fb99, type: 2}
     TempProjInfo:
       speedCurve:
@@ -2288,6 +2370,7 @@ MonoBehaviour:
       lifetime: 0
       Render: 0
       mesh: {fileID: 0}
+    NumList: 
   CastTime: 0.25
   Turn: 0
   AttackStartPoint: {fileID: 92876169}
@@ -2376,6 +2459,7 @@ MonoBehaviour:
       lifetime: 0
       Render: 0
       mesh: {fileID: 0}
+    NumList: 
   CastTime: 0.25
   Turn: 0
   AttackStartPoint: {fileID: 92876169}
@@ -2485,6 +2569,7 @@ MonoBehaviour:
   flashTimer: 0
   flashDuration: 0.25
   flashIntensity: 5
+  OneMeshMultipleMat: 0
 --- !u!65 &580531727
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2762,6 +2847,7 @@ MonoBehaviour:
       lifetime: 0
       Render: 0
       mesh: {fileID: 0}
+    NumList: 
   CastTime: 0.25
   Turn: 0
   AttackStartPoint: {fileID: 409647425}
@@ -2804,7 +2890,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9989db249df88f5498e9abc5a4803acc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meshRenderers: []
+  meshRenderers:
+  - {fileID: 2094853106}
   SkinnedmeshRenderers: []
   _charController: {fileID: 642763985}
   HP: 0
@@ -2821,6 +2908,7 @@ MonoBehaviour:
   flashTimer: 0
   flashDuration: 0.25
   flashIntensity: 5
+  OneMeshMultipleMat: 1
 --- !u!143 &642763985
 CharacterController:
   m_ObjectHideFlags: 0
@@ -2972,6 +3060,7 @@ MonoBehaviour:
       lifetime: 0
       Render: 0
       mesh: {fileID: 0}
+    NumList: 
   CastTime: 0.25
   Turn: 0
   AttackStartPoint: {fileID: 409647425}
@@ -7974,6 +8063,7 @@ MonoBehaviour:
   flashTimer: 0
   flashDuration: 0.25
   flashIntensity: 5
+  OneMeshMultipleMat: 0
 --- !u!65 &770936968
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8247,6 +8337,7 @@ MonoBehaviour:
   flashTimer: 0
   flashDuration: 0.25
   flashIntensity: 5
+  OneMeshMultipleMat: 0
 --- !u!65 &861531222
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8442,6 +8533,7 @@ MonoBehaviour:
   flashTimer: 0
   flashDuration: 0.25
   flashIntensity: 5
+  OneMeshMultipleMat: 0
 --- !u!65 &867741749
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8635,6 +8727,7 @@ MonoBehaviour:
   flashTimer: 0
   flashDuration: 0.25
   flashIntensity: 5
+  OneMeshMultipleMat: 0
 --- !u!114 &987653384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8773,6 +8866,7 @@ MonoBehaviour:
   flashTimer: 0
   flashDuration: 0.25
   flashIntensity: 5
+  OneMeshMultipleMat: 0
 --- !u!65 &1015400240
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8968,6 +9062,7 @@ MonoBehaviour:
   flashTimer: 0
   flashDuration: 0.25
   flashIntensity: 5
+  OneMeshMultipleMat: 0
 --- !u!65 &1064487541
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15120,6 +15215,7 @@ MonoBehaviour:
   flashTimer: 0
   flashDuration: 0.25
   flashIntensity: 5
+  OneMeshMultipleMat: 0
 --- !u!65 &1632662965
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15565,6 +15661,7 @@ MonoBehaviour:
   flashTimer: 0
   flashDuration: 0.25
   flashIntensity: 5
+  OneMeshMultipleMat: 0
 --- !u!65 &1734417467
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20900,6 +20997,7 @@ MonoBehaviour:
   flashTimer: 0
   flashDuration: 0.25
   flashIntensity: 5
+  OneMeshMultipleMat: 0
 --- !u!65 &2017056025
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20997,6 +21095,11 @@ MeshRenderer:
 --- !u!4 &2094853105 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 08eb59ee7a956be4fa8667675fbb4159, type: 3}
+  m_PrefabInstance: {fileID: 1929291603}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &2094853106 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 08eb59ee7a956be4fa8667675fbb4159, type: 3}
   m_PrefabInstance: {fileID: 1929291603}
   m_PrefabAsset: {fileID: 0}
 --- !u!137 &2101745306 stripped

@@ -20,8 +20,6 @@ public class Projectile : MonoBehaviour
     private Vector3 _lastDirection;
     //private Coroutine lifetimecoroutine;
     public GameObject Owner;
-    public System.Action<Projectile> OnDespawn;
-    public System.Action<Projectile> OnCollision;
 
 
     private static Dictionary<GameObject, Projectile> cache = new Dictionary<GameObject, Projectile>();
@@ -76,14 +74,18 @@ public class Projectile : MonoBehaviour
         //    StopCoroutine(lifetimecoroutine);
         //    lifetimecoroutine = null;
         //}
-        if (OnDespawn != null)
+        ProjectileInformation info = ProjInfo;
+
+        if (info.OnDespawn != null)
         {
-            OnDespawn = null;
+            info.OnDespawn = null;
         }
-        if (OnCollision != null)
+        if (info.OnCollision != null)
         {
-            OnCollision = null;
+            info.OnCollision = null;
         }
+
+        ProjInfo = info;
     }
     //public void ChangeLifetime(float newLifetime)
     //{
@@ -131,22 +133,27 @@ public class Projectile : MonoBehaviour
             Debug.Log("Hurting! " + other.gameObject.name);
             hurtcontroller.Hurt(ProjInfo.Damage);
         }
+
+        if (ProjInfo.OnCollision != null)
+        {
+            ProjInfo.OnCollision.Invoke(this);
+            //ProjectileInformation info = ProjInfo;
+            //info.OnCollision = null;
+            //ProjInfo = info;
+        }
+
         if (ProjInfo.ReturnOnCollision)
         {
-            if (OnDespawn != null)
+            if (ProjInfo.OnDespawn != null)
             {
-                OnDespawn.Invoke(this);
-                OnDespawn = null;
+                ProjInfo.OnDespawn.Invoke(this);
             }
+
             ObjectPool.ReturnObj(this.gameObject);
             return;
         }
         else
         {
-            if (OnCollision != null)
-            {
-                OnCollision.Invoke(this);
-            }
             StartCoroutine(WaitForHurtTimer());
         }
     }
@@ -183,10 +190,11 @@ public class Projectile : MonoBehaviour
     {
         if (ProjInfo.timer >= ProjInfo.lifetime)
         {
-            if (OnDespawn != null)
+            if (ProjInfo.OnDespawn != null)
             {
-                OnDespawn.Invoke(this);
-                OnDespawn = null;
+                ProjectileInformation info = ProjInfo;
+                info.OnDespawn = null;
+                ProjInfo = info;
             }
             ObjectPool.ReturnObj(gameObject);
             return;
@@ -343,6 +351,6 @@ public struct ProjectileInformation
     public bool Render;
     public Mesh mesh;
 
-
-
+    public System.Action<Projectile> OnCollision;
+    public System.Action<Projectile> OnDespawn;
 }

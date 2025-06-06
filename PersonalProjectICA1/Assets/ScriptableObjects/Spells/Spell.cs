@@ -12,7 +12,7 @@ public class Spell : ScriptableObject
 
     // for when the user goes through all of the spells in the loop and is recharging, basically
     // reset all modified values here
-    public virtual void Apply(int Index, AttackHandler attackHandler, out bool UseTurn)
+    public virtual void Apply(int Index, AttackHandler attackHandler, out bool UseTurn, Vector3 position, Quaternion rotation)
     {
         UseTurn = this.UseTurn;    
     }

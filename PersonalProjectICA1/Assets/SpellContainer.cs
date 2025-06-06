@@ -1,4 +1,6 @@
+using NUnit.Framework;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
@@ -6,4 +8,5 @@ public struct SpellContainer // The purpose of this spell container is to have m
 {
     public Spell spell;
     public ProjectileInformation TempProjInfo;
+    public List<int> NumList;
 }

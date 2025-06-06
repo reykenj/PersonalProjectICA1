@@ -5,7 +5,7 @@ using UnityEngine;
 public class PunchSpell : Spell
 {
     [SerializeField] GameObject AttackPrefab;
-    public override void Apply(int Index, AttackHandler attackHandler, out bool UseTurn)
+    public override void Apply(int Index, AttackHandler attackHandler, out bool UseTurn, Vector3 position, Quaternion rotation)
     {
         UseTurn = this.UseTurn;
         GameObject fist = ObjectPool.GetObj("AttackPrefab");
@@ -13,12 +13,12 @@ public class PunchSpell : Spell
         {
 
             fistProj.SetProjInfo(attackHandler.SpellArray[Index].TempProjInfo);
-            fistProj.transform.position = attackHandler.AttackStartPoint.position; // for some reason spawns at the bottom sometimes????
+            fistProj.transform.position = position; // for some reason spawns at the bottom sometimes????
 
             //fistProj.transform.SetParent(attackHandler.AttackStartPoint.parent);
             //fistProj.transform.localPosition = attackHandler.AttackStartPoint.localPosition;
 
-            fistProj.transform.rotation = attackHandler.AttackStartPoint.rotation;
+            fistProj.transform.rotation = rotation;
             fistProj.Owner = attackHandler.gameObject;
         }
         Debug.Log("FIST POS: " + fist.transform.position);

@@ -5,15 +5,15 @@ using UnityEngine;
 public class EnergyBallSpell : Spell
 {
     [SerializeField] GameObject AttackPrefab;
-    public override void Apply(int Index, AttackHandler attackHandler, out bool UseTurn)
+    public override void Apply(int Index, AttackHandler attackHandler, out bool UseTurn, Vector3 position, Quaternion rotation)
     {
         UseTurn = this.UseTurn;
         GameObject fist = ObjectPool.GetObj("AttackPrefab");
         if (Projectile.TryGetProj(fist, out Projectile fistProj))
         {
             fistProj.SetProjInfo(attackHandler.SpellArray[Index].TempProjInfo);
-            fistProj.transform.position = attackHandler.AttackStartPoint.position;
-            fistProj.transform.rotation = attackHandler.AttackStartPoint.rotation;
+            fistProj.transform.position = position;
+            fistProj.transform.rotation = rotation;
             fistProj.Owner = attackHandler.gameObject;
         }
     }
