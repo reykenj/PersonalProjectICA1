@@ -25,30 +25,44 @@ public class AttackHandler : MonoBehaviour
     }
     public void Cast()
     {
+        int spellCount = SpellArray.Count;
+        if (spellCount == 0) return;
 
-        for (int i = Turn; i < SpellArray.Count; i++)
+        int startTurn = Turn;
+        //bool hasWrapped = false;
+
+        while (true)
         {
+            if (Turn >= spellCount)
+                Turn = 0;
+
+            if (DontCast.Contains(Turn))
+            {
+                DontCast.Remove(Turn);
+                Debug.Log("Removed index: " + Turn);
+                Turn++;
+                continue;
+            }
+
+            Debug.Log("Trying to cast: " + SpellArray[Turn].spell.name);
+            SpellArray[Turn].spell.Apply(Turn, this, out bool UseTurn, AttackStartPoint.position, AttackStartPoint.rotation);
             Turn++;
 
-            if (DontCast.Contains(i)) {
-                DontCast.Remove(i);
-                Debug.Log("Removed index: " + i);
-                return;
-            }
-            Debug.Log("trying to cast " + SpellArray[i].spell.name);
-            SpellArray[i].spell.Apply(i, this, out bool UseTurn, AttackStartPoint.position, AttackStartPoint.rotation);
             if (UseTurn)
             {
-                if (Turn >= SpellArray.Count || DontCast.Contains(Turn) && (Turn + 1 >= SpellArray.Count))
-                {
-                    Turn = 0;
-                }
-                
-                ResetSpells(0, Turn); // may need to change later if we gonna back spell wrapping (rune at end going to start cuz multicast)
+                if (Turn >= spellCount) Turn = 0;
+                ResetSpells(0, Turn);
+                break;
+            }
+
+            if (Turn == startTurn)
+            {
+                ResetSpells(0, spellCount);
                 break;
             }
         }
     }
+
 
     public void BasicCast(int Index, Vector3 position, Quaternion rotation)
     {
