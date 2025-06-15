@@ -156,6 +156,6 @@ MonoBehaviour:
     Render: 1
     mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
   SpellName: Explosive Ray
-  RuneIcon: {fileID: 0}
+  RuneIcon: {fileID: 21300000, guid: ed1afd2dbcb65de4eac708e6ab6d0135, type: 3}
   UseTurn: 1
   AttackPrefab: {fileID: 7065334555887556334, guid: 9f1215f4198e5354ea3cca9af06dfa5e, type: 3}

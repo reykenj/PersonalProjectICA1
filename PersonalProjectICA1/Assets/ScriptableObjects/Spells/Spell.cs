@@ -17,6 +17,10 @@ public class Spell : ScriptableObject
         UseTurn = this.UseTurn;    
     }
 
+    public virtual void PreApply(int Index, AttackHandler attackHandler, Vector3 position, Quaternion rotation)
+    {
+    }
+
     public virtual void OnHit(Projectile projectile)
     {
     }
