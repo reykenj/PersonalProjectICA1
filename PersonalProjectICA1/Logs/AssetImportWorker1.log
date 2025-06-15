@@ -230,3 +230,11 @@ Received Import Request.
 Start importing Assets/ScriptableObjects/Spells/Energy Ball Spell.asset using Guid(8b9913b655a6af045b42a8b404a0c0e6) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'a4c25b56921c5a068680987ee4af602b') in 0.0051585 seconds
 Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 11
 
+========================================================================
+Received Import Request.
+  Time since last request: 504.213360 seconds.
+  path: Assets/Prefab/Materials/Brown.fw.mat
+  artifactKey: Guid(da1a53b9feb1c0e43aa381233378a1b6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefab/Materials/Brown.fw.mat using Guid(da1a53b9feb1c0e43aa381233378a1b6) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '725f5fe599079fcfed9dfefd8fb014b9') in 0.5672635 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+

@@ -286,3 +286,83 @@ Received Import Request.
 Start importing Assets/ScriptableObjects/Spells/Punch Spell.asset using Guid(6f6fb3457fb5ca04f9b80a0bff10fb99) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'ed1347d5828e332c4513e2a9e5462b4d') in 0.0014283 seconds
 Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
 
+========================================================================
+Received Import Request.
+  Time since last request: 504.191146 seconds.
+  path: Assets/Materials/Materials/Brown.fw.mat
+  artifactKey: Guid(db44193a9c8de724d9831f6b7ba7eb6d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Materials/Materials/Brown.fw.mat using Guid(db44193a9c8de724d9831f6b7ba7eb6d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '7c34235a1cb7bbbd8c1f3e7b1258374c') in 0.5327482 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 1164.889043 seconds.
+  path: Assets/ScriptableObjects/Spells/9f2e6554-e032-4ef3-900c-8c459d92cb4f.png
+  artifactKey: Guid(863ab83e3c5a70248ae6c5fd51bc8644) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptableObjects/Spells/9f2e6554-e032-4ef3-900c-8c459d92cb4f.png using Guid(863ab83e3c5a70248ae6c5fd51bc8644) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'bd654686af686299a696a31b6c329b13') in 0.0172322 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 9.743072 seconds.
+  path: Assets/ScriptableObjects/Spells/EmptySpellSlot.png
+  artifactKey: Guid(863ab83e3c5a70248ae6c5fd51bc8644) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptableObjects/Spells/EmptySpellSlot.png using Guid(863ab83e3c5a70248ae6c5fd51bc8644) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'f96ba7a4c977c6567ee3a1c6cf5ef967') in 0.0149147 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 25.423001 seconds.
+  path: Assets/ScriptableObjects/Spells/EmptySpellSlot.png
+  artifactKey: Guid(863ab83e3c5a70248ae6c5fd51bc8644) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptableObjects/Spells/EmptySpellSlot.png using Guid(863ab83e3c5a70248ae6c5fd51bc8644) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'ca2dbd5a54e5b52a884e7c8bd8ec67c8') in 0.0300431 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 255.489089 seconds.
+  path: Assets/ScriptableObjects/Spells/EmptySpellSlot 1.png
+  artifactKey: Guid(ef52d29065ba1764bbfaea9d9c2c8d3b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptableObjects/Spells/EmptySpellSlot 1.png using Guid(ef52d29065ba1764bbfaea9d9c2c8d3b) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'e70be58d34224c48470bfa99d44af7c5') in 0.0404451 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 15.821206 seconds.
+  path: Assets/ScriptableObjects/Spells/EmptySpellSlot.png
+  artifactKey: Guid(ef52d29065ba1764bbfaea9d9c2c8d3b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptableObjects/Spells/EmptySpellSlot.png using Guid(ef52d29065ba1764bbfaea9d9c2c8d3b) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '7a62f7bae932d1117244c4d2506ef789') in 0.0189698 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 7.047685 seconds.
+  path: Assets/ScriptableObjects/Spells/EmptySpellSlot.png
+  artifactKey: Guid(ef52d29065ba1764bbfaea9d9c2c8d3b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptableObjects/Spells/EmptySpellSlot.png using Guid(ef52d29065ba1764bbfaea9d9c2c8d3b) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '03f4f7ef2090bcbe139a136beeac093b') in 0.0219526 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 846.956535 seconds.
+  path: Assets/ScriptableObjects/Spells/SpellSlot.png
+  artifactKey: Guid(ef52d29065ba1764bbfaea9d9c2c8d3b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptableObjects/Spells/SpellSlot.png using Guid(ef52d29065ba1764bbfaea9d9c2c8d3b) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '45efcf628beac680d80faf6540166050') in 0.0457434 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
+========================================================================
+Received Import Request.
+  Time since last request: 5.813672 seconds.
+  path: Assets/ScriptableObjects/Spells/EmptySpellSlot.png
+  artifactKey: Guid(0a9c9e525fa5df8459f26280f8eaf1b0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptableObjects/Spells/EmptySpellSlot.png using Guid(0a9c9e525fa5df8459f26280f8eaf1b0) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '80eb2e45814b62404f322a08bbb300fb') in 0.0254188 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 13.098700 seconds.
+  path: Assets/ScriptableObjects/Spells/EmptySpellSlot.png
+  artifactKey: Guid(0a9c9e525fa5df8459f26280f8eaf1b0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptableObjects/Spells/EmptySpellSlot.png using Guid(0a9c9e525fa5df8459f26280f8eaf1b0) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '4a3726d90d21fb8b5ffa60eb20423764') in 0.0218727 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 3
+
