@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Spell", menuName = "Spells/New Spell")]
