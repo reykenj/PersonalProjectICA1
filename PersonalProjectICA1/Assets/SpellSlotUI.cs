@@ -44,8 +44,20 @@ public class SpellSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             }
             dragicon.transform.SetParent(parentDrag, false);
             dragicon.SetActive(false);
+            dragicon.GetComponent<Image>().raycastTarget = false;
         }
     }
+
+    private void Update()
+    {
+        if (DragIconChosen == this && DragIconChosen.gameObject.activeSelf)
+        {
+            Vector3 targetPosition = Input.mousePosition;
+            Vector3 currentPosition = DragIconChosen.transform.position;
+            DragIconChosen.transform.position = Vector3.Lerp(currentPosition, targetPosition, Time.unscaledDeltaTime * 20f);
+        }
+    }
+
 
     public void SetSpell(Spell spell, int index)
     {
@@ -64,6 +76,8 @@ public class SpellSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         isBeingHeld = true;
         DragIconChosen.gameObject.SetActive(true);
+
+
         DragIconChosen.SetSpell(spell, Index);
         slotimage.sprite = EmptySpellSlot;
         Debug.Log("Slider is being held");
@@ -74,9 +88,34 @@ public class SpellSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         isBeingHeld = false;
         DragIconChosen.gameObject.SetActive(false);
 
-        // Change Children
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventData, results);
 
-        //DragIconChosen.SetSpell(spell);
+        bool swapped = false;
+
+        foreach (var result in results)
+        {
+            if (result.gameObject == gameObject)
+                continue;
+
+            if (TryGetSpellSlotUI(result.gameObject, out SpellSlotUI targetSlot))
+            {
+                Spell temp = targetSlot.spell;
+                targetSlot.SetSpell(spell, targetSlot.Index);
+                SetSpell(temp, Index);
+                swapped = true;
+                break;
+            }
+        }
+
+        // If not swapped, return the spell to original slot
+        if (!swapped)
+        {
+            SetSpell(DragIconChosen.spell, Index);
+        }
+
         Debug.Log("Slider released");
     }
+
+
 }
