@@ -57,6 +57,10 @@ public class FloatingHeadController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (Time.timeScale <= 0.0f)
+        {
+            return;
+        }
         switch (CurrState)
         {
             case BehaviourState.Pathing:

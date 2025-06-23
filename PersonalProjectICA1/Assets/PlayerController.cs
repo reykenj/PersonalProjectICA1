@@ -60,6 +60,10 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Time.timeScale <= 0.0f)
+        {
+            return;
+        }
         if (humanoid.IsDead())
         {
             //humanoid.SetDirection(new Vector3(0, 0, 0));
