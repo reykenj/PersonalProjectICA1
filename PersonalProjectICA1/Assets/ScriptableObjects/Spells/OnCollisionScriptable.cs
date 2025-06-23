@@ -14,6 +14,10 @@ public class OnCollisionSpell : Spell
         int IndexToActivateOn = attackHandler.FindNextTurnSpellIndexWrappedOnce(Index);
         int IndexToCast = attackHandler.FindNextTurnSpellIndexWrappedOnce(IndexToActivateOn);
 
+        if(IndexToCast == -1)
+        {
+            return;
+        }
         Debug.Log("Index to activate on: " + IndexToActivateOn);
         Debug.Log("Index to cast: " + IndexToCast);
 
@@ -24,8 +28,12 @@ public class OnCollisionSpell : Spell
         while (i != IndexToCast)
         {
             Debug.Log("Casting in between: " + attackHandler.SpellArray[i].spell.name);
-            attackHandler.BasicCast(i, attackHandler.AttackStartPoint.position, attackHandler.AttackStartPoint.rotation);
-            attackHandler.DontCast.Add(i);
+
+            if (attackHandler.SpellArray[i].spell != null)
+            {
+                attackHandler.BasicCast(i, attackHandler.AttackStartPoint.position, attackHandler.AttackStartPoint.rotation);
+                attackHandler.DontCast.Add(i);
+            }
             i = (i + 1) % spellCount;
             if (i == IndexToActivateOn) break;
         }

@@ -41,6 +41,11 @@ public class AttackHandler : MonoBehaviour
                 Turn++;
                 continue;
             }
+            if (SpellArray[Turn].spell == null)
+            {
+                Turn++;
+                continue;
+            }
 
             Debug.Log("Trying to cast: " + SpellArray[Turn].spell.name);
             SpellArray[Turn].spell.Apply(Turn, this, out bool UseTurn, AttackStartPoint.position, AttackStartPoint.rotation);
@@ -72,6 +77,10 @@ public class AttackHandler : MonoBehaviour
         for (int i = Start; i < End; i++)
         {
             SpellContainer container = SpellArray[i];
+            if(SpellArray[i].spell == null)
+            {
+                continue;
+            }
             container.TempProjInfo = container.spell.OGProjectileInformation;
             SpellArray[i] = container;
         }
@@ -86,6 +95,10 @@ public class AttackHandler : MonoBehaviour
 
         while (nextIndex != currentIndex)
         {
+            if (SpellArray[nextIndex].spell == null)
+            {
+                continue;
+            }
             if (SpellArray[nextIndex].spell.UseTurn)
             {
                 return nextIndex;

@@ -10,7 +10,10 @@ public class DamageUpSpell : Spell
     {
         UseTurn = this.UseTurn;
         int IndexToActivateOn = attackHandler.FindNextTurnSpellIndexWrappedOnce(Index);
-
+        if (IndexToActivateOn == -1)
+        {
+            return;
+        }
         SpellContainer EditedProj = attackHandler.SpellArray[IndexToActivateOn];
         EditedProj.TempProjInfo.Damage += OGProjectileInformation.Damage;
         attackHandler.SpellArray[IndexToActivateOn] = EditedProj;
