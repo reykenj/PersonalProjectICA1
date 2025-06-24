@@ -27,36 +27,33 @@ public class AttackHandler : MonoBehaviour
         if (spellCount == 0) return;
 
         int startTurn = Turn;
-        //bool hasWrapped = false;
 
         while (true)
         {
-            if (Turn >= spellCount)
-                Turn = 0;
-
             if (DontCast.Contains(Turn))
             {
                 DontCast.Remove(Turn);
                 Debug.Log("Removed index: " + Turn);
-                Turn++;
-                continue;
             }
-            if (SpellArray[Turn].spell == null)
+            else
             {
-                Turn++;
-                continue;
+                bool UseTurn = false;
+
+                if (SpellArray[Turn].spell != null)
+                {
+                    Debug.Log("Trying to cast: " + SpellArray[Turn].spell.name);
+                    SpellArray[Turn].spell.Apply(Turn, this, out UseTurn, AttackStartPoint.position, AttackStartPoint.rotation);
+                }
+
+                if (UseTurn)
+                {
+                    Turn = (Turn + 1) % spellCount;
+                    ResetSpells(0, Turn);
+                    break;
+                }
             }
 
-            Debug.Log("Trying to cast: " + SpellArray[Turn].spell.name);
-            SpellArray[Turn].spell.Apply(Turn, this, out bool UseTurn, AttackStartPoint.position, AttackStartPoint.rotation);
-            Turn++;
-
-            if (UseTurn)
-            {
-                if (Turn >= spellCount) Turn = 0;
-                ResetSpells(0, Turn);
-                break;
-            }
+            Turn = (Turn + 1) % spellCount;
 
             if (Turn == startTurn)
             {
@@ -65,6 +62,7 @@ public class AttackHandler : MonoBehaviour
             }
         }
     }
+
 
 
     public void BasicCast(int Index, Vector3 position, Quaternion rotation)
@@ -77,7 +75,7 @@ public class AttackHandler : MonoBehaviour
         for (int i = Start; i < End; i++)
         {
             SpellContainer container = SpellArray[i];
-            if(SpellArray[i].spell == null)
+            if(container.spell == null)
             {
                 continue;
             }
@@ -97,6 +95,7 @@ public class AttackHandler : MonoBehaviour
         {
             if (SpellArray[nextIndex].spell == null)
             {
+                nextIndex = (nextIndex + 1) % count;
                 continue;
             }
             if (SpellArray[nextIndex].spell.UseTurn)

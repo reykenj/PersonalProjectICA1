@@ -76,7 +76,7 @@ public class SpellSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         isBeingHeld = true;
         DragIconChosen.gameObject.SetActive(true);
-
+        DragIconChosen.transform.position = Input.mousePosition;
 
         DragIconChosen.SetSpell(spell, Index);
         slotimage.sprite = EmptySpellSlot;

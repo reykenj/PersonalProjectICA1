@@ -54,8 +54,6 @@ public class VoxelAStarPathing : MonoBehaviour
         PathFound.Clear();
         PathFound = VoxelPathfinding(transform.position, Target.position);
     }
-
-    // Move towards first node and once the ai reaches it, calculate pathfinding again
     public List<Vector3> VoxelPathfinding(Vector3 currentPos, Vector3 TargetPos)
     {
         if (Vector3.Distance(currentPos, TargetPos) < 0.5f)
@@ -66,14 +64,12 @@ public class VoxelAStarPathing : MonoBehaviour
         Vector3 groundCurrent = GetVoxelPosition(currentPos);
         Vector3 groundTarget = GetVoxelPosition(TargetPos);
 
-        // Early rejection: Target is blocked or isolated
         Container targetContainer = ChunkManager.Instance.FindChunkContainingVoxelOptimized(groundTarget);
         if (targetContainer == null || targetContainer[groundTarget - targetContainer.containerPosition].isSolid)
         {
-            return new List<Vector3>(); // Target voxel is solid or missing
+            return new List<Vector3>();
         }
 
-        // Optional: check if target is surrounded by solids (no neighbors to path into)
         bool hasWalkableNeighbor = false;
         foreach (Vector3 dir in Container.voxelFaceChecks)
         {
@@ -90,7 +86,7 @@ public class VoxelAStarPathing : MonoBehaviour
 
         if (!hasWalkableNeighbor)
         {
-            return new List<Vector3>(); // Target is fully enclosed by solid voxels
+            return new List<Vector3>();
         }
 
         PriorityQueue<VoxelPathNode> OpenNodes = new PriorityQueue<VoxelPathNode>();

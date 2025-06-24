@@ -12,8 +12,11 @@ public class OnCollisionSpell : Spell
         UseTurn = this.UseTurn;
 
         int IndexToActivateOn = attackHandler.FindNextTurnSpellIndexWrappedOnce(Index);
+        if (IndexToActivateOn == -1)
+        {
+            return;
+        }
         int IndexToCast = attackHandler.FindNextTurnSpellIndexWrappedOnce(IndexToActivateOn);
-
         if(IndexToCast == -1)
         {
             return;

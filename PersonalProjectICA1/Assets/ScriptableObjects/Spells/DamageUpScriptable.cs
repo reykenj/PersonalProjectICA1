@@ -12,6 +12,7 @@ public class DamageUpSpell : Spell
         int IndexToActivateOn = attackHandler.FindNextTurnSpellIndexWrappedOnce(Index);
         if (IndexToActivateOn == -1)
         {
+            Debug.Log("Damage Up something is missing");
             return;
         }
         SpellContainer EditedProj = attackHandler.SpellArray[IndexToActivateOn];
