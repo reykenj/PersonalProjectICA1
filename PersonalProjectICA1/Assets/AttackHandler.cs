@@ -67,8 +67,15 @@ public class AttackHandler : MonoBehaviour
 
     public void BasicCast(int Index, Vector3 position, Quaternion rotation)
     {
-        SpellArray[Index].spell.Apply(Index, this, out bool UseTurn, position, rotation);
-        ResetSpells(Index, Index+1);
+        if (SpellArray[Index].spell != null)
+        {
+            SpellArray[Index].spell.Apply(Index, this, out bool UseTurn, position, rotation);
+            ResetSpells(Index, Index + 1);
+        }
+        else
+        {
+            Debug.LogError("Tried to basic cast a null spell!");
+        }
     }
     private void ResetSpells(int Start, int End)
     {
