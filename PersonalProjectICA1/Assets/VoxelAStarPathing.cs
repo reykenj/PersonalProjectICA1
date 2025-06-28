@@ -22,6 +22,10 @@ public class VoxelAStarPathing : MonoBehaviour
             waitingForPath = true;
             PathfindManager.Instance.RequestPath(this);
         }
+        else
+        {
+            Debug.Log("Still Waiting for path!!");
+        }
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -67,6 +71,14 @@ public class VoxelAStarPathing : MonoBehaviour
         Container targetContainer = ChunkManager.Instance.FindChunkContainingVoxelOptimized(groundTarget);
         if (targetContainer == null || targetContainer[groundTarget - targetContainer.containerPosition].isSolid)
         {
+            if (targetContainer == null)
+            {
+                Debug.LogError("CONTAINER INVALID");
+            }
+            else
+            {
+                Debug.LogError("VOXEL INVALID");
+            }
             return new List<Vector3>();
         }
 
@@ -86,6 +98,7 @@ public class VoxelAStarPathing : MonoBehaviour
 
         if (!hasWalkableNeighbor)
         {
+            Debug.LogError("NO WALKABLE NEIGHBORS LOL");
             return new List<Vector3>();
         }
 
@@ -104,6 +117,7 @@ public class VoxelAStarPathing : MonoBehaviour
 
         while (OpenNodes.Count > 0 && nodesExplored++ < maxNodesToExplore)
         {
+            Debug.Log("Trying pathfind");
             VoxelPathNode currentNode = OpenNodes.Dequeue();
             OpenDict.Remove(currentNode.pos);
 

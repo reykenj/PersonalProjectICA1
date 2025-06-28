@@ -30,7 +30,7 @@ public class OnCollisionSpell : Spell
         int i = (IndexToActivateOn + 1) % spellCount;
         while (i != IndexToCast)
         {
-            Debug.Log("Casting in between: " + attackHandler.SpellArray[i].spell.name);
+            //Debug.Log("Casting in between: " + attackHandler.SpellArray[i].spell.name);
 
             if (attackHandler.SpellArray[i].spell != null)
             {

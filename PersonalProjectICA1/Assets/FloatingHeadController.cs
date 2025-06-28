@@ -28,9 +28,9 @@ public class FloatingHeadController : MonoBehaviour
     [SerializeField] int MaxSearchCount = 5;
     [SerializeField] float PathfindingAccuracy = 0.5f;
     private int SearchCount;
-    private Vector3 Direction;
+    [SerializeField] private Vector3 Direction;
     Vector3 TargetPos;
-    Vector3 Diff;
+    [SerializeField] Vector3 Diff;
     Coroutine FindNewPath;
     Coroutine SeePlayer;
     Coroutine SendOutAttack;
@@ -132,7 +132,10 @@ public class FloatingHeadController : MonoBehaviour
                     Wander();
                 }
                 VoxelAStarPathing.Pathfind();
+
+                Debug.Log("Trying to pathfind this floating head now!");
             }
+            Debug.Log("floating head");
             yield return new WaitForSeconds(MaxSearchTimer + Random.Range(-0.25f, 0.25f));
         }
     }
@@ -148,9 +151,16 @@ public class FloatingHeadController : MonoBehaviour
                 LayerMask.GetMask("Player")))
             {
                 if (TargetTransform.parent != hit.collider.transform) TargetTransform.SetParent(hit.collider.transform);
+
                 TargetTransform.localPosition = Vector3.up * (AttackRange - 1);
+
                 if (Physics.Raycast(PlayerTransform.position, Vector3.up, out RaycastHit hit2, AttackRange - 2, LayerMask.GetMask("Voxel")))
-                    TargetTransform.localPosition = Vector3.up * hit2.distance;
+                {
+                    //TargetTransform.localPosition
+                    Vector3 NewPos = Vector3.up * hit2.distance;
+                    NewPos.y -= 1;
+                    TargetTransform.localPosition = NewPos;
+                }
                 // maybe we shoot another raycast upwards for this to determin whats the highest place the skull can go
                 // without breaking line of sight from player
                 //but for now lets jkust multiple this Vector3.up, nvm

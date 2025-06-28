@@ -97,7 +97,7 @@ public class ChunkManager : Singleton<ChunkManager>
         int chunkSize = Container.ChunkVoxelMaxAmtXZ;
         Vector3 chunkCoord = new Vector3(
             Mathf.Floor(voxelPosition.x / chunkSize) * chunkSize,
-            Mathf.Floor(voxelPosition.y / chunkSize) * chunkSize,
+            0,
             Mathf.Floor(voxelPosition.z / chunkSize) * chunkSize);
 
         if( chunkCoord.x < 0 || chunkCoord.z < 0 || chunkCoord.x > Container.ChunkVoxelMaxAmtXZ * Container.ChunkSize || chunkCoord.z > Container.ChunkVoxelMaxAmtXZ * Container.ChunkSize)
@@ -156,7 +156,7 @@ public class ChunkManager : Singleton<ChunkManager>
             Vector3 chunkMin = chunk.containerPosition;
             Vector3 chunkMax = chunkMin + new Vector3(
                 Container.ChunkVoxelMaxAmtXZ,
-                Container.ChunkVoxelMaxAmtXZ,
+                Container.ChunkVoxelMaxAmtXZ * 2,
                 Container.ChunkVoxelMaxAmtXZ);
 
 
