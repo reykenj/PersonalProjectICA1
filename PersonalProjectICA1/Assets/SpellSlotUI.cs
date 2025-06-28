@@ -14,6 +14,8 @@ public class SpellSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public static SpellSlotUI DragIconChosen;
     public Sprite EmptySpellSlot;
 
+    public SpellDeckUI ParentDeck;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
@@ -79,6 +81,7 @@ public class SpellSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         DragIconChosen.transform.position = Input.mousePosition;
 
         DragIconChosen.SetSpell(spell, Index);
+        DragIconChosen.ParentDeck = ParentDeck;
         slotimage.sprite = EmptySpellSlot;
         Debug.Log("Slider is being held");
     }
@@ -104,11 +107,12 @@ public class SpellSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 targetSlot.SetSpell(spell, targetSlot.Index);
                 SetSpell(temp, Index);
                 swapped = true;
+                targetSlot.ParentDeck.OnUIChangeConfirmed();
+                DragIconChosen.ParentDeck.OnUIChangeConfirmed();
                 break;
             }
         }
 
-        // If not swapped, return the spell to original slot
         if (!swapped)
         {
             SetSpell(DragIconChosen.spell, Index);

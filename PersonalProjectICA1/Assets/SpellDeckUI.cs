@@ -55,8 +55,11 @@ public class SpellDeckUI : MonoBehaviour
 
         for (int i = 0; i < attackHandler.SpellArray.Count; i++)
         {
-            GameObject SpellSlotUI = ObjectPool.GetObj(SpellSlotUIPrefab.name);
-            SpellSlotUI.transform.SetParent(transform, false);
+            GameObject SpellSlotUIOBJ = ObjectPool.GetObj(SpellSlotUIPrefab.name);
+            SpellSlotUIOBJ.transform.SetParent(transform, false);
+
+            SpellSlotUI.TryGetSpellSlotUI(transform.GetChild(i).gameObject, out SpellSlotUI spellslotUI);
+            spellslotUI.ParentDeck = this;
         }
 
 

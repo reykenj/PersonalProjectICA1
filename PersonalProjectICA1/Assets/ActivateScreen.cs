@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,6 +8,8 @@ public class ActivateScreen : MonoBehaviour
     private InputActionAsset _inputActions;
     [SerializeField] string Action;
     [SerializeField] bool StopTime;
+    [SerializeField] List<GameObject> EnableOnActivate;
+    [SerializeField] List<GameObject> DisableOnActivate;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -46,6 +49,15 @@ public class ActivateScreen : MonoBehaviour
             }
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
+
+            for (int i = 0; i < EnableOnActivate.Count; i++)
+            {
+                EnableOnActivate[i].SetActive(true);
+            }
+            for (int i = 0; i < DisableOnActivate.Count; i++)
+            {
+                DisableOnActivate[i].SetActive(false);
+            }
         }
         gameObject.SetActive(!gameObject.activeSelf);
     }
