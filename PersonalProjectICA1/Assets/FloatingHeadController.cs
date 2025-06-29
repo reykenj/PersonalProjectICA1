@@ -38,6 +38,11 @@ public class FloatingHeadController : MonoBehaviour
     bool Tracking = true;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    private void Start()
+    {
+        humanoid.OnDeath += OnDeath;
+    }
     private void OnEnable()
     {
         Tracking = true;
@@ -46,13 +51,25 @@ public class FloatingHeadController : MonoBehaviour
 
         FindNewPath = StartCoroutine(FindPath());
         SeePlayer = StartCoroutine(TrySeePlayer());
+        
     }
 
 
     void OnDisable()
     {
-        if (FindNewPath != null) StopCoroutine(FindNewPath);
-        if (SeePlayer != null) StopCoroutine(SeePlayer);
+        if (FindNewPath != null) { 
+            StopCoroutine(FindNewPath);
+            FindNewPath = null;
+
+        }
+        if (SeePlayer != null) { 
+            StopCoroutine(SeePlayer);
+            SeePlayer = null;
+        }
+        if(SendOutAttack != null) { 
+            StopCoroutine(SendOutAttack);
+            SendOutAttack = null;
+        }
     }
     // Update is called once per frame
     void FixedUpdate()
@@ -234,5 +251,10 @@ public class FloatingHeadController : MonoBehaviour
         {
             CurrState = BehaviourState.Pathing;
         }
+    }
+
+    void OnDeath()
+    {
+        TargetTransform.SetParent(transform);
     }
 }

@@ -13,20 +13,12 @@ public class Humanoid : MonoBehaviour
     [SerializeField] float Shield; // IF SHIELD IS DOWN, ANY RAGDOLL MAKING MOVES WILL RAGDOLL THE UNFORTUNATE SOUL
     [SerializeField] float MaxShield;
     [SerializeField] float speed;
-
-
     public float SpeedMultiplier;
-
-
     [SerializeField] bool Gravity;
     [SerializeField] bool GravityFixed;
-
     [SerializeField] bool Grounded;
     [SerializeField] bool Ragdolled;
-
     [SerializeField] bool TotalGrounded;
-
-
     [SerializeField] private float gravity = -9.81f;
     //public float GravityMultiplier = 1.0f;
     [SerializeField] private float JumpHeight = 1.0f;
@@ -34,19 +26,17 @@ public class Humanoid : MonoBehaviour
     [SerializeField] private float flashDuration = 0.25f;
     [SerializeField] private float flashIntensity = 5.0f;
 
+    [SerializeField] private GameObject DeathExplosionEffectPrefab;
+    [SerializeField] private float DeathTimer = 0.5f;
     private Vector3 GravityVel;
-
     public Vector3 ExternalVel;
     public float externalVelDamp = 5f;
-
     public System.Action OnGrounded;
     public System.Action OnShieldBreak;
     public System.Action OnHurt;
     public System.Action OnDeath;
-
     [SerializeField] bool OneMeshMultipleMat;
     private Coroutine FlashCoroutine;
-
     private List<Color> originalColors = new List<Color>();
     private static Dictionary<GameObject, Humanoid> cache = new Dictionary<GameObject, Humanoid>();
 
@@ -57,15 +47,16 @@ public class Humanoid : MonoBehaviour
     private void Awake()
     {
         cache[gameObject] = this;
+        SetOGColors();
+        OnDeath += DeathDespawn;
     }
     private void OnDestroy()
     {
         cache.Remove(gameObject);
     }
-
-    private void Start()
+    private void OnEnable()
     {
-        SetOGColors();
+        ResetOGColors();
         HP = MaxHP;
         Shield = MaxShield;
     }
@@ -94,8 +85,7 @@ public class Humanoid : MonoBehaviour
 
         finalVel += ExternalVel;
 
-        if (HP > 0)
-            _charController.Move(finalVel * Time.fixedDeltaTime);
+        _charController.Move(finalVel * Time.fixedDeltaTime);
 
         // Raycast ground detection
         if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 0.2f, LayerMask.GetMask("Voxel")))
@@ -178,6 +168,10 @@ public class Humanoid : MonoBehaviour
         {
             HP = Mathf.Clamp(HP - Damage, 0, MaxHP);
         }
+        if (HP <= 0)
+        {
+            OnDeath?.Invoke();
+        }
 
         if (meshRenderers.Count > 0 || SkinnedmeshRenderers.Count > 0)
         {
@@ -224,31 +218,10 @@ public class Humanoid : MonoBehaviour
             timer -= Time.deltaTime;
             yield return null;
         }
-        if (meshRenderers.Count > 0)
+        if (!IsDead())
         {
-            if (!OneMeshMultipleMat)
-            {
-                for (int i = 0; i < meshRenderers.Count; i++)
-                {
-                    meshRenderers[i].material.color = originalColors[i];
-                }
-            }
-            else
-            {
-                for (int i = 0; i < originalColors.Count; i++)
-                {
-                    meshRenderers[0].materials[i].color = originalColors[i];
-                }
-            }
+            ResetOGColors();
         }
-        else
-        {
-            for (int i = 0; i < SkinnedmeshRenderers.Count; i++)
-            {
-                SkinnedmeshRenderers[i].material.color = originalColors[i];
-            }
-        }
-
         FlashCoroutine = null;
     }
 
@@ -286,6 +259,35 @@ public class Humanoid : MonoBehaviour
     }
 
 
+    void ResetOGColors()
+    {
+        if (meshRenderers.Count > 0)
+        {
+            if (!OneMeshMultipleMat)
+            {
+                for (int i = 0; i < meshRenderers.Count; i++)
+                {
+                    meshRenderers[i].material.color = originalColors[i];
+                }
+            }
+            else
+            {
+                for (int i = 0; i < originalColors.Count; i++)
+                {
+                    meshRenderers[0].materials[i].color = originalColors[i];
+                }
+            }
+        }
+        else
+        {
+            for (int i = 0; i < SkinnedmeshRenderers.Count; i++)
+            {
+                SkinnedmeshRenderers[i].material.color = originalColors[i];
+            }
+        }
+    }
+
+
     public void SetGravityVel(Vector3 newGravityVel)
     {
         GravityFixed = true;
@@ -308,6 +310,20 @@ public class Humanoid : MonoBehaviour
         {
             GravityFixed = false;
         }
+    }
+
+    IEnumerator DeathExplosion()
+    {
+        yield return new WaitForSeconds(DeathTimer);
+        GameObject explosion = ObjectPool.GetObj(DeathExplosionEffectPrefab.name);
+        explosion.transform.position = transform.position;
+        ObjectPool.ReturnObj(gameObject);
+    }
+
+
+    void DeathDespawn()
+    {
+        StartCoroutine(DeathExplosion());
     }
 
 }
