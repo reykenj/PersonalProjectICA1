@@ -60,7 +60,7 @@ public class Humanoid : MonoBehaviour
         HP = MaxHP;
         Shield = MaxShield;
     }
-    void FixedUpdate()
+    void Update()
     {
         bool wasGroundedLastFrame = TotalGrounded;
 
@@ -72,7 +72,7 @@ public class Humanoid : MonoBehaviour
             {
                 if (!IsGrounded())
                 {
-                    GravityVel.y += gravity * Time.fixedDeltaTime;
+                    GravityVel.y += gravity * Time.deltaTime;
                 }
                 else if (GravityVel.y < -1)
                 {
@@ -85,7 +85,7 @@ public class Humanoid : MonoBehaviour
 
         finalVel += ExternalVel;
 
-        _charController.Move(finalVel * Time.fixedDeltaTime);
+        _charController.Move(finalVel * Time.deltaTime);
 
         // Raycast ground detection
         if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 0.2f, LayerMask.GetMask("Voxel")))
@@ -95,7 +95,7 @@ public class Humanoid : MonoBehaviour
         else
             Grounded = false;
 
-        ExternalVel = Vector3.Lerp(ExternalVel, Vector3.zero, Time.fixedDeltaTime * externalVelDamp);
+        ExternalVel = Vector3.Lerp(ExternalVel, Vector3.zero, Time.deltaTime * externalVelDamp);
 
 
         TotalGrounded = IsGrounded();

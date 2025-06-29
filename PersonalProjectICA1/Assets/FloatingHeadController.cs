@@ -39,9 +39,14 @@ public class FloatingHeadController : MonoBehaviour
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
-    private void Start()
+    private void Awake()
     {
         humanoid.OnDeath += OnDeath;
+
+        if (PlayerTransform == null)
+        {
+            PlayerTransform = GameFlowManager.instance.Player.transform;
+        }
     }
     private void OnEnable()
     {

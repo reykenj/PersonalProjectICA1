@@ -2795,6 +2795,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 50e7f7cd6a4e20544803ae9978a43ec5, type: 3}
+--- !u!114 &638483912 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6972388585460330472, guid: 9d995d8ddf051de4a830843a21ab7e3c, type: 3}
+  m_PrefabInstance: {fileID: 1825409804258169657}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9989db249df88f5498e9abc5a4803acc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &706041869
 GameObject:
   m_ObjectHideFlags: 0
@@ -10074,8 +10085,9 @@ GameObject:
   - component: {fileID: 1412361742}
   - component: {fileID: 1412361741}
   - component: {fileID: 1412361744}
+  - component: {fileID: 1412361745}
   m_Layer: 6
-  m_Name: GameObject
+  m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10182,6 +10194,7 @@ MonoBehaviour:
   octaves: 2
   persistance: 1
   lacunarity: 20
+  RandomSeed: 1
   seed: 10
   offset: {x: 0, y: 0}
   regions:
@@ -10331,7 +10344,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d068491a00ae731408967f1a094305f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxPathsPerFrame: 1
+  maxPathsPerCheck: 1
+  AmountOfSecondsPerCheck: 0.08
+--- !u!114 &1412361745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1412361738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95a3452b0c2e7ad45be5a5997c15a1f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 638483912}
+  MaxEnemies: 20
+  TotalEnemies: 0
+  MinEnemies: 0
+  EnemyPrefabs:
+  - {fileID: 8498857211803063063, guid: adbf681c40b82b5489d1c512e726911d, type: 3}
+  enemyHeights:
+  - 5
 --- !u!1 &1469937489
 GameObject:
   m_ObjectHideFlags: 0

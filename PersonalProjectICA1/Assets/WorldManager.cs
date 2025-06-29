@@ -22,6 +22,7 @@ public class WorldManager : MonoBehaviour
     public int octaves;
     public float persistance;
     public float lacunarity;
+    public bool RandomSeed;
     public int seed;
     public Vector2 offset;
 
@@ -54,6 +55,7 @@ public class WorldManager : MonoBehaviour
     void Start()
     {
         InitMap();
+        GameFlowManager.instance.PopulateMap();
     }
 
 
@@ -69,14 +71,13 @@ public class WorldManager : MonoBehaviour
 
     void GenerateMesh()
     {
-        // Calculate total world size in voxels
+        if (RandomSeed)
+        {
+            seed = Random.Range(int.MinValue, int.MaxValue);
+        }
         int worldWidth = xSize * ChunkSize;
         int worldDepth = zSize * ChunkSize;
-
-        // Generate noise for entire world
         float[,] noiseMap = Noise.GenerateNoiseMap(worldWidth + 1, worldDepth + 1, seed, noiseScale, octaves, persistance, lacunarity, offset);
-
-        // Create chunks
         for (int chunkZ = 0; chunkZ < ChunkSize; chunkZ++)
         {
             for (int chunkX = 0; chunkX < ChunkSize; chunkX++)
@@ -88,18 +89,16 @@ public class WorldManager : MonoBehaviour
                 Container container = cont.AddComponent<Container>();
                 container.Initialize(worldMaterial, cont.transform.position, xSize, ChunkSize);
 
-                // Fill chunk with voxels
                 for (int z = 0; z < xSize; z++)
                 {
                     for (int x = 0; x < zSize; x++)
                     {
-                        // Calculate world position
                         int worldX = chunkX * xSize + x;
                         int worldZ = chunkZ * zSize + z;
 
-                        // Get height from noise map
-                        int surfaceY = Mathf.RoundToInt(meshHeightCurve.Evaluate(noiseMap[worldX, worldZ]) * noiseIntensity);
-                        // Fill column
+                        int surfaceY = Mathf.Clamp(Mathf.RoundToInt(meshHeightCurve.Evaluate(noiseMap[worldX, worldZ]) * noiseIntensity), 0, xSize * 2 - 1);
+
+                        
                         for (int y = 0; y <= surfaceY; y++)
                         {
                             int assignedID = 0; 

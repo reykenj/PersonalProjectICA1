@@ -4915,6 +4915,7 @@ GameObject:
   - component: {fileID: 4975073736146961263}
   - component: {fileID: 6819567012901955314}
   - component: {fileID: 5843374206449435680}
+  - component: {fileID: -3462182220382663845}
   m_Layer: 0
   m_Name: Enemy Down
   m_TagString: Untagged
@@ -9808,3 +9809,16 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &-3462182220382663845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2756758160312386989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 634064c55b7c2414db568032db74e864, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ps: {fileID: 0}

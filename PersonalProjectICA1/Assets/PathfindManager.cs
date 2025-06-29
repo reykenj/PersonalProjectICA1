@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,11 +7,27 @@ public class PathfindManager : MonoBehaviour
     public static PathfindManager Instance;
 
     private Queue<VoxelAStarPathing> pathRequestQueue = new Queue<VoxelAStarPathing>();
-    [SerializeField] int maxPathsPerFrame = 4;
+    [SerializeField] int maxPathsPerCheck = 4;
+    [SerializeField] float AmountOfSecondsPerCheck = 0.25f;
+
+    Coroutine Pathfind;
 
     void Awake()
     {
         Instance = this;
+    }
+
+    void OnEnable()
+    {
+        Pathfind = StartCoroutine(PathfindChecks());
+    }
+    void OnDisable()
+    {
+        if (Pathfind != null)
+        {
+            StopCoroutine(Pathfind);
+            Pathfind = null;
+        }
     }
 
     public void RequestPath(VoxelAStarPathing requester)
@@ -24,16 +41,31 @@ public class PathfindManager : MonoBehaviour
 
     }
 
-    void FixedUpdate()
-    {
-        int processed = 0;
-        while (pathRequestQueue.Count > 0 && processed < maxPathsPerFrame)
-        {
-            var requester = pathRequestQueue.Dequeue();
-            requester.PathfindNow();
-            processed++;
+    //void FixedUpdate()
+    //{
+    //    int processed = 0;
+    //    while (pathRequestQueue.Count > 0 && processed < maxPathsPerCheck)
+    //    {
+    //        var requester = pathRequestQueue.Dequeue();
+    //        requester.PathfindNow();
+    //        processed++;
 
-            //Debug.Log("Processed Pathfinding");
+    //        //Debug.Log("Processed Pathfinding");
+    //    }
+    //}
+
+    IEnumerator PathfindChecks()
+    {
+        while (true)
+        {
+            int processed = 0;
+            while (pathRequestQueue.Count > 0 && processed < maxPathsPerCheck)
+            {
+                var requester = pathRequestQueue.Dequeue();
+                requester.PathfindNow();
+                processed++;
+            }
+            yield return new WaitForSeconds(AmountOfSecondsPerCheck);
         }
     }
 }
