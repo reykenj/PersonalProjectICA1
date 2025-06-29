@@ -133,9 +133,9 @@ public class FloatingHeadController : MonoBehaviour
                 }
                 VoxelAStarPathing.Pathfind();
 
-                Debug.Log("Trying to pathfind this floating head now!");
+                //Debug.Log("Trying to pathfind this floating head now!");
             }
-            Debug.Log("floating head");
+            //Debug.Log("floating head");
             yield return new WaitForSeconds(MaxSearchTimer + Random.Range(-0.25f, 0.25f));
         }
     }
@@ -143,15 +143,29 @@ public class FloatingHeadController : MonoBehaviour
     {
         while (true)
         {
-            if (CurrState != BehaviourState.Attacking && 
-                Physics.Raycast(transform.position, 
-                (PlayerTransform.position + Vector3.up - transform.position).normalized,
-                out RaycastHit hit, 
-                AttackRange, 
-                LayerMask.GetMask("Player")))
+            if (CurrState != BehaviourState.Attacking)
             {
-                if (TargetTransform.parent != hit.collider.transform) TargetTransform.SetParent(hit.collider.transform);
+                bool RayHit = Physics.Raycast(transform.position,
+                (PlayerTransform.position + Vector3.up - transform.position).normalized,
+                out RaycastHit hit,
+                AttackRange,
+                LayerMask.GetMask("Player", "Voxel"));
+                if (RayHit && hit.collider.gameObject.layer == LayerMask.NameToLayer("Player"))
+                {
+                    //Debug.Log("[Test] DETECTED");
 
+                    if (TargetTransform.parent != hit.collider.transform) TargetTransform.SetParent(hit.collider.transform);
+                    // maybe we shoot another raycast upwards for this to determin whats the highest place the skull can go
+                    // without breaking line of sight from player
+                    //but for now lets jkust multiple this Vector3.up, nvm
+
+                    // TO DO: ADD MINIMUM RANGE, IF THE SKULL IS TOO CLOSE TO THE PLAYER OR BELOW THE PLAYER, PATHFIND FIRST TO THE TOP
+                    CurrState = BehaviourState.Attacking;
+                }
+            }
+
+            if(TargetTransform.parent != transform)
+            {
                 TargetTransform.localPosition = Vector3.up * (AttackRange - 1);
 
                 if (Physics.Raycast(PlayerTransform.position, Vector3.up, out RaycastHit hit2, AttackRange - 2, LayerMask.GetMask("Voxel")))
@@ -161,12 +175,6 @@ public class FloatingHeadController : MonoBehaviour
                     NewPos.y -= 1;
                     TargetTransform.localPosition = NewPos;
                 }
-                // maybe we shoot another raycast upwards for this to determin whats the highest place the skull can go
-                // without breaking line of sight from player
-                //but for now lets jkust multiple this Vector3.up, nvm
-
-                // TO DO: ADD MINIMUM RANGE, IF THE SKULL IS TOO CLOSE TO THE PLAYER OR BELOW THE PLAYER, PATHFIND FIRST TO THE TOP
-                CurrState = BehaviourState.Attacking;
             }
             yield return new WaitForSeconds(MaxSearchTimer + Random.Range(-0.25f, 0.25f));
         }

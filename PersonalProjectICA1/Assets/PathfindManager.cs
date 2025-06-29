@@ -15,11 +15,11 @@ public class PathfindManager : MonoBehaviour
 
     public void RequestPath(VoxelAStarPathing requester)
     {
-        Debug.Log("REQUESTING Pathfinding");
+        //Debug.Log("REQUESTING Pathfinding");
         if (!pathRequestQueue.Contains(requester))
         {
             pathRequestQueue.Enqueue(requester);
-            Debug.Log("REQUESTING Pathfinding SUCCESS");
+            //Debug.Log("REQUESTING Pathfinding SUCCESS");
         }
 
     }
@@ -33,7 +33,7 @@ public class PathfindManager : MonoBehaviour
             requester.PathfindNow();
             processed++;
 
-            Debug.Log("Processed Pathfinding");
+            //Debug.Log("Processed Pathfinding");
         }
     }
 }

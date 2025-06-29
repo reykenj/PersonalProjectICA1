@@ -24,7 +24,7 @@ public class VoxelAStarPathing : MonoBehaviour
         }
         else
         {
-            Debug.Log("Still Waiting for path!!");
+            //Debug.Log("Still Waiting for path!!");
         }
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -98,7 +98,7 @@ public class VoxelAStarPathing : MonoBehaviour
 
         if (!hasWalkableNeighbor)
         {
-            Debug.LogError("NO WALKABLE NEIGHBORS LOL");
+            //Debug.LogError("NO WALKABLE NEIGHBORS LOL");
             return new List<Vector3>();
         }
 
@@ -117,7 +117,7 @@ public class VoxelAStarPathing : MonoBehaviour
 
         while (OpenNodes.Count > 0 && nodesExplored++ < maxNodesToExplore)
         {
-            Debug.Log("Trying pathfind");
+            //Debug.Log("Trying pathfind");
             VoxelPathNode currentNode = OpenNodes.Dequeue();
             OpenDict.Remove(currentNode.pos);
 

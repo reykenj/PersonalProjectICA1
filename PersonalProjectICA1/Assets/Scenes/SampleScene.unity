@@ -235,6 +235,8 @@ MonoBehaviour:
   flashTimer: 0
   flashDuration: 0.25
   flashIntensity: 5
+  ExternalVel: {x: 0, y: 0, z: 0}
+  externalVelDamp: 5
   OneMeshMultipleMat: 0
 --- !u!65 &92145828
 BoxCollider:
@@ -642,6 +644,8 @@ MonoBehaviour:
   flashTimer: 0
   flashDuration: 0.25
   flashIntensity: 5
+  ExternalVel: {x: 0, y: 0, z: 0}
+  externalVelDamp: 5
   OneMeshMultipleMat: 0
 --- !u!65 &185748567
 BoxCollider:
@@ -838,6 +842,8 @@ MonoBehaviour:
   flashTimer: 0
   flashDuration: 0.25
   flashIntensity: 5
+  ExternalVel: {x: 0, y: 0, z: 0}
+  externalVelDamp: 5
   OneMeshMultipleMat: 0
 --- !u!65 &199267972
 BoxCollider:
@@ -1034,6 +1040,8 @@ MonoBehaviour:
   flashTimer: 0
   flashDuration: 0.25
   flashIntensity: 5
+  ExternalVel: {x: 0, y: 0, z: 0}
+  externalVelDamp: 5
   OneMeshMultipleMat: 0
 --- !u!65 &257383675
 BoxCollider:
@@ -1230,6 +1238,8 @@ MonoBehaviour:
   flashTimer: 0
   flashDuration: 0.25
   flashIntensity: 5
+  ExternalVel: {x: 0, y: 0, z: 0}
+  externalVelDamp: 5
   OneMeshMultipleMat: 0
 --- !u!65 &269811970
 BoxCollider:
@@ -1713,6 +1723,8 @@ MonoBehaviour:
   flashTimer: 0
   flashDuration: 0.25
   flashIntensity: 5
+  ExternalVel: {x: 0, y: 0, z: 0}
+  externalVelDamp: 5
   OneMeshMultipleMat: 0
 --- !u!65 &396324424
 BoxCollider:
@@ -2400,6 +2412,8 @@ MonoBehaviour:
   flashTimer: 0
   flashDuration: 0.25
   flashIntensity: 5
+  ExternalVel: {x: 0, y: 0, z: 0}
+  externalVelDamp: 5
   OneMeshMultipleMat: 0
 --- !u!65 &564375063
 BoxCollider:
@@ -2620,7 +2634,10 @@ MonoBehaviour:
   maxAngle: 90
   LeftAttackHandler: {fileID: 574463014}
   RightAttackHandler: {fileID: 574463015}
+  DashCooldown: 0
   characterController: {fileID: 574463010}
+  searchRadius: 10
+  minScreenRadius: 500
 --- !u!114 &574463013
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2657,6 +2674,8 @@ MonoBehaviour:
   flashTimer: 0
   flashDuration: 0.25
   flashIntensity: 5
+  ExternalVel: {x: 0, y: 0, z: 0}
+  externalVelDamp: 5
   OneMeshMultipleMat: 0
 --- !u!114 &574463014
 MonoBehaviour:
@@ -3745,6 +3764,8 @@ MonoBehaviour:
   flashTimer: 0
   flashDuration: 0.25
   flashIntensity: 5
+  ExternalVel: {x: 0, y: 0, z: 0}
+  externalVelDamp: 5
   OneMeshMultipleMat: 0
 --- !u!65 &580531727
 BoxCollider:
@@ -4002,6 +4023,8 @@ MonoBehaviour:
   MaxSearchTimer: 1
   MaxSearchCount: 5
   PathfindingAccuracy: 0.1
+  Direction: {x: 0, y: 0, z: 0}
+  Diff: {x: 0, y: 0, z: 0}
 --- !u!114 &642763982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4148,6 +4171,8 @@ MonoBehaviour:
   flashTimer: 0
   flashDuration: 0.25
   flashIntensity: 5
+  ExternalVel: {x: 0, y: 0, z: 0}
+  externalVelDamp: 5
   OneMeshMultipleMat: 1
 --- !u!143 &642763985
 CharacterController:
@@ -9382,6 +9407,8 @@ MonoBehaviour:
   flashTimer: 0
   flashDuration: 0.25
   flashIntensity: 5
+  ExternalVel: {x: 0, y: 0, z: 0}
+  externalVelDamp: 5
   OneMeshMultipleMat: 0
 --- !u!65 &770936968
 BoxCollider:
@@ -9501,6 +9528,37 @@ MonoBehaviour:
   VoxelAStarPathing: {fileID: 770936972}
   Movespeed: 10
   MaxSearchTimer: 1
+--- !u!1 &776287194
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 776287195}
+  m_Layer: 0
+  m_Name: LockOnManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &776287195
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 776287194}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &819228388
 GameObject:
   m_ObjectHideFlags: 0
@@ -9955,6 +10013,8 @@ MonoBehaviour:
   flashTimer: 0
   flashDuration: 0.25
   flashIntensity: 5
+  ExternalVel: {x: 0, y: 0, z: 0}
+  externalVelDamp: 5
   OneMeshMultipleMat: 0
 --- !u!65 &861531222
 BoxCollider:
@@ -10151,6 +10211,8 @@ MonoBehaviour:
   flashTimer: 0
   flashDuration: 0.25
   flashIntensity: 5
+  ExternalVel: {x: 0, y: 0, z: 0}
+  externalVelDamp: 5
   OneMeshMultipleMat: 0
 --- !u!65 &867741749
 BoxCollider:
@@ -10450,6 +10512,8 @@ MonoBehaviour:
   flashTimer: 0
   flashDuration: 0.25
   flashIntensity: 5
+  ExternalVel: {x: 0, y: 0, z: 0}
+  externalVelDamp: 5
   OneMeshMultipleMat: 0
 --- !u!114 &987653384
 MonoBehaviour:
@@ -10589,6 +10653,8 @@ MonoBehaviour:
   flashTimer: 0
   flashDuration: 0.25
   flashIntensity: 5
+  ExternalVel: {x: 0, y: 0, z: 0}
+  externalVelDamp: 5
   OneMeshMultipleMat: 0
 --- !u!65 &1015400240
 BoxCollider:
@@ -10785,6 +10851,8 @@ MonoBehaviour:
   flashTimer: 0
   flashDuration: 0.25
   flashIntensity: 5
+  ExternalVel: {x: 0, y: 0, z: 0}
+  externalVelDamp: 5
   OneMeshMultipleMat: 0
 --- !u!65 &1064487541
 BoxCollider:
@@ -16527,6 +16595,10 @@ PrefabInstance:
       value: Skull1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 08eb59ee7a956be4fa8667675fbb4159, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 08eb59ee7a956be4fa8667675fbb4159, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -17471,6 +17543,8 @@ MonoBehaviour:
   flashTimer: 0
   flashDuration: 0.25
   flashIntensity: 5
+  ExternalVel: {x: 0, y: 0, z: 0}
+  externalVelDamp: 5
   OneMeshMultipleMat: 0
 --- !u!65 &1632662965
 BoxCollider:
@@ -17955,6 +18029,8 @@ MonoBehaviour:
   flashTimer: 0
   flashDuration: 0.25
   flashIntensity: 5
+  ExternalVel: {x: 0, y: 0, z: 0}
+  externalVelDamp: 5
   OneMeshMultipleMat: 0
 --- !u!65 &1734417467
 BoxCollider:
@@ -25144,6 +25220,8 @@ MonoBehaviour:
   flashTimer: 0
   flashDuration: 0.25
   flashIntensity: 5
+  ExternalVel: {x: 0, y: 0, z: 0}
+  externalVelDamp: 5
   OneMeshMultipleMat: 0
 --- !u!65 &2017056025
 BoxCollider:
@@ -25674,6 +25752,7 @@ SceneRoots:
   - {fileID: 564375066}
   - {fileID: 1144299234}
   - {fileID: 1378369963}
+  - {fileID: 776287195}
   - {fileID: 1568697966}
   - {fileID: 1624533172}
   - {fileID: 631489826}

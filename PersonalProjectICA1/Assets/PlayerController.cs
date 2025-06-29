@@ -1,3 +1,5 @@
+using System.Collections;
+using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -43,10 +45,15 @@ public class PlayerController : MonoBehaviour
     private State _currState;
     private int upperBodyLayerIndex;
     private int HitBodyLayerIndex;
-
+    Coroutine Dash;
+    [SerializeField] float DashCooldown;
 
     [SerializeField] private CharacterController characterController;
     Camera mainCamera;
+
+    [SerializeField] float searchRadius;
+    [SerializeField] float minScreenRadius;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -55,6 +62,16 @@ public class PlayerController : MonoBehaviour
         _inputActions = _playerInput.actions;
         upperBodyLayerIndex = _animator.GetLayerIndex("UpperBody");
         HitBodyLayerIndex = _animator.GetLayerIndex("Hit");
+
+        _inputActions["Dash"].Enable();
+
+        _inputActions["Dash"].canceled += ctx =>
+        {
+            if (Dash == null)
+            {
+                Dash = StartCoroutine(PlayerDash());
+            }
+        };
     }
 
     // Update is called once per frame
@@ -70,7 +87,6 @@ public class PlayerController : MonoBehaviour
             characterController.enabled = false;
             return;
         }
-
 
         Vector2 input = _inputActions["Move"].ReadValue<Vector2>();
         moveDirect = Vector2.zero;
@@ -317,6 +333,54 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("CastRight");
         RightAttackHandler.Cast();
+    }
+
+    IEnumerator PlayerDash()
+    {
+        GameObject enemytodash = FindEnemyToDash();
+        if (enemytodash != null)
+        {
+            StartCoroutine(humanoid.DashToTarget(enemytodash.transform));
+            yield return new WaitForSeconds(DashCooldown);
+        }
+        Dash = null;
+    }
+
+    public GameObject FindEnemyToDash()
+    {
+        Collider[] found = Physics.OverlapSphere(transform.position, searchRadius, LayerMask.GetMask("Enemy"));
+
+        GameObject bestTarget = null;
+        float bestScreenDistance = float.MaxValue;
+
+        Vector2 screenCenter = new Vector2(Screen.width / 2f, Screen.height / 2f);
+        foreach (var col in found)
+        {
+            Vector3 enemyPos = col.transform.position;
+            if (Physics.Raycast(mainCamera.transform.position, (enemyPos - mainCamera.transform.position).normalized, out RaycastHit hit, 999f, LayerMask.GetMask("Voxel")))
+            {
+                if (hit.distance < Vector3.Distance(mainCamera.transform.position, enemyPos))
+                {
+                    continue;
+                }
+            }
+            Vector3 screenPos = mainCamera.WorldToScreenPoint(enemyPos);
+            if (screenPos.z < 0)
+                continue;
+
+            float screenDist = Vector2.Distance(screenCenter, screenPos);
+            Debug.Log("[TEST] DIST: " + screenDist);
+            if (screenDist > minScreenRadius)
+                continue;
+
+            if (screenDist < bestScreenDistance)
+            {
+                bestScreenDistance = screenDist;
+                bestTarget = col.gameObject;
+            }
+        }
+        Debug.Log("[TEST] FINISHED");
+        return bestTarget;
     }
 
 }

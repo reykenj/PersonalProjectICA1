@@ -30,6 +30,10 @@ public class Humanoid : MonoBehaviour
     [SerializeField] private float flashIntensity = 5.0f;
 
     private Vector3 GravityVel;
+
+    public Vector3 ExternalVel;
+    public float externalVelDamp = 5f;
+
     public System.Action OnGrounded;
     public System.Action OnShieldBreak;
     public System.Action OnHurt;
@@ -63,23 +67,27 @@ public class Humanoid : MonoBehaviour
     void FixedUpdate()
     {
         Vector3 finalVel = Vector3.zero;
+
         if (Gravity)
         {
             if (!IsGrounded())
             {
                 GravityVel.y += gravity * Time.deltaTime;
             }
-            else if (GravityVel.y < -1) GravityVel.y = -1;
-            //else
-            //{
-            //    GravityVel.y = -2;
-            //}
+            else if (GravityVel.y < -1)
+            {
+                GravityVel.y = -1;
+            }
             finalVel += GravityVel;
         }
+
+        finalVel += ExternalVel;
+
         if (HP > 0)
             _charController.Move(finalVel * Time.deltaTime);
 
-        if (Physics.Raycast(transform.position, new Vector3(0, -1, 0), out RaycastHit hit, 0.2f, LayerMask.GetMask("Voxel"))
+        // Raycast ground detection
+        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 0.2f, LayerMask.GetMask("Voxel"))
         && GravityVel.y <= 0 && !Grounded)
         {
             Grounded = true;
@@ -87,7 +95,10 @@ public class Humanoid : MonoBehaviour
         }
         else
             Grounded = false;
+
+        ExternalVel = Vector3.Lerp(ExternalVel, Vector3.zero, Time.fixedDeltaTime * externalVelDamp);
     }
+
     IEnumerator SetRagdolled(float Timer)
     {
         if (Shield > 0)
@@ -97,6 +108,32 @@ public class Humanoid : MonoBehaviour
             Ragdolled = false;
         }
     }
+
+    public IEnumerator DashToTarget(Transform target, float dashTime = 0.3f)
+    {
+        Gravity = false; 
+        Vector3 targetForward = target.forward;
+        Vector3 targetPosition = target.position;
+        float stopDistance = 1.0f;
+        Vector3 dashEndPos = targetPosition - targetForward * stopDistance;
+        Vector3 startPos = transform.position;
+        float timer = 0;
+        while (timer < dashTime)
+        {
+            timer += Time.deltaTime;
+            float t = timer / dashTime;
+            Vector3 desiredPos = Vector3.Lerp(startPos, dashEndPos, t);
+            Vector3 moveDelta = desiredPos - transform.position;
+            _charController.Move(moveDelta);
+            yield return null;
+        }
+        Vector3 finalDelta = dashEndPos - transform.position;
+        _charController.Move(finalDelta);
+        Gravity = true;
+    }
+
+
+
     public bool IsDead()
     {
         return HP <= 0;
