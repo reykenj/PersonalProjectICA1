@@ -228,8 +228,10 @@ MonoBehaviour:
   speed: 0
   SpeedMultiplier: 0
   Gravity: 0
+  GravityFixed: 0
   Grounded: 0
   Ragdolled: 0
+  TotalGrounded: 0
   gravity: -9.81
   JumpHeight: 1
   flashTimer: 0
@@ -637,8 +639,10 @@ MonoBehaviour:
   speed: 0
   SpeedMultiplier: 0
   Gravity: 0
+  GravityFixed: 0
   Grounded: 0
   Ragdolled: 0
+  TotalGrounded: 0
   gravity: -9.81
   JumpHeight: 1
   flashTimer: 0
@@ -835,8 +839,10 @@ MonoBehaviour:
   speed: 0
   SpeedMultiplier: 0
   Gravity: 0
+  GravityFixed: 0
   Grounded: 0
   Ragdolled: 0
+  TotalGrounded: 0
   gravity: -9.81
   JumpHeight: 1
   flashTimer: 0
@@ -1033,8 +1039,10 @@ MonoBehaviour:
   speed: 0
   SpeedMultiplier: 0
   Gravity: 0
+  GravityFixed: 0
   Grounded: 0
   Ragdolled: 0
+  TotalGrounded: 0
   gravity: -9.81
   JumpHeight: 1
   flashTimer: 0
@@ -1231,8 +1239,10 @@ MonoBehaviour:
   speed: 0
   SpeedMultiplier: 0
   Gravity: 0
+  GravityFixed: 0
   Grounded: 0
   Ragdolled: 0
+  TotalGrounded: 0
   gravity: -9.81
   JumpHeight: 1
   flashTimer: 0
@@ -1716,8 +1726,10 @@ MonoBehaviour:
   speed: 0
   SpeedMultiplier: 0
   Gravity: 0
+  GravityFixed: 0
   Grounded: 0
   Ragdolled: 0
+  TotalGrounded: 0
   gravity: -9.81
   JumpHeight: 1
   flashTimer: 0
@@ -2405,8 +2417,10 @@ MonoBehaviour:
   speed: 0
   SpeedMultiplier: 0
   Gravity: 0
+  GravityFixed: 0
   Grounded: 0
   Ragdolled: 0
+  TotalGrounded: 0
   gravity: -9.81
   JumpHeight: 1
   flashTimer: 0
@@ -2667,8 +2681,10 @@ MonoBehaviour:
   speed: 10
   SpeedMultiplier: 1
   Gravity: 1
+  GravityFixed: 0
   Grounded: 0
   Ragdolled: 0
+  TotalGrounded: 0
   gravity: -9.81
   JumpHeight: 1
   flashTimer: 0
@@ -3757,8 +3773,10 @@ MonoBehaviour:
   speed: 0
   SpeedMultiplier: 0
   Gravity: 0
+  GravityFixed: 0
   Grounded: 0
   Ragdolled: 0
+  TotalGrounded: 0
   gravity: -9.81
   JumpHeight: 1
   flashTimer: 0
@@ -4157,15 +4175,17 @@ MonoBehaviour:
   - {fileID: 2094853106}
   SkinnedmeshRenderers: []
   _charController: {fileID: 642763985}
-  HP: 0
+  HP: 100
   MaxHP: 100
   Shield: 0
   MaxShield: 20
   speed: 10
   SpeedMultiplier: 10
   Gravity: 0
+  GravityFixed: 0
   Grounded: 0
   Ragdolled: 0
+  TotalGrounded: 0
   gravity: -9.81
   JumpHeight: 1
   flashTimer: 0
@@ -9400,8 +9420,10 @@ MonoBehaviour:
   speed: 0
   SpeedMultiplier: 0
   Gravity: 0
+  GravityFixed: 0
   Grounded: 0
   Ragdolled: 0
+  TotalGrounded: 0
   gravity: -9.81
   JumpHeight: 1
   flashTimer: 0
@@ -10006,8 +10028,10 @@ MonoBehaviour:
   speed: 0
   SpeedMultiplier: 0
   Gravity: 0
+  GravityFixed: 0
   Grounded: 0
   Ragdolled: 0
+  TotalGrounded: 0
   gravity: -9.81
   JumpHeight: 1
   flashTimer: 0
@@ -10204,8 +10228,10 @@ MonoBehaviour:
   speed: 0
   SpeedMultiplier: 0
   Gravity: 0
+  GravityFixed: 0
   Grounded: 0
   Ragdolled: 0
+  TotalGrounded: 0
   gravity: -9.81
   JumpHeight: 1
   flashTimer: 0
@@ -10505,8 +10531,10 @@ MonoBehaviour:
   speed: 1
   SpeedMultiplier: 2.5
   Gravity: 1
+  GravityFixed: 0
   Grounded: 0
   Ragdolled: 0
+  TotalGrounded: 0
   gravity: -9.81
   JumpHeight: 1
   flashTimer: 0
@@ -10646,8 +10674,10 @@ MonoBehaviour:
   speed: 0
   SpeedMultiplier: 0
   Gravity: 0
+  GravityFixed: 0
   Grounded: 0
   Ragdolled: 0
+  TotalGrounded: 0
   gravity: -9.81
   JumpHeight: 1
   flashTimer: 0
@@ -10844,8 +10874,10 @@ MonoBehaviour:
   speed: 0
   SpeedMultiplier: 0
   Gravity: 0
+  GravityFixed: 0
   Grounded: 0
   Ragdolled: 0
+  TotalGrounded: 0
   gravity: -9.81
   JumpHeight: 1
   flashTimer: 0
@@ -15894,7 +15926,7 @@ GameObject:
   - component: {fileID: 1144299233}
   - component: {fileID: 1144299232}
   - component: {fileID: 1144299231}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17536,8 +17568,10 @@ MonoBehaviour:
   speed: 0
   SpeedMultiplier: 0
   Gravity: 0
+  GravityFixed: 0
   Grounded: 0
   Ragdolled: 0
+  TotalGrounded: 0
   gravity: -9.81
   JumpHeight: 1
   flashTimer: 0
@@ -18022,8 +18056,10 @@ MonoBehaviour:
   speed: 0
   SpeedMultiplier: 0
   Gravity: 0
+  GravityFixed: 0
   Grounded: 0
   Ragdolled: 0
+  TotalGrounded: 0
   gravity: -9.81
   JumpHeight: 1
   flashTimer: 0
@@ -25213,8 +25249,10 @@ MonoBehaviour:
   speed: 0
   SpeedMultiplier: 0
   Gravity: 0
+  GravityFixed: 0
   Grounded: 0
   Ragdolled: 0
+  TotalGrounded: 0
   gravity: -9.81
   JumpHeight: 1
   flashTimer: 0
