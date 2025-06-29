@@ -19,11 +19,16 @@ public class Humanoid : MonoBehaviour
 
 
     [SerializeField] bool Gravity;
+    [SerializeField] bool GravityFixed;
+
     [SerializeField] bool Grounded;
     [SerializeField] bool Ragdolled;
 
+    [SerializeField] bool TotalGrounded;
+
 
     [SerializeField] private float gravity = -9.81f;
+    //public float GravityMultiplier = 1.0f;
     [SerializeField] private float JumpHeight = 1.0f;
     [SerializeField] private float flashTimer = 0.0f;
     [SerializeField] private float flashDuration = 0.25f;
@@ -66,37 +71,49 @@ public class Humanoid : MonoBehaviour
     }
     void FixedUpdate()
     {
+        bool wasGroundedLastFrame = TotalGrounded;
+
         Vector3 finalVel = Vector3.zero;
 
         if (Gravity)
         {
-            if (!IsGrounded())
+            if (!GravityFixed)
             {
-                GravityVel.y += gravity * Time.deltaTime;
+                if (!IsGrounded())
+                {
+                    GravityVel.y += gravity * Time.fixedDeltaTime;
+                }
+                else if (GravityVel.y < -1)
+                {
+                    GravityVel.y = -1;
+                }
             }
-            else if (GravityVel.y < -1)
-            {
-                GravityVel.y = -1;
-            }
+            //GravityVel.y *= GravityMultiplier;
             finalVel += GravityVel;
         }
 
         finalVel += ExternalVel;
 
         if (HP > 0)
-            _charController.Move(finalVel * Time.deltaTime);
+            _charController.Move(finalVel * Time.fixedDeltaTime);
 
         // Raycast ground detection
-        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 0.2f, LayerMask.GetMask("Voxel"))
-        && GravityVel.y <= 0 && !Grounded)
+        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 0.2f, LayerMask.GetMask("Voxel")))
         {
             Grounded = true;
-            OnGrounded?.Invoke();
         }
         else
             Grounded = false;
 
         ExternalVel = Vector3.Lerp(ExternalVel, Vector3.zero, Time.fixedDeltaTime * externalVelDamp);
+
+
+        TotalGrounded = IsGrounded();
+
+        if (!wasGroundedLastFrame && TotalGrounded)
+        {
+            OnGrounded?.Invoke();
+        }
     }
 
     IEnumerator SetRagdolled(float Timer)
@@ -267,4 +284,30 @@ public class Humanoid : MonoBehaviour
             }
         }
     }
+
+
+    public void SetGravityVel(Vector3 newGravityVel)
+    {
+        GravityFixed = true;
+        GravityVel = newGravityVel;
+    }
+
+    public void SetGravityVelY(float newGravityVelY)
+    {
+        GravityFixed = true;
+        GravityVel.y = newGravityVelY;
+    }
+
+    public void SetGravityFixed(int num)
+    {
+        if(num > 0)
+        {
+            GravityFixed = true;
+        }
+        else
+        {
+            GravityFixed = false;
+        }
+    }
+
 }

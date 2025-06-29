@@ -72,6 +72,11 @@ public class PlayerController : MonoBehaviour
                 Dash = StartCoroutine(PlayerDash());
             }
         };
+
+        humanoid.OnGrounded += () =>
+        {
+            _animator.SetBool("IsFalling", false);
+        };
     }
 
     // Update is called once per frame
@@ -190,11 +195,10 @@ public class PlayerController : MonoBehaviour
         if (_inputActions["Jump"].IsPressed() && CanTransition(0) && humanoid.IsGrounded())
         {
             humanoid.Jump();
-            _animator.SetBool("IsFalling", true);
         }
-        else if (humanoid.IsGrounded())
+        else if (!humanoid.IsGrounded())
         {
-            _animator.SetBool("IsFalling", false);
+            _animator.SetBool("IsFalling", true);
         }
     }
 
@@ -267,7 +271,6 @@ public class PlayerController : MonoBehaviour
         }
         return false;
     }
-
 
 
 

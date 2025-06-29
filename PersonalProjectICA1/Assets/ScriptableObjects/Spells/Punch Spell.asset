@@ -135,7 +135,7 @@ MonoBehaviour:
     Physics: 0
     timer: 0
     lifetime: 100
-    Render: 1
+    Render: 0
     mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
   SpellName: Punch
   RuneIcon: {fileID: 21300000, guid: 25659dab5d1295947988f290ddaf7064, type: 3}
