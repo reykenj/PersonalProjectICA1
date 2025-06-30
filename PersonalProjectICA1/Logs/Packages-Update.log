@@ -70,3 +70,22 @@ Update Mode: mergeDefaultDependencies
 The following packages were added:
   com.unity.2d.sprite@1.0.0
   com.unity.ide.vscode@1.2.3
+
+=== Mon Jun 30 18:05:44 2025
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were updated:
+  com.unity.render-pipelines.universal from version 14.0.10 to 17.0.4
+  com.unity.shadergraph from version 14.0.10 to 17.0.4
+  com.unity.visualeffectgraph from version 14.0.10 to 17.0.4
+
+=== Mon Jun 30 18:05:44 2025
+
+Packages were changed.
+Update Mode: mergeDefaultDependencies
+
+The following packages were added:
+  com.unity.shadergraph@17.0.4
+  com.unity.visualeffectgraph@17.0.4

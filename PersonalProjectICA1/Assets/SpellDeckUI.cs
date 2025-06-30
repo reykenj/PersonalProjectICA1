@@ -9,6 +9,10 @@ public class SpellDeckUI : MonoBehaviour
     {
         OnSpellDeckChangeSize();
     }
+    private void OnEnable()
+    {
+        RefreshUISpellDeck();
+    }
 
     public void OnUIChangeConfirmed()
     {
