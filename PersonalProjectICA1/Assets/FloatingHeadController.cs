@@ -25,7 +25,6 @@ public class FloatingHeadController : MonoBehaviour
     [SerializeField] Transform TargetTransform;
     [SerializeField] VoxelAStarPathing VoxelAStarPathing;
     [SerializeField] float MaxSearchTimer = 1.0f;
-    [SerializeField] int MaxSearchCount = 5;
     [SerializeField] float PathfindingAccuracy = 0.5f;
     private int SearchCount;
     [SerializeField] private Vector3 Direction;

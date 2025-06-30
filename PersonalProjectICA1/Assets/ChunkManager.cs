@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using Unity.VisualScripting.Antlr3.Runtime.Collections;
+using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 using UnityEngine.UIElements;
 using static UnityEngine.ParticleSystem;
@@ -10,11 +12,18 @@ public class ChunkManager : Singleton<ChunkManager>
 {
     public GameObject voxelDebrisPrefab; 
     public List<Container> chunks;
+    public Queue<Container> dirtyChunks = new Queue<Container>();
     public Camera playerCamera;
     public float maxInteractionDistance = 10f;
     public LayerMask voxelLayerMask;
     public ParticleSystem particleSystem;
     public List<ParticleSystem.Particle> particles = new List<ParticleSystem.Particle>();
+
+    [SerializeField] bool CoroutineEnable = false;
+    [SerializeField] float UpdTime = 0.1f;
+    Coroutine TimedFixedUpd;
+
+
 
     [Header("Debug Visualization")]
     public bool showHitPoint = true;
@@ -34,12 +43,46 @@ public class ChunkManager : Singleton<ChunkManager>
     public ForceMode forceMode = ForceMode.Impulse;
     public LayerMask physicsLayerMask;
 
-    void Update()
+    void OnEnable()
     {
-        //if (Input.GetMouseButtonDown(0))
-        //{
-        //    RemoveVoxelAreaAtCameraLook();
-        //}
+        if (CoroutineEnable)
+        {
+            TimedFixedUpd = StartCoroutine(TimedFixedUpdate());
+        }
+    }
+    void OnDisable()
+    {
+        if (TimedFixedUpd != null)
+        {
+            StopCoroutine(TimedFixedUpd);
+            TimedFixedUpd = null;
+        }
+    }
+    IEnumerator TimedFixedUpdate()
+    {
+        while (true)
+        {
+            if (dirtyChunks.Count > 0)
+            {
+                var requester = dirtyChunks.Dequeue();
+                requester.GreedyMeshing();
+                requester.UploadMesh();
+            }
+            yield return new WaitForSeconds(UpdTime);
+        }
+    }
+    void FixedUpdate()
+    {
+        if (CoroutineEnable)
+        {
+            return;
+        }
+        if(dirtyChunks.Count > 0)
+        {
+            var requester = dirtyChunks.Dequeue();
+            requester.GreedyMeshing();
+            requester.UploadMesh();
+        }
     }
 
     void OnDrawGizmos()
@@ -83,8 +126,10 @@ public class ChunkManager : Singleton<ChunkManager>
             if (affectedChunk != null)
             {
                 affectedChunk[voxelPos - affectedChunk.containerPosition] = Container.emptyVoxel;
-                affectedChunk.GreedyMeshing();
-                affectedChunk.UploadMesh();
+                if (!dirtyChunks.Contains(affectedChunk))
+                {
+                    dirtyChunks.Enqueue(affectedChunk);
+                }
             }
         }
         else
@@ -189,10 +234,9 @@ public class ChunkManager : Singleton<ChunkManager>
             }
 
 
-            if (chunkModified)
+            if (chunkModified && !dirtyChunks.Contains(chunk))
             {
-                chunk.GreedyMeshing();
-                chunk.UploadMesh();
+                dirtyChunks.Enqueue(chunk);
             }
         }
 

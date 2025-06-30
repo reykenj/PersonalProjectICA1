@@ -9,6 +9,7 @@ public class PathfindManager : MonoBehaviour
     private Queue<VoxelAStarPathing> pathRequestQueue = new Queue<VoxelAStarPathing>();
     [SerializeField] int maxPathsPerCheck = 4;
     [SerializeField] float AmountOfSecondsPerCheck = 0.25f;
+    [SerializeField] bool CoroutineEnable = false;
 
     Coroutine Pathfind;
 
@@ -19,7 +20,10 @@ public class PathfindManager : MonoBehaviour
 
     void OnEnable()
     {
-        Pathfind = StartCoroutine(PathfindChecks());
+        if (CoroutineEnable)
+        {
+            Pathfind = StartCoroutine(PathfindChecks());
+        }
     }
     void OnDisable()
     {
@@ -41,18 +45,22 @@ public class PathfindManager : MonoBehaviour
 
     }
 
-    //void FixedUpdate()
-    //{
-    //    int processed = 0;
-    //    while (pathRequestQueue.Count > 0 && processed < maxPathsPerCheck)
-    //    {
-    //        var requester = pathRequestQueue.Dequeue();
-    //        requester.PathfindNow();
-    //        processed++;
+    void FixedUpdate()
+    {
+        if (CoroutineEnable)
+        {
+            return;
+        }
+        int processed = 0;
+        while (pathRequestQueue.Count > 0 && processed < maxPathsPerCheck)
+        {
+            var requester = pathRequestQueue.Dequeue();
+            requester.PathfindNow();
+            processed++;
 
-    //        //Debug.Log("Processed Pathfinding");
-    //    }
-    //}
+            //Debug.Log("Processed Pathfinding");
+        }
+    }
 
     IEnumerator PathfindChecks()
     {

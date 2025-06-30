@@ -112,7 +112,7 @@ public class VoxelAStarPathing : MonoBehaviour
         OpenDict.Add(groundCurrent, StartNode);
         TotalDict.Add(groundCurrent, StartNode);
 
-        const int maxNodesToExplore = 5000;
+        const int maxNodesToExplore = 1000;
         int nodesExplored = 0;
 
         while (OpenNodes.Count > 0 && nodesExplored++ < maxNodesToExplore)

@@ -10320,6 +10320,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   particleSystem: {fileID: 1793153610}
+  CoroutineEnable: 1
+  UpdTime: 0.1
   showHitPoint: 1
   hitPointColor: {r: 1, g: 0, b: 0, a: 1}
   hitPointRadius: 0.2
@@ -10345,7 +10347,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxPathsPerCheck: 1
-  AmountOfSecondsPerCheck: 0.08
+  AmountOfSecondsPerCheck: 2
+  CoroutineEnable: 0
 --- !u!114 &1412361745
 MonoBehaviour:
   m_ObjectHideFlags: 0
