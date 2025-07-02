@@ -19,7 +19,7 @@ public class PunchSpell : Spell
             //fistProj.transform.localPosition = attackHandler.AttackStartPoint.localPosition;
 
             fistProj.transform.rotation = rotation;
-            fistProj.Owner = attackHandler.gameObject;
+            fistProj.Owner = attackHandler.Owner;
         }
         Debug.Log("FIST POS: " + fist.transform.position);
         Debug.Log("TARGET POS: " + attackHandler.AttackStartPoint.position);

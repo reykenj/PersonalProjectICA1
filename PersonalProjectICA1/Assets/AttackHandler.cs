@@ -8,11 +8,16 @@ public class AttackHandler : MonoBehaviour
     public float CastTime = 0.25f; // might turn this into a animation speed multiplier for the punches instead
     public int Turn;
     public Transform AttackStartPoint;
+    public GameObject Owner;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        if(Owner == null)
+        {
+            Owner = gameObject;
+        }
         DontCast = new HashSet<int>();
         ResetSpells(0, SpellArray.Count);
     }

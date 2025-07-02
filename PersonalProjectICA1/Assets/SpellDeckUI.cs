@@ -5,7 +5,7 @@ public class SpellDeckUI : MonoBehaviour
     [SerializeField] AttackHandler attackHandler;
     [SerializeField] GameObject SpellSlotUIPrefab;
 
-    private void Start()
+    private void Awake()
     {
         OnSpellDeckChangeSize();
     }

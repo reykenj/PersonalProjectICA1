@@ -14,7 +14,7 @@ public class EnergyBallSpell : Spell
             fistProj.SetProjInfo(attackHandler.SpellArray[Index].TempProjInfo);
             fistProj.transform.position = position;
             fistProj.transform.rotation = rotation;
-            fistProj.Owner = attackHandler.gameObject;
+            fistProj.Owner = attackHandler.Owner;
         }
     }
 
