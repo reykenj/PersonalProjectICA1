@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ObjectPool : MonoBehaviour
 {
-    private static Transform poolParent;
+    [SerializeField] private static Transform poolParent;
     [SerializeField] private List<GameObject> prefabs = new List<GameObject>();
 
     private static List<GameObject> poolPrefabs;

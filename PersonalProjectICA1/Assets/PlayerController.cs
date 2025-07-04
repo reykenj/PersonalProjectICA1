@@ -39,8 +39,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float maxDistance = 0.1f;
     [SerializeField] float maxAngle = 90f;
 
-    [SerializeField] AttackHandler LeftAttackHandler;
-    [SerializeField] AttackHandler RightAttackHandler;
+    public AttackHandler LeftAttackHandler;
+    public AttackHandler RightAttackHandler;
     Vector3 moveDirect = Vector3.zero;
     private State _currState;
     private int upperBodyLayerIndex;
@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
         mainCamera = Camera.main;   
         _inputActions = _playerInput.actions;
@@ -65,18 +65,29 @@ public class PlayerController : MonoBehaviour
 
         _inputActions["Dash"].Enable();
 
-        _inputActions["Dash"].canceled += ctx =>
-        {
-            if (Dash == null)
-            {
-                Dash = StartCoroutine(PlayerDash());
-            }
-        };
-
         humanoid.OnGrounded += () =>
         {
             _animator.SetBool("IsFalling", false);
         };
+    }
+
+    private void OnEnable()
+    {
+        _inputActions["Dash"].canceled += StartDashing;
+    }
+
+    private void OnDisable()
+    {
+        _inputActions["Dash"].canceled -= StartDashing;
+    }
+
+    private void StartDashing(InputAction.CallbackContext context)
+    {
+        if (Dash == null)
+        {
+            Dash = StartCoroutine(PlayerDash());
+        }
+        //throw new System.NotImplementedException();
     }
 
     // Update is called once per frame

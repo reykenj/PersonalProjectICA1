@@ -64,7 +64,7 @@ public class ExplosiveRaySpelll : Spell
             beamProj.transform.position = position;
             beamProj.transform.rotation = rotation;
             //beamProj.transform.LookAt(hit.point);
-            beamProj.Owner = attackHandler.gameObject;
+            beamProj.Owner = attackHandler.Owner;
         }
     }
 

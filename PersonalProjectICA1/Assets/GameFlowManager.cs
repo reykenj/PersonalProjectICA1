@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class GameFlowManager : MonoBehaviour
 {
-    public Humanoid Player;
+    public PlayerController Player;
     public AttackHandler Inventory;
     [SerializeField] int MaxEnemies;
     [SerializeField] int TotalEnemies;
@@ -25,14 +25,27 @@ public class GameFlowManager : MonoBehaviour
     [SerializeField] int spellsPerDrop = 3;
     [SerializeField] float dropRadius = 3.0f;
     [SerializeField] float ShopDelay = 1.0f;
+
+    public AttackHandler leftAttackPlayer;
+    public AttackHandler rightAttackPlayer;
+    public AttackHandler inventory;
+
     public System.Action ShopChoiceChosen;
     bool ShopChoiceMade = false;
 
 
     private void Awake()
     {
-        instance = this;
-        
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+        DontDestroyOnLoad(gameObject);
         SceneManager.sceneLoaded += OnSceneLoaded;
 
         ShopChoiceChosen += () =>
@@ -42,7 +55,24 @@ public class GameFlowManager : MonoBehaviour
     }
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        Player = GameObject.Find("Player").GetComponent<PlayerController>();
+        Transform AttackHandlerTransform = Player.transform.Find("AttackHandlerStartPos");
+        Player.LeftAttackHandler = leftAttackPlayer;
+        Player.RightAttackHandler = rightAttackPlayer;
+
+        leftAttackPlayer.AttackStartPoint = AttackHandlerTransform;
+        leftAttackPlayer.Owner = Player.gameObject;
+        rightAttackPlayer.AttackStartPoint = AttackHandlerTransform;
+        rightAttackPlayer.Owner = Player.gameObject;
+        inventory.AttackStartPoint = AttackHandlerTransform;
+        inventory.Owner = Player.gameObject;
+
         EndLevel = false;
+
+        ShopChoiceChosen = () =>
+        {
+            ShopChoiceMade = true;
+        };
     }
     public void PopulateMap()
     {
@@ -136,5 +166,14 @@ public class GameFlowManager : MonoBehaviour
             ShopChoiceMade = false;
             // YIELD WAIT FOR EVENT TO BE INVOKED
         }
+
+
+        yield return new WaitForSeconds(2.0f);
+        if (Player != null)
+            Player.gameObject.SetActive(false);
+
+        yield return new WaitForSeconds(2.0f);
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

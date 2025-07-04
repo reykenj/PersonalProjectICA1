@@ -55,10 +55,14 @@ public class WorldManager : MonoBehaviour
     void Start()
     {
         InitMap();
-        GameFlowManager.instance.PopulateMap();
+        StartCoroutine(populate());
     }
 
-
+    IEnumerator populate()
+    {
+        yield return new WaitForSeconds(0.25f);
+        GameFlowManager.instance.PopulateMap();
+    }
 
     public void InitMap()
     {

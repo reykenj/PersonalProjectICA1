@@ -11,15 +11,11 @@ public class ActivateScreen : MonoBehaviour
     [SerializeField] List<GameObject> EnableOnActivate;
     [SerializeField] List<GameObject> DisableOnActivate;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
         _inputActions = _playerInput.actions;
         _inputActions[Action].Enable();
-
-        _inputActions[Action].canceled += ctx =>
-        {
-            OffOn();
-        };
+        _inputActions[Action].canceled += CTXOffOn;
         OffOn();
     }
 
@@ -28,6 +24,17 @@ public class ActivateScreen : MonoBehaviour
     {
     }
 
+
+    private void OnDestroy()
+    {
+        _inputActions[Action].canceled -= CTXOffOn;
+    }
+
+
+    void CTXOffOn(InputAction.CallbackContext context)
+    {
+        OffOn();
+    }
     void OffOn()
     {
         if (gameObject.activeSelf)

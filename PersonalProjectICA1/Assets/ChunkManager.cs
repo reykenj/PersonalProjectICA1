@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using static UnityEngine.ParticleSystem;
 
-public class ChunkManager : Singleton<ChunkManager>
+public class ChunkManager : MonoBehaviour
 {
     public GameObject voxelDebrisPrefab; 
     public List<Container> chunks;
@@ -43,6 +43,12 @@ public class ChunkManager : Singleton<ChunkManager>
     public ForceMode forceMode = ForceMode.Impulse;
     public LayerMask physicsLayerMask;
 
+    public static ChunkManager Instance;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
     void OnEnable()
     {
         if (CoroutineEnable)
