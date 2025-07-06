@@ -8878,6 +8878,8 @@ GameObject:
   - component: {fileID: 987653382}
   - component: {fileID: 987653381}
   - component: {fileID: 987653386}
+  - component: {fileID: 987653388}
+  - component: {fileID: 987653387}
   m_Layer: 0
   m_Name: Demonic Minion
   m_TagString: Untagged
@@ -8960,7 +8962,7 @@ MonoBehaviour:
   Shield: 0
   MaxShield: 10
   speed: 1
-  SpeedMultiplier: 2.5
+  SpeedMultiplier: 4.5
   Gravity: 1
   GravityFixed: 0
   Grounded: 0
@@ -8990,7 +8992,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   humanoid: {fileID: 987653383}
-  _animator: {fileID: 1151835711}
+  _animator: {fileID: 987653387}
   characterController: {fileID: 987653382}
   SightRange: 10
   AttackRange: 1
@@ -9000,7 +9002,8 @@ MonoBehaviour:
   AttackVFX: {fileID: 0}
   TargetTransform: {fileID: 437618272}
   VoxelAStarPathing: {fileID: 987653386}
-  MaxSearchTimer: 1
+  MaxSearchTimerSeen: 0.1
+  MaxSearchTimerUnseen: 10
   PathfindingAccuracy: 0.1
   Direction: {x: 0, y: 0, z: 0}
   Diff: {x: 0, y: 0, z: 0}
@@ -9036,6 +9039,47 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Target: {fileID: 437618272}
   PathFound: []
+--- !u!95 &987653387
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 987653380}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 98a47f1cd28823f4b8ab7f52d3d506fb, type: 3}
+  m_Controller: {fileID: 9100000, guid: e051b368918d49d44bfdbfa2325c09c9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &987653388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 987653380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80510ecc7b19c6441ac7fcdb204bfac3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SpellArray: []
+  CastTime: 0.25
+  Turn: 0
+  AttackStartPoint: {fileID: 219204539}
+  Owner: {fileID: 987653380}
+  NaturalMultiCastCount: 1
+  TempMultiCastCount: 0
 --- !u!1 &1015400235
 GameObject:
   m_ObjectHideFlags: 0
@@ -9603,11 +9647,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &1151835711 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 98a47f1cd28823f4b8ab7f52d3d506fb, type: 3}
-  m_PrefabInstance: {fileID: 1162737309}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1151835712 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 98a47f1cd28823f4b8ab7f52d3d506fb, type: 3}
@@ -9701,7 +9740,8 @@ PrefabInstance:
       propertyPath: m_ApplyRootMotion
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5866666021909216657, guid: 98a47f1cd28823f4b8ab7f52d3d506fb, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

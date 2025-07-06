@@ -24,7 +24,8 @@ public class FloatingHeadController : MonoBehaviour
     // PATHFINDING
     [SerializeField] Transform TargetTransform;
     [SerializeField] VoxelAStarPathing VoxelAStarPathing;
-    [SerializeField] float MaxSearchTimer = 1.0f;
+    [SerializeField] float MaxSearchTimerSeen = 1.0f;
+    [SerializeField] float MaxSearchTimerUnseen = 10.0f;
     [SerializeField] float PathfindingAccuracy = 0.5f;
     private int SearchCount;
     [SerializeField] private Vector3 Direction;
@@ -35,6 +36,8 @@ public class FloatingHeadController : MonoBehaviour
     Coroutine SendOutAttack;
 
     bool Tracking = true;
+
+    bool SawPlayer = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
@@ -49,6 +52,7 @@ public class FloatingHeadController : MonoBehaviour
     }
     private void OnEnable()
     {
+        SawPlayer = false;
         Tracking = true;
         Wander();
         VoxelAStarPathing.Pathfind();
@@ -150,6 +154,7 @@ public class FloatingHeadController : MonoBehaviour
     {
         while (true)
         {
+            float SearchTime = Random.Range(-0.25f, 0.25f);
             if (VoxelAStarPathing.PathFound.Count <= 0 && CurrState == BehaviourState.Pathing)
             {
                 if (TargetTransform.parent == null)
@@ -160,8 +165,16 @@ public class FloatingHeadController : MonoBehaviour
 
                 //Debug.Log("Trying to pathfind this floating head now!");
             }
+            if (!SawPlayer)
+            {
+                SearchTime += MaxSearchTimerUnseen;
+            }
+            else
+            {
+                SearchTime += MaxSearchTimerSeen;
+            }
             //Debug.Log("floating head");
-            yield return new WaitForSeconds(MaxSearchTimer + Random.Range(-0.25f, 0.25f));
+            yield return new WaitForSeconds(SearchTime);
         }
     }
     IEnumerator TrySeePlayer()
@@ -179,7 +192,16 @@ public class FloatingHeadController : MonoBehaviour
                 {
                     //Debug.Log("[Test] DETECTED");
 
-                    if (TargetTransform.parent != hit.collider.transform) TargetTransform.SetParent(hit.collider.transform);
+                    if (TargetTransform.parent != hit.collider.transform)
+                    {
+                        TargetTransform.SetParent(hit.collider.transform);
+                        SawPlayer = true;
+                        if (FindNewPath != null)
+                        {
+                            StopCoroutine(FindNewPath);
+                            FindNewPath = StartCoroutine(FindPath());
+                        }
+                    }
                     // maybe we shoot another raycast upwards for this to determin whats the highest place the skull can go
                     // without breaking line of sight from player
                     //but for now lets jkust multiple this Vector3.up, nvm
@@ -201,7 +223,7 @@ public class FloatingHeadController : MonoBehaviour
                     TargetTransform.localPosition = NewPos;
                 }
             }
-            yield return new WaitForSeconds(MaxSearchTimer + Random.Range(-0.25f, 0.25f));
+            yield return new WaitForSeconds(1.0F + Random.Range(-0.25f, 0.25f));
         }
     }
     IEnumerator ProjectileAttack()

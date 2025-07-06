@@ -6,14 +6,9 @@ using static UnityEditor.Rendering.InspectorCurveEditor;
 
 public class DemonicMinionController : MonoBehaviour
 {
-    private enum State
-    {
-        Attacking,
-        Moving,
-        Idle,
-        Death,
-    }
 
+
+    private static readonly string Attack = "Attack";
     private enum BehaviourState
     {
         Pathing,
@@ -22,7 +17,6 @@ public class DemonicMinionController : MonoBehaviour
     [SerializeField] Humanoid humanoid;
     [SerializeField] private Animator _animator;
     Vector3 moveDirect = Vector3.zero;
-    private State CurrAnimState;
     private BehaviourState CurrState;
     private int HitBodyLayerIndex;
     [SerializeField] private CharacterController characterController;
@@ -38,7 +32,8 @@ public class DemonicMinionController : MonoBehaviour
     // PATHFINDING
     [SerializeField] Transform TargetTransform;
     [SerializeField] VoxelAStarPathing VoxelAStarPathing;
-    [SerializeField] float MaxSearchTimer = 1.0f;
+    [SerializeField] float MaxSearchTimerSeen = 1.0f;
+    [SerializeField] float MaxSearchTimerUnseen = 10.0f;
     [SerializeField] float PathfindingAccuracy = 0.5f;
     private int SearchCount;
     [SerializeField] private Vector3 Direction;
@@ -46,7 +41,8 @@ public class DemonicMinionController : MonoBehaviour
     [SerializeField] Vector3 Diff;
     Coroutine FindNewPath;
     Coroutine SeePlayer;
-    Coroutine SendOutAttack;
+    Coroutine AttackDelay;
+    //Coroutine SendOutAttack;
     bool Tracking = true;
     Camera mainCamera;
 
@@ -91,11 +87,17 @@ public class DemonicMinionController : MonoBehaviour
             StopCoroutine(SeePlayer);
             SeePlayer = null;
         }
-        if (SendOutAttack != null)
+
+        if (AttackDelay != null)
         {
-            StopCoroutine(SendOutAttack);
-            SendOutAttack = null;
+            StopCoroutine(AttackDelay);
+            AttackDelay = null;
         }
+        //if (SendOutAttack != null)
+        //{
+        //    StopCoroutine(SendOutAttack);
+        //    SendOutAttack = null;
+        //}
     }
 
     // Update is called once per frame
@@ -144,34 +146,28 @@ public class DemonicMinionController : MonoBehaviour
         return false;
     }
 
-
-
-
-    private void ChangeState(State nextState, int LayerIndex)
-    {
-        if (!CanTransition(LayerIndex)) return;
-        if (LayerIndex == 0)
-        {
-            CurrAnimState = nextState;
-        }
-    }
-
     IEnumerator FindPath()
     {
         while (true)
         {
-            if (VoxelAStarPathing.PathFound.Count <= 0 && CurrState == BehaviourState.Pathing)
+            float SearchTime = 0;
+            if ((VoxelAStarPathing.PathFound.Count <= 0 || SawPlayer) && CurrState == BehaviourState.Pathing)
             {
                 if (TargetTransform.parent == null)
                 {
                     Wander();
                 }
                 VoxelAStarPathing.Pathfind();
-
-                //Debug.Log("Trying to pathfind this floating head now!");
             }
-            //Debug.Log("floating head");
-            yield return new WaitForSeconds(MaxSearchTimer + Random.Range(-0.25f, 0.25f));
+            if (!SawPlayer)
+            {
+                SearchTime += MaxSearchTimerUnseen;
+            }
+            else
+            {
+                SearchTime = Random.Range(0, MaxSearchTimerSeen);
+            }
+            yield return new WaitForSeconds(SearchTime);
         }
     }
 
@@ -211,32 +207,55 @@ public class DemonicMinionController : MonoBehaviour
                 }
                 else
                 {
-                    //characterController.Move(Direction * humanoid.SpeedMultiplier * Time.deltaTime);
                     characterController.Move(Direction * (humanoid.SpeedMultiplier * Time.deltaTime));
-                    //Debug.Log("GOING " + Direction);
                 }
+                _animator.SetBool("IsPathing", true);
             }
+        }
+        else
+        {
+            _animator.SetBool("IsPathing", false);
         }
     }
 
     private void Attacking()
     {
-        if (Tracking)
+        if(AttackDelay != null) { return; }
+
+        AnimatorStateInfo currentState = _animator.GetCurrentAnimatorStateInfo(0);
+        if (currentState.shortNameHash != Animator.StringToHash(Attack))
         {
-            transform.LookAt(PlayerTransform.position + Vector3.up);
-            AttackHandlers[0].AttackStartPoint.LookAt(PlayerTransform.position + Vector3.up);
+            if (!_animator.IsInTransition(0))
+            {
+                Debug.Log("[DemonicMinion] Attacking!");
+                _animator.SetTrigger("Attack");
+            }
+
+            if (Tracking)
+            {
+                transform.LookAt(PlayerTransform.position + Vector3.up);
+                //AttackHandlers[0].AttackStartPoint.LookAt(PlayerTransform.position + Vector3.up);
+            }
         }
-        if (SendOutAttack == null)
+    }
+
+    public void AttackFinish()
+    {
+        AttackDelay = StartCoroutine(ContinueAttackCheck());
+    }
+
+    IEnumerator ContinueAttackCheck()
+    {
+        yield return new WaitForSeconds(AttackCooldown);
+        if (Vector3.Distance(transform.position, PlayerTransform.position) <= AttackRange)
         {
-            //if (Random.Range(0, 2) == 0)
-            //{
-            //    SendOutAttack = StartCoroutine(ProjectileAttack());
-            //}
-            //else
-            //{
-            //    SendOutAttack = StartCoroutine(BeamAttack());
-            //}
+            CurrState = BehaviourState.Attacking;
         }
+        else
+        {
+            CurrState = BehaviourState.Pathing;
+        }
+        AttackDelay = null;
     }
 
     IEnumerator TrySeePlayer()
@@ -258,9 +277,23 @@ public class DemonicMinionController : MonoBehaviour
                         TargetTransform.localPosition = Vector3.up * 0.5f;
                     }
                     SawPlayer = true;
+
+                    if (FindNewPath != null)
+                    {
+                        StopCoroutine(FindNewPath);
+                        FindNewPath = StartCoroutine(FindPath());
+                    }
                 }
             }
-            yield return new WaitForSeconds(MaxSearchTimer + Random.Range(-0.25f, 0.25f));
+            else if (CurrState == BehaviourState.Pathing)
+            {
+                if(Vector3.Distance(transform.position, PlayerTransform.position) <= AttackRange)
+                {
+                    CurrState = BehaviourState.Attacking;
+                }
+                
+            }
+            yield return new WaitForSeconds(1.0F + Random.Range(-0.25f, 0.25f));
         }
     }
 
