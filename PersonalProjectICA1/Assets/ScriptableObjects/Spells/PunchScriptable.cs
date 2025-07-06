@@ -5,7 +5,7 @@ using UnityEngine;
 public class PunchSpell : Spell
 {
     [SerializeField] GameObject AttackPrefab;
-    public override void Apply(int Index, AttackHandler attackHandler, out bool UseTurn, Vector3 position, Quaternion rotation)
+    public override int Apply(int Index, AttackHandler attackHandler, out bool UseTurn, Vector3 position, Quaternion rotation)
     {
         UseTurn = this.UseTurn;
         GameObject fist = ObjectPool.GetObj("AttackPrefab");
@@ -29,6 +29,8 @@ public class PunchSpell : Spell
         //SpellContainer EditedProj = attackHandler.SpellArray[EditIndex];
         //EditedProj.TempProjInfo.Render = true;
         //attackHandler.SpellArray[EditIndex] = EditedProj;
+
+        return Index;
     }
 
     public override void OnHit(Projectile projectile)

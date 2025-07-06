@@ -7,12 +7,14 @@ public class Spell : ScriptableObject
     public string SpellName;
     public Sprite RuneIcon;
     public bool UseTurn;
+    public bool ApplyToAllModifier;
 
     // for when the user goes through all of the spells in the loop and is recharging, basically
     // reset all modified values here
-    public virtual void Apply(int Index, AttackHandler attackHandler, out bool UseTurn, Vector3 position, Quaternion rotation)
+    public virtual int Apply(int Index, AttackHandler attackHandler, out bool UseTurn, Vector3 position, Quaternion rotation)
     {
-        UseTurn = this.UseTurn;    
+        UseTurn = this.UseTurn;
+        return Index;
     }
 
     public virtual void PreApply(int Index, AttackHandler attackHandler, Vector3 position, Quaternion rotation)

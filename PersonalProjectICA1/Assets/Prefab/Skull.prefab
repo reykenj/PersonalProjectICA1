@@ -5341,6 +5341,9 @@ MonoBehaviour:
   CastTime: 0.25
   Turn: 0
   AttackStartPoint: {fileID: 7573298420985448518}
+  Owner: {fileID: 0}
+  NaturalMultiCastCount: 1
+  TempMultiCastCount: 0
 --- !u!114 &3234802889204781199
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5366,7 +5369,6 @@ MonoBehaviour:
   TargetTransform: {fileID: 2176540355519736438}
   VoxelAStarPathing: {fileID: 8340721107714518576}
   MaxSearchTimer: 1
-  MaxSearchCount: 5
   PathfindingAccuracy: 0.1
   Direction: {x: 0, y: 0, z: 0}
   Diff: {x: 0, y: 0, z: 0}
@@ -5509,6 +5511,9 @@ MonoBehaviour:
   CastTime: 0.25
   Turn: 0
   AttackStartPoint: {fileID: 7573298420985448518}
+  Owner: {fileID: 0}
+  NaturalMultiCastCount: 1
+  TempMultiCastCount: 0
 --- !u!4 &9131559751090014637 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 08eb59ee7a956be4fa8667675fbb4159, type: 3}

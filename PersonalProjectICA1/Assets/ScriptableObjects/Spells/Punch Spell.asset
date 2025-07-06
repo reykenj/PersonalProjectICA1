@@ -140,4 +140,5 @@ MonoBehaviour:
   SpellName: Punch
   RuneIcon: {fileID: 21300000, guid: 25659dab5d1295947988f290ddaf7064, type: 3}
   UseTurn: 1
+  ApplyToAllModifier: 0
   AttackPrefab: {fileID: 0}

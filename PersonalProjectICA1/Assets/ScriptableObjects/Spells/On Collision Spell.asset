@@ -86,3 +86,4 @@ MonoBehaviour:
   SpellName: OnCollsion
   RuneIcon: {fileID: 0}
   UseTurn: 0
+  ApplyToAllModifier: 0

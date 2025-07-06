@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnergyBallSpell : Spell
 {
     [SerializeField] GameObject AttackPrefab;
-    public override void Apply(int Index, AttackHandler attackHandler, out bool UseTurn, Vector3 position, Quaternion rotation)
+    public override int Apply(int Index, AttackHandler attackHandler, out bool UseTurn, Vector3 position, Quaternion rotation)
     {
         UseTurn = this.UseTurn;
         GameObject fist = ObjectPool.GetObj("AttackPrefab");
@@ -16,6 +16,7 @@ public class EnergyBallSpell : Spell
             fistProj.transform.rotation = rotation;
             fistProj.Owner = attackHandler.Owner;
         }
+        return Index;
     }
 
     public override void OnHit(Projectile projectile)

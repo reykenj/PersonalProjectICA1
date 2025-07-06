@@ -1,6 +1,7 @@
 using NUnit.Framework.Internal.Execution;
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "MulticastSpell Spell", menuName = "Spells/MulticastSpell Spell")]
@@ -8,9 +9,10 @@ public class MulticastSpell : Spell
 {
     [SerializeField] int MaxMulticastCount = 3;
     //[SerializeField] GameObject AttackPrefab;
-    public override void Apply(int Index, AttackHandler attackHandler, out bool UseTurn, Vector3 position, Quaternion rotation)
+    public override int Apply(int Index, AttackHandler attackHandler, out bool UseTurn, Vector3 position, Quaternion rotation)
     {
         UseTurn = this.UseTurn;
+        return Index;
     }
 
 
@@ -21,19 +23,30 @@ public class MulticastSpell : Spell
         int MulticastCount = 0;
         int spellCount = attackHandler.SpellArray.Count;
         int CastingIndex = (Index + 1) % spellCount;
+        List<int> CurrNumList = new List<int>();    
         while (true)
         {
-            spellContainer.NumList.Add(CastingIndex);
-            if (attackHandler.SpellArray[CastingIndex].spell.UseTurn)
-            {
-                MulticastCount++;
-            }
             if (MulticastCount >= MaxMulticastCount)
                 break;
             if (CastingIndex == Index)
                 break;
-            CastingIndex = (CastingIndex + 1) % spellCount;
+            if (attackHandler.DontCast.Contains(CastingIndex))
+            {
+                CastingIndex = (CastingIndex + 1) % spellCount;
+                continue;
+            }
+
+            CurrNumList.Add(CastingIndex);
+            if (attackHandler.SpellArray[CastingIndex].spell.UseTurn)
+            {
+                spellContainer.NumList.AddRange(CurrNumList);
+                attackHandler.DontCast.AddRange(spellContainer.NumList);
+                CurrNumList.Clear();
+                MulticastCount++;
+            }
         }
+        attackHandler.SpellArray[Index] = spellContainer;
+
     }
     public override void OnHit(Projectile projectile)
     {

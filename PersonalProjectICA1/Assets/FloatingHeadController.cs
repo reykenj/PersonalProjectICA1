@@ -204,7 +204,7 @@ public class FloatingHeadController : MonoBehaviour
     {
         for (int i = 0; i < 4; i++)
         {
-            AttackHandlers[0].Cast();
+            AttackHandlers[0].MultiCast(AttackHandlers[0].AttackStartPoint.position, AttackHandlers[0].AttackStartPoint.rotation);
 
             var emitParams = new ParticleSystem.EmitParams
             {
@@ -241,7 +241,7 @@ public class FloatingHeadController : MonoBehaviour
         yield return new WaitForSeconds(AttackCooldown * 1.8f);
         Tracking = false;
         yield return new WaitForSeconds(AttackCooldown * 0.2f);
-        AttackHandlers[1].Cast();
+        AttackHandlers[1].MultiCast(AttackHandlers[1].AttackStartPoint.position, AttackHandlers[1].AttackStartPoint.rotation);
         yield return new WaitForSeconds(AttackHandlers[1].SpellArray[0].TempProjInfo.lifetime);
         Tracking = true;
         yield return new WaitForSeconds(AttackCooldown);

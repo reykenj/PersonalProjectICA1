@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Timeline;
 
 public class AttackHandler : MonoBehaviour
 {
@@ -9,6 +11,8 @@ public class AttackHandler : MonoBehaviour
     public int Turn;
     public Transform AttackStartPoint;
     public GameObject Owner;
+    public int NaturalMultiCastCount = 1;
+    public int TempMultiCastCount = 0;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -70,6 +74,126 @@ public class AttackHandler : MonoBehaviour
 
 
 
+    public void MultiCast(Vector3 position, Quaternion rotation, int InsertedTurn = -1, int TempTempMultiCastCount = -1)
+    {
+
+        bool FakeTurn = true;
+        if(InsertedTurn == -1)
+        {
+            DontCast.Clear();
+            FakeTurn = false;
+            InsertedTurn = Turn;
+        }
+        if(TempTempMultiCastCount == -1)
+        {
+            TempTempMultiCastCount = TempMultiCastCount;
+        }
+        int spellCount = SpellArray.Count;
+        if (spellCount == 0) return;
+        int startTurn = InsertedTurn;
+        int multicount = 0;
+        List<int> Modifier = new List<int>();
+        List<int> ApplyModifierAll = new List<int>();
+        while (true)
+        {
+            if (DontCast.Contains(InsertedTurn))
+            {
+                if (!FakeTurn)
+                {
+                    DontCast.Remove(InsertedTurn);
+                    Debug.Log("Removed index: " + InsertedTurn);
+                }
+            }
+            else
+            {
+                bool UseTurn = false;
+
+                if (SpellArray[InsertedTurn].spell != null)
+                {
+                    Debug.Log("Trying to cast: " + SpellArray[InsertedTurn].spell.name);
+
+                    if (SpellArray[InsertedTurn].spell.UseTurn)
+                    {
+                        for (int i = 0; i < ApplyModifierAll.Count; i++)
+                        {
+                            SpellArray[ApplyModifierAll[i]].spell.Apply(InsertedTurn - 1, this, out UseTurn, position, rotation);
+                        }
+                    }
+                    InsertedTurn = SpellArray[InsertedTurn].spell.Apply(InsertedTurn, this, out UseTurn, position, rotation);
+                }
+
+                if (UseTurn)
+                {
+                    multicount++;
+                    if (multicount >= NaturalMultiCastCount + TempMultiCastCount)
+                    {
+                        InsertedTurn = (InsertedTurn + 1) % spellCount;
+                        ResetSpells(0, InsertedTurn);
+                        break;
+                    }
+                }
+                else if (SpellArray[InsertedTurn].spell != null)
+                {
+                    Modifier.Add(InsertedTurn);
+                    if (SpellArray[InsertedTurn].spell.ApplyToAllModifier)
+                    {
+                        ApplyModifierAll.Add(InsertedTurn);
+                    }
+                }
+            }
+
+            InsertedTurn = (InsertedTurn + 1) % spellCount;
+
+            if (InsertedTurn == startTurn)
+            {
+                ResetSpells(0, spellCount);
+                break;
+            }
+        }
+        if (!FakeTurn)
+        {
+            Turn = InsertedTurn;
+        }
+        DontCast.AddRange(Modifier);
+    }
+    public int FindMultiCastTurn(int InsertedTurn = -1)
+    {
+        //Debug.Log("[InsertedLog] " +  InsertedTurn);
+        if (InsertedTurn == -1)
+        {
+            InsertedTurn = Turn;
+        }
+        int spellCount = SpellArray.Count;
+        if (spellCount == 0) return -1;
+        int startTurn = InsertedTurn;
+        int multicount = 0;
+        List<Spell> ApplyModifierAll = new List<Spell>();
+        while (true)
+        {
+            if (!DontCast.Contains(InsertedTurn))
+            {
+                if (SpellArray[InsertedTurn].spell != null && SpellArray[InsertedTurn].spell.UseTurn)
+                {
+                    multicount++;
+                    if (multicount >= NaturalMultiCastCount + TempMultiCastCount)
+                    {
+                        InsertedTurn = (InsertedTurn + 1) % spellCount;
+                        break;
+                    }
+                }
+            }
+            //Debug.Log("[InsertedLog] Added " + InsertedTurn);
+            InsertedTurn = (InsertedTurn + 1) % spellCount;
+            //Debug.Log("[InsertedLog] Added2 " + InsertedTurn);
+            if (InsertedTurn == startTurn)
+            {
+                break;
+            }
+        }
+        //Debug.Log("[InsertedLog] Updated" + InsertedTurn);
+        return InsertedTurn;
+    }
+
     public void BasicCast(int Index, Vector3 position, Quaternion rotation)
     {
         if (SpellArray[Index].spell != null)
@@ -80,6 +204,18 @@ public class AttackHandler : MonoBehaviour
         else
         {
             Debug.LogError("Tried to basic cast a null spell!");
+        }
+    }
+
+    public void BasicPreApply(int Index, Vector3 position, Quaternion rotation)
+    {
+        if (SpellArray[Index].spell != null)
+        {
+            SpellArray[Index].spell.PreApply(Index, this, position, rotation);
+        }
+        else
+        {
+            Debug.LogError("Tried to basic precast a null spell!");
         }
     }
     private void ResetSpells(int Start, int End)

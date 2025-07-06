@@ -60,6 +60,11 @@ public class Projectile : MonoBehaviour
     private void OnEnable()
     {
         _collider.enabled = true;
+
+        if (ProjInfo.OnSpawn != null)
+        {
+            ProjInfo.OnSpawn.Invoke(this);
+        }
         ProjInit();
     }
     private void OnDisable()
@@ -80,6 +85,10 @@ public class Projectile : MonoBehaviour
         if (info.OnCollision != null)
         {
             info.OnCollision = null;
+        }
+        if (info.OnSpawn != null)
+        {
+            info.OnSpawn = null;
         }
 
         ProjInfo = info;
@@ -349,5 +358,6 @@ public struct ProjectileInformation
     public Mesh mesh;
 
     public System.Action<Projectile> OnCollision;
+    public System.Action<Projectile> OnSpawn;
     public System.Action<Projectile> OnDespawn;
 }

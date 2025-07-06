@@ -8,7 +8,7 @@ public class ExplosiveRaySpelll : Spell
     private float ExplosionDamMult = 5.0f;
     private float ExplosionRange = 2.0f;
     private float BeamRange = 50.0f;
-    public override void Apply(int Index, AttackHandler attackHandler, out bool UseTurn, Vector3 position, Quaternion rotation)
+    public override int Apply(int Index, AttackHandler attackHandler, out bool UseTurn, Vector3 position, Quaternion rotation)
     {
         UseTurn = this.UseTurn;
         GameObject beam = ObjectPool.GetObj("AttackPrefab");
@@ -66,6 +66,8 @@ public class ExplosiveRaySpelll : Spell
             //beamProj.transform.LookAt(hit.point);
             beamProj.Owner = attackHandler.Owner;
         }
+
+        return Index;
     }
 
     public override void OnHit(Projectile projectile)
