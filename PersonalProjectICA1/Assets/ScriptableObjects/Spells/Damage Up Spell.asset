@@ -83,6 +83,7 @@ MonoBehaviour:
     lifetime: 0
     Render: 0
     mesh: {fileID: 0}
-  SpellName: 
+  SpellName: Damage Up
   RuneIcon: {fileID: 0}
   UseTurn: 0
+  ApplyToAllModifier: 0

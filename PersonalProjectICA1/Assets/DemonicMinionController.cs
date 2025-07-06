@@ -244,6 +244,12 @@ public class DemonicMinionController : MonoBehaviour
         AttackDelay = StartCoroutine(ContinueAttackCheck());
     }
 
+    public void LaunchAttack()
+    {
+        transform.LookAt(PlayerTransform.position + Vector3.up);
+        AttackHandlers[0].MultiCast(AttackHandlers[0].AttackStartPoint.position, AttackHandlers[0].AttackStartPoint.rotation);
+    }
+
     IEnumerator ContinueAttackCheck()
     {
         yield return new WaitForSeconds(AttackCooldown);

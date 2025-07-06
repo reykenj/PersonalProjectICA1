@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0955ac2d0ccd72441885da66001bbc53, type: 3}
-  m_Name: On Collision Spell
+  m_Script: {fileID: 11500000, guid: 765e280ca8f78534e8571f993c3b975a, type: 3}
+  m_Name: Tackle Spell
   m_EditorClassIdentifier: 
   OGProjectileInformation:
     speedCurve:
@@ -83,7 +83,8 @@ MonoBehaviour:
     lifetime: 0
     Render: 0
     mesh: {fileID: 0}
-  SpellName: On Collsion
+  SpellName: Tackle
   RuneIcon: {fileID: 0}
-  UseTurn: 0
+  UseTurn: 1
   ApplyToAllModifier: 0
+  AttackPrefab: {fileID: 7065334555887556334, guid: 9f1215f4198e5354ea3cca9af06dfa5e, type: 3}
