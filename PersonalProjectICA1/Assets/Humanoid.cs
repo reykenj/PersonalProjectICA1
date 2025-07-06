@@ -21,14 +21,14 @@ public class Humanoid : MonoBehaviour
     [SerializeField] bool TotalGrounded;
     [SerializeField] private float gravity = -9.81f;
     //public float GravityMultiplier = 1.0f;
-    [SerializeField] private float JumpHeight = 1.0f;
+    public float JumpHeight = 1.0f;
     [SerializeField] private float flashTimer = 0.0f;
     [SerializeField] private float flashDuration = 0.25f;
     [SerializeField] private float flashIntensity = 5.0f;
 
     [SerializeField] private GameObject DeathExplosionEffectPrefab;
     [SerializeField] private float DeathTimer = 0.5f;
-    private Vector3 GravityVel;
+    [SerializeField] private Vector3 GravityVel;
     public Vector3 ExternalVel;
     public float externalVelDamp = 5f;
     public System.Action OnGrounded;

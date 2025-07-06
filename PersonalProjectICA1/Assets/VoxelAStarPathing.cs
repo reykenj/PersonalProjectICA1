@@ -208,7 +208,7 @@ public class VoxelAStarPathing : MonoBehaviour
     }
 
 
-    public Vector3 PickRandomVoxelPos(Vector3 startPos, bool Grounded, int AreaAround)
+    public Vector3 PickRandomVoxelPos(Vector3 startPos, bool Grounded, int AreaAround, int Height = 1)
     {
         List<Vector3> Candidates = new List<Vector3>();
 
@@ -216,7 +216,7 @@ public class VoxelAStarPathing : MonoBehaviour
         {
             for (int z = -AreaAround; z <= AreaAround; z++)
             {
-                for (int y = -1; y <= 1; y++)
+                for (int y = -Height; y <= Height; y++)
                 {
                     Vector3 candidatePos = new Vector3(
                         Mathf.Floor(startPos.x + x),

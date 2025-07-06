@@ -116,10 +116,14 @@ public class FloatingHeadController : MonoBehaviour
             if (Vector3.Distance(transform.position, TargetPos) < PathfindingAccuracy)
             {
                 VoxelAStarPathing.PathFound.RemoveAt(0);
+                transform.position = TargetPos;
             }
-            //characterController.Move(Direction * humanoid.SpeedMultiplier * Time.deltaTime);
-            transform.position += Direction * (humanoid.SpeedMultiplier * Time.deltaTime);
-            //Debug.Log("GOING " + Direction);
+            else
+            {
+                //characterController.Move(Direction * humanoid.SpeedMultiplier * Time.deltaTime);
+                transform.position += Direction * (humanoid.SpeedMultiplier * Time.deltaTime);
+                //Debug.Log("GOING " + Direction);
+            }
         }
     }
     private void Attacking()

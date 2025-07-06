@@ -239,6 +239,7 @@ MonoBehaviour:
   flashIntensity: 5
   DeathExplosionEffectPrefab: {fileID: 0}
   DeathTimer: 0
+  GravityVel: {x: 0, y: 0, z: 0}
   ExternalVel: {x: 0, y: 0, z: 0}
   externalVelDamp: 5
   OneMeshMultipleMat: 0
@@ -621,6 +622,7 @@ MonoBehaviour:
   flashIntensity: 5
   DeathExplosionEffectPrefab: {fileID: 0}
   DeathTimer: 0
+  GravityVel: {x: 0, y: 0, z: 0}
   ExternalVel: {x: 0, y: 0, z: 0}
   externalVelDamp: 5
   OneMeshMultipleMat: 0
@@ -823,6 +825,7 @@ MonoBehaviour:
   flashIntensity: 5
   DeathExplosionEffectPrefab: {fileID: 0}
   DeathTimer: 0
+  GravityVel: {x: 0, y: 0, z: 0}
   ExternalVel: {x: 0, y: 0, z: 0}
   externalVelDamp: 5
   OneMeshMultipleMat: 0
@@ -914,6 +917,37 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &219204538
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 219204539}
+  m_Layer: 0
+  m_Name: AttackStartPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &219204539
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 219204538}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 987653385}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &257383670
 GameObject:
@@ -1025,6 +1059,7 @@ MonoBehaviour:
   flashIntensity: 5
   DeathExplosionEffectPrefab: {fileID: 0}
   DeathTimer: 0
+  GravityVel: {x: 0, y: 0, z: 0}
   ExternalVel: {x: 0, y: 0, z: 0}
   externalVelDamp: 5
   OneMeshMultipleMat: 0
@@ -1227,6 +1262,7 @@ MonoBehaviour:
   flashIntensity: 5
   DeathExplosionEffectPrefab: {fileID: 0}
   DeathTimer: 0
+  GravityVel: {x: 0, y: 0, z: 0}
   ExternalVel: {x: 0, y: 0, z: 0}
   externalVelDamp: 5
   OneMeshMultipleMat: 0
@@ -1685,6 +1721,7 @@ MonoBehaviour:
   flashIntensity: 5
   DeathExplosionEffectPrefab: {fileID: 0}
   DeathTimer: 0
+  GravityVel: {x: 0, y: 0, z: 0}
   ExternalVel: {x: 0, y: 0, z: 0}
   externalVelDamp: 5
   OneMeshMultipleMat: 0
@@ -2078,6 +2115,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 434487228}
   m_CullTransparentMesh: 1
+--- !u!1 &437618271
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 437618272}
+  m_Layer: 0
+  m_Name: TargetPathfind
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &437618272
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 437618271}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 987653385}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &501022959
 GameObject:
   m_ObjectHideFlags: 0
@@ -2342,6 +2410,7 @@ MonoBehaviour:
   flashIntensity: 5
   DeathExplosionEffectPrefab: {fileID: 0}
   DeathTimer: 0
+  GravityVel: {x: 0, y: 0, z: 0}
   ExternalVel: {x: 0, y: 0, z: 0}
   externalVelDamp: 5
   OneMeshMultipleMat: 0
@@ -2549,6 +2618,7 @@ MonoBehaviour:
   flashIntensity: 5
   DeathExplosionEffectPrefab: {fileID: 0}
   DeathTimer: 0
+  GravityVel: {x: 0, y: 0, z: 0}
   ExternalVel: {x: 0, y: 0, z: 0}
   externalVelDamp: 5
   OneMeshMultipleMat: 0
@@ -7813,6 +7883,7 @@ MonoBehaviour:
   flashIntensity: 5
   DeathExplosionEffectPrefab: {fileID: 0}
   DeathTimer: 0
+  GravityVel: {x: 0, y: 0, z: 0}
   ExternalVel: {x: 0, y: 0, z: 0}
   externalVelDamp: 5
   OneMeshMultipleMat: 0
@@ -8392,6 +8463,7 @@ MonoBehaviour:
   flashIntensity: 5
   DeathExplosionEffectPrefab: {fileID: 0}
   DeathTimer: 0
+  GravityVel: {x: 0, y: 0, z: 0}
   ExternalVel: {x: 0, y: 0, z: 0}
   externalVelDamp: 5
   OneMeshMultipleMat: 0
@@ -8594,6 +8666,7 @@ MonoBehaviour:
   flashIntensity: 5
   DeathExplosionEffectPrefab: {fileID: 0}
   DeathTimer: 0
+  GravityVel: {x: 0, y: 0, z: 0}
   ExternalVel: {x: 0, y: 0, z: 0}
   externalVelDamp: 5
   OneMeshMultipleMat: 0
@@ -8804,6 +8877,7 @@ GameObject:
   - component: {fileID: 987653383}
   - component: {fileID: 987653382}
   - component: {fileID: 987653381}
+  - component: {fileID: 987653386}
   m_Layer: 0
   m_Name: Demonic Minion
   m_TagString: Untagged
@@ -8833,7 +8907,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 80
@@ -8856,8 +8930,8 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 1
-  m_Radius: 0.5
+  m_Height: 0.75
+  m_Radius: 0.25
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
@@ -8897,8 +8971,9 @@ MonoBehaviour:
   flashTimer: 0
   flashDuration: 0.25
   flashIntensity: 5
-  DeathExplosionEffectPrefab: {fileID: 0}
+  DeathExplosionEffectPrefab: {fileID: 2756758160312386989, guid: 900226e3e8b193049aca40939f4de1df, type: 3}
   DeathTimer: 0
+  GravityVel: {x: 0, y: 0, z: 0}
   ExternalVel: {x: 0, y: 0, z: 0}
   externalVelDamp: 5
   OneMeshMultipleMat: 0
@@ -8916,8 +8991,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   humanoid: {fileID: 987653383}
   _animator: {fileID: 1151835711}
-  attackHandler: {fileID: 0}
   characterController: {fileID: 987653382}
+  SightRange: 10
+  AttackRange: 1
+  AttackCooldown: 1
+  PlayerTransform: {fileID: 574463007}
+  AttackHandlers: []
+  AttackVFX: {fileID: 0}
+  TargetTransform: {fileID: 437618272}
+  VoxelAStarPathing: {fileID: 987653386}
+  MaxSearchTimer: 1
+  PathfindingAccuracy: 0.1
+  Direction: {x: 0, y: 0, z: 0}
+  Diff: {x: 0, y: 0, z: 0}
 --- !u!4 &987653385
 Transform:
   m_ObjectHideFlags: 0
@@ -8932,8 +9018,24 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1151835712}
+  - {fileID: 219204539}
+  - {fileID: 437618272}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &987653386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 987653380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 320d5fa347d5ecc4bb37df1ba79ceee8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Target: {fileID: 437618272}
+  PathFound: []
 --- !u!1 &1015400235
 GameObject:
   m_ObjectHideFlags: 0
@@ -9044,6 +9146,7 @@ MonoBehaviour:
   flashIntensity: 5
   DeathExplosionEffectPrefab: {fileID: 0}
   DeathTimer: 0
+  GravityVel: {x: 0, y: 0, z: 0}
   ExternalVel: {x: 0, y: 0, z: 0}
   externalVelDamp: 5
   OneMeshMultipleMat: 0
@@ -9246,6 +9349,7 @@ MonoBehaviour:
   flashIntensity: 5
   DeathExplosionEffectPrefab: {fileID: 0}
   DeathTimer: 0
+  GravityVel: {x: 0, y: 0, z: 0}
   ExternalVel: {x: 0, y: 0, z: 0}
   externalVelDamp: 5
   OneMeshMultipleMat: 0
@@ -10704,6 +10808,7 @@ MonoBehaviour:
   flashIntensity: 5
   DeathExplosionEffectPrefab: {fileID: 0}
   DeathTimer: 0
+  GravityVel: {x: 0, y: 0, z: 0}
   ExternalVel: {x: 0, y: 0, z: 0}
   externalVelDamp: 5
   OneMeshMultipleMat: 0
@@ -10944,6 +11049,7 @@ MonoBehaviour:
   flashIntensity: 5
   DeathExplosionEffectPrefab: {fileID: 0}
   DeathTimer: 0
+  GravityVel: {x: 0, y: 0, z: 0}
   ExternalVel: {x: 0, y: 0, z: 0}
   externalVelDamp: 5
   OneMeshMultipleMat: 0
@@ -17385,6 +17491,7 @@ MonoBehaviour:
   flashIntensity: 5
   DeathExplosionEffectPrefab: {fileID: 0}
   DeathTimer: 0
+  GravityVel: {x: 0, y: 0, z: 0}
   ExternalVel: {x: 0, y: 0, z: 0}
   externalVelDamp: 5
   OneMeshMultipleMat: 0
@@ -19617,6 +19724,10 @@ PrefabInstance:
     - target: {fileID: 3092464242835551838, guid: 9d995d8ddf051de4a830843a21ab7e3c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6972388585460330472, guid: 9d995d8ddf051de4a830843a21ab7e3c, type: 3}
+      propertyPath: JumpHeight
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
