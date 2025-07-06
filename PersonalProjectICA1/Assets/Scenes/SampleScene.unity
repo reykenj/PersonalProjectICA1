@@ -8995,7 +8995,7 @@ MonoBehaviour:
   _animator: {fileID: 987653387}
   characterController: {fileID: 987653382}
   SightRange: 10
-  AttackRange: 1
+  AttackRange: 2
   AttackCooldown: 1
   PlayerTransform: {fileID: 574463007}
   AttackHandlers: []
