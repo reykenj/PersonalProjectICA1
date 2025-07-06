@@ -8977,7 +8977,7 @@ MonoBehaviour:
   DeathTimer: 0
   GravityVel: {x: 0, y: 0, z: 0}
   ExternalVel: {x: 0, y: 0, z: 0}
-  externalVelDamp: 5
+  externalVelDamp: 3
   OneMeshMultipleMat: 0
 --- !u!114 &987653384
 MonoBehaviour:
@@ -8996,7 +8996,7 @@ MonoBehaviour:
   characterController: {fileID: 987653382}
   SightRange: 10
   AttackRange: 2
-  AttackCooldown: 1
+  AttackCooldown: 0.25
   PlayerTransform: {fileID: 574463007}
   AttackHandlers:
   - {fileID: 987653388}
@@ -9075,7 +9075,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpellArray:
-  - spell: {fileID: 11400000, guid: 8b9913b655a6af045b42a8b404a0c0e6, type: 2}
+  - spell: {fileID: 11400000, guid: 3f76eada34b3b4b47bf436d750329e90, type: 2}
     TempProjInfo:
       speedCurve:
         serializedVersion: 2

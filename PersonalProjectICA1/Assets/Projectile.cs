@@ -155,10 +155,10 @@ public class Projectile : MonoBehaviour
                 ProjInfo.OnDespawn.Invoke(this);
             }
 
-            ObjectPool.ReturnObj(this.gameObject);
+            ObjectPool.ReturnObj(gameObject);
             return;
         }
-        else
+        else if(hurtcontroller != null)
         {
             StartCoroutine(WaitForHurtTimer());
         }

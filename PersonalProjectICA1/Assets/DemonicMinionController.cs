@@ -246,7 +246,7 @@ public class DemonicMinionController : MonoBehaviour
 
     public void LaunchAttack()
     {
-        transform.LookAt(PlayerTransform.position + Vector3.up);
+        transform.LookAt(PlayerTransform.position + Vector3.up * 2);
         AttackHandlers[0].MultiCast(AttackHandlers[0].AttackStartPoint.position, AttackHandlers[0].AttackStartPoint.rotation);
     }
 

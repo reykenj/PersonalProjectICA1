@@ -57,34 +57,88 @@ MonoBehaviour:
     rotationSpeed: 0
     ScaleCurveX:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1.25
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 1.25
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
     ScaleCurveY:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1.25
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 1.25
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
     ScaleCurveZ:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1.25
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 1.25
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    Damage: 0
-    HurtTimer: 0
+    Damage: 10
+    HurtTimer: 5
     DestructionRadius: 0
     ReturnOnCollision: 0
     CreateDebrisOnDestruction: 0
     Physics: 0
     timer: 0
-    lifetime: 0
+    lifetime: 2
     Render: 0
-    mesh: {fileID: 0}
+    mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
   SpellName: Tackle
-  RuneIcon: {fileID: 0}
+  RuneIcon: {fileID: 21300000, guid: 25659dab5d1295947988f290ddaf7064, type: 3}
   UseTurn: 1
   ApplyToAllModifier: 0
   AttackPrefab: {fileID: 7065334555887556334, guid: 9f1215f4198e5354ea3cca9af06dfa5e, type: 3}

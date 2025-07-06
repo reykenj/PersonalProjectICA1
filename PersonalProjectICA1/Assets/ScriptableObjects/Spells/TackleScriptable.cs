@@ -13,17 +13,24 @@ public class TackleSpell : Spell
         {
 
             fistProj.SetProjInfo(attackHandler.SpellArray[Index].TempProjInfo);
-            fistProj.transform.position = position; // for some reason spawns at the bottom sometimes????
-
-            //fistProj.transform.SetParent(attackHandler.AttackStartPoint.parent);
-            //fistProj.transform.localPosition = attackHandler.AttackStartPoint.localPosition;
-
+            fistProj.transform.position = position;
             fistProj.transform.rotation = rotation;
+            fistProj.transform.SetParent(attackHandler.Owner.transform);
             fistProj.Owner = attackHandler.Owner;
         }
-        Debug.Log("FIST POS: " + fist.transform.position);
-        Debug.Log("TARGET POS: " + attackHandler.AttackStartPoint.position);
-        Debug.Log("PARENT POS: " + attackHandler.AttackStartPoint.parent.position);
+
+
+        if (Humanoid.TryGetHumanoid(attackHandler.Owner, out Humanoid humanoid))
+        {
+            humanoid.ExternalVel = fistProj.transform.forward * 25.0f;
+        }
+
+        humanoid.OnGrounded += () =>
+        {
+            ProjectileInformation PI = attackHandler.SpellArray[Index].TempProjInfo;
+            PI.lifetime = 0;
+            fistProj.SetProjInfo(PI);
+        };
         //int EditIndex = Index + 1;
         //if (EditIndex >= attackHandler.SpellArray.Count) return;
         //SpellContainer EditedProj = attackHandler.SpellArray[EditIndex];
