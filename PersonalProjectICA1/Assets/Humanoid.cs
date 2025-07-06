@@ -44,6 +44,13 @@ public class Humanoid : MonoBehaviour
     {
         return cache.TryGetValue(obj, out humanoid);
     }
+
+    public void SetPos(Vector3 pos)
+    {
+        _charController.enabled = false;
+        transform.position = pos;
+        _charController.enabled = true;
+    }
     private void Awake()
     {
         cache[gameObject] = this;
@@ -85,7 +92,10 @@ public class Humanoid : MonoBehaviour
 
         finalVel += ExternalVel;
 
-        _charController.Move(finalVel * Time.deltaTime);
+        if (_charController.enabled)
+        {
+            _charController.Move(finalVel * Time.deltaTime);
+        }
 
         // Raycast ground detection
         if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 0.2f, LayerMask.GetMask("Voxel")))

@@ -92,7 +92,6 @@ public class GameFlowManager : MonoBehaviour
                 Vector3 spawnPos = hit.point + Vector3.up * enemyHeights[Index];
 
                 GameObject enemy = ObjectPool.GetObj(EnemyPrefabs[Index].name);
-                enemy.transform.position = spawnPos;
                 if (Humanoid.TryGetHumanoid(enemy, out Humanoid h))
                 {
                     var alreadySubscribed = false;
@@ -113,6 +112,8 @@ public class GameFlowManager : MonoBehaviour
                     {
                         h.OnDeath += OnDeath;
                     }
+                    h.SetPos(spawnPos);
+                    //enemy.transform.position = spawnPos;
                 }
             }
         }
