@@ -1,4 +1,6 @@
+using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,16 +12,20 @@ public class ActivateScreen : MonoBehaviour
     [SerializeField] bool StopTime;
     [SerializeField] List<GameObject> EnableOnActivate;
     [SerializeField] List<GameObject> DisableOnActivate;
-
-
     [SerializeField] List<GameObject> EnableOnDeActivate;
     [SerializeField] List<GameObject> DisableOnDeActivate;
+
+    [SerializeField] bool EnterScreenWithNoKeyPressInit;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
         _inputActions = _playerInput.actions;
         _inputActions[Action].Enable();
-        _inputActions[Action].canceled += CTXOffOn;
+        
+        if (!EnterScreenWithNoKeyPressInit)
+        {
+            _inputActions[Action].canceled += CTXOffOn;
+        }
         OffOn();
     }
 
@@ -31,11 +37,32 @@ public class ActivateScreen : MonoBehaviour
 
     private void OnDestroy()
     {
-        _inputActions[Action].canceled -= CTXOffOn;
+        if (!EnterScreenWithNoKeyPressInit)
+        {
+            _inputActions[Action].canceled -= CTXOffOn;
+        }
     }
 
+    IEnumerator WaitForFirstRelease()
+    {
+        yield return new WaitForSecondsRealtime(0.1f);
+        yield return new WaitWhile(() => _inputActions[Action].IsPressed());
+        _inputActions[Action].canceled += CTXOffOn;
+    }
+    private void OnEnable()
+    {
+        if (EnterScreenWithNoKeyPressInit)
+        {
+            StartCoroutine(WaitForFirstRelease());
+            OffOn(true);
+        }
+    }
     private void OnDisable()
     {
+        if (EnterScreenWithNoKeyPressInit)
+        {
+            _inputActions[Action].canceled -= CTXOffOn;
+        }
         if (EnableOnDeActivate.Count != 0)
         {
             for (int i = 0; i < EnableOnDeActivate.Count; i++)
@@ -56,9 +83,13 @@ public class ActivateScreen : MonoBehaviour
     {
         OffOn();
     }
-    void OffOn()
+    void OffOn(bool Apply = false)
     {
-        if (gameObject.activeSelf)
+        if (!Apply)
+        {
+            gameObject.SetActive(!gameObject.activeSelf);
+        }
+        if (!gameObject.activeSelf)
         {
             if (StopTime)
             {
@@ -87,6 +118,5 @@ public class ActivateScreen : MonoBehaviour
                 DisableOnActivate[i].SetActive(false);
             }
         }
-        gameObject.SetActive(!gameObject.activeSelf);
     }
 }

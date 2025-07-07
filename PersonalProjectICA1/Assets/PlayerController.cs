@@ -111,11 +111,11 @@ public class PlayerController : MonoBehaviour
             {
                 Vector3 objPos = col.transform.position;
 
-                if (Physics.Raycast(mainCamera.transform.position, (objPos - mainCamera.transform.position).normalized, out RaycastHit hit, 999f, LayerMask.GetMask("Voxel")))
-                {
-                    if (hit.distance < Vector3.Distance(mainCamera.transform.position, objPos))
-                        continue;
-                }
+                //if (Physics.Raycast(mainCamera.transform.position, (objPos - mainCamera.transform.position).normalized, out RaycastHit hit, 999f, LayerMask.GetMask("Voxel")))
+                //{
+                //    if (hit.distance < Vector3.Distance(mainCamera.transform.position, objPos))
+                //        continue;
+                //}
 
                 Vector3 screenPos = mainCamera.WorldToScreenPoint(objPos);
                 if (screenPos.z < 0)
@@ -148,6 +148,11 @@ public class PlayerController : MonoBehaviour
                 }
                 currentInteractable = bestInteractable;
             }
+            else if(bestInteractable == null)
+            {
+                GameFlowManager.instance.DeactivateInstructionPanel();
+            }
+
 
             yield return new WaitForSeconds(0.5f);
         }

@@ -8,6 +8,7 @@ public class GameFlowManager : MonoBehaviour
 {
     public PlayerController Player;
     public InstructionPanel instructionpanel;
+    public GameObject SpellEditor;
 
     Coroutine InstructionPanelWait;
     public AttackHandler Inventory;
