@@ -50,9 +50,15 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private CharacterController characterController;
     Camera mainCamera;
-
     [SerializeField] float searchRadius;
     [SerializeField] float minScreenRadius;
+
+
+    [SerializeField] float interactSearchRadius = 5f;
+    [SerializeField] float interactScreenRadius = 200f;
+    [SerializeField] LayerMask interactableLayer;
+    private Coroutine interactCoroutine;
+    [SerializeField] private IInteractable currentInteractable;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -65,6 +71,7 @@ public class PlayerController : MonoBehaviour
 
         _inputActions["Dash"].Enable();
 
+
         humanoid.OnGrounded += () =>
         {
             _animator.SetBool("IsFalling", false);
@@ -73,14 +80,78 @@ public class PlayerController : MonoBehaviour
 
     private void OnEnable()
     {
+        _inputActions["Interact"].Enable();
         _inputActions["Dash"].canceled += StartDashing;
+
+        interactCoroutine = StartCoroutine(CheckInteractable());
     }
 
     private void OnDisable()
     {
+        _inputActions["Interact"].Disable();
         _inputActions["Dash"].canceled -= StartDashing;
+
+        if (interactCoroutine != null) StopCoroutine(interactCoroutine);
     }
 
+
+    private IEnumerator CheckInteractable()
+    {
+        while (true)
+        {
+            Debug.Log("[InteractablePlayerDetection] Coroutine update");
+            Collider[] found = Physics.OverlapSphere(transform.position, interactSearchRadius, interactableLayer);
+
+            IInteractable bestInteractable = null;
+            float bestScreenDistance = float.MaxValue;
+
+            Vector2 screenCenter = new Vector2(Screen.width / 2f, Screen.height / 2f);
+
+            foreach (var col in found)
+            {
+                Vector3 objPos = col.transform.position;
+
+                if (Physics.Raycast(mainCamera.transform.position, (objPos - mainCamera.transform.position).normalized, out RaycastHit hit, 999f, LayerMask.GetMask("Voxel")))
+                {
+                    if (hit.distance < Vector3.Distance(mainCamera.transform.position, objPos))
+                        continue;
+                }
+
+                Vector3 screenPos = mainCamera.WorldToScreenPoint(objPos);
+                if (screenPos.z < 0)
+                    continue;
+
+                float screenDist = Vector2.Distance(screenCenter, screenPos);
+
+                if (screenDist > interactScreenRadius)
+                    continue;
+
+                if (col.TryGetComponent<IInteractable>(out var interactable))
+                {
+                    if (screenDist < bestScreenDistance)
+                    {
+                        bestScreenDistance = screenDist;
+                        bestInteractable = interactable;
+                    }
+                }
+            }
+
+            if (bestInteractable != currentInteractable)
+            {
+                if (currentInteractable != null)
+                {
+                    currentInteractable.ExitNear();
+                }
+                if (bestInteractable != null)
+                {
+                    bestInteractable.EnterNear();
+                }
+                currentInteractable = bestInteractable;
+            }
+
+            yield return new WaitForSeconds(0.5f);
+        }
+    }
     private void StartDashing(InputAction.CallbackContext context)
     {
         if (Dash == null)
@@ -102,6 +173,11 @@ public class PlayerController : MonoBehaviour
             //humanoid.SetDirection(new Vector3(0, 0, 0));
             characterController.enabled = false;
             return;
+        }
+
+        if (currentInteractable != null && _inputActions["Interact"].WasPressedThisFrame())
+        {
+            currentInteractable.Interact();
         }
 
         Vector2 input = _inputActions["Move"].ReadValue<Vector2>();

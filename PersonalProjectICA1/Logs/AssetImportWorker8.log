@@ -1,0 +1,368 @@
+Using pre-set license
+Built from '6000.0/release' branch; Version is '6000.0.43f1 (97272b72f107) revision 9905963'; Using compiler version '193933523'; Build Type 'Release'
+OS: 'Windows 11  (10.0.26100) 64bit Core' Language: 'en' Physical Memory: 16003 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 1
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\6000.0.43f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker8
+-projectPath
+C:/Users/ASUS/OneDrive/Documents/GitHub/PersonalProjectICA1/PersonalProjectICA1
+-logFile
+Logs/AssetImportWorker8.log
+-srvPort
+51458
+-job-worker-count
+9
+-background-job-worker-count
+8
+-gc-helper-count
+1
+Successfully changed project path to: C:/Users/ASUS/OneDrive/Documents/GitHub/PersonalProjectICA1/PersonalProjectICA1
+C:/Users/ASUS/OneDrive/Documents/GitHub/PersonalProjectICA1/PersonalProjectICA1
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gfx=262144"
+Player connection [28252]  Target information:
+
+Player connection [28252]  * "[IP] 192.168.2.1 [Port] 0 [Flags] 2 [Guid] 3349575288 [EditorId] 3349575288 [Version] 1048832 [Id] WindowsEditor(7,LAPTOP-KHP0B76V) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [28252]  * "[IP] 192.168.137.1 [Port] 0 [Flags] 2 [Guid] 3349575288 [EditorId] 3349575288 [Version] 1048832 [Id] WindowsEditor(7,LAPTOP-KHP0B76V) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [28252]  * "[IP] 192.168.2.86 [Port] 0 [Flags] 2 [Guid] 3349575288 [EditorId] 3349575288 [Version] 1048832 [Id] WindowsEditor(7,LAPTOP-KHP0B76V) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [28252] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [28252] Host joined alternative multi-casting on [225.0.0.222:34997]...
+JobSystem: Creating JobQueue using job-worker-count value 9
+Input System module state changed to: Initialized.
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+Library Redirect Path: Library/
+[Physics::Module] Selected backend.
+[Physics::Module] Name: PhysX
+[Physics::Module] Id: 0xf2b8ea05
+[Physics::Module] SDK Version: 4.1.2
+[Physics::Module] Integration Version: 1.0.0
+[Physics::Module] Threading Mode: Multi-Threaded
+Refreshing native plugins compatible for Editor in 2.10 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 6000.0.43f1 (97272b72f107)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/6000.0.43f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Users/ASUS/OneDrive/Documents/GitHub/PersonalProjectICA1/PersonalProjectICA1/Assets
+GfxDevice: creating device client; kGfxThreadingModeNonThreaded
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce RTX 4060 Laptop GPU (ID=0x28e0)
+    Vendor:   NVIDIA
+    VRAM:     7957 MB
+    Driver:   32.0.15.7640
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/6000.0.43f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/6000.0.43f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/6000.0.43f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56004
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.0.43f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.0.43f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.0.43f1/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.dll
+Registered in 0.003726 seconds.
+- Loaded All Assemblies, in  0.357 seconds
+[usbmuxd] Start listen thread
+[usbmuxd] Listen thread started
+Native extension for iOS target not found
+Native extension for Android target not found
+Android Extension - Scanning For ADB Devices 240 ms
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.597 seconds
+Domain Reload Profiling: 952ms
+	BeginReloadAssembly (115ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (0ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (1ms)
+	RebuildCommonClasses (31ms)
+	RebuildNativeTypeToScriptingClass (10ms)
+	initialDomainReloadingComplete (46ms)
+	LoadAllAssembliesAndSetupDomain (153ms)
+		LoadAssemblies (114ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (150ms)
+			TypeCache.Refresh (148ms)
+				TypeCache.ScanAssembly (136ms)
+			BuildScriptInfoCaches (0ms)
+			ResolveRequiredComponents (1ms)
+	FinalizeReload (597ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (550ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (335ms)
+			SetLoadedEditorAssemblies (3ms)
+			BeforeProcessingInitializeOnLoad (46ms)
+			ProcessInitializeOnLoadAttributes (106ms)
+			ProcessInitializeOnLoadMethodAttributes (60ms)
+			AfterProcessingInitializeOnLoad (0ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (0ms)
+Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
+========================================================================
+Worker process is ready to serve import requests
+Import Worker Mode flag is 0x00
+Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
+Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.650 seconds
+Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
+'Packages/com.unity.cinemachine/Editor/Obsolete/CinemachineVirtualCameraBaseEditor.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+'Packages/com.unity.cinemachine/Editor/Editors/CinemachineVirtualCameraBaseEditor.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+Refreshing native plugins compatible for Editor in 0.91 ms, found 3 plugins.
+Native extension for iOS target not found
+Native extension for Android target not found
+Native extension for WindowsStandalone target not found
+Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
+Package Manager log level set to [2]
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.771 seconds
+Domain Reload Profiling: 1418ms
+	BeginReloadAssembly (143ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (5ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (25ms)
+	RebuildCommonClasses (27ms)
+	RebuildNativeTypeToScriptingClass (9ms)
+	initialDomainReloadingComplete (34ms)
+	LoadAllAssembliesAndSetupDomain (433ms)
+		LoadAssemblies (285ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (234ms)
+			TypeCache.Refresh (170ms)
+				TypeCache.ScanAssembly (152ms)
+			BuildScriptInfoCaches (51ms)
+			ResolveRequiredComponents (10ms)
+	FinalizeReload (771ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (560ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (14ms)
+			SetLoadedEditorAssemblies (3ms)
+			BeforeProcessingInitializeOnLoad (108ms)
+			ProcessInitializeOnLoadAttributes (353ms)
+			ProcessInitializeOnLoadMethodAttributes (78ms)
+			AfterProcessingInitializeOnLoad (5ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (7ms)
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.02 seconds
+Refreshing native plugins compatible for Editor in 2.11 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 236 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 7063 unused Assets / (8.9 MB). Loaded Objects now: 7780.
+Memory consumption went from 268.4 MB to 259.6 MB.
+Total: 13.030100 ms (FindLiveObjects: 1.115100 ms CreateObjectMapping: 0.874500 ms MarkObjects: 6.622000 ms  DeleteObjects: 4.417000 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 72234.328090 seconds.
+  path: Assets/Altar_Ruins_FREE/Art/Textures/Trim_Sheet
+  artifactKey: Guid(8b48b2731c016b541a81c0616c88aca1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Altar_Ruins_FREE/Art/Textures/Trim_Sheet using Guid(8b48b2731c016b541a81c0616c88aca1) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '1dd6f99c8ecfaf5401d4d9491b060a8b') in 0.0098768 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.018228 seconds.
+  path: Assets/Altar_Ruins_FREE/Art/Textures/Trim_Sheet/Trim.mat
+  artifactKey: Guid(b2ed19392a578c649ab906b22d2b073e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Altar_Ruins_FREE/Art/Textures/Trim_Sheet/Trim.mat using Guid(b2ed19392a578c649ab906b22d2b073e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'e511e9fd76081919c57bea71ed0427fa') in 0.6563979 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 7
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.797151 seconds.
+  path: Assets/Altar_Ruins_FREE/Art/Textures/Old
+  artifactKey: Guid(0f1e7d55d5463374386d0271d0c57f70) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Altar_Ruins_FREE/Art/Textures/Old using Guid(0f1e7d55d5463374386d0271d0c57f70) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '885a2fa8530cdb03dd052aa6df90b3ae') in 0.0007068 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 7.716108 seconds.
+  path: Assets/Altar_Ruins_FREE/Art/Textures/Ground
+  artifactKey: Guid(9540e062ab407e44993b6785ca52318c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Altar_Ruins_FREE/Art/Textures/Ground using Guid(9540e062ab407e44993b6785ca52318c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '36595519f5eb4c1c85c0586c4451352a') in 0.0008019 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.053705 seconds.
+  path: Assets/Altar_Ruins_FREE/Art/Textures/Ground/Ground_AO.png
+  artifactKey: Guid(6608618fc0382134aa77c624c9ae8154) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Altar_Ruins_FREE/Art/Textures/Ground/Ground_AO.png using Guid(6608618fc0382134aa77c624c9ae8154) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'bce2786b9598f6b934fc67fc8864c9c0') in 0.0408055 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/Altar_Ruins_FREE/Art/Textures/Ground/Ground_Normal.png
+  artifactKey: Guid(e58976ba6c296ed4d88c6766711ea84c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Altar_Ruins_FREE/Art/Textures/Ground/Ground_Normal.png using Guid(e58976ba6c296ed4d88c6766711ea84c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '1e92b426220369280370c22386ffe898') in 0.0612044 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 32.277196 seconds.
+  path: Assets/Altar_Ruins_FREE/Art/Textures/Ground/Ground_Displacement.exr
+  artifactKey: Guid(7f4c6f44555584143a91165a01798c34) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Altar_Ruins_FREE/Art/Textures/Ground/Ground_Displacement.exr using Guid(7f4c6f44555584143a91165a01798c34) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '5f468ec4dd26292176cc8c5e60732724') in 0.0502147 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 40.201990 seconds.
+  path: Assets/Altar_Ruins_FREE/Art/Textures/Ground/Ground_Diffuse.png
+  artifactKey: Guid(45dec13cefc871140b599fd852da258d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Altar_Ruins_FREE/Art/Textures/Ground/Ground_Diffuse.png using Guid(45dec13cefc871140b599fd852da258d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '12625a3a60e862228e2b256804e6134e') in 0.0269867 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000065 seconds.
+  path: Assets/Altar_Ruins_FREE/Art/Textures/Ground/Ground_Normal.png
+  artifactKey: Guid(e58976ba6c296ed4d88c6766711ea84c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Altar_Ruins_FREE/Art/Textures/Ground/Ground_Normal.png using Guid(e58976ba6c296ed4d88c6766711ea84c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '2a8a046553e1925d6fbccd1247d47453') in 0.0353338 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000036 seconds.
+  path: Assets/Altar_Ruins_FREE/Art/Textures/Ground/Ground_Specular.png
+  artifactKey: Guid(1698b6531711a39439f060b0ca6ada49) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Altar_Ruins_FREE/Art/Textures/Ground/Ground_Specular.png using Guid(1698b6531711a39439f060b0ca6ada49) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'a51beb55d1d9fed69d74643c3b141ebf') in 0.0123429 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 12.100029 seconds.
+  path: Assets/Altar_Ruins_FREE/Art/Textures/Ground/Ground_Diffuse.png
+  artifactKey: Guid(45dec13cefc871140b599fd852da258d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Altar_Ruins_FREE/Art/Textures/Ground/Ground_Diffuse.png using Guid(45dec13cefc871140b599fd852da258d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'a78da0912bc65cdac62bda4ddd16ecf6') in 0.0188691 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/Altar_Ruins_FREE/Art/Textures/Ground/Ground_Normal.png
+  artifactKey: Guid(e58976ba6c296ed4d88c6766711ea84c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Altar_Ruins_FREE/Art/Textures/Ground/Ground_Normal.png using Guid(e58976ba6c296ed4d88c6766711ea84c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '0e633d1e416987eb81f93a16665bf64a') in 0.025394 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/Altar_Ruins_FREE/Art/Textures/Ground/Ground_Specular.png
+  artifactKey: Guid(1698b6531711a39439f060b0ca6ada49) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Altar_Ruins_FREE/Art/Textures/Ground/Ground_Specular.png using Guid(1698b6531711a39439f060b0ca6ada49) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'bbe5a7377e27f2980dcd34d592fc0fe2') in 0.0223906 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 47.407984 seconds.
+  path: Assets/Altar_Ruins_FREE/Art/Textures/Old/Ground
+  artifactKey: Guid(47878490a9f91c544b93d6b42a922e14) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Altar_Ruins_FREE/Art/Textures/Old/Ground using Guid(47878490a9f91c544b93d6b42a922e14) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '4abbc78984b9c77db4665be57f7b7288') in 0.0005682 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 4.774856 seconds.
+  path: Assets/Altar_Ruins_FREE/Art/Textures/Old/Tree
+  artifactKey: Guid(7062a2baf8a99cf46b3039a47015b244) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Altar_Ruins_FREE/Art/Textures/Old/Tree using Guid(7062a2baf8a99cf46b3039a47015b244) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '4a701c24dce9e69cc5de2b416b41005b') in 0.0005445 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.049461 seconds.
+  path: Assets/Altar_Ruins_FREE/Art/Textures/Old/Tree/Tree_ao.png
+  artifactKey: Guid(28e1077f2035f5b418597cbcd9b38ae6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Altar_Ruins_FREE/Art/Textures/Old/Tree/Tree_ao.png using Guid(28e1077f2035f5b418597cbcd9b38ae6) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '0f213861ff35a61e2aa05c2d372005b2') in 0.0411597 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/Altar_Ruins_FREE/Art/Textures/Old/Tree/Tree_specular.png
+  artifactKey: Guid(404197137f6ed104c9be58ae57bea086) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Altar_Ruins_FREE/Art/Textures/Old/Tree/Tree_specular.png using Guid(404197137f6ed104c9be58ae57bea086) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '1a4e7acd8600dc6938274a9864499b92') in 0.0298293 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
+
+========================================================================
+Received Import Request.
+  Time since last request: 60.177562 seconds.
+  path: Assets/Altar_Ruins_FREE/Art/Textures/Tree
+  artifactKey: Guid(1d89a214b09a04741a068cafe0a1ac46) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Altar_Ruins_FREE/Art/Textures/Tree using Guid(1d89a214b09a04741a068cafe0a1ac46) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '4b001c31b7dd4d76b2b4606ef7f24260') in 0.0007733 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.024054 seconds.
+  path: Assets/Altar_Ruins_FREE/Art/Textures/Tree/NewLayer.terrainlayer
+  artifactKey: Guid(70e450b406ae20d47ad0e11926fdaf89) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Altar_Ruins_FREE/Art/Textures/Tree/NewLayer.terrainlayer using Guid(70e450b406ae20d47ad0e11926fdaf89) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'df99308b327fe5299323fad7566148be') in 0.0326804 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 5
+
+========================================================================
+Received Import Request.
+  Time since last request: 28.586882 seconds.
+  path: Assets/Altar_Ruins_FREE/Art/Textures/Trim_Sheet/Trim.mat
+  artifactKey: Guid(b2ed19392a578c649ab906b22d2b073e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Altar_Ruins_FREE/Art/Textures/Trim_Sheet/Trim.mat using Guid(b2ed19392a578c649ab906b22d2b073e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'bdf6d73a9def62c0019f5c8319ed429b') in 0.0589977 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 5
+

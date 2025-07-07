@@ -2,13 +2,14 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class SpellDrop : MonoBehaviour
+public class SpellDrop : MonoBehaviour, IInteractable
 {
     [SerializeField] GameObject ActiveSpellEffect;
     [SerializeField] GameObject ModifierSpellEffect;
     [SerializeField] GameObject SpecialSpellEffect;
     [SerializeField] GameObject TeleportEffect;
     [SerializeField] Spell spell;
+    [SerializeField] float Cost = 50;
     private static Dictionary<GameObject, SpellDrop> cache = new Dictionary<GameObject, SpellDrop>();
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
@@ -19,7 +20,7 @@ public class SpellDrop : MonoBehaviour
     private void Awake()
     {
         cache[gameObject] = this;
-        GameFlowManager.instance.ShopChoiceChosen += OnShopChoiceChosen;
+        //GameFlowManager.instance.ShopChoiceChosen += OnShopChoiceChosen;
     }
     private void OnDestroy()
     {
@@ -47,36 +48,45 @@ public class SpellDrop : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.layer == LayerMask.NameToLayer("Player"))
-        {
-            GameFlowManager.instance.ShopChoiceChosen.Invoke();
-            //might need to turn off the collider if it repeat invokes
 
-            for (int i = 0; i < GameFlowManager.instance.Inventory.SpellArray.Count; i++)
-            {
-                if (GameFlowManager.instance.Inventory.SpellArray[i].spell == null)
-                {
-                    SpellContainer SC = GameFlowManager.instance.Inventory.SpellArray[i];
-                    SC.spell = spell;
-                    if (SC.spell != null)
-                    {
-                        SC.TempProjInfo = SC.spell.OGProjectileInformation;
-                    }
-                    else
-                    {
-                        SC.TempProjInfo = new ProjectileInformation();
-                    }
-                    GameFlowManager.instance.Inventory.SpellArray[i] = SC;
-
-                    //Debug.Log("[SPELLPICKUP] Found and implemented");
-                    break;
-                }
-            }
-        }
     }
 
     void OnShopChoiceChosen()
     {
         ObjectPool.ReturnObj(gameObject);
+    }
+
+    public void EnterNear()
+    {
+        GameFlowManager.instance.ActivateInstructionPanel(spell.name, spell.SpellDescription + "(Press E to buy for " + Cost + " )");
+    }
+
+    public void ExitNear()
+    {
+        GameFlowManager.instance.DeactivateInstructionPanel();
+    }
+
+    public void Interact()
+    {
+        for (int i = 0; i < GameFlowManager.instance.Inventory.SpellArray.Count; i++)
+        {
+            if (GameFlowManager.instance.Inventory.SpellArray[i].spell == null)
+            {
+                SpellContainer SC = GameFlowManager.instance.Inventory.SpellArray[i];
+                SC.spell = spell;
+                if (SC.spell != null)
+                {
+                    SC.TempProjInfo = SC.spell.OGProjectileInformation;
+                }
+                else
+                {
+                    SC.TempProjInfo = new ProjectileInformation();
+                }
+                GameFlowManager.instance.Inventory.SpellArray[i] = SC;
+                gameObject.SetActive(false);
+                //Debug.Log("[SPELLPICKUP] Found and implemented");
+                break;
+            }
+        }
     }
 }

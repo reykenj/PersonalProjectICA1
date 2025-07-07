@@ -7,6 +7,9 @@ using UnityEngine.SceneManagement;
 public class GameFlowManager : MonoBehaviour
 {
     public PlayerController Player;
+    public InstructionPanel instructionpanel;
+
+    Coroutine InstructionPanelWait;
     public AttackHandler Inventory;
     [SerializeField] int MaxEnemies;
     [SerializeField] int TotalEnemies;
@@ -33,7 +36,31 @@ public class GameFlowManager : MonoBehaviour
     public System.Action ShopChoiceChosen;
     bool ShopChoiceMade = false;
 
+    public void ActivateInstructionPanel(string TitleText, string DescriptionText)
+    {
+        if (InstructionPanelWait != null)
+        {
+            StopCoroutine(InstructionPanelWait);
+            InstructionPanelWait = null;
+        }
+        InstructionPanelWait = StartCoroutine(WaitForInstructionPanelInactive(TitleText, DescriptionText));
+    }
 
+    public void DeactivateInstructionPanel()
+    {
+        if (instructionpanel.gameObject.activeSelf)
+        {
+            instructionpanel.SendBack();
+        }
+    }
+    IEnumerator WaitForInstructionPanelInactive(string TitleText, string DescriptionText)
+    {
+        yield return new WaitWhile(() => instructionpanel.gameObject.activeSelf);
+        instructionpanel.TitleTextToAppear = TitleText;
+        instructionpanel.DescriptionTextToAppear = DescriptionText;
+        instructionpanel.gameObject.SetActive(true);
+        InstructionPanelWait = null;
+    }
     private void Awake()
     {
         if (instance == null)

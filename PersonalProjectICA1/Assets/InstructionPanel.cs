@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class InstructionPanel : MonoBehaviour
@@ -22,6 +23,7 @@ public class InstructionPanel : MonoBehaviour
 
 
     bool isMoving = true;
+    bool isGoingBack = false;
     private Vector2 targetAnchorPos;
 
     public RectTransform layoutRoot;
@@ -31,9 +33,13 @@ public class InstructionPanel : MonoBehaviour
         startPos = new Vector2(0, Screen.height * 1.1f);
         targetAnchorPos = new Vector2(Screen.width / 2, Screen.height);
     }
-
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        gameObject.SetActive(false);
+    }
     private void OnEnable()
     {
+        isGoingBack = false;
         StartCoroutine(PrepLayoutBeforeAnimation());
     }
 
@@ -45,19 +51,35 @@ public class InstructionPanel : MonoBehaviour
     {
         if (!isMoving) return;
 
-        moveTimer += Time.unscaledDeltaTime;
+        if (isGoingBack)
+        {
+            moveTimer -= Time.unscaledDeltaTime;
+        }
+        else
+        {
+            moveTimer += Time.unscaledDeltaTime;
+        }
         float t = Mathf.Clamp01(moveTimer / moveDuration);
         panelRect.anchoredPosition = Vector2.Lerp(startPos, endPos, t);
 
-        if (t >= 1f)
+        if (t >= 1f && !isGoingBack)
         {
             isMoving = false;
             panelRect.anchoredPosition = endPos;
             Title.DoAnimation();
             Description.DoAnimation();
         }
+        else if (t <= 0 && isGoingBack)
+        {
+            gameObject.SetActive(false);
+        }
     }
 
+    public void SendBack()
+    {
+        isMoving = true;
+        isGoingBack = true;
+    }
 
     public void RefreshLayout()
     {
@@ -90,4 +112,6 @@ public class InstructionPanel : MonoBehaviour
         moveTimer = 0f;
         isMoving = true;
     }
+
+
 }

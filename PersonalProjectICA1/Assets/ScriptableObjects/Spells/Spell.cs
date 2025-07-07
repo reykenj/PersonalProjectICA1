@@ -5,6 +5,7 @@ public class Spell : ScriptableObject
 {
     public ProjectileInformation OGProjectileInformation;
     public string SpellName;
+    public string SpellDescription;
     public Sprite RuneIcon;
     public bool UseTurn;
     public bool ApplyToAllModifier;
