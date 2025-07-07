@@ -8,12 +8,11 @@ public class SpellSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     private static Dictionary<GameObject, SpellSlotUI> cache = new Dictionary<GameObject, SpellSlotUI>();
     public Spell spell;
     [SerializeField] Image slotimage;
-
+    public bool Draggable = true;
     public bool isBeingHeld = false;
     public int Index;
     public static SpellSlotUI DragIconChosen;
     public Sprite EmptySpellSlot;
-
     public SpellDeckUI ParentDeck;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -76,6 +75,10 @@ public class SpellSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        if (!Draggable)
+        {
+            return;
+        }
         isBeingHeld = true;
         DragIconChosen.gameObject.SetActive(true);
         DragIconChosen.transform.position = Input.mousePosition;
@@ -88,6 +91,10 @@ public class SpellSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     public void OnPointerUp(PointerEventData eventData)
     {
+        if (!Draggable)
+        {
+            return;
+        }
         isBeingHeld = false;
         DragIconChosen.gameObject.SetActive(false);
 

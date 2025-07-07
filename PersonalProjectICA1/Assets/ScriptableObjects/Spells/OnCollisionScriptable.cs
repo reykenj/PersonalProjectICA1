@@ -59,7 +59,7 @@ public class OnCollisionSpell : Spell
         attackHandler.SpellArray[IndexToActivateOn] = SCActivation;
 
         attackHandler.MultiCast(attackHandler.AttackStartPoint.position, attackHandler.AttackStartPoint.rotation, Index + 1, 0);
-
+        UseTurn = true;
         return attackHandler.FindMultiCastTurn(IndexToActivateOn + 1);
     }
 

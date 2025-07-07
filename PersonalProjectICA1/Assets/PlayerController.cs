@@ -340,11 +340,19 @@ public class PlayerController : MonoBehaviour
     public void CastLeftFist()
     {
         LeftAttackHandler.MultiCast(LeftAttackHandler.AttackStartPoint.position, LeftAttackHandler.AttackStartPoint.rotation);
+        if (LeftAttackHandler.Casted != null)
+        {
+            LeftAttackHandler.Casted.Invoke();
+        }
     }
 
     public void CastRightFist()
     {
         RightAttackHandler.MultiCast(RightAttackHandler.AttackStartPoint.position, RightAttackHandler.AttackStartPoint.rotation);
+        if (RightAttackHandler.Casted != null)
+        {
+            RightAttackHandler.Casted.Invoke();
+        }
     }
 
     IEnumerator PlayerDash()

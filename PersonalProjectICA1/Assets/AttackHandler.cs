@@ -13,6 +13,7 @@ public class AttackHandler : MonoBehaviour
     public GameObject Owner;
     public int NaturalMultiCastCount = 1;
     public int TempMultiCastCount = 0;
+    public System.Action Casted;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -125,7 +126,7 @@ public class AttackHandler : MonoBehaviour
                 if (UseTurn)
                 {
                     multicount++;
-                    if (multicount >= NaturalMultiCastCount + TempMultiCastCount)
+                    if (multicount >= NaturalMultiCastCount + TempTempMultiCastCount)
                     {
                         InsertedTurn = (InsertedTurn + 1) % spellCount;
                         ResetSpells(0, InsertedTurn);
@@ -190,7 +191,13 @@ public class AttackHandler : MonoBehaviour
                 break;
             }
         }
-        //Debug.Log("[InsertedLog] Updated" + InsertedTurn);
+        Debug.Log("[InsertedLog] Updated" + InsertedTurn);
+
+        InsertedTurn--;
+        if (InsertedTurn < 0)
+        {
+            InsertedTurn = spellCount + InsertedTurn;
+        }
         return InsertedTurn;
     }
 
