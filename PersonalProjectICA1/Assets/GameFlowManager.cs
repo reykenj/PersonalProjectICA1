@@ -156,45 +156,45 @@ public class GameFlowManager : MonoBehaviour
         {
             EndLevel = true;
 
-            StartCoroutine(PlayerRewards());
+            StartCoroutine(MoveScene("SpellEditingScene"));
         }
     }
 
-    IEnumerator PlayerRewards()
+    public IEnumerator MoveScene(string scenename)
     {
-        float worldWidth = WorldManager.Instance.xSize * WorldManager.Instance.ChunkSize;
-        float worldDepth = WorldManager.Instance.zSize * WorldManager.Instance.ChunkSize;
+        //float worldWidth = WorldManager.Instance.xSize * WorldManager.Instance.ChunkSize;
+        //float worldDepth = WorldManager.Instance.zSize * WorldManager.Instance.ChunkSize;
 
-        for (int drop = 0; drop < spellDropCount; drop++)
-        {
-            yield return new WaitForSeconds(ShopDelay);
-            //Vector2 offset2D = Random.insideUnitCircle * dropRadius;
-            for (int i = 0; i < spellsPerDrop; i++)
-            {
+        //for (int drop = 0; drop < spellDropCount; drop++)
+        //{
+        //    yield return new WaitForSeconds(ShopDelay);
+        //    //Vector2 offset2D = Random.insideUnitCircle * dropRadius;
+        //    for (int i = 0; i < spellsPerDrop; i++)
+        //    {
 
-                float angle = i * (360f / spellDropCount);
-                float radians = angle * Mathf.Deg2Rad;
-                float spawnX = Player.transform.position.x + Mathf.Cos(radians) * dropRadius;
-                float spawnZ = Player.transform.position.z + Mathf.Sin(radians) * dropRadius;
-                spawnX = Mathf.Clamp(spawnX, 0, worldWidth - 1);
-                spawnZ = Mathf.Clamp(spawnZ, 0, worldDepth - 1);
-                Vector3 rayOrigin = new Vector3(spawnX, worldDepth, spawnZ);
-                if (Physics.Raycast(rayOrigin, Vector3.down, out RaycastHit hit, 2000f, LayerMask.GetMask("Voxel")))
-                {
-                    Vector3 spellPos = hit.point + Vector3.up * 0.5f;
-                    GameObject spelldrop = ObjectPool.GetObj(SpellDropPrefab.name);
-                    spelldrop.transform.position = spellPos;
+        //        float angle = i * (360f / spellDropCount);
+        //        float radians = angle * Mathf.Deg2Rad;
+        //        float spawnX = Player.transform.position.x + Mathf.Cos(radians) * dropRadius;
+        //        float spawnZ = Player.transform.position.z + Mathf.Sin(radians) * dropRadius;
+        //        spawnX = Mathf.Clamp(spawnX, 0, worldWidth - 1);
+        //        spawnZ = Mathf.Clamp(spawnZ, 0, worldDepth - 1);
+        //        Vector3 rayOrigin = new Vector3(spawnX, worldDepth, spawnZ);
+        //        if (Physics.Raycast(rayOrigin, Vector3.down, out RaycastHit hit, 2000f, LayerMask.GetMask("Voxel")))
+        //        {
+        //            Vector3 spellPos = hit.point + Vector3.up * 0.5f;
+        //            GameObject spelldrop = ObjectPool.GetObj(SpellDropPrefab.name);
+        //            spelldrop.transform.position = spellPos;
 
-                    if (SpellDrop.TryGetSpellDrop(spelldrop, out SpellDrop SD))
-                    {
-                        SD.Initialise(SpellShopPool[Random.Range(0, SpellShopPool.Count)]);
-                    }
-                }
-            }
-            yield return new WaitUntil(() => ShopChoiceMade);
-            ShopChoiceMade = false;
-            // YIELD WAIT FOR EVENT TO BE INVOKED
-        }
+        //            if (SpellDrop.TryGetSpellDrop(spelldrop, out SpellDrop SD))
+        //            {
+        //                SD.Initialise(SpellShopPool[Random.Range(0, SpellShopPool.Count)]);
+        //            }
+        //        }
+        //    }
+        //    yield return new WaitUntil(() => ShopChoiceMade);
+        //    ShopChoiceMade = false;
+        //    // YIELD WAIT FOR EVENT TO BE INVOKED
+        //}
 
 
         yield return new WaitForSeconds(2.0f);
@@ -203,6 +203,6 @@ public class GameFlowManager : MonoBehaviour
 
         yield return new WaitForSeconds(2.0f);
 
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(scenename);
     }
 }
