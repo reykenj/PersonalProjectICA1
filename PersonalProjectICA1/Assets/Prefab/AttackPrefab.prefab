@@ -173,6 +173,7 @@ MonoBehaviour:
     lifetime: 5
     Render: 0
     mesh: {fileID: 0}
+    materials: []
   _collider: {fileID: 178216632817608422}
   _rb: {fileID: 7696232333745215214}
   _meshRenderer: {fileID: 3256198057670498341}
@@ -181,6 +182,7 @@ MonoBehaviour:
   TargetTransform: {fileID: 0}
   CollisionEffectPrefab: {fileID: 0}
   Owner: {fileID: 0}
+  DefaultMaterial: {fileID: -840037777384891287, guid: 92ebbe721d60fd5408ae89f084ca5638, type: 3}
 --- !u!33 &2448572097721596689
 MeshFilter:
   m_ObjectHideFlags: 0

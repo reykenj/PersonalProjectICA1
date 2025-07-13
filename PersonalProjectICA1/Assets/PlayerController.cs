@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
     //[SerializeField] Transform bodyTarget;
     [SerializeField] float maxDistance = 0.1f;
     [SerializeField] float maxAngle = 90f;
-
+    public Transform AttackStartPoint;
     public AttackHandler LeftAttackHandler;
     public AttackHandler RightAttackHandler;
     Vector3 moveDirect = Vector3.zero;
@@ -81,6 +81,7 @@ public class PlayerController : MonoBehaviour
     private void OnEnable()
     {
         _inputActions["Interact"].Enable();
+        _inputActions["Look"].Enable();
         _inputActions["Dash"].canceled += StartDashing;
 
         interactCoroutine = StartCoroutine(CheckInteractable());
@@ -89,6 +90,7 @@ public class PlayerController : MonoBehaviour
     private void OnDisable()
     {
         _inputActions["Interact"].Disable();
+        _inputActions["Look"].Disable();
         _inputActions["Dash"].canceled -= StartDashing;
 
         if (interactCoroutine != null) StopCoroutine(interactCoroutine);
@@ -186,6 +188,10 @@ public class PlayerController : MonoBehaviour
         }
 
         Vector2 input = _inputActions["Move"].ReadValue<Vector2>();
+
+        Vector2 mousedelta = _inputActions["Look"].ReadValue<Vector2>();
+
+
         moveDirect = Vector2.zero;
 
         moveDirect += new Vector3(mainCamera.transform.forward.x, 0, mainCamera.transform.forward.z) * input.y;
@@ -256,8 +262,8 @@ public class PlayerController : MonoBehaviour
                 //}
                 _animator.SetBool("IsRunning", true);
             }
-            Quaternion targetRotation = Quaternion.LookRotation(moveDirect);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10f);
+            //Quaternion targetRotation = Quaternion.LookRotation(moveDirect);
+            //transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10f);
 
         }
         else
@@ -292,6 +298,16 @@ public class PlayerController : MonoBehaviour
         {
             _animator.SetBool("IsFalling", true);
         }
+
+
+        if (mousedelta != Vector2.zero)
+        {
+            AttackStartPoint.rotation = Quaternion.LookRotation(mainCamera.transform.forward);
+        }
+        cameraForward.y = 0f;
+        // Rotate player body
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(cameraForward), Time.deltaTime * 15f);
+
     }
 
 

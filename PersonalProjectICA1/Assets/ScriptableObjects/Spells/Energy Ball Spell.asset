@@ -155,7 +155,11 @@ MonoBehaviour:
     lifetime: 5
     Render: 1
     mesh: {fileID: 289301614986012343, guid: e95056eb6d47d244caa08cdb3767a7e4, type: 3}
+    materials:
+    - {fileID: 2100000, guid: 471685489765d914086497f6dfd53ca9, type: 2}
   SpellName: Energy Ball
+  SpellDescription: 
   RuneIcon: {fileID: 21300000, guid: 23b55f5c84d9c904c82c8f6c5de556a1, type: 3}
   UseTurn: 1
+  ApplyToAllModifier: 0
   AttackPrefab: {fileID: 7065334555887556334, guid: 9f1215f4198e5354ea3cca9af06dfa5e, type: 3}

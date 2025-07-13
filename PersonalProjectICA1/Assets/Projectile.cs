@@ -17,6 +17,7 @@ public class Projectile : MonoBehaviour
     private Vector3 _lastDirection;
     //private Coroutine lifetimecoroutine;
     public GameObject Owner;
+    [SerializeField] Material DefaultMaterial;
 
 
     private static Dictionary<GameObject, Projectile> cache = new Dictionary<GameObject, Projectile>();
@@ -33,6 +34,14 @@ public class Projectile : MonoBehaviour
         _meshFilter.mesh = ProjInfo.mesh;
         _collider.sharedMesh = ProjInfo.mesh;
         _meshRenderer.enabled = ProjInfo.Render;
+        if (ProjInfo.materials != null && ProjInfo.materials.Count > 0)
+        {
+            _meshRenderer.materials = ProjInfo.materials.ToArray();
+        }
+        else
+        {
+            _meshRenderer.materials = new Material[] { DefaultMaterial };
+        }
         SetPhysics(ProjInfo.Physics);
         transform.localScale = new Vector3(ProjInfo.ScaleCurveX.Evaluate(0), ProjInfo.ScaleCurveY.Evaluate(0), ProjInfo.ScaleCurveZ.Evaluate(0));
         //ChangeLifetime(ProjInfo.lifetime);
@@ -356,6 +365,7 @@ public struct ProjectileInformation
     public float lifetime;
     public bool Render;
     public Mesh mesh;
+    public List<Material> materials;
 
     public System.Action<Projectile> OnCollision;
     public System.Action<Projectile> OnSpawn;

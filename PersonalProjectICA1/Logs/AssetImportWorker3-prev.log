@@ -15,7 +15,7 @@ C:/Users/ASUS/OneDrive/Documents/GitHub/PersonalProjectICA1/PersonalProjectICA1
 -logFile
 Logs/AssetImportWorker3.log
 -srvPort
-55815
+55152
 -job-worker-count
 9
 -background-job-worker-count
@@ -59,16 +59,16 @@ C:/Users/ASUS/OneDrive/Documents/GitHub/PersonalProjectICA1/PersonalProjectICA1
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Player connection [30364]  Target information:
+Player connection [10684]  Target information:
 
-Player connection [30364]  * "[IP] 192.168.2.1 [Port] 0 [Flags] 2 [Guid] 1717747148 [EditorId] 1717747148 [Version] 1048832 [Id] WindowsEditor(7,LAPTOP-KHP0B76V) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+Player connection [10684]  * "[IP] 192.168.2.1 [Port] 0 [Flags] 2 [Guid] 3446309204 [EditorId] 3446309204 [Version] 1048832 [Id] WindowsEditor(7,LAPTOP-KHP0B76V) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
 
-Player connection [30364]  * "[IP] 192.168.137.1 [Port] 0 [Flags] 2 [Guid] 1717747148 [EditorId] 1717747148 [Version] 1048832 [Id] WindowsEditor(7,LAPTOP-KHP0B76V) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+Player connection [10684]  * "[IP] 192.168.137.1 [Port] 0 [Flags] 2 [Guid] 3446309204 [EditorId] 3446309204 [Version] 1048832 [Id] WindowsEditor(7,LAPTOP-KHP0B76V) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
 
-Player connection [30364]  * "[IP] 192.168.2.86 [Port] 0 [Flags] 2 [Guid] 1717747148 [EditorId] 1717747148 [Version] 1048832 [Id] WindowsEditor(7,LAPTOP-KHP0B76V) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+Player connection [10684]  * "[IP] 192.168.2.86 [Port] 0 [Flags] 2 [Guid] 3446309204 [EditorId] 3446309204 [Version] 1048832 [Id] WindowsEditor(7,LAPTOP-KHP0B76V) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
 
-Player connection [30364] Host joined multi-casting on [225.0.0.222:54997]...
-Player connection [30364] Host joined alternative multi-casting on [225.0.0.222:34997]...
+Player connection [10684] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [10684] Host joined alternative multi-casting on [225.0.0.222:34997]...
 JobSystem: Creating JobQueue using job-worker-count value 9
 Input System module state changed to: Initialized.
 [Physics::Module] Initialized fallback backend.
@@ -80,7 +80,7 @@ Library Redirect Path: Library/
 [Physics::Module] SDK Version: 4.1.2
 [Physics::Module] Integration Version: 1.0.0
 [Physics::Module] Threading Mode: Multi-Threaded
-Refreshing native plugins compatible for Editor in 1.54 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 1.12 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 6000.0.43f1 (97272b72f107)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/6000.0.43f1/Editor/Data/Resources/UnitySubsystems
@@ -96,50 +96,50 @@ Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/6000.0.43f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/6000.0.43f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/6000.0.43f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56780
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56988
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.0.43f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
 Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.0.43f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
 Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.0.43f1/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.dll
-Registered in 0.006879 seconds.
-- Loaded All Assemblies, in  0.480 seconds
+Registered in 0.003496 seconds.
+- Loaded All Assemblies, in  0.379 seconds
 [usbmuxd] Start listen thread
 [usbmuxd] Listen thread started
 Native extension for iOS target not found
 Native extension for Android target not found
-Android Extension - Scanning For ADB Devices 279 ms
+Android Extension - Scanning For ADB Devices 196 ms
 Native extension for WindowsStandalone target not found
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.702 seconds
-Domain Reload Profiling: 1180ms
-	BeginReloadAssembly (167ms)
+- Finished resetting the current domain, in  0.478 seconds
+Domain Reload Profiling: 856ms
+	BeginReloadAssembly (171ms)
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (0ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
 		CreateAndSetChildDomain (1ms)
-	RebuildCommonClasses (45ms)
-	RebuildNativeTypeToScriptingClass (18ms)
-	initialDomainReloadingComplete (62ms)
-	LoadAllAssembliesAndSetupDomain (187ms)
-		LoadAssemblies (164ms)
+	RebuildCommonClasses (27ms)
+	RebuildNativeTypeToScriptingClass (9ms)
+	initialDomainReloadingComplete (40ms)
+	LoadAllAssembliesAndSetupDomain (132ms)
+		LoadAssemblies (174ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (183ms)
-			TypeCache.Refresh (181ms)
-				TypeCache.ScanAssembly (165ms)
+		AnalyzeDomain (125ms)
+			TypeCache.Refresh (124ms)
+				TypeCache.ScanAssembly (113ms)
 			BuildScriptInfoCaches (0ms)
 			ResolveRequiredComponents (0ms)
-	FinalizeReload (702ms)
+	FinalizeReload (478ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (637ms)
+		SetupLoadedEditorAssemblies (442ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (385ms)
+			InitializePlatformSupportModulesInManaged (271ms)
 			SetLoadedEditorAssemblies (3ms)
-			BeforeProcessingInitializeOnLoad (55ms)
-			ProcessInitializeOnLoadAttributes (121ms)
-			ProcessInitializeOnLoadMethodAttributes (72ms)
+			BeforeProcessingInitializeOnLoad (39ms)
+			ProcessInitializeOnLoadAttributes (85ms)
+			ProcessInitializeOnLoadMethodAttributes (44ms)
 			AfterProcessingInitializeOnLoad (0ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
@@ -151,11 +151,11 @@ Import Worker Mode flag is 0x00
 Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
 Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
 Begin MonoManager ReloadAssembly
-- Loaded All Assemblies, in  0.961 seconds
+- Loaded All Assemblies, in  0.773 seconds
 Assembly reference Packages/com.unity.cinemachine/Editor/Samples/ExposeHDRPInternals/HDRP-Editor-ref.asmref has no target assembly definition
 'Packages/com.unity.cinemachine/Editor/Obsolete/CinemachineVirtualCameraBaseEditor.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
 'Packages/com.unity.cinemachine/Editor/Editors/CinemachineVirtualCameraBaseEditor.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
-Refreshing native plugins compatible for Editor in 0.98 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 0.62 ms, found 3 plugins.
 Native extension for iOS target not found
 Native extension for Android target not found
 Native extension for WindowsStandalone target not found
@@ -165,94 +165,70 @@ Package Manager log level set to [2]
 [Package Manager] Unable to send message (not connected to server process).
 [Package Manager] Cannot connect to Unity Package Manager local server
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  1.313 seconds
-Domain Reload Profiling: 2270ms
-	BeginReloadAssembly (232ms)
+- Finished resetting the current domain, in  0.703 seconds
+Domain Reload Profiling: 1472ms
+	BeginReloadAssembly (129ms)
 		ExecutionOrderSort (0ms)
-		DisableScriptedObjects (9ms)
+		DisableScriptedObjects (5ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (41ms)
-	RebuildCommonClasses (40ms)
-	RebuildNativeTypeToScriptingClass (11ms)
-	initialDomainReloadingComplete (48ms)
-	LoadAllAssembliesAndSetupDomain (626ms)
-		LoadAssemblies (479ms)
+		CreateAndSetChildDomain (22ms)
+	RebuildCommonClasses (29ms)
+	RebuildNativeTypeToScriptingClass (9ms)
+	initialDomainReloadingComplete (30ms)
+	LoadAllAssembliesAndSetupDomain (571ms)
+		LoadAssemblies (420ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (282ms)
-			TypeCache.Refresh (210ms)
-				TypeCache.ScanAssembly (193ms)
-			BuildScriptInfoCaches (56ms)
-			ResolveRequiredComponents (13ms)
-	FinalizeReload (1314ms)
+		AnalyzeDomain (228ms)
+			TypeCache.Refresh (164ms)
+				TypeCache.ScanAssembly (150ms)
+			BuildScriptInfoCaches (50ms)
+			ResolveRequiredComponents (10ms)
+	FinalizeReload (703ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (574ms)
+		SetupLoadedEditorAssemblies (506ms)
 			LogAssemblyErrors (0ms)
 			InitializePlatformSupportModulesInManaged (15ms)
 			SetLoadedEditorAssemblies (3ms)
-			BeforeProcessingInitializeOnLoad (104ms)
-			ProcessInitializeOnLoadAttributes (358ms)
-			ProcessInitializeOnLoadMethodAttributes (88ms)
+			BeforeProcessingInitializeOnLoad (95ms)
+			ProcessInitializeOnLoadAttributes (315ms)
+			ProcessInitializeOnLoadMethodAttributes (73ms)
 			AfterProcessingInitializeOnLoad (5ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
 		AwakeInstancesAfterBackupRestoration (6ms)
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.01 seconds
-Refreshing native plugins compatible for Editor in 1.43 ms, found 3 plugins.
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.02 seconds
+Refreshing native plugins compatible for Editor in 1.49 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 236 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 7059 unused Assets / (7.2 MB). Loaded Objects now: 7772.
-Memory consumption went from 273.4 MB to 266.3 MB.
-Total: 12.577700 ms (FindLiveObjects: 0.903700 ms CreateObjectMapping: 0.836400 ms MarkObjects: 6.615800 ms  DeleteObjects: 4.220200 ms)
+Unloading 237 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 7064 unused Assets / (8.4 MB). Loaded Objects now: 7782.
+Memory consumption went from 270.9 MB to 262.5 MB.
+Total: 15.952700 ms (FindLiveObjects: 0.652700 ms CreateObjectMapping: 0.477000 ms MarkObjects: 7.317000 ms  DeleteObjects: 7.503500 ms)
 
 ========================================================================
 Received Import Request.
-  Time since last request: 61155.800347 seconds.
-  path: Assets/Altar_Ruins_FREE/Prefabs/Old/Meshes_with_the_bottom_faces/Arch_4.prefab
-  artifactKey: Guid(0b64834cb3edfae4e9b8cf8e4d160629) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Altar_Ruins_FREE/Prefabs/Old/Meshes_with_the_bottom_faces/Arch_4.prefab using Guid(0b64834cb3edfae4e9b8cf8e4d160629) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'cef8fa30d136df47853ed6ce8a78786e') in 0.632134 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 14
+  Time since last request: 226799.195423 seconds.
+  path: Assets/Altar_Ruins_FREE/Art/Textures/Old/Platform/Platform_specular.png
+  artifactKey: Guid(4fcd49d8878dedf44810660bb4e18c3d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Altar_Ruins_FREE/Art/Textures/Old/Platform/Platform_specular.png using Guid(4fcd49d8878dedf44810660bb4e18c3d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'd99e6f40169a8ad708fba11072bcb8a8') in 0.1440784 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000044 seconds.
-  path: Assets/Altar_Ruins_FREE/Prefabs/Old/Meshes_with_the_bottom_faces/Gate_broken.prefab
-  artifactKey: Guid(9b012d5822fa9d041a2c91281f37319f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Altar_Ruins_FREE/Prefabs/Old/Meshes_with_the_bottom_faces/Gate_broken.prefab using Guid(9b012d5822fa9d041a2c91281f37319f) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '51e1cc954b51c2c68a7592fdb099c69c') in 0.0964436 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 13
+  Time since last request: 1.218852 seconds.
+  path: Assets/Hovl Studio/Magic effects pack/Textures/SmokeFree1.png
+  artifactKey: Guid(bbc32c56102b32f4dafa718b4e782d9d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Hovl Studio/Magic effects pack/Textures/SmokeFree1.png using Guid(bbc32c56102b32f4dafa718b4e782d9d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'cc8f733b31b3f17cbe1e742a61589841') in 0.0198913 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000057 seconds.
-  path: Assets/Altar_Ruins_FREE/Prefabs/Old/Meshes_with_the_bottom_faces/Rubble_5.prefab
-  artifactKey: Guid(9b973488963f5b1498bdb88b2c1e3796) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Altar_Ruins_FREE/Prefabs/Old/Meshes_with_the_bottom_faces/Rubble_5.prefab using Guid(9b973488963f5b1498bdb88b2c1e3796) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '6344c4f91879070a3cee027f6bc18f14') in 0.086102 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 13
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000056 seconds.
-  path: Assets/Altar_Ruins_FREE/Prefabs/Old/Meshes_with_the_bottom_faces/Wall_round_4.prefab
-  artifactKey: Guid(2ef560a6f8971ef49b69cab5c87f4e30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Altar_Ruins_FREE/Prefabs/Old/Meshes_with_the_bottom_faces/Wall_round_4.prefab using Guid(2ef560a6f8971ef49b69cab5c87f4e30) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'b75685ea8bd2d43eb77f07ab1c3267a6') in 0.08199 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 13
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000041 seconds.
-  path: Assets/Altar_Ruins_FREE/Prefabs/Old/Meshes_with_the_bottom_faces/Rubble_4.prefab
-  artifactKey: Guid(4d48badc0fb3c434b80369725b12755e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Altar_Ruins_FREE/Prefabs/Old/Meshes_with_the_bottom_faces/Rubble_4.prefab using Guid(4d48badc0fb3c434b80369725b12755e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'b2e48af424c6dbd60bc0b5c60d102f88') in 0.0772863 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 13
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000073 seconds.
-  path: Assets/Altar_Ruins_FREE/Prefabs/Old/Meshes_with_the_bottom_faces/Gate.prefab
-  artifactKey: Guid(e514bfe26e7e799438b51e948bb1f1f9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Altar_Ruins_FREE/Prefabs/Old/Meshes_with_the_bottom_faces/Gate.prefab using Guid(e514bfe26e7e799438b51e948bb1f1f9) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '0d13a5d1ffa0fd0a332ebc34ca5cb911') in 0.0579464 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 13
+  Time since last request: 1.188778 seconds.
+  path: Assets/Hovl Studio/Magic effects pack/Textures/TechCircle.png
+  artifactKey: Guid(f49c2983d1fe900459a7d5e3d29317a3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Hovl Studio/Magic effects pack/Textures/TechCircle.png using Guid(f49c2983d1fe900459a7d5e3d29317a3) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '989ddada66e1160fb2032a61806aab91') in 0.0185424 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 2
 
 Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
 AssetImportWorker is now disconnected from the server

@@ -221,6 +221,7 @@ MonoBehaviour:
       lifetime: 0
       Render: 0
       mesh: {fileID: 0}
+      materials: []
     NumList: 
   - spell: {fileID: 11400000, guid: 8b9913b655a6af045b42a8b404a0c0e6, type: 2}
     TempProjInfo:
@@ -294,6 +295,7 @@ MonoBehaviour:
       lifetime: 0
       Render: 0
       mesh: {fileID: 0}
+      materials: []
     NumList: 
   - spell: {fileID: 11400000, guid: cbf26d1a31b94864990e2e9623c1fe37, type: 2}
     TempProjInfo:
@@ -367,6 +369,7 @@ MonoBehaviour:
       lifetime: 0
       Render: 0
       mesh: {fileID: 0}
+      materials: []
     NumList: 
   - spell: {fileID: 11400000, guid: 6f6fb3457fb5ca04f9b80a0bff10fb99, type: 2}
     TempProjInfo:
@@ -440,6 +443,7 @@ MonoBehaviour:
       lifetime: 0
       Render: 0
       mesh: {fileID: 0}
+      materials: []
     NumList: 
   - spell: {fileID: 0}
     TempProjInfo:
@@ -513,6 +517,7 @@ MonoBehaviour:
       lifetime: 0
       Render: 0
       mesh: {fileID: 0}
+      materials: []
     NumList: 
   CastTime: 0.25
   Turn: 0
@@ -580,7 +585,7 @@ MonoBehaviour:
   Inventory: {fileID: 487363336}
   MaxEnemies: 20
   TotalEnemies: 0
-  MinFraction: 0.99
+  MinFraction: 0.5
   EnemyPrefabs:
   - {fileID: 8498857211803063063, guid: adbf681c40b82b5489d1c512e726911d, type: 3}
   - {fileID: 757562848275112873, guid: 22b099d869d0920448ab1e909b2e85c4, type: 3}
@@ -2084,7 +2089,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 24.42479, y: 19.32, z: 35.72}
+  m_LocalPosition: {x: 25.42479, y: 19.32, z: 35.72}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2615,6 +2620,7 @@ MonoBehaviour:
       lifetime: 0
       Render: 0
       mesh: {fileID: 0}
+      materials: []
     NumList: 
   - spell: {fileID: 0}
     TempProjInfo:
@@ -2688,6 +2694,7 @@ MonoBehaviour:
       lifetime: 0
       Render: 0
       mesh: {fileID: 0}
+      materials: []
     NumList: 
   - spell: {fileID: 0}
     TempProjInfo:
@@ -2761,6 +2768,7 @@ MonoBehaviour:
       lifetime: 0
       Render: 0
       mesh: {fileID: 0}
+      materials: []
     NumList: 
   - spell: {fileID: 0}
     TempProjInfo:
@@ -2834,6 +2842,7 @@ MonoBehaviour:
       lifetime: 0
       Render: 0
       mesh: {fileID: 0}
+      materials: []
     NumList: 
   - spell: {fileID: 0}
     TempProjInfo:
@@ -2907,6 +2916,7 @@ MonoBehaviour:
       lifetime: 0
       Render: 0
       mesh: {fileID: 0}
+      materials: []
     NumList: 
   - spell: {fileID: 0}
     TempProjInfo:
@@ -2980,6 +2990,7 @@ MonoBehaviour:
       lifetime: 0
       Render: 0
       mesh: {fileID: 0}
+      materials: []
     NumList: 
   - spell: {fileID: 0}
     TempProjInfo:
@@ -3053,6 +3064,7 @@ MonoBehaviour:
       lifetime: 0
       Render: 0
       mesh: {fileID: 0}
+      materials: []
     NumList: 
   - spell: {fileID: 0}
     TempProjInfo:
@@ -3126,6 +3138,7 @@ MonoBehaviour:
       lifetime: 0
       Render: 0
       mesh: {fileID: 0}
+      materials: []
     NumList: 
   - spell: {fileID: 0}
     TempProjInfo:
@@ -3199,6 +3212,7 @@ MonoBehaviour:
       lifetime: 0
       Render: 0
       mesh: {fileID: 0}
+      materials: []
     NumList: 
   - spell: {fileID: 0}
     TempProjInfo:
@@ -3272,6 +3286,7 @@ MonoBehaviour:
       lifetime: 0
       Render: 0
       mesh: {fileID: 0}
+      materials: []
     NumList: 
   - spell: {fileID: 0}
     TempProjInfo:
@@ -3345,6 +3360,7 @@ MonoBehaviour:
       lifetime: 0
       Render: 0
       mesh: {fileID: 0}
+      materials: []
     NumList: 
   - spell: {fileID: 0}
     TempProjInfo:
@@ -3418,6 +3434,7 @@ MonoBehaviour:
       lifetime: 0
       Render: 0
       mesh: {fileID: 0}
+      materials: []
     NumList: 
   - spell: {fileID: 0}
     TempProjInfo:
@@ -3491,6 +3508,7 @@ MonoBehaviour:
       lifetime: 0
       Render: 0
       mesh: {fileID: 0}
+      materials: []
     NumList: 
   - spell: {fileID: 0}
     TempProjInfo:
@@ -3564,6 +3582,7 @@ MonoBehaviour:
       lifetime: 0
       Render: 0
       mesh: {fileID: 0}
+      materials: []
     NumList: 
   - spell: {fileID: 0}
     TempProjInfo:
@@ -3637,6 +3656,7 @@ MonoBehaviour:
       lifetime: 0
       Render: 0
       mesh: {fileID: 0}
+      materials: []
     NumList: 
   - spell: {fileID: 0}
     TempProjInfo:
@@ -3710,6 +3730,7 @@ MonoBehaviour:
       lifetime: 0
       Render: 0
       mesh: {fileID: 0}
+      materials: []
     NumList: 
   - spell: {fileID: 0}
     TempProjInfo:
@@ -3783,6 +3804,7 @@ MonoBehaviour:
       lifetime: 0
       Render: 0
       mesh: {fileID: 0}
+      materials: []
     NumList: 
   - spell: {fileID: 0}
     TempProjInfo:
@@ -3856,6 +3878,7 @@ MonoBehaviour:
       lifetime: 0
       Render: 0
       mesh: {fileID: 0}
+      materials: []
     NumList: 
   - spell: {fileID: 0}
     TempProjInfo:
@@ -3929,6 +3952,7 @@ MonoBehaviour:
       lifetime: 0
       Render: 0
       mesh: {fileID: 0}
+      materials: []
     NumList: 
   - spell: {fileID: 0}
     TempProjInfo:
@@ -4002,6 +4026,7 @@ MonoBehaviour:
       lifetime: 0
       Render: 0
       mesh: {fileID: 0}
+      materials: []
     NumList: 
   - spell: {fileID: 0}
     TempProjInfo:
@@ -4075,6 +4100,7 @@ MonoBehaviour:
       lifetime: 0
       Render: 0
       mesh: {fileID: 0}
+      materials: []
     NumList: 
   - spell: {fileID: 0}
     TempProjInfo:
@@ -4148,6 +4174,7 @@ MonoBehaviour:
       lifetime: 0
       Render: 0
       mesh: {fileID: 0}
+      materials: []
     NumList: 
   - spell: {fileID: 0}
     TempProjInfo:
@@ -4221,6 +4248,7 @@ MonoBehaviour:
       lifetime: 0
       Render: 0
       mesh: {fileID: 0}
+      materials: []
     NumList: 
   - spell: {fileID: 0}
     TempProjInfo:
@@ -4294,6 +4322,7 @@ MonoBehaviour:
       lifetime: 0
       Render: 0
       mesh: {fileID: 0}
+      materials: []
     NumList: 
   CastTime: 0.25
   Turn: 0
@@ -11890,6 +11919,154 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpellArray:
+  - spell: {fileID: 11400000, guid: 3f76eada34b3b4b47bf436d750329e90, type: 2}
+    TempProjInfo:
+      speedCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 0
+      MoveYCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 0
+      MoveXCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 0
+      movementT: 0
+      _initialPosition: {x: 0, y: 0, z: 0}
+      Direction: {x: 0, y: 0, z: 0}
+      RotationCurveX:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 0
+      RotationCurveY:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 0
+      RotationCurveZ:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 0
+      StartingRotation: {x: 0, y: 0, z: 0}
+      rotationT: 0
+      rotationSpeed: 0
+      ScaleCurveX:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 0
+      ScaleCurveY:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 0
+      ScaleCurveZ:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 0
+      Damage: 0
+      HurtTimer: 0
+      DestructionRadius: 0
+      ReturnOnCollision: 0
+      CreateDebrisOnDestruction: 0
+      Physics: 0
+      timer: 0
+      lifetime: 0
+      Render: 0
+      mesh: {fileID: 0}
+      materials: []
+    NumList: 
+  - spell: {fileID: 11400000, guid: 6f6fb3457fb5ca04f9b80a0bff10fb99, type: 2}
+    TempProjInfo:
+      speedCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 0
+      MoveYCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 0
+      MoveXCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 0
+      movementT: 0
+      _initialPosition: {x: 0, y: 0, z: 0}
+      Direction: {x: 0, y: 0, z: 0}
+      RotationCurveX:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 0
+      RotationCurveY:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 0
+      RotationCurveZ:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 0
+      StartingRotation: {x: 0, y: 0, z: 0}
+      rotationT: 0
+      rotationSpeed: 0
+      ScaleCurveX:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 0
+      ScaleCurveY:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 0
+      ScaleCurveZ:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 0
+      Damage: 0
+      HurtTimer: 0
+      DestructionRadius: 0
+      ReturnOnCollision: 0
+      CreateDebrisOnDestruction: 0
+      Physics: 0
+      timer: 0
+      lifetime: 0
+      Render: 0
+      mesh: {fileID: 0}
+      materials: []
+    NumList: 
   - spell: {fileID: 11400000, guid: 6f6fb3457fb5ca04f9b80a0bff10fb99, type: 2}
     TempProjInfo:
       speedCurve:
@@ -11962,79 +12139,7 @@ MonoBehaviour:
       lifetime: 0
       Render: 0
       mesh: {fileID: 0}
-    NumList: 
-  - spell: {fileID: 11400000, guid: 8b9913b655a6af045b42a8b404a0c0e6, type: 2}
-    TempProjInfo:
-      speedCurve:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 0
-        m_PostInfinity: 0
-        m_RotationOrder: 0
-      MoveYCurve:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 0
-        m_PostInfinity: 0
-        m_RotationOrder: 0
-      MoveXCurve:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 0
-        m_PostInfinity: 0
-        m_RotationOrder: 0
-      movementT: 0
-      _initialPosition: {x: 0, y: 0, z: 0}
-      Direction: {x: 0, y: 0, z: 0}
-      RotationCurveX:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 0
-        m_PostInfinity: 0
-        m_RotationOrder: 0
-      RotationCurveY:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 0
-        m_PostInfinity: 0
-        m_RotationOrder: 0
-      RotationCurveZ:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 0
-        m_PostInfinity: 0
-        m_RotationOrder: 0
-      StartingRotation: {x: 0, y: 0, z: 0}
-      rotationT: 0
-      rotationSpeed: 0
-      ScaleCurveX:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 0
-        m_PostInfinity: 0
-        m_RotationOrder: 0
-      ScaleCurveY:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 0
-        m_PostInfinity: 0
-        m_RotationOrder: 0
-      ScaleCurveZ:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 0
-        m_PostInfinity: 0
-        m_RotationOrder: 0
-      Damage: 0
-      HurtTimer: 0
-      DestructionRadius: 0
-      ReturnOnCollision: 0
-      CreateDebrisOnDestruction: 0
-      Physics: 0
-      timer: 0
-      lifetime: 0
-      Render: 0
-      mesh: {fileID: 0}
+      materials: []
     NumList: 
   - spell: {fileID: 11400000, guid: 6f6fb3457fb5ca04f9b80a0bff10fb99, type: 2}
     TempProjInfo:
@@ -12043,19 +12148,19 @@ MonoBehaviour:
         m_Curve: []
         m_PreInfinity: 0
         m_PostInfinity: 0
-        m_RotationOrder: 4
+        m_RotationOrder: 0
       MoveYCurve:
         serializedVersion: 2
         m_Curve: []
         m_PreInfinity: 0
         m_PostInfinity: 0
-        m_RotationOrder: 4
+        m_RotationOrder: 0
       MoveXCurve:
         serializedVersion: 2
         m_Curve: []
         m_PreInfinity: 0
         m_PostInfinity: 0
-        m_RotationOrder: 4
+        m_RotationOrder: 0
       movementT: 0
       _initialPosition: {x: 0, y: 0, z: 0}
       Direction: {x: 0, y: 0, z: 0}
@@ -12064,19 +12169,19 @@ MonoBehaviour:
         m_Curve: []
         m_PreInfinity: 0
         m_PostInfinity: 0
-        m_RotationOrder: 4
+        m_RotationOrder: 0
       RotationCurveY:
         serializedVersion: 2
         m_Curve: []
         m_PreInfinity: 0
         m_PostInfinity: 0
-        m_RotationOrder: 4
+        m_RotationOrder: 0
       RotationCurveZ:
         serializedVersion: 2
         m_Curve: []
         m_PreInfinity: 0
         m_PostInfinity: 0
-        m_RotationOrder: 4
+        m_RotationOrder: 0
       StartingRotation: {x: 0, y: 0, z: 0}
       rotationT: 0
       rotationSpeed: 0
@@ -12085,19 +12190,19 @@ MonoBehaviour:
         m_Curve: []
         m_PreInfinity: 0
         m_PostInfinity: 0
-        m_RotationOrder: 4
+        m_RotationOrder: 0
       ScaleCurveY:
         serializedVersion: 2
         m_Curve: []
         m_PreInfinity: 0
         m_PostInfinity: 0
-        m_RotationOrder: 4
+        m_RotationOrder: 0
       ScaleCurveZ:
         serializedVersion: 2
         m_Curve: []
         m_PreInfinity: 0
         m_PostInfinity: 0
-        m_RotationOrder: 4
+        m_RotationOrder: 0
       Damage: 0
       HurtTimer: 0
       DestructionRadius: 0
@@ -12108,27 +12213,28 @@ MonoBehaviour:
       lifetime: 0
       Render: 0
       mesh: {fileID: 0}
+      materials: []
     NumList: 
-  - spell: {fileID: 0}
+  - spell: {fileID: 11400000, guid: 6f6fb3457fb5ca04f9b80a0bff10fb99, type: 2}
     TempProjInfo:
       speedCurve:
         serializedVersion: 2
         m_Curve: []
         m_PreInfinity: 0
         m_PostInfinity: 0
-        m_RotationOrder: 4
+        m_RotationOrder: 0
       MoveYCurve:
         serializedVersion: 2
         m_Curve: []
         m_PreInfinity: 0
         m_PostInfinity: 0
-        m_RotationOrder: 4
+        m_RotationOrder: 0
       MoveXCurve:
         serializedVersion: 2
         m_Curve: []
         m_PreInfinity: 0
         m_PostInfinity: 0
-        m_RotationOrder: 4
+        m_RotationOrder: 0
       movementT: 0
       _initialPosition: {x: 0, y: 0, z: 0}
       Direction: {x: 0, y: 0, z: 0}
@@ -12137,19 +12243,19 @@ MonoBehaviour:
         m_Curve: []
         m_PreInfinity: 0
         m_PostInfinity: 0
-        m_RotationOrder: 4
+        m_RotationOrder: 0
       RotationCurveY:
         serializedVersion: 2
         m_Curve: []
         m_PreInfinity: 0
         m_PostInfinity: 0
-        m_RotationOrder: 4
+        m_RotationOrder: 0
       RotationCurveZ:
         serializedVersion: 2
         m_Curve: []
         m_PreInfinity: 0
         m_PostInfinity: 0
-        m_RotationOrder: 4
+        m_RotationOrder: 0
       StartingRotation: {x: 0, y: 0, z: 0}
       rotationT: 0
       rotationSpeed: 0
@@ -12158,19 +12264,19 @@ MonoBehaviour:
         m_Curve: []
         m_PreInfinity: 0
         m_PostInfinity: 0
-        m_RotationOrder: 4
+        m_RotationOrder: 0
       ScaleCurveY:
         serializedVersion: 2
         m_Curve: []
         m_PreInfinity: 0
         m_PostInfinity: 0
-        m_RotationOrder: 4
+        m_RotationOrder: 0
       ScaleCurveZ:
         serializedVersion: 2
         m_Curve: []
         m_PreInfinity: 0
         m_PostInfinity: 0
-        m_RotationOrder: 4
+        m_RotationOrder: 0
       Damage: 0
       HurtTimer: 0
       DestructionRadius: 0
@@ -12181,298 +12287,7 @@ MonoBehaviour:
       lifetime: 0
       Render: 0
       mesh: {fileID: 0}
-    NumList: 
-  - spell: {fileID: 0}
-    TempProjInfo:
-      speedCurve:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 0
-        m_PostInfinity: 0
-        m_RotationOrder: 4
-      MoveYCurve:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 0
-        m_PostInfinity: 0
-        m_RotationOrder: 4
-      MoveXCurve:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 0
-        m_PostInfinity: 0
-        m_RotationOrder: 4
-      movementT: 0
-      _initialPosition: {x: 0, y: 0, z: 0}
-      Direction: {x: 0, y: 0, z: 0}
-      RotationCurveX:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 0
-        m_PostInfinity: 0
-        m_RotationOrder: 4
-      RotationCurveY:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 0
-        m_PostInfinity: 0
-        m_RotationOrder: 4
-      RotationCurveZ:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 0
-        m_PostInfinity: 0
-        m_RotationOrder: 4
-      StartingRotation: {x: 0, y: 0, z: 0}
-      rotationT: 0
-      rotationSpeed: 0
-      ScaleCurveX:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 0
-        m_PostInfinity: 0
-        m_RotationOrder: 4
-      ScaleCurveY:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 0
-        m_PostInfinity: 0
-        m_RotationOrder: 4
-      ScaleCurveZ:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 0
-        m_PostInfinity: 0
-        m_RotationOrder: 4
-      Damage: 0
-      HurtTimer: 0
-      DestructionRadius: 0
-      ReturnOnCollision: 0
-      CreateDebrisOnDestruction: 0
-      Physics: 0
-      timer: 0
-      lifetime: 0
-      Render: 0
-      mesh: {fileID: 0}
-    NumList: 
-  - spell: {fileID: 0}
-    TempProjInfo:
-      speedCurve:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 0
-        m_PostInfinity: 0
-        m_RotationOrder: 4
-      MoveYCurve:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 0
-        m_PostInfinity: 0
-        m_RotationOrder: 4
-      MoveXCurve:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 0
-        m_PostInfinity: 0
-        m_RotationOrder: 4
-      movementT: 0
-      _initialPosition: {x: 0, y: 0, z: 0}
-      Direction: {x: 0, y: 0, z: 0}
-      RotationCurveX:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 0
-        m_PostInfinity: 0
-        m_RotationOrder: 4
-      RotationCurveY:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 0
-        m_PostInfinity: 0
-        m_RotationOrder: 4
-      RotationCurveZ:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 0
-        m_PostInfinity: 0
-        m_RotationOrder: 4
-      StartingRotation: {x: 0, y: 0, z: 0}
-      rotationT: 0
-      rotationSpeed: 0
-      ScaleCurveX:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 0
-        m_PostInfinity: 0
-        m_RotationOrder: 4
-      ScaleCurveY:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 0
-        m_PostInfinity: 0
-        m_RotationOrder: 4
-      ScaleCurveZ:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 0
-        m_PostInfinity: 0
-        m_RotationOrder: 4
-      Damage: 0
-      HurtTimer: 0
-      DestructionRadius: 0
-      ReturnOnCollision: 0
-      CreateDebrisOnDestruction: 0
-      Physics: 0
-      timer: 0
-      lifetime: 0
-      Render: 0
-      mesh: {fileID: 0}
-    NumList: 
-  - spell: {fileID: 0}
-    TempProjInfo:
-      speedCurve:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 0
-        m_PostInfinity: 0
-        m_RotationOrder: 4
-      MoveYCurve:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 0
-        m_PostInfinity: 0
-        m_RotationOrder: 4
-      MoveXCurve:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 0
-        m_PostInfinity: 0
-        m_RotationOrder: 4
-      movementT: 0
-      _initialPosition: {x: 0, y: 0, z: 0}
-      Direction: {x: 0, y: 0, z: 0}
-      RotationCurveX:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 0
-        m_PostInfinity: 0
-        m_RotationOrder: 4
-      RotationCurveY:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 0
-        m_PostInfinity: 0
-        m_RotationOrder: 4
-      RotationCurveZ:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 0
-        m_PostInfinity: 0
-        m_RotationOrder: 4
-      StartingRotation: {x: 0, y: 0, z: 0}
-      rotationT: 0
-      rotationSpeed: 0
-      ScaleCurveX:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 0
-        m_PostInfinity: 0
-        m_RotationOrder: 4
-      ScaleCurveY:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 0
-        m_PostInfinity: 0
-        m_RotationOrder: 4
-      ScaleCurveZ:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 0
-        m_PostInfinity: 0
-        m_RotationOrder: 4
-      Damage: 0
-      HurtTimer: 0
-      DestructionRadius: 0
-      ReturnOnCollision: 0
-      CreateDebrisOnDestruction: 0
-      Physics: 0
-      timer: 0
-      lifetime: 0
-      Render: 0
-      mesh: {fileID: 0}
-    NumList: 
-  - spell: {fileID: 0}
-    TempProjInfo:
-      speedCurve:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 0
-        m_PostInfinity: 0
-        m_RotationOrder: 4
-      MoveYCurve:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 0
-        m_PostInfinity: 0
-        m_RotationOrder: 4
-      MoveXCurve:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 0
-        m_PostInfinity: 0
-        m_RotationOrder: 4
-      movementT: 0
-      _initialPosition: {x: 0, y: 0, z: 0}
-      Direction: {x: 0, y: 0, z: 0}
-      RotationCurveX:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 0
-        m_PostInfinity: 0
-        m_RotationOrder: 4
-      RotationCurveY:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 0
-        m_PostInfinity: 0
-        m_RotationOrder: 4
-      RotationCurveZ:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 0
-        m_PostInfinity: 0
-        m_RotationOrder: 4
-      StartingRotation: {x: 0, y: 0, z: 0}
-      rotationT: 0
-      rotationSpeed: 0
-      ScaleCurveX:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 0
-        m_PostInfinity: 0
-        m_RotationOrder: 4
-      ScaleCurveY:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 0
-        m_PostInfinity: 0
-        m_RotationOrder: 4
-      ScaleCurveZ:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 0
-        m_PostInfinity: 0
-        m_RotationOrder: 4
-      Damage: 0
-      HurtTimer: 0
-      DestructionRadius: 0
-      ReturnOnCollision: 0
-      CreateDebrisOnDestruction: 0
-      Physics: 0
-      timer: 0
-      lifetime: 0
-      Render: 0
-      mesh: {fileID: 0}
+      materials: []
     NumList: 
   CastTime: 0.25
   Turn: 0
@@ -12812,6 +12627,11 @@ RectTransform:
   m_AnchoredPosition: {x: 345.5, y: -11}
   m_SizeDelta: {x: 691, y: 11}
   m_Pivot: {x: 0.5, y: 1}
+--- !u!4 &1406584620 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2435734347800518815, guid: 9d995d8ddf051de4a830843a21ab7e3c, type: 3}
+  m_PrefabInstance: {fileID: 3761968240983589516}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1412361738
 GameObject:
   m_ObjectHideFlags: 0
@@ -19253,6 +19073,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1854553096996200368, guid: 9d995d8ddf051de4a830843a21ab7e3c, type: 3}
+      propertyPath: AttackStartPoint
+      value: 
+      objectReference: {fileID: 1406584620}
+    - target: {fileID: 1854553096996200368, guid: 9d995d8ddf051de4a830843a21ab7e3c, type: 3}
       propertyPath: LeftAttackHandler
       value: 
       objectReference: {fileID: 0}
@@ -19303,6 +19127,14 @@ PrefabInstance:
     - target: {fileID: 3092464242835551838, guid: 9d995d8ddf051de4a830843a21ab7e3c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4046429464678263551, guid: 9d995d8ddf051de4a830843a21ab7e3c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4993005742458134235, guid: 9d995d8ddf051de4a830843a21ab7e3c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6972388585460330472, guid: 9d995d8ddf051de4a830843a21ab7e3c, type: 3}
       propertyPath: JumpHeight

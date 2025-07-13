@@ -113,7 +113,7 @@ public class DemonicMinionController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (Time.timeScale <= 0.0f)
+        if (Time.timeScale <= 0.0f || humanoid.IsDead())
         {
             return;
         }
