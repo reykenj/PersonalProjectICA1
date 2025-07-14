@@ -2000,6 +2000,182 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &286413098
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 286413099}
+  - component: {fileID: 286413100}
+  m_Layer: 6
+  m_Name: VoidFieldsWorldBiome
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &286413099
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 286413098}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1412361740}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &286413100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 286413098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b256174cb2884e94892dceb15b54f174, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GreedyMeshing: 1
+  chunkManager: {fileID: 1412361743}
+  worldMaterial: {fileID: 2100000, guid: b976c8b65cdb6504789a569c7e047657, type: 2}
+  ChunkSize: 10
+  xSize: 16
+  zSize: 16
+  noiseScale: 500
+  noiseIntensity: 40
+  meshHeightCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0.7548464
+      outSlope: 0.7548464
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.32024062
+      value: 0.24173248
+      inSlope: -0.4152867
+      outSlope: -0.4152867
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.47011355
+      value: 0.0041209795
+      inSlope: 0.41058367
+      outSlope: 0.41058367
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.67616427
+      value: 0.5
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -1.5439926
+      outSlope: -1.5439926
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  octaves: 2
+  persistance: 5
+  lacunarity: 20
+  RandomSeed: 1
+  seed: 10
+  offset: {x: 0, y: 0}
+  regions:
+  - name: WoodPlank
+    height: -32
+    colour:
+      color: {r: 0.2981131, g: 0.19690186, b: 0.14343177, a: 0}
+      metallic: 0
+      smoothness: 0
+  - name: WoodCeiling
+    height: -32
+    colour:
+      color: {r: 0.5698112, g: 0.44951776, b: 0.38596648, a: 0}
+      metallic: 0
+      smoothness: 0
+  - name: Deep Water
+    height: -1
+    colour:
+      color: {r: 1, g: 0.33725488, b: 0.6429134, a: 1}
+      metallic: 0
+      smoothness: 0
+  - name: Water Shallow
+    height: 1
+    colour:
+      color: {r: 0.62352943, g: 0.2524841, b: 0.23921566, a: 1}
+      metallic: 0
+      smoothness: 0
+  - name: Sand
+    height: 2
+    colour:
+      color: {r: 0.7058824, g: 0.45490196, b: 0.48503992, a: 1}
+      metallic: 0
+      smoothness: 0
+  - name: Grass
+    height: 3
+    colour:
+      color: {r: 0.5176471, g: 0.2509804, b: 0.26126903, a: 1}
+      metallic: 0
+      smoothness: 0
+  - name: Grass 2
+    height: 4
+    colour:
+      color: {r: 0.3372549, g: 0.14509805, b: 0.30791458, a: 1}
+      metallic: 0
+      smoothness: 0
+  - name: Rock
+    height: 5
+    colour:
+      color: {r: 0.4792453, g: 0, b: 0.32491207, a: 0}
+      metallic: 0
+      smoothness: 0
+  - name: Rock 2
+    height: 6
+    colour:
+      color: {r: 0.17735851, g: 0, b: 0.11052778, a: 0}
+      metallic: 0
+      smoothness: 0
+  - name: Snow
+    height: 7
+    colour:
+      color: {r: 0, g: 0, b: 0, a: 0}
+      metallic: 0
+      smoothness: 0
+  UseFalloff: 1
+  heightThreshold: 4
+  RandomHouseChance: -1
+  seaPrefab: {fileID: 0}
+  seaOffset: {x: 0, y: 1.5, z: 0}
+  shaderGraphMaterial: {fileID: 2100000, guid: b976c8b65cdb6504789a569c7e047657, type: 2}
 --- !u!1 &304636973
 GameObject:
   m_ObjectHideFlags: 0
@@ -11158,6 +11334,209 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &892400490
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 892400491}
+  - component: {fileID: 892400492}
+  m_Layer: 6
+  m_Name: NormalWorldBiome
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &892400491
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 892400490}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1412361740}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &892400492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 892400490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b256174cb2884e94892dceb15b54f174, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GreedyMeshing: 1
+  chunkManager: {fileID: 1412361743}
+  worldMaterial: {fileID: 2100000, guid: b976c8b65cdb6504789a569c7e047657, type: 2}
+  ChunkSize: 10
+  xSize: 16
+  zSize: 16
+  noiseScale: 500
+  noiseIntensity: 30
+  meshHeightCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.18512572
+      value: 0.008228749
+      inSlope: 0.26137942
+      outSlope: 0.26137942
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.26959512
+      value: 0.09623003
+      inSlope: -0.02693299
+      outSlope: -0.02693299
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.5759546
+      value: 0.14400281
+      inSlope: 0.12653728
+      outSlope: 0.12653728
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.69774383
+      value: 0.18525541
+      inSlope: 1.0766234
+      outSlope: 1.0766234
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.75381976
+      value: 0.26447758
+      inSlope: 2.7593627
+      outSlope: 2.7593627
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.85330904
+      value: 0.7832175
+      inSlope: 0.6958743
+      outSlope: 0.6958743
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1.0013466
+      value: 1.4804411
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  octaves: 2
+  persistance: 1
+  lacunarity: 20
+  RandomSeed: 1
+  seed: 10
+  offset: {x: 0, y: 0}
+  regions:
+  - name: WoodPlank
+    height: -32
+    colour:
+      color: {r: 0.2981131, g: 0.19690186, b: 0.14343177, a: 0}
+      metallic: 0
+      smoothness: 0
+  - name: WoodCeiling
+    height: -32
+    colour:
+      color: {r: 0.5698112, g: 0.44951776, b: 0.38596648, a: 0}
+      metallic: 0
+      smoothness: 0
+  - name: Deep Water
+    height: -1
+    colour:
+      color: {r: 0.33773577, g: 0.5749965, b: 1, a: 1}
+      metallic: 0
+      smoothness: 0
+  - name: Water Shallow
+    height: 1
+    colour:
+      color: {r: 0.2384834, g: 0.6144742, b: 0.6226415, a: 1}
+      metallic: 0
+      smoothness: 0
+  - name: Sand
+    height: 2
+    colour:
+      color: {r: 0.6829839, g: 0.7056604, b: 0.4566821, a: 1}
+      metallic: 0
+      smoothness: 0
+  - name: Grass
+    height: 3
+    colour:
+      color: {r: 0.25263795, g: 0.5169811, b: 0.3374034, a: 1}
+      metallic: 0
+      smoothness: 0
+  - name: Grass 2
+    height: 4
+    colour:
+      color: {r: 0.14637946, g: 0.335849, b: 0.18815893, a: 1}
+      metallic: 0
+      smoothness: 0
+  - name: Rock
+    height: 5
+    colour:
+      color: {r: 0.4339623, g: 0.41840515, b: 0.41840515, a: 0}
+      metallic: 0
+      smoothness: 0
+  - name: Rock 2
+    height: 6
+    colour:
+      color: {r: 0.2754717, g: 0.2754717, b: 0.2754717, a: 0}
+      metallic: 0
+      smoothness: 0
+  - name: Snow
+    height: 7
+    colour:
+      color: {r: 0.81886786, g: 0.81886786, b: 0.81886786, a: 0}
+      metallic: 0
+      smoothness: 0
+  UseFalloff: 1
+  heightThreshold: 4
+  RandomHouseChance: 3
+  seaPrefab: {fileID: 0}
+  seaOffset: {x: 0, y: 1.5, z: 0}
+  shaderGraphMaterial: {fileID: 2100000, guid: b976c8b65cdb6504789a569c7e047657, type: 2}
 --- !u!1 &909862919
 GameObject:
   m_ObjectHideFlags: 0
@@ -12232,6 +12611,182 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf8a618d7e7486b48bf863324b497991, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1314177730
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1314177731}
+  - component: {fileID: 1314177732}
+  m_Layer: 6
+  m_Name: VoidFieldsWorldBiome (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1314177731
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1314177730}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1412361740}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1314177732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1314177730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b256174cb2884e94892dceb15b54f174, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GreedyMeshing: 1
+  chunkManager: {fileID: 1412361743}
+  worldMaterial: {fileID: 2100000, guid: b976c8b65cdb6504789a569c7e047657, type: 2}
+  ChunkSize: 10
+  xSize: 16
+  zSize: 16
+  noiseScale: 500
+  noiseIntensity: 40
+  meshHeightCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0.7548464
+      outSlope: 0.7548464
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.32024062
+      value: 0.24173248
+      inSlope: -0.4152867
+      outSlope: -0.4152867
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.47011355
+      value: 0.0041209795
+      inSlope: 0.41058367
+      outSlope: 0.41058367
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.67616427
+      value: 0.5
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -1.5439926
+      outSlope: -1.5439926
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  octaves: 2
+  persistance: 5
+  lacunarity: 20
+  RandomSeed: 1
+  seed: 10
+  offset: {x: 0, y: 0}
+  regions:
+  - name: WoodPlank
+    height: -32
+    colour:
+      color: {r: 0.2981131, g: 0.19690186, b: 0.14343177, a: 0}
+      metallic: 0
+      smoothness: 0
+  - name: WoodCeiling
+    height: -32
+    colour:
+      color: {r: 0.5698112, g: 0.44951776, b: 0.38596648, a: 0}
+      metallic: 0
+      smoothness: 0
+  - name: Deep Water
+    height: -1
+    colour:
+      color: {r: 1, g: 0.33725488, b: 0.6429134, a: 1}
+      metallic: 0
+      smoothness: 0
+  - name: Water Shallow
+    height: 1
+    colour:
+      color: {r: 0.62352943, g: 0.2524841, b: 0.23921566, a: 1}
+      metallic: 0
+      smoothness: 0
+  - name: Sand
+    height: 2
+    colour:
+      color: {r: 0.7058824, g: 0.45490196, b: 0.48503992, a: 1}
+      metallic: 0
+      smoothness: 0
+  - name: Grass
+    height: 3
+    colour:
+      color: {r: 0.5176471, g: 0.2509804, b: 0.26126903, a: 1}
+      metallic: 0
+      smoothness: 0
+  - name: Grass 2
+    height: 4
+    colour:
+      color: {r: 0.3372549, g: 0.14509805, b: 0.30791458, a: 1}
+      metallic: 0
+      smoothness: 0
+  - name: Rock
+    height: 5
+    colour:
+      color: {r: 0.4792453, g: 0, b: 0.32491207, a: 0}
+      metallic: 0
+      smoothness: 0
+  - name: Rock 2
+    height: 6
+    colour:
+      color: {r: 0.17735851, g: 0, b: 0.11052778, a: 0}
+      metallic: 0
+      smoothness: 0
+  - name: Snow
+    height: 7
+    colour:
+      color: {r: 0, g: 0, b: 0, a: 0}
+      metallic: 0
+      smoothness: 0
+  UseFalloff: 1
+  heightThreshold: 4
+  RandomHouseChance: -1
+  seaPrefab: {fileID: 0}
+  seaOffset: {x: 0, y: 1.5, z: 0}
+  shaderGraphMaterial: {fileID: 2100000, guid: b976c8b65cdb6504789a569c7e047657, type: 2}
 --- !u!1 &1343930253
 GameObject:
   m_ObjectHideFlags: 0
@@ -12979,11 +13534,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1412361740}
-  - component: {fileID: 1412361739}
   - component: {fileID: 1412361743}
   - component: {fileID: 1412361742}
   - component: {fileID: 1412361741}
   - component: {fileID: 1412361744}
+  - component: {fileID: 1412361745}
   m_Layer: 6
   m_Name: GeneralManager
   m_TagString: Untagged
@@ -12991,179 +13546,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1412361739
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1412361738}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b256174cb2884e94892dceb15b54f174, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GreedyMeshing: 1
-  chunkManager: {fileID: 1412361743}
-  worldMaterial: {fileID: 2100000, guid: b976c8b65cdb6504789a569c7e047657, type: 2}
-  ChunkSize: 10
-  xSize: 16
-  zSize: 16
-  noiseScale: 500
-  noiseIntensity: 30
-  meshHeightCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.18512572
-      value: 0.008228749
-      inSlope: 0.26137942
-      outSlope: 0.26137942
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.26959512
-      value: 0.09623003
-      inSlope: -0.02693299
-      outSlope: -0.02693299
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.5759546
-      value: 0.14400281
-      inSlope: 0.12653728
-      outSlope: 0.12653728
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.69774383
-      value: 0.18525541
-      inSlope: 1.0766234
-      outSlope: 1.0766234
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.75381976
-      value: 0.26447758
-      inSlope: 2.7593627
-      outSlope: 2.7593627
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.85330904
-      value: 0.7832175
-      inSlope: 0.6958743
-      outSlope: 0.6958743
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1.0013466
-      value: 1.4804411
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  octaves: 2
-  persistance: 1
-  lacunarity: 20
-  RandomSeed: 1
-  seed: 10
-  offset: {x: 0, y: 0}
-  regions:
-  - name: WoodPlank
-    height: -32
-    colour:
-      color: {r: 0.2981131, g: 0.19690186, b: 0.14343177, a: 0}
-      metallic: 0
-      smoothness: 0
-  - name: WoodCeiling
-    height: -32
-    colour:
-      color: {r: 0.5698112, g: 0.44951776, b: 0.38596648, a: 0}
-      metallic: 0
-      smoothness: 0
-  - name: Deep Water
-    height: -1
-    colour:
-      color: {r: 0.33773577, g: 0.5749965, b: 1, a: 1}
-      metallic: 0
-      smoothness: 0
-  - name: Water Shallow
-    height: 1
-    colour:
-      color: {r: 0.2384834, g: 0.6144742, b: 0.6226415, a: 1}
-      metallic: 0
-      smoothness: 0
-  - name: Sand
-    height: 2
-    colour:
-      color: {r: 0.6829839, g: 0.7056604, b: 0.4566821, a: 1}
-      metallic: 0
-      smoothness: 0
-  - name: Grass
-    height: 3
-    colour:
-      color: {r: 0.25263795, g: 0.5169811, b: 0.3374034, a: 1}
-      metallic: 0
-      smoothness: 0
-  - name: Grass 2
-    height: 4
-    colour:
-      color: {r: 0.14637946, g: 0.335849, b: 0.18815893, a: 1}
-      metallic: 0
-      smoothness: 0
-  - name: Rock
-    height: 5
-    colour:
-      color: {r: 0.4339623, g: 0.41840515, b: 0.41840515, a: 0}
-      metallic: 0
-      smoothness: 0
-  - name: Rock 2
-    height: 6
-    colour:
-      color: {r: 0.2754717, g: 0.2754717, b: 0.2754717, a: 0}
-      metallic: 0
-      smoothness: 0
-  - name: Snow
-    height: 7
-    colour:
-      color: {r: 0.81886786, g: 0.81886786, b: 0.81886786, a: 0}
-      metallic: 0
-      smoothness: 0
-  UseFalloff: 1
-  heightThreshold: 4
-  treesPrefab: {fileID: 0}
-  maxTrees: 20
-  minTrees: 10
-  seaPrefab: {fileID: 0}
-  seaOffset: {x: 0, y: 1.5, z: 0}
-  shaderGraphMaterial: {fileID: 2100000, guid: b976c8b65cdb6504789a569c7e047657, type: 2}
 --- !u!4 &1412361740
 Transform:
   m_ObjectHideFlags: 0
@@ -13177,6 +13559,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 892400491}
+  - {fileID: 286413099}
+  - {fileID: 1314177731}
   - {fileID: 1793153611}
   - {fileID: 1138222657}
   m_Father: {fileID: 0}
@@ -13260,6 +13645,20 @@ MonoBehaviour:
   maxPathsPerCheck: 1
   AmountOfSecondsPerCheck: 2
   CoroutineEnable: 0
+--- !u!114 &1412361745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1412361738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 083cee64e0b4ec142949c1e9dcbc142b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WMs:
+  - {fileID: 286413100}
 --- !u!1 &1428047689
 GameObject:
   m_ObjectHideFlags: 0

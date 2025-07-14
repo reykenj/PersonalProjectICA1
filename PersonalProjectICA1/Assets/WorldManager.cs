@@ -169,7 +169,7 @@ public class WorldManager : MonoBehaviour
 
     private bool TryPlaceHouseInChunk(Container chunk)
     {
-        if(Random.Range(0, RandomHouseChance) == 0)
+        if(RandomHouseChance == -1 || Random.Range(0, RandomHouseChance) == 0)
         {
             return false;
         }
