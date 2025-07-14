@@ -42,9 +42,11 @@ public class WorldManager : MonoBehaviour
     public float heightThreshold = 20f;
 
 
-    [SerializeField] private GameObject treesPrefab;
-    [SerializeField] int maxTrees = 20;
-    [SerializeField] int minTrees = 10;
+    //[SerializeField] private GameObject treesPrefab;
+    //[SerializeField] int maxTrees = 20;
+    //[SerializeField] int minTrees = 10;
+
+    [SerializeField] int RandomHouseChance = 3;
 
     [SerializeField] private GameObject seaPrefab;
     [SerializeField] private Vector3 seaOffset;
@@ -167,7 +169,10 @@ public class WorldManager : MonoBehaviour
 
     private bool TryPlaceHouseInChunk(Container chunk)
     {
-
+        if(Random.Range(0, RandomHouseChance) == 0)
+        {
+            return false;
+        }
         int houseWidth = Random.Range(5, 10);
         int houseDepth = Random.Range(5, 10);
         int houseHeight = Random.Range(4, 6);
