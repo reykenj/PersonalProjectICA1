@@ -205,4 +205,12 @@ public class GameFlowManager : MonoBehaviour
 
         SceneManager.LoadScene(scenename);
     }
+
+
+    public void RestartGame()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+        Destroy(gameObject);
+        SceneManager.LoadScene("MainScene");
+    }
 }

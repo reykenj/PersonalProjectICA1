@@ -102,10 +102,10 @@ public class WorldManager : MonoBehaviour
 
                         int surfaceY = Mathf.Clamp(Mathf.RoundToInt(meshHeightCurve.Evaluate(noiseMap[worldX, worldZ]) * noiseIntensity), 0, xSize * 2 - 1);
 
-                        
+
                         for (int y = 0; y <= surfaceY; y++)
                         {
-                            int assignedID = 0; 
+                            int assignedID = 0;
                             for (int i = 0; i < regions.Length; i++)
                             {
                                 if (regions[i].height < y)
@@ -113,7 +113,8 @@ public class WorldManager : MonoBehaviour
                                     assignedID = i + 1;
                                 }
                             }
-                            container[new Vector3(x, y, z)] = new Voxel() { 
+                            container[new Vector3(x, y, z)] = new Voxel()
+                            {
                                 ID = (byte)assignedID
                             };
                         }
@@ -166,27 +167,26 @@ public class WorldManager : MonoBehaviour
 
     private bool TryPlaceHouseInChunk(Container chunk)
     {
-        
+
         int houseWidth = Random.Range(5, 10);
         int houseDepth = Random.Range(5, 10);
         int houseHeight = Random.Range(4, 6);
-        byte woodBlockID = 4;
 
-        
+
         for (int attempt = 0; attempt < 5; attempt++)
         {
-            
+
             int x = Random.Range(2, xSize - houseWidth - 2);
             int z = Random.Range(2, zSize - houseDepth - 2);
 
-            
+
             int surfaceY = GetSurfaceHeight(chunk, x, z);
             Vector3 houseBase = new Vector3(x, surfaceY + 1, z);
 
-            
+
             if (IsAreaFlat(chunk, houseBase, houseWidth, houseDepth))
             {
-                GenerateSimpleHouse(chunk, houseBase, houseWidth, houseHeight, houseDepth, woodBlockID);
+                GenerateSimpleHouse(chunk, houseBase, houseWidth, houseHeight, houseDepth);
                 return true;
             }
         }
@@ -197,7 +197,7 @@ public class WorldManager : MonoBehaviour
     {
         for (int y = Container.ChunkVoxelMaxAmtXZ - 1; y >= 0; y--)
         {
-            if (chunk[new Vector3(x, y, z)].ID != 0) 
+            if (chunk[new Vector3(x, y, z)].ID != 0)
             {
                 return y;
             }
@@ -216,7 +216,7 @@ public class WorldManager : MonoBehaviour
                 Vector3 checkPos = center + new Vector3(x, 0, z);
                 int surfaceY = GetSurfaceHeight(chunk, (int)checkPos.x, (int)checkPos.z);
 
-                if (Mathf.Abs(surfaceY - (firstY - 1)) > 1) 
+                if (Mathf.Abs(surfaceY - (firstY - 1)) > 1)
                 {
                     return false;
                 }
@@ -225,7 +225,7 @@ public class WorldManager : MonoBehaviour
         return true;
     }
 
-    private void GenerateSimpleHouse(Container chunk, Vector3 basePos, int width, int height, int depth, byte wallBlockID)
+    private void GenerateSimpleHouse(Container chunk, Vector3 basePos, int width, int height, int depth)
     {
 
 
@@ -243,7 +243,8 @@ public class WorldManager : MonoBehaviour
             minZ + depth / 2f
         );
 
-
+        byte wallBlockID = (byte)(SearchBlockIndex("WoodPlank") + 1);
+        byte ceilingBlockID = (byte)(SearchBlockIndex("WoodCeiling") + 1);
         FillBox(chunk, adjustedCenter, width, height, depth, wallBlockID, hollow: true);
 
 
@@ -268,7 +269,7 @@ public class WorldManager : MonoBehaviour
                         z >= 0 && z < Container.ChunkVoxelMaxAmtXZ)
                     {
                         chunk[new Vector3(x, adjustedCenter.y + height + i, z)] =
-                            new Voxel() { ID = wallBlockID };
+                            new Voxel() { ID = ceilingBlockID };
                     }
                 }
             }
@@ -323,15 +324,27 @@ public class WorldManager : MonoBehaviour
             return _instance;
         }
     }
-}
 
-[System.Serializable]
-public struct TerrainType
-{
-    public string name;
-    public float height;
-    public VoxelColor colour;
+    public int SearchBlockIndex(string Name)
+    {
+        for (int i = 0; i < regions.Length; i++)
+        {
+            if (regions[i].name == Name)
+            {
+                return i;
+            }
+        }
+        return -1;
+    }
 
+    [System.Serializable]
+    public struct TerrainType
+    {
+        public string name;
+        public float height;
+        public VoxelColor colour;
+
+    }
 }
 
 
