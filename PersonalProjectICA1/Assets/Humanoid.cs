@@ -45,6 +45,11 @@ public class Humanoid : MonoBehaviour
         return cache.TryGetValue(obj, out humanoid);
     }
 
+    public void GetHPInfo(out float hp, out float maxhp)
+    {
+        hp = HP;
+        maxhp = MaxHP;
+    }
     public void SetPos(Vector3 pos)
     {
         _charController.enabled = false;
@@ -177,6 +182,11 @@ public class Humanoid : MonoBehaviour
         else
         {
             HP = Mathf.Clamp(HP - Damage, 0, MaxHP);
+
+            if (OnHurt != null)
+            {
+                OnHurt.Invoke();
+            }
         }
         if (HP <= 0)
         {
