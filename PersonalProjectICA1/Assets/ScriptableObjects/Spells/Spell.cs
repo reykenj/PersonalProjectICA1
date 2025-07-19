@@ -9,6 +9,7 @@ public class Spell : ScriptableObject
     public Sprite RuneIcon;
     public bool UseTurn;
     public bool ApplyToAllModifier;
+    public int MulticastAdditive;
 
     // for when the user goes through all of the spells in the loop and is recharging, basically
     // reset all modified values here

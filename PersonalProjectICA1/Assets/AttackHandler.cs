@@ -79,16 +79,14 @@ public class AttackHandler : MonoBehaviour
     {
 
         bool FakeTurn = true;
-        if(InsertedTurn == -1)
+        bool NoMultiCastInserted = true;
+        if (InsertedTurn == -1)
         {
             DontCast.Clear();
             FakeTurn = false;
             InsertedTurn = Turn;
         }
-        if(TempTempMultiCastCount == -1)
-        {
-            TempTempMultiCastCount = TempMultiCastCount;
-        }
+        NoMultiCastInserted = TempTempMultiCastCount == -1;
         int spellCount = SpellArray.Count;
         if (spellCount == 0) return;
         int startTurn = InsertedTurn;
@@ -126,10 +124,15 @@ public class AttackHandler : MonoBehaviour
                 if (UseTurn)
                 {
                     multicount++;
+                    if (NoMultiCastInserted)
+                    {
+                        TempTempMultiCastCount = TempMultiCastCount;
+                    }
                     if (multicount >= NaturalMultiCastCount + TempTempMultiCastCount)
                     {
                         InsertedTurn = (InsertedTurn + 1) % spellCount;
                         ResetSpells(0, InsertedTurn);
+                        TempMultiCastCount = 0;
                         break;
                     }
                 }
@@ -164,6 +167,7 @@ public class AttackHandler : MonoBehaviour
         {
             InsertedTurn = Turn;
         }
+        int TempTempMultiCastCount = TempMultiCastCount;
         int spellCount = SpellArray.Count;
         if (spellCount == 0) return -1;
         int startTurn = InsertedTurn;
@@ -173,13 +177,21 @@ public class AttackHandler : MonoBehaviour
         {
             if (!DontCast.Contains(InsertedTurn))
             {
-                if (SpellArray[InsertedTurn].spell != null && SpellArray[InsertedTurn].spell.UseTurn)
+                if (SpellArray[InsertedTurn].spell != null)
                 {
-                    multicount++;
-                    if (multicount >= NaturalMultiCastCount + TempMultiCastCount)
+                    if (SpellArray[InsertedTurn].spell.MulticastAdditive > 0)
                     {
-                        InsertedTurn = (InsertedTurn + 1) % spellCount;
-                        break;
+                        TempTempMultiCastCount += SpellArray[InsertedTurn].spell.MulticastAdditive;
+                    }
+                    if (SpellArray[InsertedTurn].spell.UseTurn)
+                    {
+                        multicount++;
+                        if (multicount >= NaturalMultiCastCount + TempTempMultiCastCount)
+                        {
+                            InsertedTurn = (InsertedTurn + 1) % spellCount;
+                            break;
+                        }
+
                     }
                 }
             }

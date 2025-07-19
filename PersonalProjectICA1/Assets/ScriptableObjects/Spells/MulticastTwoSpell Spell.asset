@@ -1,0 +1,92 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba6a791afa302f642aec1f5168fda491, type: 3}
+  m_Name: MulticastTwoSpell Spell
+  m_EditorClassIdentifier: 
+  OGProjectileInformation:
+    speedCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    MoveYCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    MoveXCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    movementT: 0
+    _initialPosition: {x: 0, y: 0, z: 0}
+    Direction: {x: 0, y: 0, z: 0}
+    RotationCurveX:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    RotationCurveY:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    RotationCurveZ:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    StartingRotation: {x: 0, y: 0, z: 0}
+    rotationT: 0
+    rotationSpeed: 0
+    ScaleCurveX:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    ScaleCurveY:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    ScaleCurveZ:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    Damage: 0
+    HurtTimer: 0
+    DestructionRadius: 0
+    ReturnOnCollision: 0
+    CreateDebrisOnDestruction: 0
+    Physics: 0
+    timer: 0
+    lifetime: 0
+    Render: 0
+    mesh: {fileID: 0}
+    materials: []
+  SpellName: Multicast Two
+  SpellDescription: Casts the next 2 spells right infront of it
+  RuneIcon: {fileID: 21300000, guid: f07ac19e2c8788444b96ca59d39c4567, type: 3}
+  UseTurn: 0
+  ApplyToAllModifier: 0
+  MulticastAdditive: 1
