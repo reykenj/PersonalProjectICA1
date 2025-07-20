@@ -13,7 +13,7 @@ public class PunchSpell : Spell
         {
 
             fistProj.SetProjInfo(attackHandler.SpellArray[Index].TempProjInfo);
-            fistProj.transform.position = position; // for some reason spawns at the bottom sometimes????
+            fistProj.transform.position = position + attackHandler.AttackStartPoint.forward * attackHandler.SpellArray[Index].TempProjInfo.ScaleCurveZ[0].value / 2; // for some reason spawns at the bottom sometimes????
 
             //fistProj.transform.SetParent(attackHandler.AttackStartPoint.parent);
             //fistProj.transform.localPosition = attackHandler.AttackStartPoint.localPosition;

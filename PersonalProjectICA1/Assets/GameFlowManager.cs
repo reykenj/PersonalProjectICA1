@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -18,6 +19,10 @@ public class GameFlowManager : MonoBehaviour
     [SerializeField]
     private List<GameObject> EnemyPrefabs = new List<GameObject>();
     [SerializeField] List<Spell> SpellShopPool;
+    
+
+    [SerializeField] List<SpellContainer> EnemyModifierPools;
+
     [SerializeField] GameObject SpellDropPrefab;
     [SerializeField]
     private List<float> enemyHeights = new List<float>();
@@ -36,6 +41,8 @@ public class GameFlowManager : MonoBehaviour
 
     public System.Action ShopChoiceChosen;
     bool ShopChoiceMade = false;
+
+    [SerializeField] int Round = 0;
 
     public void ActivateInstructionPanel(string TitleText, string DescriptionText)
     {
@@ -83,15 +90,20 @@ public class GameFlowManager : MonoBehaviour
     }
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        Round++;
         Player = GameObject.Find("Player").GetComponent<PlayerController>();
         Transform AttackHandlerTransform = Player.transform.Find("AttackHandlerStartPos");
         Player.LeftAttackHandler = leftAttackPlayer;
         Player.RightAttackHandler = rightAttackPlayer;
 
         leftAttackPlayer.AttackStartPoint = AttackHandlerTransform;
+        //leftAttackPlayer.AttackStartPointRM = AttackHandlerTransform.GetComponent<RecoilManager>();
         leftAttackPlayer.Owner = Player.gameObject;
+
         rightAttackPlayer.AttackStartPoint = AttackHandlerTransform;
+        //rightAttackPlayer.AttackStartPointRM = AttackHandlerTransform.GetComponent<RecoilManager>();
         rightAttackPlayer.Owner = Player.gameObject;
+
         inventory.AttackStartPoint = AttackHandlerTransform;
         inventory.Owner = Player.gameObject;
 
@@ -115,34 +127,10 @@ public class GameFlowManager : MonoBehaviour
             Vector3 rayOrigin = new Vector3(randX, worldDepth + 1, randZ); // shoot down from high above
             if (Physics.Raycast(rayOrigin, Vector3.down, out RaycastHit hit, 2000f, LayerMask.GetMask("Voxel")))
             {
-
                 int Index = Random.Range(0, EnemyPrefabs.Count);
                 Vector3 spawnPos = hit.point + Vector3.up * enemyHeights[Index];
 
-                GameObject enemy = ObjectPool.GetObj(EnemyPrefabs[Index].name);
-                if (Humanoid.TryGetHumanoid(enemy, out Humanoid h))
-                {
-                    var alreadySubscribed = false;
-
-                    if (h.OnDeath != null)
-                    {
-                        foreach (var d in h.OnDeath.GetInvocationList())
-                        {
-                            if (d.Method == ((System.Action)OnDeath).Method && (Object)d.Target == this)
-                            {
-                                alreadySubscribed = true;
-                                break;
-                            }
-                        }
-                    }
-
-                    if (!alreadySubscribed)
-                    {
-                        h.OnDeath += OnDeath;
-                    }
-                    h.SetPos(spawnPos);
-                    //enemy.transform.position = spawnPos;
-                }
+                SpawnEnemy(spawnPos, Index);
             }
         }
         TotalEnemies = MaxEnemies;
@@ -212,5 +200,48 @@ public class GameFlowManager : MonoBehaviour
         SceneManager.sceneLoaded -= OnSceneLoaded;
         Destroy(gameObject);
         SceneManager.LoadScene("MainScene");
+    }
+
+    void SpawnEnemy(Vector3 spawnPos, int Index)
+    {
+        GameObject enemy = ObjectPool.GetObj(EnemyPrefabs[Index].name);
+        AttackHandler ah = enemy.GetComponent<AttackHandler>();
+        ah.SpellArray = new List<SpellContainer>(EnemyPrefabs[Index].GetComponent<AttackHandler>().SpellArray);
+
+        // Assuming SpellArray is a List<Spell> or List<SpellData>
+        for (int i = 0; i < Round; i++)
+        {
+            SpellContainer randomSpell = EnemyModifierPools[Random.Range(0, EnemyModifierPools.Count)];
+            if (randomSpell.spell == null)
+            {
+                continue;
+            }
+            randomSpell.TempProjInfo = randomSpell.spell.OGProjectileInformation;
+            ah.SpellArray.Insert(0, randomSpell);
+            Debug.Log("Index check: " + i);
+        }
+        if (Humanoid.TryGetHumanoid(enemy, out Humanoid h))
+        {
+            var alreadySubscribed = false;
+
+            if (h.OnDeath != null)
+            {
+                foreach (var d in h.OnDeath.GetInvocationList())
+                {
+                    if (d.Method == ((System.Action)OnDeath).Method && (Object)d.Target == this)
+                    {
+                        alreadySubscribed = true;
+                        break;
+                    }
+                }
+            }
+
+            if (!alreadySubscribed)
+            {
+                h.OnDeath += OnDeath;
+            }
+            h.SetPos(spawnPos);
+            //enemy.transform.position = spawnPos;
+        }
     }
 }

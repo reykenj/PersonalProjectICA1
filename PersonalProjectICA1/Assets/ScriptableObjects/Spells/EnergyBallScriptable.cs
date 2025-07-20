@@ -15,6 +15,7 @@ public class EnergyBallSpell : Spell
             fistProj.transform.position = position;
             fistProj.transform.rotation = rotation;
             fistProj.Owner = attackHandler.Owner;
+            //attackHandler.AttackStartPointRM.ApplyRecoil(new Vector3(-2, 2, 0.35f));
         }
         return Index;
     }

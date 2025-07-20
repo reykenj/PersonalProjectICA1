@@ -1,5 +1,6 @@
 using NUnit.Framework.Internal.Execution;
 using UnityEngine;
+using static UnityEngine.UI.Image;
 
 [CreateAssetMenu(fileName = "Explosive Ray Spell", menuName = "Spells/Explosive Ray Spell")]
 public class ExplosiveRaySpelll : Spell
@@ -30,11 +31,11 @@ public class ExplosiveRaySpelll : Spell
                     Mathf.Floor(hitPoint.x),
                     Mathf.Floor(hitPoint.y),
                     Mathf.Floor(hitPoint.z));
-                ChunkManager.Instance.RemoveVoxelsInArea(voxelPos + new Vector3(0.5f, 0.5f, 0.5f), ExplosionRange);
-                Collider[] colliders = Physics.OverlapSphere(voxelPos + new Vector3(0.5f, 0.5f, 0.5f), ExplosionRange);
+                ChunkManager.Instance.RemoveVoxelsInArea(voxelPos + new Vector3(0.5f, 0.5f, 0.5f), ExplosionRange * FindHighestCurve(attackHandler.SpellArray[Index].TempProjInfo.ScaleCurveX));
+                Collider[] colliders = Physics.OverlapSphere(voxelPos + new Vector3(0.5f, 0.5f, 0.5f), ExplosionRange * FindHighestCurve(attackHandler.SpellArray[Index].TempProjInfo.ScaleCurveX));
                 foreach (Collider collider in colliders)
                 {
-
+                    if(collider.gameObject == attackHandler.Owner) continue;
                     if (Humanoid.TryGetHumanoid(collider.gameObject, out Humanoid hurtcontroller))
                     {
                         hurtcontroller.Hurt(attackHandler.SpellArray[Index].TempProjInfo.Damage * ExplosionDamMult);
@@ -65,6 +66,8 @@ public class ExplosiveRaySpelll : Spell
             beamProj.transform.rotation = rotation;
             //beamProj.transform.LookAt(hit.point);
             beamProj.Owner = attackHandler.Owner;
+
+            //attackHandler.AttackStartPointRM.ApplyRecoil(new Vector3(-2, 2, 0.35f) * 3);
         }
 
         return Index;
@@ -73,6 +76,25 @@ public class ExplosiveRaySpelll : Spell
     public override void OnHit(Projectile projectile)
     {
     }
+
+    private float FindHighestCurve(AnimationCurve original)
+    {
+        if (original == null || original.length == 0)
+            return -1;
+
+        Keyframe[] keys = original.keys;
+
+        float highestval = float.MinValue;
+        for (int i = 0; i < keys.Length; i++)
+        {
+            if (keys[i].value > highestval)
+            {
+                highestval = keys[i].value; ;
+            }
+        }
+        return highestval;
+    }
+
 
 
 

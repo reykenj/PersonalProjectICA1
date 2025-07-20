@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8ea05d258eae0546a71beeef3ed68b3, type: 3}
-  m_Name: Punch Spell
+  m_Script: {fileID: 11500000, guid: 08e82ffd2fe796045b75c2277bc2adad, type: 3}
+  m_Name: Size Up Spell
   m_EditorClassIdentifier: 
   OGProjectileInformation:
     speedCurve:
@@ -57,91 +57,37 @@ MonoBehaviour:
     rotationSpeed: 0
     ScaleCurveX:
       serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0
+      m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
     ScaleCurveY:
       serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 1.75
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 1
-        value: 1.75
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0
+      m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
     ScaleCurveZ:
       serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 2
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 1
-        value: 2
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0
+      m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    Damage: 10
-    HurtTimer: 0.1
-    DestructionRadius: 2
-    ReturnOnCollision: 1
+    Damage: 0
+    HurtTimer: 0
+    DestructionRadius: 0
+    ReturnOnCollision: 0
     CreateDebrisOnDestruction: 0
     Physics: 0
     timer: 0
-    lifetime: 0.25
-    Render: 1
-    mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+    lifetime: 0
+    Render: 0
+    mesh: {fileID: 0}
     materials: []
-  SpellName: Punch
-  SpellDescription: 
-  RuneIcon: {fileID: 21300000, guid: 25659dab5d1295947988f290ddaf7064, type: 3}
-  UseTurn: 1
-  ApplyToAllModifier: 0
+  SpellName: Size Up
+  SpellDescription: Increases the projectile size
+  RuneIcon: {fileID: 21300000, guid: 8daddb70a45a9d745bd298fad8593ea3, type: 3}
+  UseTurn: 0
+  ApplyToAllModifier: 1
   MulticastAdditive: 0
-  AttackPrefab: {fileID: 0}
+  scaleMultiplier: 1.5

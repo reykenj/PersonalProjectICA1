@@ -4931,6 +4931,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7573298420985448518}
+  - component: {fileID: 366324314545767291}
   m_Layer: 0
   m_Name: AttackStartPoint
   m_TagString: Untagged
@@ -4953,6 +4954,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 9131559751090014637}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &366324314545767291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5194290276178904216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a290ba268c914946b7cba3ded294716, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetOffset: {x: 0, y: 0, z: 0}
+  snappiness: 6
+  returnSpeed: 2
 --- !u!1001 &5700733160170878616
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5222,6 +5238,7 @@ MonoBehaviour:
   flashIntensity: 5
   DeathExplosionEffectPrefab: {fileID: 2756758160312386989, guid: 900226e3e8b193049aca40939f4de1df, type: 3}
   DeathTimer: 0
+  GravityVel: {x: 0, y: 0, z: 0}
   ExternalVel: {x: 0, y: 0, z: 0}
   externalVelDamp: 5
   OneMeshMultipleMat: 1
@@ -5337,10 +5354,12 @@ MonoBehaviour:
       lifetime: 0
       Render: 0
       mesh: {fileID: 0}
+      materials: []
     NumList: 
   CastTime: 0.25
   Turn: 0
   AttackStartPoint: {fileID: 7573298420985448518}
+  AttackStartPointRM: {fileID: 366324314545767291}
   Owner: {fileID: 0}
   NaturalMultiCastCount: 1
   TempMultiCastCount: 0
@@ -5368,7 +5387,8 @@ MonoBehaviour:
   FireVFX: {fileID: 510549915291701546}
   TargetTransform: {fileID: 2176540355519736438}
   VoxelAStarPathing: {fileID: 8340721107714518576}
-  MaxSearchTimer: 1
+  MaxSearchTimerSeen: 1
+  MaxSearchTimerUnseen: 10
   PathfindingAccuracy: 0.1
   Direction: {x: 0, y: 0, z: 0}
   Diff: {x: 0, y: 0, z: 0}
@@ -5507,10 +5527,12 @@ MonoBehaviour:
       lifetime: 0
       Render: 0
       mesh: {fileID: 0}
+      materials: []
     NumList: 
   CastTime: 0.25
   Turn: 0
   AttackStartPoint: {fileID: 7573298420985448518}
+  AttackStartPointRM: {fileID: 0}
   Owner: {fileID: 0}
   NaturalMultiCastCount: 1
   TempMultiCastCount: 0

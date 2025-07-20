@@ -10,6 +10,7 @@ public class AttackHandler : MonoBehaviour
     public float CastTime = 0.25f; // might turn this into a animation speed multiplier for the punches instead
     public int Turn;
     public Transform AttackStartPoint;
+    //public RecoilManager AttackStartPointRM;
     public GameObject Owner;
     public int NaturalMultiCastCount = 1;
     public int TempMultiCastCount = 0;
