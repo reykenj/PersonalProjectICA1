@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -29,8 +30,15 @@ public class FloatingHeadController : EnemyBase
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
+
+
+    private void OnDestroy()
+    {
+        cache.Remove(gameObject);
+    }
     private void Awake()
     {
+        cache[gameObject] = this;
         humanoid.OnDeath += OnDeath;
 
         if (PlayerTransform == null)
@@ -184,11 +192,7 @@ public class FloatingHeadController : EnemyBase
                     {
                         TargetTransform.SetParent(hit.collider.transform);
                         SawPlayer = true;
-                        if (FindNewPath != null)
-                        {
-                            StopCoroutine(FindNewPath);
-                            FindNewPath = StartCoroutine(FindPath());
-                        }
+                        StartTracking();
                     }
                     // maybe we shoot another raycast upwards for this to determin whats the highest place the skull can go
                     // without breaking line of sight from player
@@ -201,13 +205,12 @@ public class FloatingHeadController : EnemyBase
 
             if(TargetTransform.parent != transform)
             {
-                TargetTransform.localPosition = Vector3.up * (AttackRange - 1);
+                TargetTransform.localPosition = Vector3.up * TargetTransformUpMult;
 
-                if (Physics.Raycast(PlayerTransform.position, Vector3.up, out RaycastHit hit2, AttackRange - 2, LayerMask.GetMask("Voxel")))
+                if (Physics.Raycast(PlayerTransform.position, Vector3.up, out RaycastHit hit2, TargetTransformUpMult, LayerMask.GetMask("Voxel")))
                 {
                     //TargetTransform.localPosition
                     Vector3 NewPos = Vector3.up * hit2.distance;
-                    NewPos.y -= 1;
                     TargetTransform.localPosition = NewPos;
                 }
             }
@@ -274,5 +277,15 @@ public class FloatingHeadController : EnemyBase
     void OnDeath()
     {
         TargetTransform.SetParent(transform);
+    }
+
+    public override void StartTracking()
+    {
+        if (FindNewPath != null)
+        {
+            StopCoroutine(FindNewPath);
+        }
+        FindNewPath = StartCoroutine(FindPath());
+        VoxelAStarPathing.PathFound.Clear();
     }
 }

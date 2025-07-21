@@ -19,6 +19,8 @@ public class ChunkManager : MonoBehaviour
     public ParticleSystem particleSystem;
     public List<ParticleSystem.Particle> particles = new List<ParticleSystem.Particle>();
 
+    public ParticleSystem SonarParticle;
+
     [SerializeField] bool CoroutineEnable = false;
     [SerializeField] float UpdTime = 0.1f;
     Coroutine TimedFixedUpd;
@@ -286,6 +288,20 @@ public class ChunkManager : MonoBehaviour
         };
 
         particleSystem.Emit(emitParams, Random.Range(3, 6)); // emit 3-6 particles at this position
+    }
+
+    public void EmitSonarAt(Vector3 position, Color color)
+    {
+        var emitParams = new ParticleSystem.EmitParams
+        {
+            position = position,
+            velocity = Vector3.zero,
+            startLifetime = 5,
+            startSize = 100,
+            startColor = color
+        };
+        Debug.Log("[EYEATTACK] EMIT SONAR");
+        SonarParticle.Emit(emitParams, 1);
     }
     public IEnumerator SpawnPhysicsVoxelDebrisInArray(List<Vector4> affectedVoxels)
     {

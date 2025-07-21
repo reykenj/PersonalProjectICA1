@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a290ba268c914946b7cba3ded294716, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetOffset: {x: 0, y: 0, z: 0}
+  targetRotation: {x: 0, y: 0, z: 0}
   snappiness: 6
   returnSpeed: 2
 --- !u!1 &757562848275112873
@@ -100,17 +100,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e045fd4d2490bc4d81011a463bedabe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SawPlayer: 0
   humanoid: {fileID: 3380337491855247941}
-  _animator: {fileID: 3514145300567894258}
+  PlayerTransform: {fileID: 0}
+  AttackHandlers:
+  - {fileID: 575342275122580459}
+  TargetTransform: {fileID: 4249920305357694381}
+  TargetTransformUpMult: 0.5
   characterController: {fileID: 8116622325063222603}
   SightRange: 10
   AttackRange: 2
   AttackCooldown: 0.25
-  PlayerTransform: {fileID: 0}
-  AttackHandlers:
-  - {fileID: 575342275122580459}
+  Tracking: 1
+  _animator: {fileID: 3514145300567894258}
   AttackVFX: {fileID: 0}
-  TargetTransform: {fileID: 4249920305357694381}
   VoxelAStarPathing: {fileID: 5424847758232778292}
   MaxSearchTimerSeen: 0.1
   MaxSearchTimerUnseen: 10
@@ -313,7 +316,6 @@ MonoBehaviour:
   CastTime: 0.25
   Turn: 0
   AttackStartPoint: {fileID: 8468288711317749484}
-  AttackStartPointRM: {fileID: 7006082453593100839}
   Owner: {fileID: 757562848275112873}
   NaturalMultiCastCount: 1
   TempMultiCastCount: 0

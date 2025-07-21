@@ -5782,15 +5782,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 270c29c067896144281b620e56b3396e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 14.39
+      value: 24.35
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 270c29c067896144281b620e56b3396e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 12.21
+      value: 21.552
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 270c29c067896144281b620e56b3396e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 19.233
+      value: 37.79
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 270c29c067896144281b620e56b3396e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5827,6 +5827,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 270c29c067896144281b620e56b3396e, type: 3}
       propertyPath: m_Name
       value: Eye
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 270c29c067896144281b620e56b3396e, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 270c29c067896144281b620e56b3396e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5896,11 +5904,22 @@ MonoBehaviour:
   AttackHandlers:
   - {fileID: 824641876}
   TargetTransform: {fileID: 1251289522}
+  TargetTransformUpMult: 7
   characterController: {fileID: 824641879}
   SightRange: 10
   AttackRange: 10
   AttackCooldown: 1
   Tracking: 1
+  CurrState: 0
+  FireVFX: {fileID: 855104573}
+  VoxelAStarPathing: {fileID: 824641875}
+  MaxSearchTimerSeen: 1
+  MaxSearchTimerUnseen: 10
+  PathfindingAccuracy: 0.5
+  Direction: {x: 0, y: 0, z: 0}
+  Diff: {x: 0, y: 0, z: 0}
+  maxHelpers: 3
+  CallRange: 100
 --- !u!114 &824641875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6195,7 +6214,7 @@ Transform:
   m_GameObject: {fileID: 855104570}
   serializedVersion: 2
   m_LocalRotation: {x: 0.00000003774895, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.041339986}
+  m_LocalPosition: {x: 0, y: 0, z: 0.0097}
   m_LocalScale: {x: 0.0059999996, y: 0.0059999996, z: 0.0059999996}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11549,6 +11568,7 @@ Transform:
   - {fileID: 892400491}
   - {fileID: 286413099}
   - {fileID: 1793153611}
+  - {fileID: 1555272719}
   - {fileID: 1138222657}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11602,6 +11622,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   particleSystem: {fileID: 1793153610}
+  SonarParticle: {fileID: 1555272718}
   CoroutineEnable: 1
   UpdTime: 0.1
   showHitPoint: 1
@@ -11815,7 +11836,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -11871,7 +11892,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 0
+  moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
@@ -11988,7 +12009,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 1}
+      maxColor: {r: 1, g: 0.9792453, b: 0.9792453, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -16587,12 +16608,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1555272716}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 83.28104, y: 7, z: 81.98081}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1412361740}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1001 &1568697966
 PrefabInstance:
@@ -22002,7 +22023,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6972388585460330472, guid: 9d995d8ddf051de4a830843a21ab7e3c, type: 3}
       propertyPath: MaxHP
-      value: 100
+      value: 10000
       objectReference: {fileID: 0}
     - target: {fileID: 6972388585460330472, guid: 9d995d8ddf051de4a830843a21ab7e3c, type: 3}
       propertyPath: MaxShield
@@ -22463,7 +22484,11 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 6f6fb3457fb5ca04f9b80a0bff10fb99, type: 2}
     - target: {fileID: 8388205170468864531, guid: 241f815e05aeef946a2ba627bcdaa6b9, type: 3}
       propertyPath: Round
-      value: 6
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8388205170468864531, guid: 241f815e05aeef946a2ba627bcdaa6b9, type: 3}
+      propertyPath: MaxEnemies
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8388205170468864531, guid: 241f815e05aeef946a2ba627bcdaa6b9, type: 3}
       propertyPath: EnemyModifierPools.Array.size
@@ -22763,4 +22788,3 @@ SceneRoots:
   - {fileID: 2825619633715878558}
   - {fileID: 706041872}
   - {fileID: 1933246785}
-  - {fileID: 1555272719}

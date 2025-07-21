@@ -36,8 +36,14 @@ public class DemonicMinionController : EnemyBase
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
+    private void OnDestroy()
+    {
+        cache.Remove(gameObject);
+    }
+
     private void Awake()
     {
+        cache[gameObject] = this;
         humanoid.OnDeath += OnDeath;
     }
     void Start()
@@ -268,15 +274,11 @@ public class DemonicMinionController : EnemyBase
                     if (TargetTransform.parent != hit.collider.transform)
                     {
                         TargetTransform.SetParent(hit.collider.transform);
-                        TargetTransform.localPosition = Vector3.up * 0.5f;
+                        TargetTransform.localPosition = Vector3.up * TargetTransformUpMult;
                     }
                     SawPlayer = true;
 
-                    if (FindNewPath != null)
-                    {
-                        StopCoroutine(FindNewPath);
-                        FindNewPath = StartCoroutine(FindPath());
-                    }
+                    StartTracking();
                 }
             }
             else if (CurrState == BehaviourState.Pathing)
@@ -294,5 +296,16 @@ public class DemonicMinionController : EnemyBase
     void OnDeath()
     {
         TargetTransform.SetParent(transform);
+    }
+
+    public override void StartTracking()
+    {
+        if (FindNewPath != null)
+        {
+            StopCoroutine(FindNewPath);
+        }
+        FindNewPath = StartCoroutine(FindPath());
+
+        VoxelAStarPathing.PathFound.Clear();
     }
 }

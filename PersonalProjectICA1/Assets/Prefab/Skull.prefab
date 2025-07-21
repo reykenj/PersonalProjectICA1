@@ -4966,7 +4966,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a290ba268c914946b7cba3ded294716, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetOffset: {x: 0, y: 0, z: 0}
+  targetRotation: {x: 0, y: 0, z: 0}
   snappiness: 6
   returnSpeed: 2
 --- !u!1001 &5700733160170878616
@@ -5359,7 +5359,6 @@ MonoBehaviour:
   CastTime: 0.25
   Turn: 0
   AttackStartPoint: {fileID: 7573298420985448518}
-  AttackStartPointRM: {fileID: 366324314545767291}
   Owner: {fileID: 0}
   NaturalMultiCastCount: 1
   TempMultiCastCount: 0
@@ -5375,17 +5374,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a208b8d795c93f344a397a3ea69e6006, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SawPlayer: 0
   humanoid: {fileID: 5393560607035992413}
-  characterController: {fileID: 4281937221310027458}
-  CurrState: 0
-  AttackRange: 10
-  AttackCooldown: 1
   PlayerTransform: {fileID: 0}
   AttackHandlers:
   - {fileID: 2176513499380868260}
   - {fileID: 5699294034877172418}
-  FireVFX: {fileID: 510549915291701546}
   TargetTransform: {fileID: 2176540355519736438}
+  TargetTransformUpMult: 7
+  characterController: {fileID: 4281937221310027458}
+  SightRange: 0
+  AttackRange: 10
+  AttackCooldown: 1
+  Tracking: 1
+  CurrState: 0
+  FireVFX: {fileID: 510549915291701546}
   VoxelAStarPathing: {fileID: 8340721107714518576}
   MaxSearchTimerSeen: 1
   MaxSearchTimerUnseen: 10
@@ -5532,7 +5535,6 @@ MonoBehaviour:
   CastTime: 0.25
   Turn: 0
   AttackStartPoint: {fileID: 7573298420985448518}
-  AttackStartPointRM: {fileID: 0}
   Owner: {fileID: 0}
   NaturalMultiCastCount: 1
   TempMultiCastCount: 0
