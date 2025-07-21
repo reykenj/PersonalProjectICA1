@@ -1201,3 +1201,63 @@ Memory consumption went from 265.0 MB to 258.1 MB.
 Total: 12.158500 ms (FindLiveObjects: 0.785200 ms CreateObjectMapping: 0.668000 ms MarkObjects: 6.445500 ms  DeleteObjects: 4.258100 ms)
 
 Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Import Request.
+  Time since last request: 645.972598 seconds.
+  path: Assets/Shaders/Beam.mat
+  artifactKey: Guid(e624757f82be06345812e9f24c5d9e41) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Shaders/Beam.mat using Guid(e624757f82be06345812e9f24c5d9e41) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '9722eacd8cf1fe18fd01a15157f10507') in 1.0714916 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 8
+
+========================================================================
+Received Import Request.
+  Time since last request: 10.193735 seconds.
+  path: Assets/Shaders/Intersection.shadergraph
+  artifactKey: Guid(a8ed5040b8a55da49af94baf8e408651) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Shaders/Intersection.shadergraph using Guid(a8ed5040b8a55da49af94baf8e408651) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'c4ed77229cdef2832f45b904ef1dfed1') in 2.2808093 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 5
+
+========================================================================
+Received Import Request.
+  Time since last request: 36.804078 seconds.
+  path: Assets/Shaders/Sonar.mat
+  artifactKey: Guid(30f4103bbd1b48649bd5422dc65ef98d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Shaders/Sonar.mat using Guid(30f4103bbd1b48649bd5422dc65ef98d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'ecbf2674c85a8ab119b55b5634f49c4f') in 0.1696523 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 6
+
+========================================================================
+Received Import Request.
+  Time since last request: 279.892390 seconds.
+  path: Assets/Altar_Ruins_FREE/Art/Meshes/New/Wall_round_4.fbx
+  artifactKey: Guid(c9b3ab8a62297454caea171e0c274b6f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Altar_Ruins_FREE/Art/Meshes/New/Wall_round_4.fbx using Guid(c9b3ab8a62297454caea171e0c274b6f) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'affff953c75468b9f192ff53b5d0d825') in 0.1392345 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 7
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000054 seconds.
+  path: Assets/Altar_Ruins_FREE/Art/Meshes/New/Wall_small.fbx
+  artifactKey: Guid(feb8020f731528b4f934bed10b81f21c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Altar_Ruins_FREE/Art/Meshes/New/Wall_small.fbx using Guid(feb8020f731528b4f934bed10b81f21c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '96e4f779ff572248c1c60f337f9f8fc7') in 0.0310378 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 7
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000037 seconds.
+  path: Assets/Altar_Ruins_FREE/Art/Meshes/Old/Meshes_with_the_bottom_faces/Wall_small.fbx
+  artifactKey: Guid(3861c68c28d12184694bc9ae4afc9e27) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Altar_Ruins_FREE/Art/Meshes/Old/Meshes_with_the_bottom_faces/Wall_small.fbx using Guid(3861c68c28d12184694bc9ae4afc9e27) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '288a80b1ce4f345048d65b3553c8404f') in 0.043598 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 7
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/Altar_Ruins_FREE/Art/Meshes/New/Wall_round_5.fbx
+  artifactKey: Guid(6548be4ccee74c8489893e6617d54de1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Altar_Ruins_FREE/Art/Meshes/New/Wall_round_5.fbx using Guid(6548be4ccee74c8489893e6617d54de1) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'e0e2a5dd32b5ae8c6e75394c047e6646') in 0.035899 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 7
+
+Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
+AssetImportWorker is now disconnected from the server
+Process exiting
+Exiting without the bug reporter. Application will terminate with return code 0
