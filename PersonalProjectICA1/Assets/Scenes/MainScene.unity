@@ -11568,6 +11568,10 @@ PrefabInstance:
       value: Demonic Minion
       objectReference: {fileID: 0}
     - target: {fileID: 1320559482402577874, guid: 22b099d869d0920448ab1e909b2e85c4, type: 3}
+      propertyPath: SawPlayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1320559482402577874, guid: 22b099d869d0920448ab1e909b2e85c4, type: 3}
       propertyPath: PlayerTransform
       value: 
       objectReference: {fileID: 574463007}
@@ -12352,6 +12356,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2176513499380868260, guid: adbf681c40b82b5489d1c512e726911d, type: 3}
       propertyPath: TempMultiCastCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3234802889204781199, guid: adbf681c40b82b5489d1c512e726911d, type: 3}
+      propertyPath: SawPlayer
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3234802889204781199, guid: adbf681c40b82b5489d1c512e726911d, type: 3}

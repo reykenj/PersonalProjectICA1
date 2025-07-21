@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using static UnityEditor.Rendering.InspectorCurveEditor;
 
-public class DemonicMinionController : MonoBehaviour
+public class DemonicMinionController : EnemyBase
 {
 
 
@@ -14,23 +14,13 @@ public class DemonicMinionController : MonoBehaviour
         Pathing,
         Attacking
     }
-    [SerializeField] Humanoid humanoid;
     [SerializeField] private Animator _animator;
     Vector3 moveDirect = Vector3.zero;
     private BehaviourState CurrState;
     private int HitBodyLayerIndex;
-    [SerializeField] private CharacterController characterController;
     // ATTACKING
-    [SerializeField] float SightRange;
-    [SerializeField] float AttackRange;
-    [SerializeField] float AttackCooldown;
-    [SerializeField] Transform PlayerTransform;
-    [SerializeField] List<AttackHandler> AttackHandlers;
     [SerializeField] ParticleSystem AttackVFX;
-
-    bool SawPlayer = false;
     // PATHFINDING
-    [SerializeField] Transform TargetTransform;
     [SerializeField] VoxelAStarPathing VoxelAStarPathing;
     [SerializeField] float MaxSearchTimerSeen = 1.0f;
     [SerializeField] float MaxSearchTimerUnseen = 10.0f;
@@ -42,8 +32,6 @@ public class DemonicMinionController : MonoBehaviour
     Coroutine FindNewPath;
     Coroutine SeePlayer;
     Coroutine AttackDelay;
-    //Coroutine SendOutAttack;
-    bool Tracking = true;
     Camera mainCamera;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

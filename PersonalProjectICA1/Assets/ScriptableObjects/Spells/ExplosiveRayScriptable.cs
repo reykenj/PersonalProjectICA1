@@ -31,8 +31,8 @@ public class ExplosiveRaySpelll : Spell
                     Mathf.Floor(hitPoint.x),
                     Mathf.Floor(hitPoint.y),
                     Mathf.Floor(hitPoint.z));
-                ChunkManager.Instance.RemoveVoxelsInArea(voxelPos + new Vector3(0.5f, 0.5f, 0.5f), ExplosionRange * FindHighestCurve(attackHandler.SpellArray[Index].TempProjInfo.ScaleCurveX));
-                Collider[] colliders = Physics.OverlapSphere(voxelPos + new Vector3(0.5f, 0.5f, 0.5f), ExplosionRange * FindHighestCurve(attackHandler.SpellArray[Index].TempProjInfo.ScaleCurveX));
+                ChunkManager.Instance.RemoveVoxelsInArea(voxelPos + new Vector3(0.5f, 0.5f, 0.5f), Mathf.Clamp(ExplosionRange * FindHighestCurve(attackHandler.SpellArray[Index].TempProjInfo.ScaleCurveX), 0 , 10));
+                Collider[] colliders = Physics.OverlapSphere(voxelPos + new Vector3(0.5f, 0.5f, 0.5f), Mathf.Clamp(ExplosionRange * FindHighestCurve(attackHandler.SpellArray[Index].TempProjInfo.ScaleCurveX), 0, 10));
                 foreach (Collider collider in colliders)
                 {
                     if(collider.gameObject == attackHandler.Owner) continue;

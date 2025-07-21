@@ -4,25 +4,17 @@ using System.Drawing;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class FloatingHeadController : MonoBehaviour
+public class FloatingHeadController : EnemyBase
 {
     private enum BehaviourState
     {
         Pathing,
         Attacking
     }
-
-    [SerializeField] Humanoid humanoid;
-    [SerializeField] CharacterController characterController;
     [SerializeField] BehaviourState CurrState;
     // ATTACKING
-    [SerializeField] float AttackRange;
-    [SerializeField] float AttackCooldown;
-    [SerializeField] Transform PlayerTransform;
-    [SerializeField] List<AttackHandler> AttackHandlers;
     [SerializeField] ParticleSystem FireVFX;
     // PATHFINDING
-    [SerializeField] Transform TargetTransform;
     [SerializeField] VoxelAStarPathing VoxelAStarPathing;
     [SerializeField] float MaxSearchTimerSeen = 1.0f;
     [SerializeField] float MaxSearchTimerUnseen = 10.0f;
@@ -34,10 +26,6 @@ public class FloatingHeadController : MonoBehaviour
     Coroutine FindNewPath;
     Coroutine SeePlayer;
     Coroutine SendOutAttack;
-
-    bool Tracking = true;
-
-    bool SawPlayer = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
