@@ -1,5 +1,7 @@
 using NUnit.Framework.Internal.Execution;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using static UnityEngine.UI.Image;
 
 [CreateAssetMenu(fileName = "Explosive Ray Spell", menuName = "Spells/Explosive Ray Spell")]
@@ -9,6 +11,8 @@ public class ExplosiveRaySpelll : Spell
     private float ExplosionDamMult = 5.0f;
     private float ExplosionRange = 2.0f;
     private float BeamRange = 50.0f;
+    public List<AudioResource> FireSFXs;
+
     public override int Apply(int Index, AttackHandler attackHandler, out bool UseTurn, Vector3 position, Quaternion rotation)
     {
         UseTurn = this.UseTurn;
@@ -67,6 +71,13 @@ public class ExplosiveRaySpelll : Spell
             //beamProj.transform.LookAt(hit.point);
             beamProj.Owner = attackHandler.Owner;
 
+            if (FireSFXs.Count > 0)
+            {
+                GameObject SFXOB = ObjectPool.GetObj("SFXGO");
+                ReturnAudio.TryGetAudio(SFXOB, out ReturnAudio audio);
+                audio.SetAudio(FireSFXs[Random.Range(0, FireSFXs.Count)]);
+                audio.transform.position = position;
+            }
             //attackHandler.AttackStartPointRM.ApplyRecoil(new Vector3(-2, 2, 0.35f) * 3);
         }
 

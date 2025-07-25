@@ -6,7 +6,6 @@ using UnityEngine.Audio;
 
 public class Humanoid : MonoBehaviour
 {
-    public GameObject SFXOBPrefab;
     public List<AudioResource> HurtSFXs;
     public List<AudioResource> DeathSFXs;
     [SerializeField] private List<MeshRenderer> meshRenderers;
@@ -349,12 +348,10 @@ public class Humanoid : MonoBehaviour
     {
         if (DeathSFXs.Count > 0)
         {
-            GameObject SFXOB = ObjectPool.GetObj(SFXOBPrefab.name);
+            GameObject SFXOB = ObjectPool.GetObj("SFXGO");
             ReturnAudio.TryGetAudio(SFXOB, out ReturnAudio audio);
             audio.SetAudio(DeathSFXs[Random.Range(0, DeathSFXs.Count)]);
             audio.transform.position = transform.position;
-
-            Debug.Log("Death " + SFXOB.name);
         }
         StartCoroutine(DeathExplosion());
     }

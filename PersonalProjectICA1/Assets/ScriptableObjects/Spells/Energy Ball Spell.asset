@@ -164,3 +164,5 @@ MonoBehaviour:
   ApplyToAllModifier: 0
   MulticastAdditive: 0
   AttackPrefab: {fileID: 7065334555887556334, guid: 9f1215f4198e5354ea3cca9af06dfa5e, type: 3}
+  FireSFXs:
+  - {fileID: 8300000, guid: 22b864405622b484f909b1d9a15e5ebf, type: 3}

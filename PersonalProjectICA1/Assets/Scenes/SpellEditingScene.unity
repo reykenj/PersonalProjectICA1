@@ -10885,6 +10885,8 @@ MonoBehaviour:
   - {fileID: 2423345019650780388, guid: 9d995d8ddf051de4a830843a21ab7e3c, type: 3}
   - {fileID: 3670026400435648469, guid: 63f7567533ccbd8499ab05bc9c346b72, type: 3}
   - {fileID: 757562848275112873, guid: 22b099d869d0920448ab1e909b2e85c4, type: 3}
+  - {fileID: 1622170026801141916, guid: 49bccbe84254bd844b0371805b86ecac, type: 3}
+  - {fileID: 1251468235134453534, guid: 481757bd6c655824f963ad58e5d264fd, type: 3}
 --- !u!4 &418196767 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7824629684641727888, guid: 112f91b29ac9c0c429308c01cef621fc, type: 3}
@@ -12232,6 +12234,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   voxelDebrisPrefab: {fileID: 2695812196601672060, guid: edca2b42bc0431442a92075198a1546b, type: 3}
+  SFX_PREFAB: {fileID: 0}
+  BreakSFX: {fileID: 0}
   chunks: []
   playerCamera: {fileID: 1110960060}
   maxInteractionDistance: 10
@@ -12239,6 +12243,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   particleSystem: {fileID: 116561882}
+  SonarParticle: {fileID: 0}
   CoroutineEnable: 1
   UpdTime: 0.1
   showHitPoint: 1
