@@ -17061,6 +17061,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 181181893135985073, guid: 481757bd6c655824f963ad58e5d264fd, type: 3}
+      propertyPath: DeathSFXs.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 181181893135985073, guid: 481757bd6c655824f963ad58e5d264fd, type: 3}
+      propertyPath: 'DeathSFXs.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 00587e0352650d749a9afca759a7d678, type: 3}
+    - target: {fileID: 181181893135985073, guid: 481757bd6c655824f963ad58e5d264fd, type: 3}
+      propertyPath: 'DeathSFXs.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8300000, guid: c4fd3daded0956f488711a8c7996ab8d, type: 3}
+    - target: {fileID: 181181893135985073, guid: 481757bd6c655824f963ad58e5d264fd, type: 3}
+      propertyPath: 'DeathSFXs.Array.data[2]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 249437c060d43b84a8f722963073c448, type: 3}
     - target: {fileID: 1251468235134453534, guid: 481757bd6c655824f963ad58e5d264fd, type: 3}
       propertyPath: m_Name
       value: Eye

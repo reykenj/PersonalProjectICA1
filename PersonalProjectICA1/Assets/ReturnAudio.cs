@@ -24,7 +24,9 @@ public class ReturnAudio : MonoBehaviour
 
     public void SetAudio(AudioResource audio)
     {
+        audioSource.Stop();
         audioSource.resource = audio;
+        audioSource.Play();
     }
     void FixedUpdate()
     {

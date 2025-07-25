@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 
 public class Humanoid : MonoBehaviour
 {
+    public GameObject SFXOBPrefab;
+    public List<AudioResource> HurtSFXs;
+    public List<AudioResource> DeathSFXs;
     [SerializeField] private List<MeshRenderer> meshRenderers;
     [SerializeField] private List<SkinnedMeshRenderer> SkinnedmeshRenderers;
     [SerializeField] private CharacterController _charController;
@@ -343,6 +347,15 @@ public class Humanoid : MonoBehaviour
 
     void DeathDespawn()
     {
+        if (DeathSFXs.Count > 0)
+        {
+            GameObject SFXOB = ObjectPool.GetObj(SFXOBPrefab.name);
+            ReturnAudio.TryGetAudio(SFXOB, out ReturnAudio audio);
+            audio.SetAudio(DeathSFXs[Random.Range(0, DeathSFXs.Count)]);
+            audio.transform.position = transform.position;
+
+            Debug.Log("Death " + SFXOB.name);
+        }
         StartCoroutine(DeathExplosion());
     }
 

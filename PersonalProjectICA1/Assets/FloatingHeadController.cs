@@ -36,10 +36,10 @@ public class FloatingHeadController : EnemyBase
     {
         cache.Remove(gameObject);
     }
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         cache[gameObject] = this;
-        humanoid.OnDeath += OnDeath;
 
         if (PlayerTransform == null)
         {
@@ -59,8 +59,9 @@ public class FloatingHeadController : EnemyBase
     }
 
 
-    void OnDisable()
+    protected override void OnDisable()
     {
+        base.OnDisable();
         if (FindNewPath != null) { 
             StopCoroutine(FindNewPath);
             FindNewPath = null;
@@ -274,9 +275,9 @@ public class FloatingHeadController : EnemyBase
         }
     }
 
-    void OnDeath()
+    protected override void OnDeath()
     {
-        TargetTransform.SetParent(transform);
+        base.OnDeath();
     }
 
     public override void StartTracking()

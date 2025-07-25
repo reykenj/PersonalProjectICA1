@@ -34,10 +34,10 @@ public class EyeController : EnemyBase
     {
         cache.Remove(gameObject);
     }
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         cache[gameObject] = this;
-        humanoid.OnDeath += OnDeath;
 
         if (PlayerTransform == null)
         {
@@ -57,8 +57,9 @@ public class EyeController : EnemyBase
     }
 
 
-    void OnDisable()
+    protected override void OnDisable()
     {
+        base.OnDisable();
         if (FindNewPath != null)
         {
             StopCoroutine(FindNewPath);
@@ -305,9 +306,9 @@ public class EyeController : EnemyBase
 
     }
 
-    void OnDeath()
+    protected override void OnDeath()
     {
-        TargetTransform.SetParent(transform);
+        base.OnDeath();
     }
 
     public override void StartTracking()

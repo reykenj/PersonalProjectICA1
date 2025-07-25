@@ -5159,6 +5159,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9989db249df88f5498e9abc5a4803acc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SFXOBPrefab: {fileID: 1622170026801141916, guid: 49bccbe84254bd844b0371805b86ecac, type: 3}
+  HurtSFXs: []
+  DeathSFXs:
+  - {fileID: 8300000, guid: 00587e0352650d749a9afca759a7d678, type: 3}
+  - {fileID: 8300000, guid: c4fd3daded0956f488711a8c7996ab8d, type: 3}
+  - {fileID: 8300000, guid: 249437c060d43b84a8f722963073c448, type: 3}
   meshRenderers:
   - {fileID: 747289445181449931}
   SkinnedmeshRenderers: []

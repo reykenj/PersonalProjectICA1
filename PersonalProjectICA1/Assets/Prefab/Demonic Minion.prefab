@@ -132,6 +132,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9989db249df88f5498e9abc5a4803acc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SFXOBPrefab: {fileID: 1622170026801141916, guid: 49bccbe84254bd844b0371805b86ecac, type: 3}
+  HurtSFXs: []
+  DeathSFXs:
+  - {fileID: 8300000, guid: 1f7469ca14254a443bfa63ab5c0a942a, type: 3}
+  - {fileID: 8300000, guid: 2772f3be594fa2749970f8b609488611, type: 3}
+  - {fileID: 8300000, guid: e4da507aaabe2364fb6fabf63ae4b4e2, type: 3}
   meshRenderers:
   - {fileID: 4526775505824333238}
   - {fileID: 1569760811309450711}
