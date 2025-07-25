@@ -17,6 +17,10 @@ public abstract class EnemyBase : MonoBehaviour
 
     protected static Dictionary<GameObject, EnemyBase> cache = new Dictionary<GameObject, EnemyBase>();
 
+    //private void Awake()
+    //{
+    //    cache.Add(gameObject, this);
+    //}
     public static bool TryGetEnemy(GameObject obj, out EnemyBase enemy)
     {
         return cache.TryGetValue(obj, out enemy);

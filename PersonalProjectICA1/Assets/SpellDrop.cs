@@ -9,7 +9,7 @@ public class SpellDrop : MonoBehaviour, IInteractable
     [SerializeField] GameObject SpecialSpellEffect;
     [SerializeField] GameObject TeleportEffect;
     [SerializeField] Spell spell;
-    [SerializeField] float Cost = 50;
+    [SerializeField] int Cost = 50;
     private static Dictionary<GameObject, SpellDrop> cache = new Dictionary<GameObject, SpellDrop>();
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
@@ -72,6 +72,14 @@ public class SpellDrop : MonoBehaviour, IInteractable
         {
             if (GameFlowManager.instance.Inventory.SpellArray[i].spell == null)
             {
+                if (GameFlowManager.instance.Gold >= Cost)
+                {
+                    GameFlowManager.instance.Gold -= Cost;
+                }
+                else
+                {
+                    break;
+                }
                 SpellContainer SC = GameFlowManager.instance.Inventory.SpellArray[i];
                 SC.spell = spell;
                 if (SC.spell != null)

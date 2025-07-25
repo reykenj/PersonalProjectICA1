@@ -44,6 +44,9 @@ public class GameFlowManager : MonoBehaviour
 
     [SerializeField] int Round = 0;
 
+    public int Gold = 0;
+    [SerializeField] int GoldPerEnemy = 10;
+
     public void ActivateInstructionPanel(string TitleText, string DescriptionText)
     {
         if (InstructionPanelWait != null)
@@ -139,7 +142,7 @@ public class GameFlowManager : MonoBehaviour
     void OnDeath()
     {
         TotalEnemies--;
-
+        Gold += GoldPerEnemy;
         if (TotalEnemies <= MaxEnemies * MinFraction && !EndLevel)
         {
             EndLevel = true;

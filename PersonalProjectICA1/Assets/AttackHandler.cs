@@ -131,8 +131,8 @@ public class AttackHandler : MonoBehaviour
                     }
                     if (multicount >= NaturalMultiCastCount + TempTempMultiCastCount)
                     {
+                        ResetSpells(0, InsertedTurn + 1);
                         InsertedTurn = (InsertedTurn + 1) % spellCount;
-                        ResetSpells(0, InsertedTurn);
                         TempMultiCastCount = 0;
                         break;
                     }
@@ -240,6 +240,7 @@ public class AttackHandler : MonoBehaviour
     }
     private void ResetSpells(int Start, int End)
     {
+        Debug.Log("RESETTING SPELLS FOR: " + gameObject.name);
         for (int i = Start; i < End; i++)
         {
             SpellContainer container = SpellArray[i];

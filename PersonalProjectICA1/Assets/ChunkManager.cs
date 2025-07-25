@@ -5,12 +5,17 @@ using Unity.VisualScripting;
 using Unity.VisualScripting.Antlr3.Runtime.Collections;
 using UnityEditor.PackageManager.Requests;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.UIElements;
 using static UnityEngine.ParticleSystem;
 
 public class ChunkManager : MonoBehaviour
 {
-    public GameObject voxelDebrisPrefab; 
+    public GameObject voxelDebrisPrefab;
+
+    public GameObject SFX_PREFAB;
+    public AudioResource BreakSFX;
+
     public List<Container> chunks;
     public Queue<Container> dirtyChunks = new Queue<Container>();
     public Camera playerCamera;
@@ -244,6 +249,10 @@ public class ChunkManager : MonoBehaviour
 
             if (chunkModified && !dirtyChunks.Contains(chunk))
             {
+                GameObject SFXOB = ObjectPool.GetObj(SFX_PREFAB.name);
+                ReturnAudio.TryGetAudio(SFXOB, out ReturnAudio audio);
+                audio.SetAudio(BreakSFX);
+                audio.transform.position = center;
                 dirtyChunks.Enqueue(chunk);
             }
         }

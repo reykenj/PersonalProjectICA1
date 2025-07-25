@@ -91,3 +91,4 @@ MonoBehaviour:
   ApplyToAllModifier: 1
   MulticastAdditive: 0
   scaleMultiplier: 1.5
+  scaleclamp: 10
