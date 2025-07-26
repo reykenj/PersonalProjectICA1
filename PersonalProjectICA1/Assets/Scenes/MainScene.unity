@@ -620,11 +620,6 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 1
---- !u!1 &504730407 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4072117515085195178, guid: 241f815e05aeef946a2ba627bcdaa6b9, type: 3}
-  m_PrefabInstance: {fileID: 4390881389453574845}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &560810617
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6150,6 +6145,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1184996331 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4947847350427553306, guid: 241f815e05aeef946a2ba627bcdaa6b9, type: 3}
+  m_PrefabInstance: {fileID: 4390881389453574845}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 188456c3944e90a4b9ce351b1aaa2e32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1364451826
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16809,14 +16815,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameFlowManager
       objectReference: {fileID: 0}
-    - target: {fileID: 2153828842486727399, guid: 241f815e05aeef946a2ba627bcdaa6b9, type: 3}
-      propertyPath: SpellArray.Array.size
-      value: 2
+    - target: {fileID: 1882791052497078985, guid: 241f815e05aeef946a2ba627bcdaa6b9, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2153828842486727399, guid: 241f815e05aeef946a2ba627bcdaa6b9, type: 3}
-      propertyPath: SpellArray.Array.data[1].spell
-      value: 
-      objectReference: {fileID: 11400000, guid: 8b9913b655a6af045b42a8b404a0c0e6, type: 2}
+    - target: {fileID: 1882791052497078985, guid: 241f815e05aeef946a2ba627bcdaa6b9, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1882791052497078985, guid: 241f815e05aeef946a2ba627bcdaa6b9, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1882791052497078985, guid: 241f815e05aeef946a2ba627bcdaa6b9, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2664391692428802280, guid: 241f815e05aeef946a2ba627bcdaa6b9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -16873,22 +16887,26 @@ PrefabInstance:
       propertyPath: _playerInput
       value: 
       objectReference: {fileID: 7291340114296563045}
-    - target: {fileID: 5272870757364680522, guid: 241f815e05aeef946a2ba627bcdaa6b9, type: 3}
-      propertyPath: DisableOnActivate.Array.size
-      value: 8
+    - target: {fileID: 7264682325221112636, guid: 241f815e05aeef946a2ba627bcdaa6b9, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5272870757364680522, guid: 241f815e05aeef946a2ba627bcdaa6b9, type: 3}
-      propertyPath: EnableOnDeActivate.Array.size
-      value: 2
+    - target: {fileID: 7264682325221112636, guid: 241f815e05aeef946a2ba627bcdaa6b9, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5272870757364680522, guid: 241f815e05aeef946a2ba627bcdaa6b9, type: 3}
-      propertyPath: 'DisableOnActivate.Array.data[7]'
+    - target: {fileID: 7264682325221112636, guid: 241f815e05aeef946a2ba627bcdaa6b9, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7264682325221112636, guid: 241f815e05aeef946a2ba627bcdaa6b9, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8388205170468864531, guid: 241f815e05aeef946a2ba627bcdaa6b9, type: 3}
+      propertyPath: hpbar
       value: 
-      objectReference: {fileID: 504730407}
-    - target: {fileID: 5272870757364680522, guid: 241f815e05aeef946a2ba627bcdaa6b9, type: 3}
-      propertyPath: 'EnableOnDeActivate.Array.data[1]'
-      value: 
-      objectReference: {fileID: 504730407}
+      objectReference: {fileID: 1184996331}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -14,12 +14,28 @@ public class HPBar : MonoBehaviour
         if(controller == null)
         {
             controller = GameFlowManager.instance.Player.GetComponent<Humanoid>();
+            InitHPBAR(controller);
         }
+    }
+
+    public void InitHPBAR(Humanoid humanoid)
+    {
+        controller = humanoid;
         controller.OnHurt += OnHurt;
-        OnHurt(); // Initialize on start
+        OnHurt();
         lerpslider.maxValue = slider.maxValue;
         lerpslider.value = slider.value;
     }
+
+    private void OnDestroy()
+    {
+        if (GameFlowManager.instance != null && GameFlowManager.instance.Player != null)
+        {
+            if (controller != null)
+                controller.OnHurt -= OnHurt;
+        }
+    }
+
 
     void Update()
     {

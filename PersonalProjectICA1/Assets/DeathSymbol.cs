@@ -1,6 +1,8 @@
 using System.Collections;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DeathSymbol : MonoBehaviour
 {
@@ -14,11 +16,27 @@ public class DeathSymbol : MonoBehaviour
     private void Start()
     {
         transform.localScale = new Vector3(ScaleCurve.Evaluate(0), ScaleCurve.Evaluate(0), 0);
-        GameFlowManager.instance.Player.GetComponent<Humanoid>().OnDeath += OnPlayerDeath;
+        //GameFlowManager.instance.Player.GetComponent<Humanoid>().OnDeath += OnPlayerDeath;
         //gameObject.SetActive(false);
     }
 
-    private void OnPlayerDeath()
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        //GameFlowManager.instance.Player.GetComponent<Humanoid>().OnDeath += OnPlayerDeath;
+    }
+
+
+    private void OnDestroy()
+    {
+        if (GameFlowManager.instance != null && GameFlowManager.instance.Player != null)
+        {
+            var humanoid = GameFlowManager.instance.Player.GetComponent<Humanoid>();
+            if (humanoid != null)
+                humanoid.OnDeath -= OnPlayerDeath;
+        }
+    }
+
+    public void OnPlayerDeath()
     {
         //gameObject.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
@@ -49,12 +67,10 @@ public class DeathSymbol : MonoBehaviour
             yield return null;
         }
         transform.rotation = Quaternion.Euler(0, 0, -45);
-        IPanel.DescriptionTextToAppear = "KILLS: " + 0.ToString() + "\n" +
-                                 "SPELLS BOUGHT: " + 0.ToString() + "\n" +
-                                 "TOTAL GOLD GAINED: " + 0.ToString() + "\n" +
-                                 "DIED ON LEVEL: " + 0.ToString() + "\n" +
-                                 "KILLS: " + 0.ToString() + "\n" +
-                                 "KILLS: " + 0.ToString() + "\n";
+        IPanel.DescriptionTextToAppear = "KILLS: " + GameFlowManager.instance.TotalMonKills.ToString() + "\n" +
+                                 "SPELLS BOUGHT: " + GameFlowManager.instance.TotalSpellsBought.ToString() + "\n" +
+                                 "TOTAL GOLD GAINED: " + GameFlowManager.instance.TotalGoldCollected.ToString() + "\n" +
+                                 "DIED ON LEVEL: " + GameFlowManager.instance.Round.ToString() + "\n";
         IPanel.gameObject.SetActive(true);
     }
 }

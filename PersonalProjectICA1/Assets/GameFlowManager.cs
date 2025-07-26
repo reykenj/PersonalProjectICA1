@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -34,19 +35,36 @@ public class GameFlowManager : MonoBehaviour
     [SerializeField] int spellsPerDrop = 3;
     [SerializeField] float dropRadius = 3.0f;
     [SerializeField] float ShopDelay = 1.0f;
-
     public AttackHandler leftAttackPlayer;
     public AttackHandler rightAttackPlayer;
     public AttackHandler inventory;
-
     public System.Action ShopChoiceChosen;
     bool ShopChoiceMade = false;
-
-    [SerializeField] int Round = 0;
-
-    public int Gold = 0;
+    public int Round = 0;
+    private int gold = 0;
     [SerializeField] int GoldPerEnemy = 10;
+    [SerializeField] TextMeshProUGUI ProgressText;
+    [SerializeField] TextMeshProUGUI GoldText;
+    [SerializeField] DeathSymbol deathSymbol;
+    [SerializeField] HPBar hpbar;
 
+
+    public int TotalGoldCollected;
+    public int TotalMonKills;
+    public int TotalSpellsBought;
+
+    public int Gold {  
+        get { return gold; }
+        
+        set {
+            if (gold < value)
+            {
+                TotalGoldCollected += value - gold;
+            }
+            gold = value;
+            UpdateText();
+        }
+    }
     public void ActivateInstructionPanel(string TitleText, string DescriptionText)
     {
         if (InstructionPanelWait != null)
@@ -116,6 +134,13 @@ public class GameFlowManager : MonoBehaviour
         {
             ShopChoiceMade = true;
         };
+
+        Humanoid humanoid = Player.GetComponent<Humanoid>();
+        humanoid.OnDeath += deathSymbol.OnPlayerDeath;
+
+
+        hpbar.InitHPBAR(humanoid);
+
     }
     public void PopulateMap()
     {
@@ -137,18 +162,29 @@ public class GameFlowManager : MonoBehaviour
             }
         }
         TotalEnemies = MaxEnemies;
+        UpdateText();
     }
 
     void OnDeath()
     {
         TotalEnemies--;
+        TotalMonKills++;
         Gold += GoldPerEnemy;
+        UpdateText();
         if (TotalEnemies <= MaxEnemies * MinFraction && !EndLevel)
         {
             EndLevel = true;
 
             StartCoroutine(MoveScene("SpellEditingScene"));
         }
+    }
+
+    void UpdateText()
+    {
+        float threshold = MaxEnemies * MinFraction;
+        float enemiesleft = Mathf.Clamp(TotalEnemies - threshold, 0, threshold);
+        ProgressText.text = "Enemies Left: " + enemiesleft.ToString();
+        GoldText.text = "Gold: " + Gold.ToString();
     }
 
     public IEnumerator MoveScene(string scenename)

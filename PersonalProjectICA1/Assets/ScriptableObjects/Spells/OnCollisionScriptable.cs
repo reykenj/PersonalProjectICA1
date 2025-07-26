@@ -51,7 +51,7 @@ public class OnCollisionSpell : Spell
         SCActivation.TempProjInfo.OnCollision += (projectile) =>
         {
             Debug.Log("[LAUNCH] test");
-            attackHandler.MultiCast(projectile.transform.position, projectile.transform.rotation, IndexToActivateOn + 1);
+            attackHandler.MultiCast(projectile.transform.position, projectile.transform.rotation, (IndexToActivateOn + 1) % attackHandler.SpellArray.Count);
             //Debug.Log("Triggering multiple casts");
             //attackHandler.BasicCast(IndexToCast, projectile.transform.position, projectile.transform.rotation);
         };

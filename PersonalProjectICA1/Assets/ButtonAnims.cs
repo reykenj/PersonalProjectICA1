@@ -10,12 +10,15 @@ public class ButtonAnims : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     private Vector3 originalScale;
     private Vector3 targetScale;
 
-    private void Start()
+    private void Awake()
     {
         originalScale = transform.localScale;
-        targetScale = originalScale;
     }
 
+    private void OnEnable()
+    {
+        targetScale = originalScale;
+    }
     private void Update()
     {
         transform.localScale = Vector3.Lerp(transform.localScale, targetScale, Time.deltaTime * lerpSpeed);

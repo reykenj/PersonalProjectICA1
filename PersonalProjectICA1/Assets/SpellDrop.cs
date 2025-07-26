@@ -74,6 +74,7 @@ public class SpellDrop : MonoBehaviour, IInteractable
             {
                 if (GameFlowManager.instance.Gold >= Cost)
                 {
+                    GameFlowManager.instance.TotalSpellsBought++;
                     GameFlowManager.instance.Gold -= Cost;
                 }
                 else
