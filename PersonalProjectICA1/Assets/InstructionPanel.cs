@@ -7,9 +7,11 @@ public class InstructionPanel : MonoBehaviour
 {
     [SerializeField] TextAnimOnAppear Title;
     [SerializeField] TextAnimOnAppear Description;
+    
 
     public string TitleTextToAppear;
     public string DescriptionTextToAppear;
+    public Image image;
 
     [SerializeField] RectTransform Center;
     [SerializeField] RectTransform panelRect;

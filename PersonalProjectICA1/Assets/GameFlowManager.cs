@@ -65,14 +65,14 @@ public class GameFlowManager : MonoBehaviour
             UpdateText();
         }
     }
-    public void ActivateInstructionPanel(string TitleText, string DescriptionText)
+    public void ActivateInstructionPanel(string TitleText, string DescriptionText, Sprite sprite = null)
     {
         if (InstructionPanelWait != null)
         {
             StopCoroutine(InstructionPanelWait);
             InstructionPanelWait = null;
         }
-        InstructionPanelWait = StartCoroutine(WaitForInstructionPanelInactive(TitleText, DescriptionText));
+        InstructionPanelWait = StartCoroutine(WaitForInstructionPanelInactive(TitleText, DescriptionText, sprite));
     }
 
     public void DeactivateInstructionPanel()
@@ -82,11 +82,20 @@ public class GameFlowManager : MonoBehaviour
             instructionpanel.SendBack();
         }
     }
-    IEnumerator WaitForInstructionPanelInactive(string TitleText, string DescriptionText)
+    IEnumerator WaitForInstructionPanelInactive(string TitleText, string DescriptionText, Sprite sprite = null)
     {
         yield return new WaitWhile(() => instructionpanel.gameObject.activeSelf);
         instructionpanel.TitleTextToAppear = TitleText;
         instructionpanel.DescriptionTextToAppear = DescriptionText;
+        if (sprite != null)
+        {
+            instructionpanel.image.gameObject.SetActive(true);
+            instructionpanel.image.sprite = sprite;
+        }
+        else
+        {
+            instructionpanel.image.gameObject.SetActive(false);
+        }
         instructionpanel.gameObject.SetActive(true);
         InstructionPanelWait = null;
     }

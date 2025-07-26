@@ -58,7 +58,7 @@ public class SpellDrop : MonoBehaviour, IInteractable
 
     public void EnterNear()
     {
-        GameFlowManager.instance.ActivateInstructionPanel(spell.name, spell.SpellDescription + "(Press E to buy for " + Cost + " )");
+        GameFlowManager.instance.ActivateInstructionPanel(spell.name, spell.SpellDescription + "(Press E to buy for " + Cost + " )", spell.RuneIcon);
     }
 
     public void ExitNear()

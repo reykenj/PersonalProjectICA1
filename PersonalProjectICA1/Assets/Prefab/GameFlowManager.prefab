@@ -4808,8 +4808,8 @@ RectTransform:
   m_Children:
   - {fileID: 3557028879942043086}
   - {fileID: 8246046201168799315}
-  - {fileID: 3988773432124359416}
   - {fileID: 4718604629908939857}
+  - {fileID: 3988773432124359416}
   - {fileID: 8120910904789123821}
   - {fileID: 6904442499673649152}
   - {fileID: 6899902779861021464}
@@ -6136,6 +6136,7 @@ MonoBehaviour:
   TitleTextToAppear: 'Final Results:'
   DescriptionTextToAppear: 'KILLS: 11;:: DEATHS: 1121223 SPELLS BOUGHT: TOTAL GOLD
     : LEVEL:'
+  image: {fileID: 0}
   Center: {fileID: 918450478069151195}
   panelRect: {fileID: 6694216869924483854}
   moveDuration: 0.75
