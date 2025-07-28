@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.VFX;
 
 public class GameFlowManager : MonoBehaviour
 {
@@ -172,6 +173,32 @@ public class GameFlowManager : MonoBehaviour
         }
         TotalEnemies = MaxEnemies;
         UpdateText();
+        StartCoroutine(TeleportPlayerRandomly());
+    }
+    IEnumerator TeleportPlayerRandomly()
+    {
+        Player.enabled = false;
+        Humanoid.TryGetHumanoid(Player.gameObject, out Humanoid humanoid);
+        humanoid.enabled = false;
+        yield return null;
+
+        float worldWidth = WorldManager.Instance.xSize * WorldManager.Instance.ChunkSize;
+        float worldDepth = WorldManager.Instance.zSize * WorldManager.Instance.ChunkSize;
+
+        float randX = Random.Range(0, worldWidth);
+        float randZ = Random.Range(0, worldDepth);
+
+        Vector3 rayOrigin = new Vector3(randX, worldDepth + 1, randZ); // shoot down from high above
+        if (Physics.Raycast(rayOrigin, Vector3.down, out RaycastHit hit, 2000f, LayerMask.GetMask("Voxel")))
+        {
+            Vector3 spawnPos = hit.point + Vector3.up * 2;
+
+            Player.transform.position = spawnPos;
+        }
+
+        yield return null;
+        Player.enabled = true;
+        humanoid.enabled = true;
     }
 
     void OnDeath()
@@ -179,8 +206,9 @@ public class GameFlowManager : MonoBehaviour
         TotalEnemies--;
         TotalMonKills++;
         Gold += GoldPerEnemy;
+        int enemieskilled = MaxEnemies - TotalEnemies;
         UpdateText();
-        if (TotalEnemies <= MaxEnemies * MinFraction && !EndLevel)
+        if (enemieskilled >= (int)(MaxEnemies * MinFraction) && !EndLevel)
         {
             EndLevel = true;
 
@@ -190,8 +218,10 @@ public class GameFlowManager : MonoBehaviour
 
     void UpdateText()
     {
-        float threshold = MaxEnemies * MinFraction;
-        float enemiesleft = Mathf.Clamp(TotalEnemies - threshold, 0, threshold);
+        int threshold = (int)(MaxEnemies * MinFraction);
+        int enemieskilled = MaxEnemies - TotalEnemies;
+
+        int enemiesleft = threshold - enemieskilled;
         ProgressText.text = "Enemies Left: " + enemiesleft.ToString();
         GoldText.text = "Gold: " + Gold.ToString();
     }

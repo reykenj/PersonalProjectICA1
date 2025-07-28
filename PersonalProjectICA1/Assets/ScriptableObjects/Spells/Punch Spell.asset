@@ -135,7 +135,7 @@ MonoBehaviour:
     Physics: 0
     timer: 0
     lifetime: 0.25
-    Render: 1
+    Render: 0
     mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
     materials: []
   SpellName: Punch

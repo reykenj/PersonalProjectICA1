@@ -83,7 +83,10 @@ MonoBehaviour:
     lifetime: 0
     Render: 0
     mesh: {fileID: 0}
+    materials: []
   SpellName: On Collsion
-  RuneIcon: {fileID: 0}
+  SpellDescription: 
+  RuneIcon: {fileID: 21300000, guid: eeb66e8ec75c7db4d89426c80defc2a0, type: 3}
   UseTurn: 0
   ApplyToAllModifier: 0
+  MulticastAdditive: 0

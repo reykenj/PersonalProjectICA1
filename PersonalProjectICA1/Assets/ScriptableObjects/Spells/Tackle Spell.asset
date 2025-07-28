@@ -137,8 +137,11 @@ MonoBehaviour:
     lifetime: 2
     Render: 0
     mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+    materials: []
   SpellName: Tackle
-  RuneIcon: {fileID: 21300000, guid: 25659dab5d1295947988f290ddaf7064, type: 3}
+  SpellDescription: 
+  RuneIcon: {fileID: 21300000, guid: fb7645b2b9799b7458e5091c28faa642, type: 3}
   UseTurn: 1
   ApplyToAllModifier: 0
+  MulticastAdditive: 0
   AttackPrefab: {fileID: 7065334555887556334, guid: 9f1215f4198e5354ea3cca9af06dfa5e, type: 3}

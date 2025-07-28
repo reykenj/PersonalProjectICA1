@@ -40,9 +40,13 @@ public class SpellDrop : MonoBehaviour, IInteractable
         {
             ActiveSpellEffect.SetActive(true);
         }
+        else if(spell.ApplyToAllModifier) {
+        
+            ModifierSpellEffect.SetActive(true);
+        }
         else
         {
-            ModifierSpellEffect.SetActive(true);
+            SpecialSpellEffect.SetActive(true);
         }
     }
 

@@ -5159,7 +5159,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9989db249df88f5498e9abc5a4803acc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SFXOBPrefab: {fileID: 1622170026801141916, guid: 49bccbe84254bd844b0371805b86ecac, type: 3}
   HurtSFXs: []
   DeathSFXs:
   - {fileID: 8300000, guid: 00587e0352650d749a9afca759a7d678, type: 3}
@@ -5297,6 +5296,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 1762062770269579636}
+  MaxCountBeforeYield: 10
   PathFound: []
 --- !u!114 &3946784600316371608
 MonoBehaviour:
@@ -5331,7 +5331,7 @@ MonoBehaviour:
   Direction: {x: 0, y: 0, z: 0}
   Diff: {x: 0, y: 0, z: 0}
   maxHelpers: 3
-  CallRange: 100
+  CallRange: 75
 --- !u!4 &1879631715525172644 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 270c29c067896144281b620e56b3396e, type: 3}

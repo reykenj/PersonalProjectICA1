@@ -1,13 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using static UnityEditor.Rendering.InspectorCurveEditor;
 
 public class DemonicMinionController : EnemyBase
 {
-
-
     private static readonly string Attack = "Attack";
     private enum BehaviourState
     {

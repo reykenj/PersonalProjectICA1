@@ -86,7 +86,7 @@ MonoBehaviour:
     materials: []
   SpellName: Size Up
   SpellDescription: Increases the projectile size
-  RuneIcon: {fileID: 21300000, guid: 8daddb70a45a9d745bd298fad8593ea3, type: 3}
+  RuneIcon: {fileID: 21300000, guid: 5b12015f986cfb64ba1d260ddb2894cc, type: 3}
   UseTurn: 0
   ApplyToAllModifier: 1
   MulticastAdditive: 0

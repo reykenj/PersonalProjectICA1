@@ -95,6 +95,10 @@ public class Projectile : MonoBehaviour
         {
             info.OnCollision = null;
         }
+        if (info.OnCollisionEnemy != null)
+        {
+            info.OnCollisionEnemy = null;
+        }
         if (info.OnSpawn != null)
         {
             info.OnSpawn = null;
@@ -147,6 +151,10 @@ public class Projectile : MonoBehaviour
         {
             Debug.Log("Hurting! " + other.gameObject.name);
             hurtcontroller.Hurt(ProjInfo.Damage);
+            if (ProjInfo.OnCollisionEnemy != null)
+            {
+                ProjInfo.OnCollisionEnemy.Invoke(this);
+            }
         }
 
         if (ProjInfo.OnCollision != null)
@@ -368,6 +376,7 @@ public struct ProjectileInformation
     public List<Material> materials;
 
     public System.Action<Projectile> OnCollision;
+    public System.Action<Projectile> OnCollisionEnemy;
     public System.Action<Projectile> OnSpawn;
     public System.Action<Projectile> OnDespawn;
 }

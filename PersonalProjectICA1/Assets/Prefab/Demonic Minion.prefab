@@ -115,7 +115,7 @@ MonoBehaviour:
   _animator: {fileID: 3514145300567894258}
   AttackVFX: {fileID: 0}
   VoxelAStarPathing: {fileID: 5424847758232778292}
-  MaxSearchTimerSeen: 0.1
+  MaxSearchTimerSeen: 0.2
   MaxSearchTimerUnseen: 10
   PathfindingAccuracy: 0.1
   Direction: {x: 0, y: 0, z: 0}

@@ -11610,6 +11610,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 945118d7e645ecb4dbaaa65778d0da2d, type: 2}
   - {fileID: 11400000, guid: 6f6fb3457fb5ca04f9b80a0bff10fb99, type: 2}
   - {fileID: 11400000, guid: 3f76eada34b3b4b47bf436d750329e90, type: 2}
+  - {fileID: 11400000, guid: dc8b1ea55519ef54f99f67505fd102ad, type: 2}
+  - {fileID: 11400000, guid: 53390e30ea6c6ce40b1dece89860a537, type: 2}
 --- !u!4 &733494359 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8046449662264404278, guid: 086408abb6d7a744b845bede82867fe9, type: 3}
@@ -12980,8 +12982,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Title: Shop Refresh
-  Description: Restock and Refresh? (Press E)
+  Description: 'Restock and Refresh? (Costs 10 Gold, Press E) '
   SpellShop: {fileID: 726709562}
+  GoldCost: 10
+  GoldRerollMult: 1.5
 --- !u!4 &1009804168 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4970086455181384, guid: 188dd74d9bb29cc4dba7be8694cca269, type: 3}
@@ -14771,6 +14775,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 469127724359307303, guid: 241f815e05aeef946a2ba627bcdaa6b9, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 469127724359307303, guid: 241f815e05aeef946a2ba627bcdaa6b9, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 469127724359307303, guid: 241f815e05aeef946a2ba627bcdaa6b9, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1143866436605297120, guid: 241f815e05aeef946a2ba627bcdaa6b9, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -14779,9 +14795,37 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1484613777611531569, guid: 241f815e05aeef946a2ba627bcdaa6b9, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1484613777611531569, guid: 241f815e05aeef946a2ba627bcdaa6b9, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1687266462127620230, guid: 241f815e05aeef946a2ba627bcdaa6b9, type: 3}
       propertyPath: m_Name
       value: GameFlowManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 1800845021233048052, guid: 241f815e05aeef946a2ba627bcdaa6b9, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1882791052497078985, guid: 241f815e05aeef946a2ba627bcdaa6b9, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1882791052497078985, guid: 241f815e05aeef946a2ba627bcdaa6b9, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1882791052497078985, guid: 241f815e05aeef946a2ba627bcdaa6b9, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1882791052497078985, guid: 241f815e05aeef946a2ba627bcdaa6b9, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2664391692428802280, guid: 241f815e05aeef946a2ba627bcdaa6b9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14829,6 +14873,38 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4815545549238996557, guid: 241f815e05aeef946a2ba627bcdaa6b9, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5375236402081439152, guid: 241f815e05aeef946a2ba627bcdaa6b9, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5375236402081439152, guid: 241f815e05aeef946a2ba627bcdaa6b9, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5375236402081439152, guid: 241f815e05aeef946a2ba627bcdaa6b9, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5375236402081439152, guid: 241f815e05aeef946a2ba627bcdaa6b9, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7264682325221112636, guid: 241f815e05aeef946a2ba627bcdaa6b9, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7264682325221112636, guid: 241f815e05aeef946a2ba627bcdaa6b9, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7264682325221112636, guid: 241f815e05aeef946a2ba627bcdaa6b9, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7264682325221112636, guid: 241f815e05aeef946a2ba627bcdaa6b9, type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

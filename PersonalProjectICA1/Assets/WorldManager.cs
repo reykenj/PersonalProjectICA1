@@ -62,6 +62,9 @@ public class WorldManager : MonoBehaviour
 
     IEnumerator populate()
     {
+        GameFlowManager.instance.Player.enabled = false;
+        Humanoid.TryGetHumanoid(GameFlowManager.instance.Player.gameObject, out Humanoid humanoid);
+        humanoid.enabled = false;
         yield return new WaitForSeconds(0.25f);
         GameFlowManager.instance.PopulateMap();
     }

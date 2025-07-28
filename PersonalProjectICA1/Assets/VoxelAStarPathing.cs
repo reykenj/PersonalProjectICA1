@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.Burst;
@@ -11,13 +12,16 @@ public class VoxelAStarPathing : MonoBehaviour
 {
 
     [SerializeField] Transform Target;
+    [SerializeField] int MaxCountBeforeYield = 10;
     public List<Vector3> PathFound = new List<Vector3>();
 
     private bool waitingForPath = false;
 
+    Coroutine Pathfinding;
+
     public void Pathfind()
     {
-        if (!waitingForPath)
+        if (!waitingForPath && Pathfinding == null)
         {
             waitingForPath = true;
             PathfindManager.Instance.RequestPath(this);
@@ -54,15 +58,21 @@ public class VoxelAStarPathing : MonoBehaviour
 
     public void PathfindNow()
     {
+        if (Pathfinding != null)
+        {
+            return;
+        }
         waitingForPath = false;
         PathFound.Clear();
-        PathFound = VoxelPathfinding(transform.position, Target.position);
+        Pathfinding = StartCoroutine(VoxelPathfinding(transform.position, Target.position));
     }
-    public List<Vector3> VoxelPathfinding(Vector3 currentPos, Vector3 TargetPos)
+    public IEnumerator VoxelPathfinding(Vector3 currentPos, Vector3 TargetPos)
     {
         if (Vector3.Distance(currentPos, TargetPos) < 0.5f)
         {
-            return new List<Vector3>();
+            PathFound = new List<Vector3>();
+            Pathfinding = null;
+            yield break;
         }
 
         Vector3 groundCurrent = GetVoxelPosition(currentPos);
@@ -79,7 +89,9 @@ public class VoxelAStarPathing : MonoBehaviour
             {
                 Debug.LogError("VOXEL INVALID");
             }
-            return new List<Vector3>();
+            PathFound = new List<Vector3>();
+            Pathfinding = null;
+            yield break;
         }
 
         bool hasWalkableNeighbor = false;
@@ -99,7 +111,9 @@ public class VoxelAStarPathing : MonoBehaviour
         if (!hasWalkableNeighbor)
         {
             //Debug.LogError("NO WALKABLE NEIGHBORS LOL");
-            return new List<Vector3>();
+            PathFound = new List<Vector3>();
+            Pathfinding = null;
+            yield break;
         }
 
         PriorityQueue<VoxelPathNode> OpenNodes = new PriorityQueue<VoxelPathNode>();
@@ -115,15 +129,23 @@ public class VoxelAStarPathing : MonoBehaviour
         const int maxNodesToExplore = 1000;
         int nodesExplored = 0;
 
+        int CountReset = 0;
         while (OpenNodes.Count > 0 && nodesExplored++ < maxNodesToExplore)
         {
+            if (CountReset >= MaxCountBeforeYield)
+            {
+                CountReset = 0;
+                yield return null;
+            }
             //Debug.Log("Trying pathfind");
             VoxelPathNode currentNode = OpenNodes.Dequeue();
             OpenDict.Remove(currentNode.pos);
 
             if (currentNode.pos == groundTarget)
             {
-                return ReconstructPath(currentNode, groundCurrent, TotalDict);
+                PathFound = ReconstructPath(currentNode, groundCurrent, TotalDict);
+                Pathfinding = null;
+                yield break;
             }
 
             foreach (Vector3 neighborDir in Container.voxelFaceChecks)
@@ -162,7 +184,9 @@ public class VoxelAStarPathing : MonoBehaviour
             ClosedNodes.Add(currentNode.pos);
         }
 
-        return new List<Vector3>();
+        PathFound = new List<Vector3>();
+        Pathfinding = null;
+        yield break;
     }
 
     private List<Vector3> ReconstructPath(VoxelPathNode endNode, Vector3 groundCurrent, Dictionary<Vector3, VoxelPathNode> TotalDict)

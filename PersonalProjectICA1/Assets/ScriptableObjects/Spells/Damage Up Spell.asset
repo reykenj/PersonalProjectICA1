@@ -86,7 +86,7 @@ MonoBehaviour:
     materials: []
   SpellName: Damage Up
   SpellDescription: 
-  RuneIcon: {fileID: 0}
+  RuneIcon: {fileID: 21300000, guid: 35a878ca79cb1a54f95475cc9cb8833d, type: 3}
   UseTurn: 0
   ApplyToAllModifier: 1
   MulticastAdditive: 0

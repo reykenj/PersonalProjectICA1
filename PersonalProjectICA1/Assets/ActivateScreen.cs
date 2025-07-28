@@ -19,9 +19,12 @@ public class ActivateScreen : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
+        if(_playerInput == null)
+        {
+            _playerInput = GameObject.Find("Player").GetComponent<PlayerInput>();
+        }
         _inputActions = _playerInput.actions;
         _inputActions[Action].Enable();
-        
         if (!EnterScreenWithNoKeyPressInit)
         {
             _inputActions[Action].canceled += CTXOffOn;
@@ -29,6 +32,7 @@ public class ActivateScreen : MonoBehaviour
         OffOn();
     }
 
+    
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -59,7 +63,7 @@ public class ActivateScreen : MonoBehaviour
     }
     private void OnDisable()
     {
-        if (EnterScreenWithNoKeyPressInit)
+        if (EnterScreenWithNoKeyPressInit && _inputActions.FindAction(Action) != null)
         {
             _inputActions[Action].canceled -= CTXOffOn;
         }
