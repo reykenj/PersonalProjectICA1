@@ -16,6 +16,8 @@ public class AttackHandler : MonoBehaviour
     public int TempMultiCastCount = 0;
     public System.Action Casted;
 
+    public SpellContainer DefaultAttack;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -26,6 +28,14 @@ public class AttackHandler : MonoBehaviour
         }
         DontCast = new HashSet<int>();
         ResetSpells(0, SpellArray.Count);
+
+        SpellContainer container = DefaultAttack;
+        if (container.spell != null)
+        {
+            container.TempProjInfo = container.spell.OGProjectileInformation;
+            DefaultAttack = container;
+        }
+
     }
 
     // Update is called once per frame
@@ -151,6 +161,12 @@ public class AttackHandler : MonoBehaviour
 
             if (InsertedTurn == startTurn)
             {
+                if (multicount == 0)
+                {
+                    SpellArray.Insert(0, DefaultAttack);
+                    DefaultAttack.spell.Apply(0, this, out bool template, position, rotation);
+                    SpellArray.RemoveAt(0);
+                }
                 ResetSpells(0, spellCount);
                 break;
             }
