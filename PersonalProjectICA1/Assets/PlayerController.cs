@@ -59,6 +59,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] LayerMask interactableLayer;
     private Coroutine interactCoroutine;
     [SerializeField] private IInteractable currentInteractable;
+    [SerializeField] private Transform DashLockOnUI;
+
+    GameObject enemytodash;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -101,6 +104,7 @@ public class PlayerController : MonoBehaviour
     {
         while (true)
         {
+            enemytodash = FindEnemyToDash();
             Debug.Log("[InteractablePlayerDetection] Coroutine update");
             Collider[] found = Physics.OverlapSphere(transform.position, interactSearchRadius, interactableLayer);
 
@@ -454,7 +458,6 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator PlayerDash()
     {
-        GameObject enemytodash = FindEnemyToDash();
         if (enemytodash != null)
         {
             StartCoroutine(humanoid.DashToTarget(enemytodash.transform));
@@ -497,6 +500,22 @@ public class PlayerController : MonoBehaviour
             }
         }
         Debug.Log("[TEST] FINISHED");
+        if (bestTarget != null)
+        {
+            if(bestTarget.transform != DashLockOnUI.parent)
+            {
+                DashLockOnUI.gameObject.SetActive(false);
+            }
+            DashLockOnUI.gameObject.SetActive(true);
+            DashLockOnUI.parent = bestTarget.transform;
+            DashLockOnUI.localPosition = Vector3.zero;
+        }
+        else
+        {
+            DashLockOnUI.gameObject.SetActive(false);
+            DashLockOnUI.parent = transform;
+            DashLockOnUI.localPosition = Vector3.zero;
+        }
         return bestTarget;
     }
 
