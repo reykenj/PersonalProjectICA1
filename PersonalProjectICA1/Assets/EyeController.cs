@@ -213,7 +213,7 @@ public class EyeController : EnemyBase
 
             if (TargetTransform.parent != transform)
             {
-                TargetTransform.localPosition = Vector3.up * (AttackRange - 1);
+                TargetTransform.localPosition = Vector3.up * TargetTransformUpMult;
 
                 if (Physics.Raycast(PlayerTransform.position, Vector3.up, out RaycastHit hit2, AttackRange - 2, LayerMask.GetMask("Voxel")))
                 {
