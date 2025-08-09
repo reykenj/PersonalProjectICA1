@@ -19,8 +19,8 @@ public class InstructionPanel : MonoBehaviour
 
     [SerializeField] float moveDuration = 1f;
 
-    private Vector2 startPos;
-    private Vector2 endPos;
+    [SerializeField] private Vector2 startPos;
+    [SerializeField] private Vector2 endPos;
     private float moveTimer;
 
 
@@ -30,7 +30,7 @@ public class InstructionPanel : MonoBehaviour
 
     public RectTransform layoutRoot;
 
-    private void Start()
+    private void Awake()
     {
         startPos = new Vector2(0, Screen.height * 1.1f);
         targetAnchorPos = new Vector2(Screen.width / 2, Screen.height);

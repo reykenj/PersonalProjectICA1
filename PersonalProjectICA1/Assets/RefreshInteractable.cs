@@ -7,7 +7,7 @@ public class RefreshInteractable : MonoBehaviour, IInteractable
     [SerializeField] SpellShop SpellShop;
     [SerializeField] int GoldCost = 10;
     [SerializeField] float GoldRerollMult = 1.5f;
-
+    [SerializeField] float ScreenDist = 500.0f;
     public void EnterNear()
     {
         GameFlowManager.instance.ActivateInstructionPanel(Title, Description);
@@ -32,5 +32,10 @@ public class RefreshInteractable : MonoBehaviour, IInteractable
         Description = "Restock and Refresh? (Costs " + GoldCost.ToString() + " Gold, Press E)";
         GoldCost = (int)(GoldCost * GoldRerollMult);
         SpellShop.RefreshShop();
+    }
+
+    public float ReturnScreenDist()
+    {
+        return ScreenDist;
     }
 }

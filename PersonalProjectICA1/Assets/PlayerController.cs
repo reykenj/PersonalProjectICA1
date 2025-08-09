@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour
 
 
     [SerializeField] float interactSearchRadius = 5f;
-    [SerializeField] float interactScreenRadius = 200f;
+    [SerializeField] float interactSearchTime = 0.5f;
     [SerializeField] LayerMask interactableLayer;
     private Coroutine interactCoroutine;
     [SerializeField] private IInteractable currentInteractable;
@@ -127,13 +127,13 @@ public class PlayerController : MonoBehaviour
                 if (screenPos.z < 0)
                     continue;
 
-                float screenDist = Vector2.Distance(screenCenter, screenPos);
-
-                if (screenDist > interactScreenRadius)
-                    continue;
-
                 if (col.TryGetComponent<IInteractable>(out var interactable))
                 {
+                    float screenDist = Vector2.Distance(screenCenter, screenPos);
+
+                    if (screenDist > interactable.ReturnScreenDist())
+                        continue;
+                    
                     if (screenDist < bestScreenDistance)
                     {
                         bestScreenDistance = screenDist;
@@ -160,7 +160,7 @@ public class PlayerController : MonoBehaviour
             }
 
 
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(interactSearchTime);
         }
     }
     private void StartDashing(InputAction.CallbackContext context)

@@ -10,6 +10,7 @@ public class SpellDrop : MonoBehaviour, IInteractable
     [SerializeField] GameObject TeleportEffect;
     [SerializeField] Spell spell;
     [SerializeField] int Cost = 50;
+    [SerializeField] float ScreenDist = 500.0f;
     private static Dictionary<GameObject, SpellDrop> cache = new Dictionary<GameObject, SpellDrop>();
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
@@ -101,5 +102,10 @@ public class SpellDrop : MonoBehaviour, IInteractable
                 break;
             }
         }
+    }
+
+    public float ReturnScreenDist()
+    {
+        return ScreenDist;
     }
 }
