@@ -9,6 +9,10 @@ public class DashLockOnAnim : MonoBehaviour
     [SerializeField] private Vector3 startRotation = Vector3.zero;
     [SerializeField] private Vector3 endRotation = new Vector3(0, 0, 270);
 
+    [SerializeField] private Vector3 startScale = Vector3.one;
+    [SerializeField] private Vector3 endScale = new Vector3(0.25f, 0.25f, 0.25f);
+
+
     [SerializeField] private Image image;
     private Coroutine animCoroutine;
     private Camera maincam;
@@ -22,6 +26,7 @@ public class DashLockOnAnim : MonoBehaviour
     private void OnEnable()
     {
         image.transform.localEulerAngles = startRotation;
+        transform.localScale = startScale;
 
         if (animCoroutine != null)
             StopCoroutine(animCoroutine);
@@ -57,11 +62,13 @@ public class DashLockOnAnim : MonoBehaviour
             elapsedTime += Time.deltaTime;
             float t = elapsedTime / Duration;
             image.transform.localRotation = Quaternion.Slerp(fromRot, toRot, t);
+            transform.localScale = Vector3.Lerp(startScale, endScale, t);
             color.a = Mathf.Lerp(0f, 1f, t);
             image.color = color;
             yield return null;
         }
         image.transform.localRotation = toRot;
+        transform.localScale = endScale;
         color.a = 1f;
         image.color = color;
         animCoroutine = null;
