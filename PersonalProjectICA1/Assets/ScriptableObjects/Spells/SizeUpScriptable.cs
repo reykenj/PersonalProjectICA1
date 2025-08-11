@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Size Up Spell", menuName = "Spells/Size Up Spell")]
@@ -53,5 +54,9 @@ public class SizeUpSpell : Spell
 
     public override void OnHit(Projectile projectile)
     {
+    }
+    public override List<int> FindAffected(int Index, AttackHandler attackHandler)
+    {
+        return attackHandler.FindAffectedModifier(Index);
     }
 }

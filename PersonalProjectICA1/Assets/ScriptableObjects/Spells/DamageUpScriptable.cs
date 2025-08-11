@@ -1,5 +1,6 @@
 using NUnit.Framework.Internal.Execution;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Damage Up Spell", menuName = "Spells/Damage Up Spell")]
@@ -22,5 +23,9 @@ public class DamageUpSpell : Spell
     }
     public override void OnHit(Projectile projectile)
     {
+    }
+    public override List<int> FindAffected(int Index, AttackHandler attackHandler)
+    {
+        return attackHandler.FindAffectedModifier(Index);
     }
 }

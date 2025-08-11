@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class SpellDeckUI : MonoBehaviour
@@ -20,7 +21,7 @@ public class SpellDeckUI : MonoBehaviour
     private void OnEnable()
     {
         RefreshUISpellDeck();
-
+        RefreshAffected();
         WaveAnim = StartCoroutine(WaveAnimation());
     }
 
@@ -53,11 +54,33 @@ public class SpellDeckUI : MonoBehaviour
                 SC.TempProjInfo = new ProjectileInformation();
             }
             attackHandler.SpellArray[i] = SC;
+            spellslotUI.SpellsAffectingIt.Clear();
         }
         attackHandler.DontCast.Clear();
         attackHandler.Turn = 0;
 
+        RefreshAffected();
         InvokeWaveAnim();
+    }
+
+    void RefreshAffected()
+    {
+        for (int i = 0; i < attackHandler.SpellArray.Count; i++)
+        {
+            if (attackHandler.SpellArray[i].spell == null)
+            {
+                continue;
+            }
+
+            List<int> affected = attackHandler.SpellArray[i].spell.FindAffected(i, attackHandler);
+            if (affected == null) continue;
+            for (int af = 0; af < affected.Count; af++)
+            {
+                SpellSlotUI.TryGetSpellSlotUI(transform.GetChild(affected[af]).gameObject, out SpellSlotUI spellslotUI);
+                if (spellslotUI == null) continue;
+                spellslotUI.SpellsAffectingIt.Add(attackHandler.SpellArray[i].spell);
+            }
+        }
     }
     void RefreshUISpellDeck()
     {

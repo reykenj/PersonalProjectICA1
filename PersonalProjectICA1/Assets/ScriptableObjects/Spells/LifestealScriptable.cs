@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Lifesteal Spell", menuName = "Spells/Lifesteal Spell")]
@@ -50,5 +51,10 @@ public class LifestealSpell : Spell
 
     public override void OnHit(Projectile projectile)
     {
+    }
+
+    public override List<int> FindAffected(int Index, AttackHandler attackHandler)
+    {
+        return attackHandler.FindAffectedModifier(Index);
     }
 }

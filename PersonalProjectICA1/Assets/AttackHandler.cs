@@ -294,4 +294,55 @@ public class AttackHandler : MonoBehaviour
     }
 
 
+    public List<int> FindAffectedModifier(int InsertedTurn = -1)
+    {
+        var affected = new List<int>();
+
+        if (InsertedTurn == -1)
+            InsertedTurn = Turn;
+
+        int spellCount = SpellArray.Count;
+        if (spellCount == 0) return affected;
+
+        var insertedContainer = SpellArray[InsertedTurn];
+        if (insertedContainer.spell == null || insertedContainer.spell.UseTurn)
+        {
+            return null;
+        }
+        int idx = (InsertedTurn + 1) % spellCount;
+        int startIdx = idx;
+
+        int multicount = 0;
+        int tempMultiAdd = TempMultiCastCount;
+        int targetCount = NaturalMultiCastCount + tempMultiAdd;
+        while (true)
+        {
+            if (!DontCast.Contains(idx))
+            {
+                var container = SpellArray[idx];
+                if (container.spell != null)
+                {
+                    if (container.spell.MulticastAdditive > 0)
+                    {
+                        tempMultiAdd += container.spell.MulticastAdditive;
+                        targetCount = NaturalMultiCastCount + tempMultiAdd;
+                    }
+                    if (container.spell.UseTurn)
+                    {
+                        affected.Add(idx);
+                        multicount++;
+                        if (multicount >= targetCount)
+                            break;
+                    }
+                }
+            }
+            idx = (idx + 1) % spellCount;
+            if (idx == InsertedTurn)
+                break;
+        }
+
+        return affected;
+    }
+
+
 }

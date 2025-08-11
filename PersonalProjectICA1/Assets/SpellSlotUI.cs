@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class SpellSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
+public class SpellSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerEnterHandler, IPointerExitHandler
 {
     private static Dictionary<GameObject, SpellSlotUI> cache = new Dictionary<GameObject, SpellSlotUI>();
     public Spell spell;
@@ -14,6 +14,9 @@ public class SpellSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public static SpellSlotUI DragIconChosen;
     public Sprite EmptySpellSlot;
     public SpellDeckUI ParentDeck;
+
+
+    public List<Spell> SpellsAffectingIt = new List<Spell>();
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
@@ -126,6 +129,17 @@ public class SpellSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         }
 
         Debug.Log("Slider released");
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        SpellStats.instance.currentSpellSlotUI = this;
+        SpellStats.instance.gameObject.SetActive(true);
+    }
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        SpellStats.instance.currentSpellSlotUI = null;
+        SpellStats.instance.gameObject.SetActive(false);
     }
 
 

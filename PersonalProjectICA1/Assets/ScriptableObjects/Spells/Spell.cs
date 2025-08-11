@@ -1,3 +1,5 @@
+using NUnit.Framework;
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Spell", menuName = "Spells/New Spell")]
@@ -21,6 +23,11 @@ public class Spell : ScriptableObject
 
     public virtual void PreApply(int Index, AttackHandler attackHandler, Vector3 position, Quaternion rotation)
     {
+    }
+
+    public virtual List<int> FindAffected(int Index, AttackHandler attackHandler)
+    {
+        return null;
     }
 
     public virtual void OnHit(Projectile projectile)
