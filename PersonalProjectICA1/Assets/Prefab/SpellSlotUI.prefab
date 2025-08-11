@@ -90,6 +90,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spell: {fileID: 0}
   slotimage: {fileID: 3811981154530194566}
+  Draggable: 1
   isBeingHeld: 0
   Index: 0
   EmptySpellSlot: {fileID: 21300000, guid: 0a9c9e525fa5df8459f26280f8eaf1b0, type: 3}
+  ParentDeck: {fileID: 0}
