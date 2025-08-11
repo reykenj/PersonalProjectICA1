@@ -22,6 +22,7 @@ public class Humanoid : MonoBehaviour
     [SerializeField] bool Grounded;
     [SerializeField] bool Ragdolled;
     [SerializeField] bool TotalGrounded;
+    [SerializeField] bool Immortality = false;
     [SerializeField] private float gravity = -9.81f;
     //public float GravityMultiplier = 1.0f;
     public float JumpHeight = 1.0f;
@@ -136,7 +137,7 @@ public class Humanoid : MonoBehaviour
 
     public IEnumerator DashToTarget(Transform target, float dashTime = 0.3f)
     {
-        Gravity = false; 
+        Gravity = false;
         Vector3 targetForward = target.forward;
         Vector3 targetPosition = target.position;
         float stopDistance = 1.0f;
@@ -177,7 +178,7 @@ public class Humanoid : MonoBehaviour
     }
     public void Hurt(float Damage)
     {
-        if(IsDead()) return;
+        if (IsDead() && !Immortality) return;
         if (Shield > 0)
         {
             Shield = Mathf.Clamp(Shield - Damage, 0, MaxShield);
@@ -193,8 +194,17 @@ public class Humanoid : MonoBehaviour
         }
         if (HP <= 0)
         {
-            OnDeath?.Invoke();
+            if (Immortality)
+            {
+                HP = MaxHP;
+            }
+            else
+            {
+                OnDeath?.Invoke();
+            }
+
         }
+
 
         if (meshRenderers.Count > 0 || SkinnedmeshRenderers.Count > 0)
         {
@@ -241,7 +251,7 @@ public class Humanoid : MonoBehaviour
             timer -= Time.deltaTime;
             yield return null;
         }
-        if (!IsDead())
+        if (!IsDead() || Immortality)
         {
             ResetOGColors();
         }
