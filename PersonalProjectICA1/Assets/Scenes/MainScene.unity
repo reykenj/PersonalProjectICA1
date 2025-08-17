@@ -18019,7 +18019,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8388205170468864531, guid: 241f815e05aeef946a2ba627bcdaa6b9, type: 3}
       propertyPath: MinFraction
-      value: 0.1
+      value: 0.3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
