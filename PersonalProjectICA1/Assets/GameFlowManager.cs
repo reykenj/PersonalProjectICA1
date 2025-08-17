@@ -121,7 +121,10 @@ public class GameFlowManager : MonoBehaviour
     }
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        Round++;
+        if (scene.name == "MainScene")
+        {
+            Round++;
+        }
         Player = GameObject.Find("Player").GetComponent<PlayerController>();
         Transform AttackHandlerTransform = Player.transform.Find("AttackHandlerStartPos");
         Player.LeftAttackHandler = leftAttackPlayer;
@@ -185,8 +188,8 @@ public class GameFlowManager : MonoBehaviour
         float worldWidth = WorldManager.Instance.xSize * WorldManager.Instance.ChunkSize;
         float worldDepth = WorldManager.Instance.zSize * WorldManager.Instance.ChunkSize;
 
-        float randX = Random.Range(0, worldWidth);
-        float randZ = Random.Range(0, worldDepth);
+        float randX = Random.Range(2, worldWidth - 2);
+        float randZ = Random.Range(2, worldDepth - 2);
 
         Vector3 rayOrigin = new Vector3(randX, worldDepth + 1, randZ); // shoot down from high above
         if (Physics.Raycast(rayOrigin, Vector3.down, out RaycastHit hit, 2000f, LayerMask.GetMask("Voxel")))

@@ -17,11 +17,12 @@ public class SpellDeckUI : MonoBehaviour
     private void Awake()
     {
         OnSpellDeckChangeSize();
+
+        RefreshAffected();
     }
     private void OnEnable()
     {
         RefreshUISpellDeck();
-        RefreshAffected();
         WaveAnim = StartCoroutine(WaveAnimation());
     }
 

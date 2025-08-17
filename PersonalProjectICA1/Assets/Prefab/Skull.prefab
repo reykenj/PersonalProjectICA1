@@ -5240,6 +5240,7 @@ MonoBehaviour:
   Grounded: 0
   Ragdolled: 0
   TotalGrounded: 0
+  Immortality: 0
   gravity: -9.81
   JumpHeight: 1
   flashTimer: 0
